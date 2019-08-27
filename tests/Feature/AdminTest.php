@@ -2,7 +2,8 @@
 
 namespace Tests\Feature;
 
-use App\User;
+
+use App\Model\User;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -13,7 +14,14 @@ class AdminTest extends TestCase
     /** @test */
     function it_authorizer_admin_can_see_the_menu()
     {
-        $user = factory(User::class)->create();
+        $this->withoutExceptionHandling();
+
+        $user = factory(User::class)->create([
+            'name' => 'Erich Briceno',
+            'email' => 'erichbriceno@gmail.com',
+            'password' => bcrypt('secreto1'),
+            'role' => 'admin'
+        ]);
 
         $this->actingAs($user);
 
