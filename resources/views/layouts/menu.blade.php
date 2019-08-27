@@ -8,7 +8,9 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="{{ route('projects') }}">@lang('Projects')</a>
-                        <a class="dropdown-item" href="#">@lang('Users')</a>
+                        <a class="dropdown-item" href="{{ route('managements') }}">@lang('Managements')</a>
+                        <a class="dropdown-item" href="{{ route('groups') }}">@lang('Groups')</a>
+                        <a class="dropdown-item" href="{{ route('users') }}">@lang('Users')</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="#">@lang('Statistics')</a>
                     </div>

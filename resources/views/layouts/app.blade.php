@@ -24,18 +24,11 @@
     <nav class="navbar navbar-expand-md navbar-light bg-white">
         <div class="container">
             <a class="navbar-brand p-0" href="{{ url('/') }}">
-                <img src="/images/LogoWhite.png" alt="PerSyCon" height="50">
+                <img src="/images/LogoWhite.png" alt="Styde" height="50">
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                 <span class="navbar-toggler-icon"></span>
             </button>
-
-            <ul class="nav">
-                <li class="nav-item">
-                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Proyectos - Dinamico</a>
-                </li>
-            </ul>
-
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto">
@@ -66,18 +59,12 @@
             </div>
         </div>
     </nav>
-
-    @include('layouts.menu')
-
 </header>
 
 <main role="main" class="container p-0">
     <div class="row">
-        <div class="col-10 mt-3">
+        <div class="col-12 mt-3">
             @yield('content')
-        </div>
-        <div class="col-2 mt-3">
-            @include('layouts.works')
         </div>
     </div>
 </main>

@@ -19,4 +19,10 @@ Auth::routes(['register' => false]);
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/projects', 'AdminController@index')->name('projects');
+Route::get('/project', 'AdminController@project')->name('projects');
+
+Route::get('/management', 'AdminController@management')->name('managements');
+
+Route::get('/group', 'AdminController@group')->name('groups');
+
+Route::get('/user', 'AdminController@user')->name('users');
