@@ -7,11 +7,13 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->truncateTables([
+            'groups',
             'projects',
             'users'
         ]);
 
         $this->call([
+            GroupSeeder::class,
             ProjectSeeder::class,
             UserSeeder::class,
         ]);

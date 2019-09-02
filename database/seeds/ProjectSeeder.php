@@ -18,7 +18,7 @@ class ProjectSeeder extends Seeder
         ]);
 
 
-        factory(Project::class)->create();
+        factory(Project::class)->times(10)->create();
 
     }
 }
