@@ -12,28 +12,16 @@
         </tr>
         </thead>
         <tbody>
+        @foreach($users as $user)
         <tr>
-            <th scope="row">1</th>
-            <td>Erich Briceno</td>
-            <td>erichbriceno@gmail.com</td>
-            <td>Master</td>
+            <th scope="row">{{ $user->id }}</th>
+            <td>{{ $user->name }}</td>
+            <td>{{ $user->email }}</td>
+            <td>{{ $user->role }}</td>
             <td>Botones</td>
         </tr>
-        <tr>
-            <th scope="row">1</th>
-            <td>Penelope Medina</td>
-            <td>penedina@gmail.com</td>
-            <td>Analista</td>
-            <td>Botones</td>
-        </tr>
-        <tr>
-            <th scope="row">2</th>
-            <td>Carlos Andrade</td>
-            <td>candradeo@gmail.com</td>
-            <td>Admin</td>
-            <td>Botones</td>
-        </tr>
-
+        @endforeach
         </tbody>
     </table>
+    {{ $users->links() }}
 @endsection

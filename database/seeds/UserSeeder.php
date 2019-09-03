@@ -16,7 +16,11 @@ class UserSeeder extends Seeder
             'name' => 'Erich Briceno',
             'email' => 'erichbriceno@gmail.com',
             'password' => bcrypt('secreto1'),
-            'role' => 'Master',
+            'role' => 'master',
+        ]);
+
+        factory(User::class)->times(6)->create([
+            'role' => 'user',
         ]);
     }
 }

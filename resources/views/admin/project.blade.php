@@ -12,27 +12,16 @@
         </tr>
         </thead>
         <tbody>
+        @foreach($projects as $project)
         <tr>
-            <th scope="row">1</th>
-            <td>Elecciones 2019</td>
-            <td>Elecciones Presidenciales 2019</td>
-            <td>01/09/2019</td>
+            <th scope="row">{{ $project->id }}</th>
+            <td>{{ $project->name }}</td>
+            <td>{{ $project->description }}</td>
+            <td>{{ $project->created_at }}</td>
             <td>Botones</td>
         </tr>
-        <tr>
-            <th scope="row">2</th>
-            <td>Elecciones 2019</td>
-            <td>Elecciones Presidenciales 2019</td>
-            <td>01/09/2019</td>
-            <td>Botones</td>
-        </tr>
-        <tr>
-            <th scope="row">3</th>
-            <td>Elecciones 2019</td>
-            <td>Elecciones Presidenciales 2019</td>
-            <td>01/09/2019</td>
-            <td>Botones</td>
-        </tr>
+        @endforeach
         </tbody>
     </table>
+    {{ $projects->links() }}
 @endsection

@@ -12,27 +12,16 @@
         </tr>
         </thead>
         <tbody>
+        @foreach($managements as $management)
         <tr>
-            <th scope="row">1</th>
-            <td>Mariche</td>
-            <td>Galpon CNE Mariche</td>
+            <th scope="row">{{ $management->id }}</th>
+            <td>{{ $management->name }}</td>
+            <td>{{ $management->description }}</td>
             <td class="text-center">4</td>
             <td>Botones</td>
         </tr>
-        <tr>
-            <th scope="row">2</th>
-            <td>CNS</td>
-            <td>Centro Nacional de Soporte</td>
-            <td class="text-center">1</td>
-            <td>Botones</td>
-        </tr>
-        <tr>
-            <th scope="row">3</th>
-            <td>ODC</td>
-            <td>Oficinas Decentralizadas</td>
-            <td class="text-center">0</td>
-            <td>Botones</td>
-        </tr>
+        @endforeach
         </tbody>
     </table>
+    {{ $managements->links() }}
 @endsection

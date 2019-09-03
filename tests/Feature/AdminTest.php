@@ -2,7 +2,6 @@
 
 namespace Tests\Feature;
 
-
 use App\Model\User;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -14,19 +13,20 @@ class AdminTest extends TestCase
     /** @test */
     function it_authorizer_admin_can_see_the_menu()
     {
-        $this->withoutExceptionHandling();
 
         $user = factory(User::class)->create([
             'name' => 'Erich Briceno',
             'email' => 'erichbriceno@gmail.com',
             'password' => bcrypt('secreto1'),
-            'role' => 'admin'
+            'role' => 'master'
         ]);
 
         $this->actingAs($user);
 
         $this->get(route('home'))
             ->assertSee('Administración')
+            ->assertSee('Personal')
+            ->assertSee('Nómina')
             ->assertStatus(200);
     }
 
@@ -40,5 +40,22 @@ class AdminTest extends TestCase
             ->assertStatus(200)
             ->assertSee('Proyectos');
     }
+
+    /** @test */
+    function it_displays_the_users_details()
+    {
+        $this->withoutExceptionHandling();
+
+        $user = factory(User::class)->create([
+            'name' => 'Erich Briceno',
+            'email' => 'erichbriceno@gmail.com',
+            'role' => 'master',
+        ]);
+        $this->get('/users/'.$user->id)
+        ->assertStatus(200)
+            ->assertSee('Erich Briceno');
+    }
+
+
 
 }

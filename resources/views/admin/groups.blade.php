@@ -12,27 +12,16 @@
         </tr>
         </thead>
         <tbody>
+        @foreach($groups as $group)
         <tr>
-            <th scope="row">1</th>
-            <td>Lineas</td>
-            <td>Lineas de Produccion</td>
-            <td>01/09/2019</td>
+            <th scope="row">{{ $group->id }}</th>
+            <td>{{ $group->name }}</td>
+            <td>{{ $group->description }}</td>
+            <td>{{ $group->created_at }}</td>
             <td>Botones</td>
         </tr>
-        <tr>
-            <th scope="row">2</th>
-            <td>Soporte</td>
-            <td>Soporte de Maquinas</td>
-            <td>01/09/2019</td>
-            <td>Botones</td>
-        </tr>
-        <tr>
-            <th scope="row">3</th>
-            <td>Despacho</td>
-            <td>Despacho y carga</td>
-            <td>01/09/2019</td>
-            <td>Botones</td>
-        </tr>
+        @endforeach
         </tbody>
     </table>
+    {{ $groups->links() }}
 @endsection
