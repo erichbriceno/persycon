@@ -31,14 +31,8 @@
                     </div>
 
                     <div class="col-md-6 offset-md-8 pb-4">
-                        <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                            <label class="btn btn-secondary active">
-                                <input type="radio" name="options" id="option1" autocomplete="off" checked>Edit
-                            </label>
-                            <label class="btn btn-secondary">
-                                <input type="radio" name="options" id="option2" autocomplete="off">Back
-                            </label>
-                        </div>
+                        <a href="#" class="btn btn-secondary" role="button" aria-disabled="true">Edit</a>
+                        <a href="{{ route('users') }}" class="btn btn-secondary" role="button" aria-disabled="true">Back</a>
                     </div>
                 </div>
             </div>

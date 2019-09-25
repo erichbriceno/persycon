@@ -19,11 +19,20 @@ Auth::routes(['register' => false]);
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+
+
 Route::get('/users', 'AdminController@user')->name('users');
+
+Route::get('/users/new', 'AdminController@create')->name('users.create');
+
+Route::post('/users/new', 'AdminController@store')->name('users.store');
+
 
 Route::get('/users/{user}', 'AdminController@userDetails')
     ->where('user', '[0-9]+')
-    ->name('userDetails');
+    ->name('user.details');
+
+
 
 Route::get('/projects', 'AdminController@project')->name('projects');
 

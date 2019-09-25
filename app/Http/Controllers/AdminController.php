@@ -35,11 +35,21 @@ class AdminController extends Controller
     {
         $users = User::paginate(10);
 
-        return view('admin.users', compact('users'));
+        return view('user.users', compact('users'));
     }
 
     public function userDetails(User $user)
     {
         return view('user.details', compact('user'));
+    }
+
+    public function create()
+    {
+        return view('user.create');
+    }
+
+    public function store()
+    {
+        return "Grabando";
     }
 }
