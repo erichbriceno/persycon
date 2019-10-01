@@ -15,9 +15,9 @@
             <thead class="thead-light">
             <tr>
                 <th scope="col">#<span class="oi oi-caret-bottom"></span><span class="oi oi-caret-top"></span></th>
-                <th scope="col">Nombre y Apellido <span class="oi oi-caret-bottom"></span><span class="oi oi-caret-top"></span></th>
-                <th scope="col">Correo Electronico <span class="oi oi-caret-bottom"></span><span class="oi oi-caret-top"></span></th>
-                <th scope="col">Role</th>
+                <th scope="col">@lang('Full Name') <i class="fas fa-angle-double-up"></i><i class="fas fa-angle-double-down"></i></th>
+                <th scope="col">@lang('Email') <i class="fas fa-angle-double-up"></i><i class="fas fa-angle-double-down"></i></th>
+                <th scope="col">@lang('Role') <i class="fas fa-angle-double-up"></i><i class="fas fa-angle-double-down"></i></th>
                 <th scope="col"class="text-center th-actions">Acciones</th>
             </tr>
             </thead>
