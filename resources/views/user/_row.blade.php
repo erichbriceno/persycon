@@ -4,7 +4,6 @@
     <td>{{ $user->email }}</td>
     <td>{{ $user->role }}</td>
     <td class="text-center">
-
         <form action="#" method="POST">
             {{ csrf_field() }}
             {{ method_field('DELETE') }}

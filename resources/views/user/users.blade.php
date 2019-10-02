@@ -1,12 +1,13 @@
 @extends('layouts.layout')
 
+@section('title', $title )
+
 @section('content')
 
-    <div class="d-flex justify-content-between align-items-end mb-3">
-        <p>
-            <a href="{{ route('users.create') }}" class="btn btn-primary btn-sm">@lang('New user')</a>
-        </p>
-    </div>
+
+    @include('layouts._filters')
+
+
 
     @if ($users->isNotEmpty())
 
