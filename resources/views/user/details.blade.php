@@ -30,11 +30,16 @@
                                 <input id="role" type="text" readonly class="form-control" name="role" value="{{ $user->role }}">
                             </div>
                         </div>
-                    </div>
 
-                    <div class="col-md-6 offset-md-8 pb-4">
-                        <a href="#" class="btn btn-secondary" role="button" aria-disabled="true">Edit</a>
-                        <a href="{{ route('users') }}" class="btn btn-secondary" role="button" aria-disabled="true">Back</a>
+                        <div class="row">
+                            <div class="col-md-10">
+                                <div class="form-inline justify-content-end">
+                                    <a href="{{ route('user.edit', ['id' => $user->id]) }}" class="btn btn-sm btn-secondary" role="button" aria-disabled="true">Edit</a>
+                                    &nbsp;
+                                    <a href="{{ route('users') }}" class="btn btn-sm btn-secondary" role="button" aria-disabled="true">Back</a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -5,12 +5,12 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-12">
             <div class="card">
-                <div class="card-header">@lang('Register')</div>
+                <div class="card-header">@lang('Register user')</div>
 
                 <div class="card-body">
-                    <form method="POST" action="#">
+                    <form method="POST" action="{{ route('users.create') }}">
                         @csrf
 
                         <div class="form-group row">
@@ -48,6 +48,7 @@
                                 <select name="role" id="role" class="form-control">
                                     <option value="user">User</option>
                                     <option value="admin">Administrator</option>
+                                    <option value="master">Master</option>
                                 </select>
                             </div>
                         </div>
@@ -67,22 +68,24 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">@lang('Confirm Password')</label>
+                           <label for="password-confirm" class="col-md-4 col-form-label text-md-right">@lang('Confirm Password')</label>
 
                             <div class="col-md-6">
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                             </div>
+
                         </div>
 
-                        <div class="form-group row mb-0">
-                            <div class="col-md-2 offset-md-7 p-0">
-                                <button type="submit" class="btn btn-primary btn-sm">
-                                    @lang('Register')
-                                </button>
+                        <div class="row">
+                            <div class="col-md-10">
+                                <div class="form-inline justify-content-end">
+                                    <button type="submit" class="btn btn-sm btn-primary btn-sm">
+                                        @lang('Register')
+                                    </button>
+                                    &nbsp;
+                                    <a href="{{ route('users') }}" class="btn btn-sm btn-primary btn-sm">@lang('Back')</a>
+                                </div>
                             </div>
-                            <p>
-                                <a href="{{ route('users') }}" class="btn btn-primary btn-sm">@lang('Back')</a>
-                            </p>
                         </div>
                     </form>
                 </div>

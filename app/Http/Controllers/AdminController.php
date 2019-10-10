@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 
-use App\Model\Group;
-use App\Model\Management;
-use App\Model\Project;
 use App\Model\User;
+use App\Model\Group;
+use App\Model\Project;
+use App\Model\Management;
+use Illuminate\Validation\Rule;
 
 class AdminController extends Controller
 {
@@ -42,7 +43,7 @@ class AdminController extends Controller
         return view('user.users', compact('title','users'));
     }
 
-    public function userDetails(User $user)
+    public function details(User $user)
     {
         $title = 'DETALLES DEL USUARIO';
         return view('user.details', compact('title','user'));
@@ -50,12 +51,55 @@ class AdminController extends Controller
 
     public function create()
     {
-        $title = 'CREAR USUARIO';
+        $title = 'REGISTRAR USUARIO';
         return view('user.create', compact('title'));
     }
 
     public function store()
     {
-        return "Grabando";
+        $data = request()->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'role' => 'required',
+            'password' => ['required', 'string', 'min:6'],
+
+        ]);
+
+        User::create([
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'password' => bcrypt($data['password']),
+            'role' => $data['role']
+        ]);
+
+        return redirect()->route('users');
     }
+
+    public function edit(User $user)
+    {
+        $title = 'EDITAR USUARIO';
+        return view('user.edit', compact('title','user'));
+    }
+
+    public function update(User $user)
+    {
+        $data = request()->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($user)],
+            'role' => 'required',
+            'password' => '',
+
+        ]);
+
+        if ($data['password'] != null) {
+            $data['password'] = bcrypt($data['password']);
+        } else {
+            unset($data['password']);
+        }
+
+        $user->update($data);
+
+        return redirect()->route('user.details',['user' => $user]);
+    }
+
 }

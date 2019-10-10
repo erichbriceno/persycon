@@ -50,7 +50,6 @@
                             </div>
                         </div>
                     </div>
-
                     &nbsp;
                     <div class="drop-skills">
                         <button type="button" class="btn btn-sm btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -59,23 +58,23 @@
                         <div class="skills-list">
                             <div class="form-group form-check">
                                 <input type="checkbox" class="form-check-input" id="skill1">
-                                <label class="form-check-label" for="skill1">CSS</label>
+                                <label class="form-check-label" for="skill1">Administrativo</label>
                             </div>
                             <div class="form-group form-check">
                                 <input type="checkbox" class="form-check-input" id="skill2">
-                                <label class="form-check-label" for="skill2">Laravel</label>
+                                <label class="form-check-label" for="skill2">Logístico</label>
                             </div>
                             <div class="form-group form-check">
                                 <input type="checkbox" class="form-check-input" id="skill3">
-                                <label class="form-check-label" for="skill3">Front End</label>
+                                <label class="form-check-label" for="skill3">Supervisor</label>
                             </div>
                             <div class="form-group form-check">
                                 <input type="checkbox" class="form-check-input" id="skill4">
-                                <label class="form-check-label" for="skill4">Bases de Datos</label>
+                                <label class="form-check-label" for="skill4">Especialista</label>
                             </div>
                             <div class="form-group form-check">
                                 <input type="checkbox" class="form-check-input" id="skill5">
-                                <label class="form-check-label" for="skill5">Javascript</label>
+                                <label class="form-check-label" for="skill5">Operador</label>
                              </div>
                         </div>
                     </div>
