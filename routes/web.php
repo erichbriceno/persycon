@@ -27,7 +27,7 @@ Route::get('/users', 'AdminController@user')->name('users');
 
 Route::get('/users/new', 'AdminController@create')->name('user.create');
 
-Route::post('/users/new', 'AdminController@store')->name('users.store');
+Route::post('/users/new', 'AdminController@store')->name('user.store');
 
 
 Route::get('/users/{user}', 'AdminController@details')

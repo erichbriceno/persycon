@@ -45,7 +45,9 @@ class UserModuleTest extends TestCase
     /** @test */
     function it_create_a_new_user()
     {
-        $this->post(route('users.store'), [
+        $this->withExceptionHandling();
+
+        $this->post(route('user.store'), [
             'name' => 'Erich',
             'email' => 'erichbriceno@gmail.com',
             'role' => 'admin',
@@ -63,12 +65,12 @@ class UserModuleTest extends TestCase
     function the_name_is_required()
     {
 
-        $this->from(route('users.create'))->post(route('users.store'), [
+        $this->from(route('user.create'))->post(route('user.store'), [
             'name' => '',
             'email' => 'erichbriceno@gmail.com',
             'password' => 'secreto1',
             'role' => 'admin',
-        ])->assertRedirect(route('users.create'))
+        ])->assertRedirect(route('user.create'))
         ->assertSessionHasErrors(['name']);
 
         $this->assertDatabaseMissing('users', [
@@ -81,12 +83,12 @@ class UserModuleTest extends TestCase
     function the_email_is_required()
     {
 
-        $this->from(route('users.create'))->post(route('users.store'), [
+        $this->from(route('user.create'))->post(route('user.store'), [
             'name' => 'Erich',
             'email' => '',
             'password' => 'secreto1',
             'role' => 'admin',
-        ])->assertRedirect(route('users.create'))
+        ])->assertRedirect(route('user.create'))
             ->assertSessionHasErrors(['email']);
 
         $this->assertDatabaseMissing('users', [
@@ -99,12 +101,12 @@ class UserModuleTest extends TestCase
     function the_role_is_required()
     {
 
-        $this->from(route('users.create'))->post(route('users.store'), [
+        $this->from(route('user.create'))->post(route('user.store'), [
             'name' => 'Erich',
             'email' => 'erichbriceno@gmail.com',
             'password' => 'secreto1',
             'role' => '',
-        ])->assertRedirect(route('users.create'))
+        ])->assertRedirect(route('user.create'))
             ->assertSessionHasErrors(['role']);
 
         $this->assertDatabaseMissing('users', [
@@ -118,12 +120,12 @@ class UserModuleTest extends TestCase
     function the_password_is_required()
     {
 
-        $this->from(route('users.create'))->post(route('users.store'), [
+        $this->from(route('user.create'))->post(route('user.store'), [
             'name' => 'Erich',
             'email' => 'erichbriceno@gmail.com',
             'password' => '',
             'role' => 'admin',
-        ])->assertRedirect(route('users.create'))
+        ])->assertRedirect(route('user.create'))
             ->assertSessionHasErrors(['password']);
 
         $this->assertDatabaseMissing('users', [

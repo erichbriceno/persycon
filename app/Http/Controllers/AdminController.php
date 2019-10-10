@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 
+use App\Http\Requests\CreateUserRequest;
 use App\Model\User;
 use App\Model\Group;
 use App\Model\Project;
@@ -55,22 +56,9 @@ class AdminController extends Controller
         return view('user.create', compact('title'));
     }
 
-    public function store()
+    public function store(CreateUserRequest $request)
     {
-        $data = request()->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'role' => 'required',
-            'password' => ['required', 'string', 'min:6'],
-
-        ]);
-
-        User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
-            'role' => $data['role']
-        ]);
+        $request->createUser();
 
         return redirect()->route('users');
     }
@@ -88,7 +76,6 @@ class AdminController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($user)],
             'role' => 'required',
             'password' => '',
-
         ]);
 
         if ($data['password'] != null) {
