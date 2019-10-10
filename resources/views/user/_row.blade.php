@@ -4,11 +4,11 @@
     <td>{{ $user->email }}</td>
     <td>{{ $user->role }}</td>
     <td class="text-right">
-        <form action="#" method="POST">
-            {{ csrf_field() }}
-            {{ method_field('DELETE') }}
-            <a href="{{ route('user.details', ['user' => $user->id]) }}" class="btn btn-link"><i class="fas fa-eye"></i></a>
-            <a href="{{ route('user.edit', ['user' => $user->id]) }}" class="btn btn-link"><i class="fas fa-pencil-alt"></i></a>
+        <form method="POST" action="{{ route('user.destory', $user) }}">
+            @csrf
+            @method('DELETE')
+            <a href="{{ route('user.details', $user ) }}" class="btn btn-link"><i class="fas fa-eye"></i></a>
+            <a href="{{ route('user.edit', $user ) }}" class="btn btn-link"><i class="fas fa-pencil-alt"></i></a>
             <button type="submit" class="btn btn-link"><i class="fas fa-trash-alt"></i></button>
         </form>
     </td>

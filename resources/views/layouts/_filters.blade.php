@@ -20,7 +20,7 @@
             <div class="col-4">
 
                 <div class="form-inline justify-content-end">
-                    <a href="{{ route('users.create') }}" class="btn btn-primary btn-sm">@lang('New user')</a>
+                    <a href="{{ route('user.create') }}" class="btn btn-primary btn-sm">@lang('New user')</a>
                 </div>
 
             </div>

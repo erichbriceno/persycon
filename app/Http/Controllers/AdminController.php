@@ -99,7 +99,14 @@ class AdminController extends Controller
 
         $user->update($data);
 
-        return redirect()->route('user.details',['user' => $user]);
+        return redirect()->route('user.details', $user);
+    }
+
+    public function destroy(User $user)
+    {
+        $user->delete();
+
+        return redirect()->route('users');
     }
 
 }

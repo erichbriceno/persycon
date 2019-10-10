@@ -69,7 +69,7 @@ class UserModuleTest extends TestCase
             'password' => 'secreto1',
             'role' => 'admin',
         ])->assertRedirect(route('users.create'))
-        ->assertSessionHasErrors(['name' => 'El campo nombre es obligatorio']);
+        ->assertSessionHasErrors(['name']);
 
         $this->assertDatabaseMissing('users', [
             'email' => 'erichbriceno@gmail.com',
@@ -87,7 +87,7 @@ class UserModuleTest extends TestCase
             'password' => 'secreto1',
             'role' => 'admin',
         ])->assertRedirect(route('users.create'))
-            ->assertSessionHasErrors(['email' => 'El campo email es obligatorio']);
+            ->assertSessionHasErrors(['email']);
 
         $this->assertDatabaseMissing('users', [
             'name' => 'Erich',
@@ -105,7 +105,7 @@ class UserModuleTest extends TestCase
             'password' => 'secreto1',
             'role' => '',
         ])->assertRedirect(route('users.create'))
-            ->assertSessionHasErrors(['role' => 'El campo role es obligatorio']);
+            ->assertSessionHasErrors(['role']);
 
         $this->assertDatabaseMissing('users', [
             'name' => 'Erich',
@@ -124,7 +124,7 @@ class UserModuleTest extends TestCase
             'password' => '',
             'role' => 'admin',
         ])->assertRedirect(route('users.create'))
-            ->assertSessionHasErrors(['password' => 'El campo password es obligatorio']);
+            ->assertSessionHasErrors(['password']);
 
         $this->assertDatabaseMissing('users', [
             'name' => 'Erich',
@@ -138,7 +138,7 @@ class UserModuleTest extends TestCase
     {
         $user = factory(User::class)->create();
 
-        $this->get(route('user.edit', ['user' => $user]))
+        $this->get(route('user.edit', $user))
             ->assertStatus(200)
             ->assertViewIs('user.edit')
             ->assertSee('EDITAR USUARIO')
@@ -150,12 +150,12 @@ class UserModuleTest extends TestCase
     {
         $user = factory(User::class)->create();
 
-        $this->put(route('user.update', ['user' => $user]), [
+        $this->put(route('user.update', $user), [
             'name' => 'Erich',
             'email' => 'erichbriceno@gmail.com',
             'role' => 'admin',
             'password' => 'secreto1'
-        ])->assertRedirect(route('user.details',['user' => $user]));
+        ])->assertRedirect(route('user.details',$user));
 
         $this->assertDatabaseHas('users', [
             'name' => 'Erich',
@@ -170,14 +170,14 @@ class UserModuleTest extends TestCase
 
         $user = factory(User::class)->create();
 
-        $this->from(route('user.edit', ['user' => $user]))
-            ->put(route('user.update', ['user' => $user]), [
+        $this->from(route('user.edit', $user))
+            ->put(route('user.update', $user), [
             'name' => '',
             'email' => 'erichbriceno@gmail.com',
             'role' => 'admin',
             'password' => 'secreto1'
         ])
-        ->assertRedirect(route('user.edit', ['user' => $user]))
+        ->assertRedirect(route('user.edit', $user))
         ->assertSessionHasErrors(['name']);
 
         $this->assertEquals(1, User::count());
@@ -190,14 +190,14 @@ class UserModuleTest extends TestCase
 
         $user = factory(User::class)->create();
 
-        $this->from(route('user.edit', ['user' => $user]))
-            ->put(route('user.update', ['user' => $user]), [
+        $this->from(route('user.edit', $user))
+            ->put(route('user.update', $user), [
                 'name' => 'Erich',
                 'email' => 'correo-no-valido',
                 'role' => 'admin',
                 'password' => 'secreto1'
             ])
-            ->assertRedirect(route('user.edit', ['user' => $user]))
+            ->assertRedirect(route('user.edit', $user))
             ->assertSessionHasErrors(['email']);
 
         $this->assertEquals(1, User::count());
@@ -214,14 +214,14 @@ class UserModuleTest extends TestCase
             'password' => bcrypt($oldPassword)
         ]);
 
-        $this->from(route('user.edit', ['user' => $user]))
-            ->put(route('user.update', ['user' => $user]), [
+        $this->from(route('user.edit', $user))
+            ->put(route('user.update', $user), [
                 'name' => 'Erich',
                 'email' => 'erichbriceno@gmail.com',
                 'role' => 'admin',
                 'password' => ''
             ])
-            ->assertRedirect(route('user.details', ['user' => $user]));
+            ->assertRedirect(route('user.details', $user));
 
 
         $this->assertDatabaseHas('users', [
@@ -244,14 +244,14 @@ class UserModuleTest extends TestCase
             'email' => 'erichbriceno@gmail.com'
         ]);
 
-        $this->from(route('user.edit', ['user' => $user]))
-            ->put(route('user.update', ['user' => $user]), [
+        $this->from(route('user.edit', $user))
+            ->put(route('user.update', $user), [
                 'name' => 'Erich',
                 'email' => 'existing-email@example.com',
                 'role' => 'admin',
                 'password' => 'secreto1'
             ])
-            ->assertRedirect(route('user.edit', ['user' => $user]))
+            ->assertRedirect(route('user.edit', $user))
             ->assertSessionHasErrors(['email']);
     }
 
@@ -263,14 +263,14 @@ class UserModuleTest extends TestCase
             'email' => 'erichbriceno@gmail.com'
         ]);
 
-        $this->from(route('user.edit', ['user' => $user]))
-            ->put(route('user.update', ['user' => $user]), [
+        $this->from(route('user.edit', $user))
+            ->put(route('user.update', $user), [
                 'name' => 'Erich',
                 'email' => 'erichbriceno@gmail.com',
                 'role' => 'admin',
                 'password' => 'secreto1'
             ])
-            ->assertRedirect(route('user.details', ['user' => $user]));
+            ->assertRedirect(route('user.details', $user));
 
         $this->assertEquals(1, User::count());
         $this->assertDatabaseHas('users', [
@@ -280,4 +280,20 @@ class UserModuleTest extends TestCase
         ]);
     }
 
+    /** @test */
+    function it_deletes_a_user()
+    {
+        $this->withoutExceptionHandling();
+
+        $user = factory(User::class)->create([
+            'email' => 'erichbriceno@gmail.com'
+        ]);
+
+        $this->delete(route('user.destory', $user))
+            ->assertRedirect(route('users'));
+
+        $this->assertDatabaseMissing('users', [
+            'email' => 'erichbriceno@gmail.com'
+        ]);
+    }
 }
