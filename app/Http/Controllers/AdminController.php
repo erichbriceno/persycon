@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 
 use App\Http\Requests\CreateUserRequest;
+use App\Http\Requests\UpdateUserRequest;
 use App\Model\User;
 use App\Model\Group;
 use App\Model\Project;
@@ -71,17 +72,20 @@ class AdminController extends Controller
 
     public function update(User $user)
     {
+
         $data = request()->validate([
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($user)],
+            'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($user->id)],
             'role' => 'required',
             'password' => '',
         ]);
 
-        if ($data['password'] != null) {
-            $data['password'] = bcrypt($data['password']);
-        } else {
-            unset($data['password']);
+        if(isset($data['password'])) {
+            if ($data['password'] != null) {
+                $data['password'] = bcrypt($data['password']);
+            } else {
+                unset($data['password']);
+            }
         }
 
         $user->update($data);

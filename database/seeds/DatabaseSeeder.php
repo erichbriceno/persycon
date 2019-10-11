@@ -10,7 +10,8 @@ class DatabaseSeeder extends Seeder
             'managements',
             'groups',
             'projects',
-            'users'
+            'users',
+            'roles'
         ]);
 
         $this->call([
@@ -18,6 +19,7 @@ class DatabaseSeeder extends Seeder
             ManagementSeeder::class,
             GroupSeeder::class,
             UserSeeder::class,
+            RoleSeeder::class
         ]);
     }
 
