@@ -5,6 +5,7 @@ namespace App\Http\Requests;
 use App\Model\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class CreateUserRequest extends FormRequest
 {
@@ -26,10 +27,14 @@ class CreateUserRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'role' => 'required',
+            'name' => ['required', 'present','string', 'max:255'],
+            'email' => ['required', 'present', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:6'],
+            'role_id' => [
+                'required',
+                'present',
+                Rule::exists('roles', 'id')->where('selectable', true),
+            ]
         ];
     }
 
@@ -49,7 +54,7 @@ class CreateUserRequest extends FormRequest
                 'name' => $data['name'],
                 'email' => $data['email'],
                 'password' => bcrypt($data['password']),
-                'role' => $data['role']
+                'role_id' => $data['role_id']
             ]);
         //});
     }

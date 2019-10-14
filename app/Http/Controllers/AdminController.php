@@ -3,13 +3,9 @@
 namespace App\Http\Controllers;
 
 
-use App\Http\Requests\CreateUserRequest;
-use App\Http\Requests\UpdateUserRequest;
-use App\Model\User;
-use App\Model\Group;
-use App\Model\Project;
-use App\Model\Management;
 use Illuminate\Validation\Rule;
+use App\Http\Requests\CreateUserRequest;
+use App\Model\{ User, Role, Group, Project, Management };
 
 class AdminController extends Controller
 {
@@ -54,7 +50,9 @@ class AdminController extends Controller
     public function create()
     {
         $title = 'REGISTRAR USUARIO';
-        return view('user.create', compact('title'));
+        $roles = Role::orderBy('description', 'DESC')->get();
+
+        return view('user.create', compact('title', 'roles'));
     }
 
     public function store(CreateUserRequest $request)
@@ -76,8 +74,12 @@ class AdminController extends Controller
         $data = request()->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($user->id)],
-            'role' => 'required',
             'password' => '',
+            'role_id' => [
+                'required',
+                'present',
+                Rule::exists('roles', 'id')->where('selectable', true),
+            ]
         ]);
 
         if(isset($data['password'])) {

@@ -13,15 +13,16 @@ class RoleSeeder extends Seeder
     public function run()
     {
         factory(Role::class)->create([
-            'description' => 'master',
+            'description' => 'Master',
+            'selectable' => false
         ]);
 
         factory(Role::class)->create([
-            'description' => 'admim',
+            'description' => 'Administrator',
         ]);
 
         factory(Role::class)->create([
-            'description' => 'user',
+            'description' => 'User',
         ]);
 
         factory(Role::class)->times(2)->create();

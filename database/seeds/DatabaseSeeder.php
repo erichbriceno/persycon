@@ -10,16 +10,16 @@ class DatabaseSeeder extends Seeder
             'managements',
             'groups',
             'projects',
+            'roles',
             'users',
-            'roles'
         ]);
 
         $this->call([
             ProjectSeeder::class,
             ManagementSeeder::class,
             GroupSeeder::class,
-            UserSeeder::class,
-            RoleSeeder::class
+            RoleSeeder::class,
+            UserSeeder::class
         ]);
     }
 

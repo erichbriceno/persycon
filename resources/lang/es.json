@@ -1,6 +1,7 @@
 {
   "A fresh verification link has been sent to your email address.": "Se ha enviado un nuevo enlace de verificación a su correo electrónico.",
   "Administration": "Administración",
+  "Administrator": "Administrador",
   "All rights reserved.": "Todos los derechos reservados.",
   "Back": "Volver",
   "Before proceeding, please check your email for a verification link.": "Antes de continuar, por favor, confirme su correo electrónico con el enlace de verificación que le fue enviado.",
@@ -26,6 +27,7 @@
   "List": "Listado",
   "Login": "Entrar",
   "Logout": "Salir",
+  "Master": "Maestro",
   "Managements": "Gerencias",
   "Name": "Nombre",
   "New user": "Nuevo Usuario",
@@ -59,6 +61,7 @@
   "Toggle navigation": "Activar navegación",
   "Too Many Requests": "Demasiadas peticiones",
   "Unauthorized": "No autorizado",
+  "User": "Usuario",
   "Users": "Usuarios",
   "Verify Email Address": "Confirma tu correo electrónico",
   "Verify Your Email Address": "Verifica tu correo electrónico",

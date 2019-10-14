@@ -11,10 +11,12 @@ class UserModuleTest extends TestCase
 {
     use RefreshDatabase;
 
+    protected $role;
+
     /** @test */
     function it_displays_the_users_details()
     {
-
+        $this->loadRolesTable();
         $user = factory(User::class)->create($this->getValidData());
 
         $this->get(route('user.details', $user))
@@ -41,22 +43,37 @@ class UserModuleTest extends TestCase
     }
 
     /** @test */
+    function it_loads_the_new_users_page()
+    {
+        $role = factory(Role::class)->create();
+
+        $this->get(route('user.create'))
+            ->assertViewIs('user.create')
+            ->assertStatus(200)
+            ->assertSee('REGISTRAR USUARIO')
+            ->assertViewHas('roles', function ($roles) use ($role) {
+                return $roles->contains($role);
+            });
+    }
+
+    /** @test */
     function it_create_a_new_user()
     {
+        $this->loadRolesTable();
         $this->post(route('user.store'), $this->getValidData())
             ->assertRedirect(route('users'));
 
         $this->assertDatabaseHas('users', [
             'name' => 'Erich',
             'email' => 'erichbriceno@gmail.com',
-            'role' => 'master'
+            //'role_id' => Role::Where('description', 'Master')->first()->id,
         ]);
     }
 
     /** @test */
     function the_name_is_required()
     {
-
+        $this->loadRolesTable();
         $this->from(route('user.create'))
             ->post(route('user.store'), $this->getValidData([
                 'name' => ''
@@ -72,7 +89,7 @@ class UserModuleTest extends TestCase
     /** @test */
     function the_email_is_required()
     {
-
+        $this->loadRolesTable();
         $this->from(route('user.create'))
             ->post(route('user.store'), $this->getValidData([
             'email' => ''
@@ -86,14 +103,14 @@ class UserModuleTest extends TestCase
     }
 
     /** @test */
-    function the_role_is_required()
+    function the_role_id_is_required()
     {
-
+        $this->loadRolesTable();
         $this->from(route('user.create'))
             ->post(route('user.store'), $this->getValidData([
-                'role' => ''
+                'role_id' => ''
             ]))->assertRedirect(route('user.create'))
-            ->assertSessionHasErrors(['role']);
+            ->assertSessionHasErrors(['role_id']);
 
         $this->assertDatabaseMissing('users', [
             'name' => 'Erich',
@@ -103,9 +120,46 @@ class UserModuleTest extends TestCase
     }
 
     /** @test */
+    function the_role_id_must_be_valid()
+    {
+        $this->loadRolesTable();
+        $this->from(route('user.create'))
+            ->post(route('user.store'), $this->getValidData([
+                'role_id' => '999'
+            ]))->assertRedirect(route('user.create'))
+            ->assertSessionHasErrors(['role_id']);
+
+        $this->assertDatabaseMissing('users', [
+            'name' => 'Erich',
+            'email' => 'erichbriceno@gmail.com',
+        ]);
+    }
+
+    /** @test */
+    function only_selectable_role_are_valid()
+    {
+        $nonSelectableRole = factory(Role::class)->create([
+            'description' => 'master',
+            'selectable' => false
+        ]);
+
+        $this->from(route('user.create'))
+            ->post(route('user.store'), $this->getValidData([
+                'role_id' => $nonSelectableRole->id
+            ]))->assertRedirect(route('user.create'))
+            ->assertSessionHasErrors(['role_id']);
+
+        $this->assertDatabaseMissing('users', [
+            'name' => 'Erich',
+            'email' => 'erichbriceno@gmail.com',
+        ]);
+    }
+
+
+    /** @test */
     function the_password_is_required()
     {
-
+        $this->loadRolesTable();
         $this->from(route('user.create'))
             ->post(route('user.store'), $this->getValidData([
                 'password' => ''
@@ -122,6 +176,7 @@ class UserModuleTest extends TestCase
     /** @test */
     function it_loads_the_edit_user_page()
     {
+        $this->loadRolesTable();
         $user = factory(User::class)->create();
 
         $this->get(route('user.edit', $user))
@@ -134,6 +189,7 @@ class UserModuleTest extends TestCase
     /** @test */
     function it_updates_a_user()
     {
+        $this->loadRolesTable();
         $user = factory(User::class)->create();
 
         $this->put(route('user.update', $user), $this->getValidData())
@@ -142,14 +198,14 @@ class UserModuleTest extends TestCase
         $this->assertDatabaseHas('users', [
             'name' => 'Erich',
             'email' => 'erichbriceno@gmail.com',
-            'role' => 'master'
+            'role_id' => Role::Where('description', 'Master')->first()->id
         ]);
     }
 
     /** @test */
     function the_name_is_required_when_updating_a_user()
     {
-
+        $this->loadRolesTable();
         $user = factory(User::class)->create();
 
         $this->from(route('user.edit', $user))
@@ -166,7 +222,7 @@ class UserModuleTest extends TestCase
     /** @test */
     function the_email_must_be_valid_when_updating_a_user()
     {
-
+        $this->loadRolesTable();
         $user = factory(User::class)->create();
 
         $this->from(route('user.edit', $user))
@@ -183,8 +239,7 @@ class UserModuleTest extends TestCase
     /** @test */
     function the_password_is_optional_when_updating_a_user()
     {
-        $this->withoutExceptionHandling();
-
+        $this->loadRolesTable();
         $oldPassword = 'CLAVE_ANTERIOR';
 
         $user = factory(User::class)->create([
@@ -201,7 +256,7 @@ class UserModuleTest extends TestCase
     /** @test */
     function the_email_must_be_unique_when_updating_a_user()
     {
-
+        $this->loadRolesTable();
         factory(User::class)->create([
             'email' => 'existing-email@example.com'
         ]);
@@ -221,7 +276,7 @@ class UserModuleTest extends TestCase
     /** @test */
     function the_users_email_can_stay_the_same_when_updating_a_user()
     {
-
+        $this->loadRolesTable();
         $user = factory(User::class)->create([
             'email' => 'erichbriceno@gmail.com'
         ]);
@@ -234,15 +289,13 @@ class UserModuleTest extends TestCase
         $this->assertDatabaseHas('users', [
             'name' => 'Erich',
             'email' => 'erichbriceno@gmail.com',
-            'role' => 'master',
         ]);
     }
 
     /** @test */
     function it_deletes_a_user()
     {
-        $this->withoutExceptionHandling();
-
+        $this->loadRolesTable();
         $user = factory(User::class)->create([
             'email' => 'erichbriceno@gmail.com'
         ]);
@@ -261,9 +314,26 @@ class UserModuleTest extends TestCase
         return array_filter(array_merge([
             'name' => 'Erich',
             'email' => 'erichbriceno@gmail.com',
-            'role' => 'master',
             'password' => 'secreto1',
+            'role_id' => Role::Where('description', 'Master')->first()->id,
         ], $custom));
+
+    }
+
+    protected function loadRolesTable()
+    {
+
+        factory(Role::class)->create([
+            'description' => 'Master',
+        ]);
+
+        factory(Role::class)->create([
+            'description' => 'Administrator',
+        ]);
+
+        factory(Role::class)->create([
+            'description' => 'User',
+        ]);
 
     }
 }
