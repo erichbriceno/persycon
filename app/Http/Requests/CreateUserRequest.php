@@ -41,7 +41,7 @@ class CreateUserRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required' => 'El campo nombre es obligatorio',
+            'name.required' => 'El campo nombre es nome',
         ];
     }
 

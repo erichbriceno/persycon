@@ -24,7 +24,7 @@ class UserSeeder extends Seeder
             'password' => bcrypt('secreto1'),
         ]);
 
-        factory(User::class)->times(6)->create([
+        factory(User::class)->times(25)->create([
             'role_id' => $this->roles->where('description', 'User')->first()->id,
         ]);
     }

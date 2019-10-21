@@ -12,7 +12,7 @@ class AdminController extends Controller
     public function project()
     {
         $title ='LISTADO DE PROYECTOS';
-        $projects = Project::paginate(10);
+        $projects = Project::paginate(20);
 
         return view('admin.project', compact('title','projects'));
     }
@@ -20,7 +20,7 @@ class AdminController extends Controller
     public function management()
     {
         $title = 'LISTADO DE GERENCIAS';
-        $managements = Management::paginate(10);
+        $managements = Management::paginate(20);
 
         return view('admin.management', compact('title','managements'));
     }
@@ -28,7 +28,7 @@ class AdminController extends Controller
     public function group()
     {
         $title = 'LISTADO DE GRUPOS';
-        $groups = Group::paginate(10);
+        $groups = Group::paginate(20);
 
         return view('admin.groups', compact('title','groups'));
     }
@@ -36,7 +36,7 @@ class AdminController extends Controller
     public function user()
     {
         $title = 'LISTADO DE USUARIOS';
-        $users = User::paginate(10);
+        $users = User::paginate(12);
 
         return view('user.users', compact('title','users'));
     }
@@ -65,7 +65,9 @@ class AdminController extends Controller
     public function edit(User $user)
     {
         $title = 'EDITAR USUARIO';
-        return view('user.edit', compact('title','user'));
+        $roles = Role::orderBy('description', 'DESC')->get();
+
+        return view('user.edit', compact('title','user', 'roles'));
     }
 
     public function update(User $user)
@@ -82,14 +84,11 @@ class AdminController extends Controller
             ]
         ]);
 
-        if(isset($data['password'])) {
             if ($data['password'] != null) {
                 $data['password'] = bcrypt($data['password']);
             } else {
                 unset($data['password']);
             }
-        }
-
         $user->update($data);
 
         return redirect()->route('user.details', $user);

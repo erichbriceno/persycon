@@ -17,11 +17,15 @@ class UserModuleTest extends TestCase
     function it_displays_the_users_details()
     {
         $this->loadRolesTable();
-        $user = factory(User::class)->create($this->getValidData());
+        $user = factory(User::class)->create($this->getValidData([
+            'role_id' => Role::Where('description', 'User')->first()->id
+        ]));
 
         $this->get(route('user.details', $user))
             ->assertStatus(200)
-            ->assertSee('Erich');
+            ->assertSee('Erich')
+            ->assertSee('User');
+
     }
 
     /** @test */
@@ -66,7 +70,7 @@ class UserModuleTest extends TestCase
         $this->assertDatabaseHas('users', [
             'name' => 'Erich',
             'email' => 'erichbriceno@gmail.com',
-            //'role_id' => Role::Where('description', 'Master')->first()->id,
+            'role_id' => Role::Where('description', 'User')->first()->id,
         ]);
     }
 
@@ -138,14 +142,11 @@ class UserModuleTest extends TestCase
     /** @test */
     function only_selectable_role_are_valid()
     {
-        $nonSelectableRole = factory(Role::class)->create([
-            'description' => 'master',
-            'selectable' => false
-        ]);
+        $this->loadRolesTable();
 
         $this->from(route('user.create'))
             ->post(route('user.store'), $this->getValidData([
-                'role_id' => $nonSelectableRole->id
+                'role_id' => Role::Where('description', 'Master')->first()->id
             ]))->assertRedirect(route('user.create'))
             ->assertSessionHasErrors(['role_id']);
 
@@ -192,13 +193,15 @@ class UserModuleTest extends TestCase
         $this->loadRolesTable();
         $user = factory(User::class)->create();
 
-        $this->put(route('user.update', $user), $this->getValidData())
+        $this->put(route('user.update', $user), $this->getValidData([
+            'role_id' => Role::Where('description', 'Administrator')->first()->id
+        ]))
             ->assertRedirect(route('user.details',$user));
 
         $this->assertDatabaseHas('users', [
             'name' => 'Erich',
             'email' => 'erichbriceno@gmail.com',
-            'role_id' => Role::Where('description', 'Master')->first()->id
+            'role_id' => Role::Where('description', 'Administrator')->first()->id
         ]);
     }
 
@@ -217,6 +220,25 @@ class UserModuleTest extends TestCase
 
         $this->assertEquals(1, User::count());
         $this->assertDatabaseMissing('users', ['name' => 'erichbriceno@gmail.com']);
+    }
+
+
+    /** @test */
+    function the_role_must_be_avalible_when_updating_a_user()
+    {
+//        $this->withoutExceptionHandling();
+        $this->loadRolesTable();
+        $user = factory(User::class)->create();
+
+        $this->from(route('user.edit', $user))
+            ->put(route('user.update', $user), $this->getValidData([
+                'role_id' => 1,
+            ]))
+            ->assertRedirect(route('user.edit', $user))
+            ->assertSessionHasErrors(['role_id']);
+
+        $this->assertEquals(1, User::count());
+        $this->assertDatabaseMissing('users', ['name' => 'Erich']);
     }
 
     /** @test */
@@ -311,12 +333,12 @@ class UserModuleTest extends TestCase
     protected function getValidData(array $custom = [])
     {
 
-        return array_filter(array_merge([
+        return array_merge([
             'name' => 'Erich',
             'email' => 'erichbriceno@gmail.com',
             'password' => 'secreto1',
-            'role_id' => Role::Where('description', 'Master')->first()->id,
-        ], $custom));
+            'role_id' => Role::Where('description', 'User')->first()->id,
+        ], $custom);
 
     }
 
@@ -325,6 +347,7 @@ class UserModuleTest extends TestCase
 
         factory(Role::class)->create([
             'description' => 'Master',
+            'selectable' => false
         ]);
 
         factory(Role::class)->create([

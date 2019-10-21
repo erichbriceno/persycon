@@ -25,9 +25,9 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="role" class="col-md-4 col-form-label text-md-right">@lang('Role')</label>
+                            <label for="role_id" class="col-md-4 col-form-label text-md-right">@lang('Role')</label>
                             <div class="col-md-6">
-                                <input id="role" type="text" readonly class="form-control" name="role" value="{{ $user->role }}">
+                                <input id="role_id" type="text" readonly class="form-control" name="role" value="{{ $user->role->description }}">
                             </div>
                         </div>
 

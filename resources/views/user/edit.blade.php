@@ -42,15 +42,22 @@
                                 </div>
                             </div>
 
-                            <div class="form-group row">
-                                <label for="role" class="col-md-4 col-form-label text-md-right">@lang('Role')</label>
+                           <div class="form-group row">
+                                <label for="role_id" class="col-md-4 col-form-label text-md-right">@lang('Role')</label>
 
                                 <div class="col-md-6">
-                                    <select name="role" id="role" class="form-control" value="{{ old('role', $user->role) }}">
-                                        <option value="user">User</option>
-                                        <option value="admin">Administrator</option>
-                                        <option value="master">Master</option>
+                                    <select name="role_id" id="role_id" class="form-control">
+                                        @foreach($roles as $role)
+                                            <option value="{{ $role->id }}"{{ $role->id == $user->role->id ? ' selected' : '' }}>
+                                                @lang($role->description)
+                                            </option>
+                                        @endforeach
                                     </select>
+                                    @error('role_id')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
                                 </div>
                             </div>
 
