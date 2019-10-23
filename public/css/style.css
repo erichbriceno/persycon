@@ -63,6 +63,10 @@
     color: #707070;
 }
 
-.row {
-    margin-bottom: 3px;
+.note {
+    display: block;
+    font-size: 0.75em;
+    line-height: 1.25;
+    font-weight: 200;
+    color: #a1a6a9;
 }
