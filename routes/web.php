@@ -21,7 +21,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 
 
-
+// Users
 
 Route::get('/users', 'AdminController@user')->name('users');
 
@@ -42,11 +42,18 @@ Route::put('/users/{user}/edit', 'AdminController@update')
     ->where('user', '[0-9]+')
     ->name('user.update');
 
-Route::delete('/users/{user}', 'AdminController@destroy')
+Route::get('users/trash', 'AdminController@trashed')
+    ->name('users.trash');
+
+Route::patch('users/{user}/trash', 'AdminController@trash')
+    ->where('user', '[0-9]+')
+    ->name('user.trash');
+
+Route::delete('/users/{id}', 'AdminController@destroy')
     ->where('user', '[0-9]+')
     ->name('user.destory');
 
-
+// Others
 Route::get('/projects', 'AdminController@project')->name('projects');
 
 Route::get('/managements', 'AdminController@management')->name('managements');

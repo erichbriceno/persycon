@@ -315,21 +315,83 @@ class UserModuleTest extends TestCase
     }
 
     /** @test */
-    function it_deletes_a_user()
+    function it_sends_a_user_to_the_trash()
     {
         $this->loadRolesTable();
         $user = factory(User::class)->create([
             'email' => 'erichbriceno@gmail.com'
         ]);
 
-        $this->delete(route('user.destory', $user))
+        $this->patch(route('user.trash', $user))
             ->assertRedirect(route('users'));
+
+        $this->assertSoftDeleted('users', [
+            'id' => $user->id,
+        ]);
+
+        $user->refresh();
+        $this->assertTrue($user->trashed());
+    }
+
+    /** @test */
+    function it_shows_the_deleted_users()
+    {
+        $this->withoutExceptionHandling();
+        $this->loadRolesTable();
+        factory(User::class)->create([
+            'name' => 'Pedro',
+            'deleted_at' => now(),
+        ]);
+
+        factory(User::class)->create([
+            'name' => 'Santiago'
+        ]);
+
+        $this->get(route('users.trash'))
+            ->assertStatus(200)
+            ->assertSee('PAPELERA DE USUARIOS')
+            ->assertSee('Pedro')
+            ->assertDontSee('Santiago');
+
+    }
+
+    /** @test */
+    function it_completely_deletes_a_user()
+    {
+        $this->loadRolesTable();
+        $user = factory(User::class)->create([
+            'email' => 'erichbriceno@gmail.com',
+            'deleted_at' => now(),
+        ]);
+
+        $this->delete(route('user.destory', $user))
+            ->assertRedirect(route('users.trash'));
 
         $this->assertDatabaseMissing('users', [
             'email' => 'erichbriceno@gmail.com'
         ]);
     }
 
+    /** @test */
+    function it_cannot_delete_a_user_that_is_not_in_the_trash()
+    {
+        $this->loadRolesTable();
+        $user = factory(User::class)->create([
+            'email' => 'erichbriceno@gmail.com',
+            'deleted_at' => null,
+        ]);
+
+        $this->delete(route('user.destory', $user))
+            ->assertStatus(404);
+
+        $this->assertDatabaseHas('users', [
+            'email' => 'erichbriceno@gmail.com',
+            'deleted_at' => null,
+        ]);
+    }
+
+
+    /** Complementos **/
     protected function getValidData(array $custom = [])
     {
 

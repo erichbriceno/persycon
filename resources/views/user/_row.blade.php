@@ -10,13 +10,21 @@
         <span class="note">Registro: {{ $user->created_at->format('d/m/Y') }}</span>
         <span class="note">Último login: {{ $user->created_at->format('d/m/Y') }}</span>
     </td>
-    <td class="text-right">
-        <form method="POST" action="{{ route('user.destory', $user) }}">
-            @csrf
-            @method('DELETE')
-            <a href="{{ route('user.details', $user ) }}" class="btn btn-outline-secondary btn-sm"><i class="fas fa-eye"></i></a>
-            <a href="{{ route('user.edit', $user ) }}"    class="btn btn-outline-secondary btn-sm"><i class="fas fa-pencil-alt"></i></a>
-            <button type="submit" class="btn btn-outline-secondary btn-sm"><i class="fas fa-trash-alt"></i></button>
-        </form>
+    <td class="text-center">
+        @if ($user->trashed())
+            <form method="POST" action="{{ route('user.destory', $user) }}">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="btn btn-outline-secondary btn-sm"><i class="fas fa-times-circle"></i></button>
+            </form>
+        @else
+            <form method="POST" action="{{ route('user.trash', $user) }}">
+                @csrf
+                @method('PATCH')
+                <a href="{{ route('user.details', $user ) }}" class="btn btn-outline-secondary btn-sm"><i class="fas fa-eye"></i></a>
+                <a href="{{ route('user.edit', $user ) }}"    class="btn btn-outline-secondary btn-sm"><i class="fas fa-pencil-alt"></i></a>
+                <button type="submit" class="btn btn-outline-secondary btn-sm"><i class="fas fa-trash-alt"></i></button>
+            </form>
+        @endif
     </td>
 </tr>

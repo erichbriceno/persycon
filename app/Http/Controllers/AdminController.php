@@ -36,9 +36,19 @@ class AdminController extends Controller
     public function user()
     {
         $title = 'LISTADO DE USUARIOS';
+        $emptyMessage = 'There are no registered users';
         $users = User::paginate(15);
 
-        return view('user.users', compact('title','users'));
+        return view('user.users', compact('title','users', 'emptyMessage'));
+    }
+
+    public function trashed()
+    {
+        $title = 'PAPELERA DE USUARIOS';
+        $emptyMessage = 'There are no users deleted';
+        $users = User::onlyTrashed()->paginate(15);
+
+        return view('user.users', compact('title','users', 'emptyMessage'));
     }
 
     public function details(User $user)
@@ -94,11 +104,20 @@ class AdminController extends Controller
         return redirect()->route('user.details', $user);
     }
 
-    public function destroy(User $user)
+    public function trash(User $user)
     {
         $user->delete();
 
         return redirect()->route('users');
+    }
+
+    public function destroy($id)
+    {
+        $user = User::onlyTrashed()->where('id', $id)->firstOrFail();
+
+        $user->forceDelete();
+
+        return redirect()->route('users.trash');
     }
 
 }

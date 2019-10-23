@@ -29,6 +29,6 @@
         </div>
         {{ $users->links() }}
     @else
-        <p>@lang('There are no registered users')</p>
+        <p>@lang($emptyMessage)</p>
     @endif
 @endsection
