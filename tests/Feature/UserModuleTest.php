@@ -390,8 +390,52 @@ class UserModuleTest extends TestCase
         ]);
     }
 
+    /** @test */
+    function it_restores_a_user_from_the_trash()
+    {
+        $this->withoutExceptionHandling();
+        $this->loadRolesTable();
+        $user = factory(User::class)->create([
+            'email' => 'erichbriceno@gmail.com',
+            'deleted_at' => now()
+        ]);
 
-    /** Complementos **/
+        $this->patch(route('user.restore', $user))
+            ->assertRedirect(route('users.trash'));
+//            ->assertStatus(200)
+//            ->assertSee('erichbriceno@gmail.com');
+
+        $this->assertDatabaseHas('users', [
+            'email' => 'erichbriceno@gmail.com',
+            'deleted_at' => null,
+        ]);
+    }
+
+//    /** @test */
+//    function it_cannot_restores_a_user_from_the_trash_if_delete_at_are_null()
+//    {
+//        $this->withoutExceptionHandling();
+//        $this->loadRolesTable();
+//        $user = factory(User::class)->create([
+//            'email' => 'erichbriceno@gmail.com',
+//            'deleted_at' => null
+//        ]);
+//
+//        $this->patch(route('user.restore', $user))
+//            ->assertRedirect(route('users.trash'));
+////            ->assertStatus(200)
+////            ->assertSee('erichbriceno@gmail.com');
+//
+//        $this->assertDatabaseHas('users', [
+//            'email' => 'erichbriceno@gmail.com',
+//            'deleted_at' => null,
+//        ]);
+//    }
+
+
+
+    /****************** Complementos **************/
+
     protected function getValidData(array $custom = [])
     {
 

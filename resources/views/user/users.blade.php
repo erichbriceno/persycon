@@ -19,7 +19,7 @@
                         <th scope="col">@lang('Email') <i class="fas fa-angle-double-up"></i><i class="fas fa-angle-double-down"></i></th>
                         <th scope="col">@lang('Role') <i class="fas fa-angle-double-up"></i><i class="fas fa-angle-double-down"></i></th>
                         <th scope="col">@lang('Dates')<i class="fas fa-angle-double-up"></i><i class="fas fa-angle-double-down"></th>
-                        <th scope="col"class="text-right th-actions pr-5 ">@lang('Actions')</th>
+                        <th scope="col"class="text-right th-actions pr-3">@lang('Actions')</th>
                     </tr>
                 </thead>
                 <tbody>

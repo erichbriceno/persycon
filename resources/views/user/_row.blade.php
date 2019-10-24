@@ -10,8 +10,14 @@
         <span class="note">Registro: {{ $user->created_at->format('d/m/Y') }}</span>
         <span class="note">Último login: {{ $user->created_at->format('d/m/Y') }}</span>
     </td>
-    <td class="text-center">
+    <td class="form-inline justify-content-end">
         @if ($user->trashed())
+            <form method="POST" action="{{ route('user.restore', $user) }}">
+                @csrf
+                @method('PATCH')
+                <button type="submit" class="btn btn-outline-secondary btn-sm"><i class="fas fa-trash-restore"></i></button>
+            </form>
+            &nbsp;
             <form method="POST" action="{{ route('user.destory', $user) }}">
                 @csrf
                 @method('DELETE')

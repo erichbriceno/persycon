@@ -111,6 +111,18 @@ class AdminController extends Controller
         return redirect()->route('users');
     }
 
+    public function restore($id)
+    {
+
+        $user = User::onlyTrashed()->where('id', $id)->firstOrFail();
+
+        $user->deleted_at = null;
+
+        $user->update();
+
+        return redirect()->route('users.trash');
+
+    }
     public function destroy($id)
     {
         $user = User::onlyTrashed()->where('id', $id)->firstOrFail();

@@ -49,6 +49,10 @@ Route::patch('users/{user}/trash', 'AdminController@trash')
     ->where('user', '[0-9]+')
     ->name('user.trash');
 
+Route::patch('users/{id}/restore', 'AdminController@restore')
+    ->where('user', '[0-9]+')
+    ->name('user.restore');
+
 Route::delete('/users/{id}', 'AdminController@destroy')
     ->where('user', '[0-9]+')
     ->name('user.destory');
