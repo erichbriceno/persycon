@@ -2,9 +2,8 @@
 
 namespace Tests\Feature;
 
-use App\Model\Role;
-use App\Model\User;
 use Tests\TestCase;
+use App\Model\{ Role, User };
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class UserModuleTest extends TestCase
@@ -12,6 +11,25 @@ class UserModuleTest extends TestCase
     use RefreshDatabase;
 
     protected $role;
+
+    /** @test */
+    function it_shows_the_users_list()
+    {
+        $this->loadRolesTable();
+        factory(User::class)->create([
+            'name' => 'Pedro'
+        ]);
+
+        factory(User::class)->create([
+            'name' => 'Santiago'
+        ]);
+
+        $this->get(route('users'))
+            ->assertStatus(200)
+            ->assertSee('LISTADO DE USUARIOS' )
+            ->assertSee('Pedro')
+            ->assertSee('Santiago');
+    }
 
     /** @test */
     function it_displays_the_users_details()
@@ -432,37 +450,4 @@ class UserModuleTest extends TestCase
 //        ]);
 //    }
 
-
-
-    /****************** Complementos **************/
-
-    protected function getValidData(array $custom = [])
-    {
-
-        return array_merge([
-            'name' => 'Erich',
-            'email' => 'erichbriceno@gmail.com',
-            'password' => 'secreto1',
-            'role_id' => Role::Where('description', 'User')->first()->id,
-        ], $custom);
-
-    }
-
-    protected function loadRolesTable()
-    {
-
-        factory(Role::class)->create([
-            'description' => 'Master',
-            'selectable' => false
-        ]);
-
-        factory(Role::class)->create([
-            'description' => 'Administrator',
-        ]);
-
-        factory(Role::class)->create([
-            'description' => 'User',
-        ]);
-
-    }
 }

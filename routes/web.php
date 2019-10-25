@@ -23,37 +23,40 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 // Users
 
-Route::get('/users', 'AdminController@user')->name('users');
+Route::get('/users', 'UserController@index')
+    ->name('users');
 
-Route::get('/users/new', 'AdminController@create')->name('user.create');
+Route::get('/users/new', 'UserController@create')
+    ->name('user.create');
 
-Route::post('/users/new', 'AdminController@store')->name('user.store');
+Route::post('/users/new', 'UserController@store')
+    ->name('user.store');
 
 
-Route::get('/users/{user}', 'AdminController@details')
+Route::get('/users/{user}', 'UserController@details')
     ->where('user', '[0-9]+')
     ->name('user.details');
 
-Route::get('/users/{user}/edit', 'AdminController@edit')
+Route::get('/users/{user}/edit', 'UserController@edit')
     ->where('user', '[0-9]+')
     ->name('user.edit');
 
-Route::put('/users/{user}/edit', 'AdminController@update')
+Route::put('/users/{user}/edit', 'UserController@update')
     ->where('user', '[0-9]+')
     ->name('user.update');
 
-Route::get('users/trash', 'AdminController@trashed')
+Route::get('users/trash', 'UserController@trashed')
     ->name('users.trash');
 
-Route::patch('users/{user}/trash', 'AdminController@trash')
+Route::patch('users/{user}/trash', 'UserController@trash')
     ->where('user', '[0-9]+')
     ->name('user.trash');
 
-Route::patch('users/{id}/restore', 'AdminController@restore')
+Route::patch('users/{id}/restore', 'UserController@restore')
     ->where('user', '[0-9]+')
     ->name('user.restore');
 
-Route::delete('/users/{id}', 'AdminController@destroy')
+Route::delete('/users/{id}', 'UserController@destroy')
     ->where('user', '[0-9]+')
     ->name('user.destory');
 
