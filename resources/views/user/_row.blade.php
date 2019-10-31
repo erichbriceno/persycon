@@ -2,7 +2,7 @@
     <td>{{ $user->id }}</td>
     <td>
         {{ $user->name }}
-        <span class="note">Nombre de Empresa</span>
+        <span class="note">@lang($user->management->name)</span>
     </td>
     <td>{{ $user->email }}</td>
     <td>{{ $user->role->description }}</td>
@@ -17,7 +17,6 @@
                 @method('PATCH')
                 <button type="submit" class="btn btn-outline-secondary btn-sm"><i class="fas fa-trash-restore"></i></button>
             </form>
-            &nbsp;
             <form method="POST" action="{{ route('user.destory', $user) }}">
                 @csrf
                 @method('DELETE')

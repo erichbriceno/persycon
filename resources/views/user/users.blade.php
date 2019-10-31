@@ -4,10 +4,7 @@
 
 @section('content')
 
-
     @include('layouts._filters')
-
-
 
     @if ($users->isNotEmpty())
         <div class="table-responsive-lg">

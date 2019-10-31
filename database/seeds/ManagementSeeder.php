@@ -13,6 +13,11 @@ class ManagementSeeder extends Seeder
     public function run()
     {
         factory(Management::class)->create([
+            'name' => 'All',
+            'description' => 'Master Administrator',
+        ]);
+
+        factory(Management::class)->create([
             'name' => 'Mariche',
             'description' => 'Galpon CNE Mariche',
         ]);
@@ -27,7 +32,5 @@ class ManagementSeeder extends Seeder
             'description' => 'Oficinas Decentralizadas',
         ]);
 
-
-        factory(Management::class)->times(10)->create();
     }
 }
