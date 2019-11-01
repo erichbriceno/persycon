@@ -24,14 +24,15 @@ class UserSeeder extends Seeder
 
         factory(User::class)->create([
             'management_id' => $this->managements->where('name', 'All')->first()->id,
-            'name' => 'Erich Briceno',
+            'first_name' => 'Erich',
+            'last_name' => 'Briceño',
             'email' => 'erichbriceno@gmail.com',
             'role_id' => $this->roles->where('description', 'Master')->first()->id,
             'password' => bcrypt('secreto1'),
         ]);
 
 
-        foreach (range(1, 25) as $i) {
+        foreach (range(1, 250) as $i) {
             $user = factory(User::class)->create([
                 'role_id' => $this->roles->where('description', 'User')->first()->id,
                 'management_id' => rand(0, 2) ? $this->managements->random()->id :  null,

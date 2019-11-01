@@ -17,11 +17,11 @@ class UserModuleTest extends TestCase
     {
         factory(Role::class)->create(['description' => 'User']);
         factory(User::class)->create([
-            'name' => 'Pedro',
+            'first_name' => 'Pedro',
         ]);
 
         factory(User::class)->create([
-            'name' => 'Santiago'
+            'first_name' => 'Santiago'
         ]);
 
         $this->get(route('users'))
@@ -41,6 +41,7 @@ class UserModuleTest extends TestCase
         $this->get(route('user.details', $user))
             ->assertStatus(200)
             ->assertSee('Erich')
+            ->assertSee('Briceño')
             ->assertSee('User');
 
     }
@@ -48,8 +49,7 @@ class UserModuleTest extends TestCase
     /** @test */
     function it_displays_a_404_error_if_the_user_is_not_found()
     {
-
-        $this->get('/users/999')
+        $this->get('/users/1')
             ->assertStatus(404)
             ->assertSee('Página no encontrada');
     }
@@ -85,21 +85,38 @@ class UserModuleTest extends TestCase
             ->assertRedirect(route('users'));
 
         $this->assertDatabaseHas('users', [
-            'name' => 'Erich',
+            'first_name' => 'Erich',
+            'last_name' => 'Briceño',
             'email' => 'erichbriceno@gmail.com',
             'role_id' => Role::Where('description', 'User')->first()->id,
         ]);
     }
 
     /** @test */
-    function the_name_is_required()
+    function the_first_name_is_required()
     {
         $this->loadRolesTable();
         $this->from(route('user.create'))
             ->post(route('user.store'), $this->getValidData([
-                'name' => ''
+                'first_name' => ''
             ]))->assertRedirect(route('user.create'))
-        ->assertSessionHasErrors(['name']);
+        ->assertSessionHasErrors(['first_name']);
+
+        $this->assertDatabaseMissing('users', [
+            'email' => 'erichbriceno@gmail.com',
+        ]);
+
+    }
+
+    /** @test */
+    function the_last_name_is_required()
+    {
+        $this->loadRolesTable();
+        $this->from(route('user.create'))
+            ->post(route('user.store'), $this->getValidData([
+                'last_name' => ''
+            ]))->assertRedirect(route('user.create'))
+            ->assertSessionHasErrors(['last_name']);
 
         $this->assertDatabaseMissing('users', [
             'email' => 'erichbriceno@gmail.com',
@@ -118,7 +135,7 @@ class UserModuleTest extends TestCase
             ->assertSessionHasErrors(['email']);
 
         $this->assertDatabaseMissing('users', [
-            'name' => 'Erich',
+            'first_name' => 'Erich',
         ]);
 
     }
@@ -134,7 +151,7 @@ class UserModuleTest extends TestCase
             ->assertSessionHasErrors(['role_id']);
 
         $this->assertDatabaseMissing('users', [
-            'name' => 'Erich',
+            'first_name' => 'Erich',
             'email' => 'erichbriceno@gmail.com',
         ]);
 
@@ -151,7 +168,7 @@ class UserModuleTest extends TestCase
             ->assertSessionHasErrors(['role_id']);
 
         $this->assertDatabaseMissing('users', [
-            'name' => 'Erich',
+            'first_name' => 'Erich',
             'email' => 'erichbriceno@gmail.com',
         ]);
     }
@@ -168,7 +185,7 @@ class UserModuleTest extends TestCase
             ->assertSessionHasErrors(['role_id']);
 
         $this->assertDatabaseMissing('users', [
-            'name' => 'Erich',
+            'first_name' => 'Erich',
             'email' => 'erichbriceno@gmail.com',
         ]);
     }
@@ -185,7 +202,7 @@ class UserModuleTest extends TestCase
             ->assertSessionHasErrors(['password']);
 
         $this->assertDatabaseMissing('users', [
-            'name' => 'Erich',
+            'first_name' => 'Erich',
             'email' => 'erichbriceno@gmail.com',
         ]);
 
@@ -207,6 +224,7 @@ class UserModuleTest extends TestCase
     /** @test */
     function it_updates_a_user()
     {
+        $this->withoutExceptionHandling();
         $this->loadRolesTable();
         $user = factory(User::class)->create();
 
@@ -216,7 +234,7 @@ class UserModuleTest extends TestCase
             ->assertRedirect(route('user.details',$user));
 
         $this->assertDatabaseHas('users', [
-            'name' => 'Erich',
+            'first_name' => 'Erich',
             'email' => 'erichbriceno@gmail.com',
             'role_id' => Role::Where('description', 'Administrator')->first()->id
         ]);
@@ -230,20 +248,19 @@ class UserModuleTest extends TestCase
 
         $this->from(route('user.edit', $user))
             ->put(route('user.update', $user), $this->getValidData([
-                'name' => ''
+                'first_name' => ''
             ]))
         ->assertRedirect(route('user.edit', $user))
-        ->assertSessionHasErrors(['name']);
+        ->assertSessionHasErrors(['first_name']);
 
         $this->assertEquals(1, User::count());
-        $this->assertDatabaseMissing('users', ['name' => 'erichbriceno@gmail.com']);
+        $this->assertDatabaseMissing('users', ['first_name' => 'erich']);
     }
 
 
     /** @test */
     function the_role_must_be_avalible_when_updating_a_user()
     {
-//        $this->withoutExceptionHandling();
         $this->loadRolesTable();
         $user = factory(User::class)->create();
 
@@ -255,7 +272,7 @@ class UserModuleTest extends TestCase
             ->assertSessionHasErrors(['role_id']);
 
         $this->assertEquals(1, User::count());
-        $this->assertDatabaseMissing('users', ['name' => 'Erich']);
+        $this->assertDatabaseMissing('users', ['first_name' => 'Erich']);
     }
 
     /** @test */
@@ -272,7 +289,7 @@ class UserModuleTest extends TestCase
             ->assertSessionHasErrors(['email']);
 
         $this->assertEquals(1, User::count());
-        $this->assertDatabaseMissing('users', ['name' => 'Erich']);
+        $this->assertDatabaseMissing('users', ['first_name' => 'Erich']);
     }
 
     /** @test */
@@ -326,7 +343,7 @@ class UserModuleTest extends TestCase
 
         $this->assertEquals(1, User::count());
         $this->assertDatabaseHas('users', [
-            'name' => 'Erich',
+            'first_name' => 'Erich',
             'email' => 'erichbriceno@gmail.com',
         ]);
     }
@@ -356,12 +373,12 @@ class UserModuleTest extends TestCase
         $this->withoutExceptionHandling();
         $this->loadRolesTable();
         factory(User::class)->create([
-            'name' => 'Pedro',
+            'first_name' => 'Pedro',
             'deleted_at' => now(),
         ]);
 
         factory(User::class)->create([
-            'name' => 'Santiago'
+            'first_name' => 'Santiago'
         ]);
 
         $this->get(route('users.trash'))

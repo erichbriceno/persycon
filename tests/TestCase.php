@@ -11,11 +11,22 @@ abstract class TestCase extends BaseTestCase
 
     /****************** Complementos **************/
 
+
+    public function setUp() :void
+    {
+        parent::setUp();
+
+        //$this->withoutExceptionHandling();
+
+        //$this->loadRolesTable();
+    }
+
     protected function getValidData(array $custom = [])
     {
 
         return array_merge([
-            'name' => 'Erich',
+            'first_name' => 'Erich',
+            'last_name' => 'Briceño',
             'email' => 'erichbriceno@gmail.com',
             'password' => 'secreto1',
             'role_id' => Role::Where('description', 'User')->first()->id,

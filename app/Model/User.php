@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'role_id'
+        'first_name', 'last_name', 'email', 'password', 'role_id'
     ];
 
     /**
@@ -55,11 +55,16 @@ class User extends Authenticatable
             return;
         }
         
-        $query->where('name', 'like', "%{$search}%")
+        $query->where('first_name', 'like', "%{$search}%")
             ->orWhere('email', 'like', "%{$search}%")
             ->orWhereHas('management', function ($query) use ($search) {
                 $query->where('name', 'like', "%{$search}%");
             });
+    }
+
+    public function getNameAttribute()
+    {
+        return "{$this->first_name} {$this->last_name}";
     }
 
 }

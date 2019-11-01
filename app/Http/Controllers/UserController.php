@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 
-use App\Model\{ User, Role };
+use App\Http\Requests\UpdateUserRequest;
+use App\Model\{Management, User, Role};
 use Illuminate\Validation\Rule;
 use App\Http\Requests\CreateUserRequest;
 
@@ -28,6 +29,8 @@ class UserController extends Controller
             ->orderBy('role_id')
             ->paginate();
 
+        $users->appends(request(['search', 'management']));
+
         return view('user.users', compact('title','users', 'emptyMessage'));
     }
 
@@ -43,15 +46,18 @@ class UserController extends Controller
     public function details(User $user)
     {
         $title = 'DETALLES DEL USUARIO';
-        return view('user.details', compact('title','user'));
+
+        return view('user.details', compact('title', 'user'));
     }
 
     public function create()
     {
         $title = 'REGISTRAR USUARIO';
+        $user = New User;
+        $managements = Management::all();
         $roles = Role::orderBy('description', 'DESC')->get();
 
-        return view('user.create', compact('title', 'roles'));
+        return view('user.create', compact('title', 'roles', 'user', 'managements'));
     }
 
     public function store(CreateUserRequest $request)
@@ -64,31 +70,16 @@ class UserController extends Controller
     public function edit(User $user)
     {
         $title = 'EDITAR USUARIO';
+        $managements = Management::all();
         $roles = Role::orderBy('description', 'DESC')->get();
 
-        return view('user.edit', compact('title','user', 'roles'));
+        return view('user.edit', compact('title', 'roles', 'user', 'managements'));
     }
 
-    public function update(User $user)
+    public function update(UpdateUserRequest $request, User $user)
     {
 
-        $data = request()->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($user->id)],
-            'password' => '',
-            'role_id' => [
-                'required',
-                'present',
-                Rule::exists('roles', 'id')->where('selectable', true),
-            ]
-        ]);
-
-            if ($data['password'] != null) {
-                $data['password'] = bcrypt($data['password']);
-            } else {
-                unset($data['password']);
-            }
-        $user->update($data);
+        $request->updateUser($user);
 
         return redirect()->route('user.details', $user);
     }

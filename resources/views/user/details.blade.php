@@ -7,13 +7,20 @@
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">Detalles del Usuario</div>
+                    <div class="card-header">@lang('User Details')</div>
 
                     <div class="card-body">
                         <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">@lang('Name')</label>
+                            <label for="first_name" class="col-md-4 col-form-label text-md-right">@lang('First Name')</label>
                             <div class="col-md-6">
-                                <input id="name" type="text" readonly class="form-control" name="name" value="{{ $user->name }}">
+                                <input id="first_name" type="text" readonly class="form-control" name="first_name" value="{{ $user->first_name }}">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="last_name" class="col-md-4 col-form-label text-md-right">@lang('Last Name')</label>
+                            <div class="col-md-6">
+                                <input id="last_name" type="text" readonly class="form-control" name="last_name" value="{{ $user->last_name }}">
                             </div>
                         </div>
 
@@ -27,7 +34,15 @@
                         <div class="form-group row">
                             <label for="role_id" class="col-md-4 col-form-label text-md-right">@lang('Role')</label>
                             <div class="col-md-6">
-                                <input id="role_id" type="text" readonly class="form-control" name="role" value="{{ $user->role->description }}">
+                                <input id="role_id" type="text" readonly class="form-control" name="role_id" value="@lang($user->role->description)">
+                            </div>
+                        </div>
+
+
+                        <div class="form-group row">
+                            <label for="management_id" class="col-md-4 col-form-label text-md-right">@lang('Management')</label>
+                            <div class="col-md-6">
+                                <input id="management_id" type="text" readonly class="form-control" name="management_id" value="@lang($user->management->name)">
                             </div>
                         </div>
 

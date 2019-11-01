@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Feature\Admin;
 
 use App\Model\{User, Role};
 use Tests\TestCase;
@@ -15,12 +15,9 @@ class AdminTest extends TestCase
     {
         $this->loadRolesTable();
 
-        $user = factory(User::class)->create([
-            'name' => 'Erich Briceno',
-            'email' => 'erichbriceno@gmail.com',
-            'password' => bcrypt('secreto1'),
+        $user = factory(User::class)->create($this->getValidData([
             'role_id' => Role::Where('description', 'Master')->first()->id,
-        ]);
+        ]));
 
         $this->actingAs($user);
 
@@ -42,24 +39,6 @@ class AdminTest extends TestCase
             ->assertStatus(200)
             ->assertSee('Proyectos');
     }
-
-    protected function loadRolesTable()
-    {
-
-        factory(Role::class)->create([
-            'description' => 'Master',
-        ]);
-
-        factory(Role::class)->create([
-            'description' => 'Administrator',
-        ]);
-
-        factory(Role::class)->create([
-            'description' => 'User',
-        ]);
-
-    }
-
 
 
 }

@@ -24,7 +24,7 @@
                 </tbody>
             </table>
         </div>
-        {{ $users->links() }}
+        {{ $users->onEachSide(1)->links() }}
     @else
         <p>@lang($emptyMessage)</p>
     @endif

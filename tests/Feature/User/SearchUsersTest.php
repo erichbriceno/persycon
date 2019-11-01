@@ -16,11 +16,11 @@ class SearchUsersTest extends TestCase
     {
         $this->loadRolesTable();
         factory(User::class)->create([
-            'name' => 'Pedro'
+            'first_name' => 'Pedro'
         ]);
 
         factory(User::class)->create([
-            'name' => 'Santiago'
+            'first_name' => 'Santiago'
         ]);
 
         $this->get(route('users', ['search' => 'Pedro']))
@@ -35,11 +35,11 @@ class SearchUsersTest extends TestCase
     {
         $this->loadRolesTable();
         factory(User::class)->create([
-            'name' => 'Pedro'
+            'first_name' => 'Pedro'
         ]);
 
         factory(User::class)->create([
-            'name' => 'Santiago'
+            'first_name' => 'Santiago'
         ]);
 
         $this->get(route('users', ['search' => 'Pe']))
@@ -54,12 +54,12 @@ class SearchUsersTest extends TestCase
     {
         $this->loadRolesTable();
         $pedro = factory(User::class)->create([
-            'name' => 'Pedro',
+            'first_name' => 'Pedro',
             'email' => 'erichbriceno@gmail.com'
         ]);
 
         $santiago = factory(User::class)->create([
-            'name' => 'Santiago',
+            'first_name' => 'Santiago',
             'email' => 'elyotepongo@hotmail.com'
         ]);
 
@@ -76,12 +76,12 @@ class SearchUsersTest extends TestCase
     {
         $this->loadRolesTable();
         $pedro = factory(User::class)->create([
-            'name' => 'Pedro',
+            'first_name' => 'Pedro',
             'email' => 'erichbriceno@gmail.com'
         ]);
 
         $santiago = factory(User::class)->create([
-            'name' => 'Santiago',
+            'first_name' => 'Santiago',
             'email' => 'elyotepongo@hotmail.com'
         ]);
 
@@ -98,17 +98,17 @@ class SearchUsersTest extends TestCase
     {
         $this->loadRolesTable();
         $pedro = factory(User::class)->create([
-            'name' => 'Pedro',
+            'first_name' => 'Pedro',
             'management_id' => factory(Management::class)->create(['name' => 'Mariche'])->id
         ]);
 
         $santiago = factory(User::class)->create([
-            'name' => 'Santiago',
+            'first_name' => 'Santiago',
             'management_id' => null
         ]);
 
         $jose = factory(User::class)->create([
-            'name' => 'Jose',
+            'first_name' => 'Jose',
             'management_id' => factory(Management::class)->create(['name' => 'CNS'])->id
         ]);
 
@@ -127,17 +127,17 @@ class SearchUsersTest extends TestCase
     {
         $this->loadRolesTable();
         $pedro = factory(User::class)->create([
-            'name' => 'Pedro',
+            'first_name' => 'Pedro',
             'management_id' => factory(Management::class)->create(['name' => 'Mariche'])->id
         ]);
 
         $santiago = factory(User::class)->create([
-            'name' => 'Santiago',
+            'first_name' => 'Santiago',
             'management_id' => null
         ]);
 
         $jose = factory(User::class)->create([
-            'name' => 'Jose',
+            'first_name' => 'Jose',
             'management_id' => factory(Management::class)->create(['name' => 'CNS'])->id
         ]);
 

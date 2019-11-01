@@ -27,7 +27,8 @@ class CreateUserRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['required', 'present','string', 'max:255'],
+            'first_name' => ['required', 'present','string', 'max:255'],
+            'last_name' => ['required', 'present','string', 'max:255'],
             'email' => ['required', 'present', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:6'],
             'role_id' => [
@@ -41,7 +42,7 @@ class CreateUserRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required' => 'El campo nombre es nome',
+            'name.required' => 'El campo nombre es',
         ];
     }
 
@@ -49,9 +50,9 @@ class CreateUserRequest extends FormRequest
     {
         //DB::trasaction(function () {
             $data = $this->validated();
-
             User::create([
-                'name' => $data['name'],
+                'first_name' => $data['first_name'],
+                'last_name' => $data['last_name'],
                 'email' => $data['email'],
                 'password' => bcrypt($data['password']),
                 'role_id' => $data['role_id']
