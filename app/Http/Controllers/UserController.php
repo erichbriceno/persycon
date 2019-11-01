@@ -16,6 +16,7 @@ class UserController extends Controller
         $emptyMessage = 'There are no registered users';
 
         $users = User::query()
+            ->with('role', 'management')
             ->when(request('management'), function ($query, $management) {
                 if($management === 'with_management') {
                     $query->has('management');
