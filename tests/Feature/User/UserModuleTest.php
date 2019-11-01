@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Feature\User;
 
 use Tests\TestCase;
 use App\Model\{ Role, User };
@@ -15,9 +15,9 @@ class UserModuleTest extends TestCase
     /** @test */
     function it_shows_the_users_list()
     {
-        $this->loadRolesTable();
+        factory(Role::class)->create(['description' => 'User']);
         factory(User::class)->create([
-            'name' => 'Pedro'
+            'name' => 'Pedro',
         ]);
 
         factory(User::class)->create([
@@ -34,9 +34,8 @@ class UserModuleTest extends TestCase
     /** @test */
     function it_displays_the_users_details()
     {
-        $this->loadRolesTable();
         $user = factory(User::class)->create($this->getValidData([
-            'role_id' => Role::Where('description', 'User')->first()->id
+            'role_id' => factory(Role::class)->create(['description' => 'User'])->id
         ]));
 
         $this->get(route('user.details', $user))

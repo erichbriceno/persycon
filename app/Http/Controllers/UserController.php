@@ -16,10 +16,14 @@ class UserController extends Controller
         $emptyMessage = 'There are no registered users';
 
         $users = User::query()
-            ->when(request('search'), function ($query, $search) {
-                $query->where('name', 'like', "%{$search}%")
-                ->orWhere('email', 'like', "%{$search}%");
+            ->when(request('management'), function ($query, $management) {
+                if($management === 'with_management') {
+                    $query->has('management');
+                } elseif ($management === 'without_management') {
+                    $query->doesntHave('management');
+                }
             })
+            ->search(request('search'))
             ->orderBy('role_id')
             ->paginate();
 

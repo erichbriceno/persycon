@@ -1,28 +1,23 @@
 
     <form method="get" action="{{ url('users') }}">
 
-{{--        <div class="row row-filters pb-1">--}}
-{{--            <div class="col-8">--}}
-{{--                <div class="form-check form-check-inline">--}}
-{{--                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" checked>--}}
-{{--                    <label class="form-check-label" for="inlineRadio1">Active</label>--}}
-{{--                </div>--}}
-{{--                <div class="form-check form-check-inline">--}}
-{{--                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">--}}
-{{--                    <label class="form-check-label" for="inlineRadio2">Inactive</label>--}}
-{{--                </div>--}}
-{{--                <div class="form-check form-check-inline">--}}
-{{--                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3">--}}
-{{--                    <label class="form-check-label" for="inlineRadio3">All</label>--}}
-{{--                </div>--}}
-{{--            </div>--}}
+        <div class="row row-filters pb-1">
+            <div class="col-8">
+                @foreach(['' => 'All', 'with_management' => 'With management', 'without_management' => 'Without management'] as $value => $text)
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="management"
+                           id="management_{{ $value ?: 'all' }}" value="{{ $value }}" {{ $value === request('management','') ? 'checked' : '' }}>
+                    <label class="form-check-label" for="management_{{ $value ?: 'all' }}">@lang($text)</label>
+                </div>
+                @endforeach
+            </div>
 
-{{--            <div class="col-4">--}}
-{{--                <div class="form-inline justify-content-end">--}}
-{{--                    <a href="{{ route('user.create') }}" class="btn btn-primary btn-sm">@lang('New user')</a>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        </div>--}}
+            <div class="col-4">
+                <div class="form-inline justify-content-end">
+                    <a href="{{ route('user.create') }}" class="btn btn-primary btn-sm">@lang('New user')</a>
+                </div>
+            </div>
+        </div>
         <div class="row row-filters">
             <div class="col-md-5">
                 <div class="form-inline form-search">
