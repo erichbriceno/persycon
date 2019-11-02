@@ -34,6 +34,10 @@ class UpdateUserRequest extends FormRequest
                 'required',
                 'present',
                 Rule::exists('roles', 'id')->where('selectable', true),
+            ],
+            'management_id' => [
+                'nullable',
+                Rule::exists('managements', 'id')
             ]
         ];
     }
@@ -45,6 +49,7 @@ class UpdateUserRequest extends FormRequest
             'last_name' => $this->last_name,
             'email' => $this->email,
             'role_id' => $this->role_id,
+            'management_id' => $this->management_id,
         ]);
         if ($this->password != null) {
             $user->password = bcrypt($this->password);

@@ -2,7 +2,7 @@
 
 namespace Tests;
 
-use App\Model\Role;
+use App\Model\{Role, Management};
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 
 abstract class TestCase extends BaseTestCase
@@ -16,9 +16,8 @@ abstract class TestCase extends BaseTestCase
     {
         parent::setUp();
 
-        //$this->withoutExceptionHandling();
-
-        //$this->loadRolesTable();
+        $this->loadRolesTable();
+        $this->loadManagemetsTable();
     }
 
     protected function getValidData(array $custom = [])
@@ -30,6 +29,7 @@ abstract class TestCase extends BaseTestCase
             'email' => 'erichbriceno@gmail.com',
             'password' => 'secreto1',
             'role_id' => Role::Where('description', 'User')->first()->id,
+            'management_id' => Management::Where('name', 'All')->first()->id,
         ], $custom);
 
     }
@@ -51,4 +51,28 @@ abstract class TestCase extends BaseTestCase
         ]);
 
     }
+
+    public function loadManagemetsTable()
+    {
+        factory(Management::class)->create([
+            'name' => 'All',
+            'description' => 'Master Administrator',
+        ]);
+
+        factory(Management::class)->create([
+            'name' => 'Mariche',
+            'description' => 'Galpon CNE Mariche',
+        ]);
+
+        factory(Management::class)->create([
+            'name' => 'CNS',
+            'description' => 'Centro Nacional de Soporte',
+        ]);
+
+        factory(Management::class)->create([
+            'name' => 'ODC',
+            'description' => 'Oficinas Decentralizadas',
+        ]);
+    }
+
 }

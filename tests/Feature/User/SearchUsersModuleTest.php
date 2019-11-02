@@ -7,14 +7,13 @@ use App\Model\{Management, User};
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 
-class SearchUsersTest extends TestCase
+class SearchUsersModuleTest extends TestCase
 {
     use RefreshDatabase;
 
     /** @test */
     function search_users_by_name()
     {
-        $this->loadRolesTable();
         factory(User::class)->create([
             'first_name' => 'Pedro'
         ]);
@@ -33,7 +32,6 @@ class SearchUsersTest extends TestCase
     /** @test */
     function show_results_with_a_partial_search_by_name()
     {
-        $this->loadRolesTable();
         factory(User::class)->create([
             'first_name' => 'Pedro'
         ]);
@@ -52,7 +50,6 @@ class SearchUsersTest extends TestCase
     /** @test */
     function search_users_by_email()
     {
-        $this->loadRolesTable();
         $pedro = factory(User::class)->create([
             'first_name' => 'Pedro',
             'email' => 'erichbriceno@gmail.com'
@@ -74,7 +71,6 @@ class SearchUsersTest extends TestCase
     /** @test */
     function show_results_with_a_partial_search_by_email()
     {
-        $this->loadRolesTable();
         $pedro = factory(User::class)->create([
             'first_name' => 'Pedro',
             'email' => 'erichbriceno@gmail.com'
@@ -96,10 +92,9 @@ class SearchUsersTest extends TestCase
     /** @test */
     function search_users_by_management()
     {
-        $this->loadRolesTable();
         $pedro = factory(User::class)->create([
             'first_name' => 'Pedro',
-            'management_id' => factory(Management::class)->create(['name' => 'Mariche'])->id
+            'management_id' => Management::Where('name', 'Mariche')->first()->id
         ]);
 
         $santiago = factory(User::class)->create([
@@ -109,7 +104,7 @@ class SearchUsersTest extends TestCase
 
         $jose = factory(User::class)->create([
             'first_name' => 'Jose',
-            'management_id' => factory(Management::class)->create(['name' => 'CNS'])->id
+            'management_id' => Management::Where('name', 'CNS')->first()->id
         ]);
 
         $this->get(route('users', ['search' => 'CNS']))
@@ -125,10 +120,9 @@ class SearchUsersTest extends TestCase
     /** @test */
     function partial_search_by_management_name()
     {
-        $this->loadRolesTable();
         $pedro = factory(User::class)->create([
             'first_name' => 'Pedro',
-            'management_id' => factory(Management::class)->create(['name' => 'Mariche'])->id
+            'management_id' => Management::Where('name', 'Mariche')->first()->id
         ]);
 
         $santiago = factory(User::class)->create([
@@ -138,7 +132,7 @@ class SearchUsersTest extends TestCase
 
         $jose = factory(User::class)->create([
             'first_name' => 'Jose',
-            'management_id' => factory(Management::class)->create(['name' => 'CNS'])->id
+            'management_id' => Management::Where('name', 'CNS')->first()->id
         ]);
 
         $this->get(route('users', ['search' => 'CN']))

@@ -26,7 +26,7 @@ class UserController extends Controller
                 }
             })
             ->search(request('search'))
-            ->orderBy('role_id')
+            ->orderBy('id')
             ->paginate();
 
         $users->appends(request(['search', 'management']));
@@ -54,7 +54,7 @@ class UserController extends Controller
     {
         $title = 'REGISTRAR USUARIO';
         $user = New User;
-        $managements = Management::all();
+        $managements = Management::all(); //Debo incluir el valor null o vacio
         $roles = Role::orderBy('description', 'DESC')->get();
 
         return view('user.create', compact('title', 'roles', 'user', 'managements'));

@@ -60,6 +60,9 @@
 
     <div class="col-md-6">
         <select name="management_id" id="management_id" class="form-control">
+            <option value="" {{ old('management_id', $user->management_id) == null ? ' selected' : '' }}>
+                @lang('Unassigned')
+            </option>
             @foreach($managements as $management)
                     <option value="{{ $management->id }}"{{ old('management_id', $user->management_id) == $management->id ? ' selected' : '' }}>
                         @lang($management->name)
@@ -96,7 +99,7 @@
     <div class="col-md-10">
         <div class="form-inline justify-content-end">
             <button type="submit" class="btn btn-sm btn-primary btn-sm">
-                @lang('Register')
+                @lang('Save')
             </button>
             &nbsp;
             <a href="{{ route('users') }}" class="btn btn-sm btn-primary btn-sm">@lang('Back')</a>

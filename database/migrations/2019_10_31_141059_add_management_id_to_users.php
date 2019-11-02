@@ -14,7 +14,7 @@ class AddManagementIdToUsers extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->unsignedBigInteger('management_id')->nullable()->after('id');
+            $table->unsignedBigInteger('management_id')->nullable()->after('role_id');
             $table->foreign('management_id')->references('id')->on('managements');
         });
     }
