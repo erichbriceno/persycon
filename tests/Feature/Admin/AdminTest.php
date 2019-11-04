@@ -13,11 +13,11 @@ class AdminTest extends TestCase
         /** @test */
     function it_authorizer_admin_can_see_the_menu()
     {
-        $this->loadRolesTable();
-
-        $user = factory(User::class)->create($this->getValidData([
+        //$this->loadRolesTable();
+        $this->withoutExceptionHandling();
+        $user = factory(User::class)->create([
             'role_id' => Role::Where('description', 'Master')->first()->id,
-        ]));
+        ]);
 
         $this->actingAs($user);
 

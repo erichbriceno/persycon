@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\UpdateUserRequest;
 use App\Model\{Management, User, Role};
-use Illuminate\Validation\Rule;
 use App\Http\Requests\CreateUserRequest;
 
 class UserController extends Controller

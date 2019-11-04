@@ -30,7 +30,7 @@ abstract class TestCase extends BaseTestCase
             'role_id' => Role::Where('description', 'User')->first()->id,
             'management_id' => Management::Where('name', 'All')->first()->id,
             'password' => 'secreto1',
-            //'password-confirm' => 'secreto1',
+            'password_confirmation' => 'secreto1',
         ], $custom);
 
     }

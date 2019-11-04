@@ -3,7 +3,7 @@
 namespace Tests\Feature\User;
 
 use Tests\TestCase;
-use App\Model\{ Role, User };
+use App\Model\{Management, Role, User};
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class UserModuleTest extends TestCase
@@ -33,9 +33,14 @@ class UserModuleTest extends TestCase
     /** @test */
     function it_displays_the_users_details()
     {
-        $user = factory(User::class)->create($this->getValidData([
-            'role_id' => factory(Role::class)->create(['description' => 'User'])->id
-        ]));
+        $user = factory(User::class)->create([
+            'names' => 'Erich Javier',
+            'surnames' => 'Briceño',
+            'email' => 'erichbriceno@gmail.com',
+            'role_id' => Role::Where('description', 'User')->first()->id,
+            'management_id' => Management::Where('name', 'All')->first()->id,
+            'password' => 'secreto1',
+        ]);
 
         $this->get(route('user.details', $user))
             ->assertStatus(200)

@@ -29,7 +29,6 @@ class UpdateUserRequest extends FormRequest
             'names' => ['required', 'string', 'max:255'],
             'surnames' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($this->user)],
-            'password' => '',
             'role_id' => [
                 'required',
                 'present',
@@ -38,7 +37,8 @@ class UpdateUserRequest extends FormRequest
             'management_id' => [
                 'nullable',
                 Rule::exists('managements', 'id')
-            ]
+            ],
+            'password' => '',
         ];
     }
 

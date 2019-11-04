@@ -2,20 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="454049b8-6a53-4da5-99bd-66ec409040d3" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Requests/CreateUserRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/CreateUserRequest.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Requests/UpdateUserRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/UpdateUserRequest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Model/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Model/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/factories/UserFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/UserFactory.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_08_25_000000_create_users_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_08_25_000000_create_users_table.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database/seeds/UserSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/UserSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/lang/es.json" beforeDir="false" afterPath="$PROJECT_DIR$/resources/lang/es.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/user/_fields.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/user/_fields.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/user/details.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/user/details.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Feature/Admin/AdminTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/Admin/AdminTest.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/Feature/User/CreateUserModuleTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/User/CreateUserModuleTest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Feature/User/SearchUsersModuleTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/User/SearchUsersModuleTest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Feature/User/UpdateUserModuleTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/User/UpdateUserModuleTest.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/Feature/User/UserModuleTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/User/UserModuleTest.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/TestCase.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/TestCase.php" afterDir="false" />
     </list>
@@ -32,47 +24,34 @@
     </execution>
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.5">
+    <splitter split-orientation="horizontal" split-proportion="0.4220242">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file pinned="false" current-in-tab="false">
+          <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/tests/Feature/User/UserModuleTest.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state>
-                  <caret line="159" selection-start-line="159" selection-end-line="159" />
+                <state relative-caret-position="456">
+                  <caret line="37" column="12" lean-forward="true" selection-start-line="37" selection-start-column="12" selection-end-line="37" selection-end-column="12" />
                 </state>
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/database/factories/UserFactory.php">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="238">
+                  <caret line="16" column="8" selection-start-line="16" selection-start-column="8" selection-end-line="16" selection-end-column="8" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/tests/Feature/User/CreateUserModuleTest.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="572">
-                  <caret line="184" column="33" selection-start-line="184" selection-start-column="25" selection-end-line="184" selection-end-column="33" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/resources/views/user/_fields.blade.php">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1513">
-                  <caret line="89" column="32" selection-start-line="89" selection-start-column="16" selection-end-line="89" selection-end-column="32" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-first>
-      <split-second>
-        <leaf>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/app/Http/Requests/CreateUserRequest.php">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="569">
-                  <caret line="43" column="5" selection-start-line="43" selection-start-column="5" selection-end-line="43" selection-end-column="5" />
+                <state relative-caret-position="289">
+                  <caret line="32" column="63" lean-forward="true" selection-start-line="32" selection-start-column="8" selection-end-line="32" selection-end-column="63" />
                   <folding>
-                    <element signature="e#37#56#0#PHP" expanded="true" />
+                    <element signature="e#38#57#0#PHP" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -81,19 +60,35 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/tests/TestCase.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="544">
-                  <caret line="33" column="20" lean-forward="true" selection-start-line="33" selection-start-column="20" selection-end-line="33" selection-end-column="20" />
+                <state relative-caret-position="425">
+                  <caret line="34" lean-forward="true" selection-start-line="34" selection-end-line="34" />
+                  <folding>
+                    <element signature="e#25#58#0#PHP" expanded="true" />
+                  </folding>
                 </state>
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/app/Model/User.php">
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/resources/views/user/_fields.blade.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="354">
-                  <caret line="21" column="7" lean-forward="true" selection-start-line="21" selection-start-column="7" selection-end-line="21" selection-end-column="7" />
+                <state relative-caret-position="476">
+                  <caret line="89" column="32" lean-forward="true" selection-start-line="89" selection-start-column="16" selection-end-line="89" selection-end-column="32" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-first>
+      <split-second>
+        <leaf>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/app/Http/Requests/CreateUserRequest.php">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="425">
+                  <caret line="43" column="5" lean-forward="true" selection-start-line="43" selection-start-column="5" selection-end-line="43" selection-end-column="5" />
                   <folding>
-                    <element signature="e#29#69#0#PHP" expanded="true" />
+                    <element signature="e#37#56#0#PHP" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -102,8 +97,8 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/app/Http/Controllers/UserController.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="340">
-                  <caret line="67" lean-forward="true" selection-start-line="67" selection-end-line="67" />
+                <state relative-caret-position="493">
+                  <caret line="65" column="8" selection-start-line="65" selection-start-column="8" selection-end-line="65" selection-end-column="8" />
                   <folding>
                     <element signature="e#41#81#0#PHP" expanded="true" />
                   </folding>
@@ -183,7 +178,6 @@
         <option value="$PROJECT_DIR$/database/seeds/ManagementSeeder.php" />
         <option value="$PROJECT_DIR$/resources/views/layouts/_filters.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/user/users.blade.php" />
-        <option value="$PROJECT_DIR$/tests/Feature/Admin/AdminTest.php" />
         <option value="$PROJECT_DIR$/tests/Feature/User/SearchUsersTest.php" />
         <option value="$PROJECT_DIR$/resources/views/user/_row.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/user/create.blade.php" />
@@ -191,21 +185,22 @@
         <option value="$PROJECT_DIR$/tests/Feature/User/UpdateModuleTest.php" />
         <option value="$PROJECT_DIR$/database/migrations/2019_10_31_141059_add_management_id_to_users.php" />
         <option value="$PROJECT_DIR$/app/Model/Management.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/UserController.php" />
         <option value="$PROJECT_DIR$/database/migrations/2019_08_25_000000_create_users_table.php" />
         <option value="$PROJECT_DIR$/database/factories/UserFactory.php" />
-        <option value="$PROJECT_DIR$/database/seeds/UserSeeder.php" />
         <option value="$PROJECT_DIR$/tests/Feature/User/SearchUsersModuleTest.php" />
-        <option value="$PROJECT_DIR$/resources/views/user/_fields.blade.php" />
         <option value="$PROJECT_DIR$/tests/Feature/User/UpdateUserModuleTest.php" />
-        <option value="$PROJECT_DIR$/app/Http/Requests/UpdateUserRequest.php" />
         <option value="$PROJECT_DIR$/resources/views/user/details.blade.php" />
-        <option value="$PROJECT_DIR$/tests/Feature/User/UserModuleTest.php" />
         <option value="$PROJECT_DIR$/resources/lang/es.json" />
-        <option value="$PROJECT_DIR$/app/Http/Requests/CreateUserRequest.php" />
-        <option value="$PROJECT_DIR$/tests/TestCase.php" />
-        <option value="$PROJECT_DIR$/tests/Feature/User/CreateUserModuleTest.php" />
         <option value="$PROJECT_DIR$/app/Model/User.php" />
+        <option value="$PROJECT_DIR$/database/seeds/UserSeeder.php" />
+        <option value="$PROJECT_DIR$/tests/Feature/Admin/AdminTest.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/UserController.php" />
+        <option value="$PROJECT_DIR$/app/Http/Requests/UpdateUserRequest.php" />
+        <option value="$PROJECT_DIR$/tests/Feature/User/CreateUserModuleTest.php" />
+        <option value="$PROJECT_DIR$/app/Http/Requests/CreateUserRequest.php" />
+        <option value="$PROJECT_DIR$/resources/views/user/_fields.blade.php" />
+        <option value="$PROJECT_DIR$/tests/TestCase.php" />
+        <option value="$PROJECT_DIR$/tests/Feature/User/UserModuleTest.php" />
       </list>
     </option>
   </component>
@@ -329,7 +324,38 @@
               <item name="persycon" type="b2602c69:ProjectViewProjectNode" />
               <item name="persycon" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="Http" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="persycon" type="b2602c69:ProjectViewProjectNode" />
+              <item name="persycon" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="Http" type="462c0819:PsiDirectoryNode" />
+              <item name="Controllers" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="persycon" type="b2602c69:ProjectViewProjectNode" />
+              <item name="persycon" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="Http" type="462c0819:PsiDirectoryNode" />
+              <item name="Requests" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="persycon" type="b2602c69:ProjectViewProjectNode" />
+              <item name="persycon" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="Model" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="persycon" type="b2602c69:ProjectViewProjectNode" />
+              <item name="persycon" type="462c0819:PsiDirectoryNode" />
+              <item name="database" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="persycon" type="b2602c69:ProjectViewProjectNode" />
+              <item name="persycon" type="462c0819:PsiDirectoryNode" />
+              <item name="database" type="462c0819:PsiDirectoryNode" />
+              <item name="factories" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="persycon" type="b2602c69:ProjectViewProjectNode" />
@@ -346,6 +372,13 @@
               <item name="persycon" type="462c0819:PsiDirectoryNode" />
               <item name="tests" type="462c0819:PsiDirectoryNode" />
               <item name="Feature" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="persycon" type="b2602c69:ProjectViewProjectNode" />
+              <item name="persycon" type="462c0819:PsiDirectoryNode" />
+              <item name="tests" type="462c0819:PsiDirectoryNode" />
+              <item name="Feature" type="462c0819:PsiDirectoryNode" />
+              <item name="Admin" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="persycon" type="b2602c69:ProjectViewProjectNode" />
@@ -456,12 +489,12 @@
       <workItem from="1572612858294" duration="21883000" />
       <workItem from="1572664772965" duration="5551000" />
       <workItem from="1572874296444" duration="4791000" />
-      <workItem from="1572883638852" duration="543000" />
+      <workItem from="1572883638852" duration="5618000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="306530000" />
+    <option name="totallyTimeSpent" value="311605000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -739,27 +772,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/database/factories/UserFactory.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/Feature/Admin/AdminTest.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="27" column="32" lean-forward="true" selection-start-line="27" selection-start-column="32" selection-end-line="27" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/seeds/UserSeeder.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="27" column="36" lean-forward="true" selection-start-line="27" selection-start-column="36" selection-end-line="27" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/database/migrations/2019_08_25_000000_create_users_table.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="425">
@@ -784,23 +796,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Requests/UpdateUserRequest.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="552">
-          <caret line="47" column="36" lean-forward="true" selection-start-line="47" selection-start-column="36" selection-end-line="47" selection-end-column="36" />
-          <folding>
-            <element signature="e#37#56#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/Feature/User/UpdateUserModuleTest.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
-          <caret line="125" lean-forward="true" selection-start-line="125" selection-end-line="125" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/user/details.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="408">
@@ -822,61 +817,105 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests/Feature/User/UserModuleTest.php">
+    <entry file="file://$PROJECT_DIR$/database/seeds/UserSeeder.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret line="159" selection-start-line="159" selection-end-line="159" />
+        <state relative-caret-position="612">
+          <caret line="41" lean-forward="true" selection-start-line="41" selection-end-line="41" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/user/_fields.blade.php">
+    <entry file="file://$PROJECT_DIR$/app/Model/User.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1513">
-          <caret line="89" column="32" selection-start-line="89" selection-start-column="16" selection-end-line="89" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Requests/CreateUserRequest.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="569">
-          <caret line="43" column="5" selection-start-line="43" selection-start-column="5" selection-end-line="43" selection-end-column="5" />
+        <state relative-caret-position="272">
+          <caret line="18" column="77" selection-start-line="18" selection-start-column="77" selection-end-line="18" selection-end-column="77" />
           <folding>
-            <element signature="e#37#56#0#PHP" expanded="true" />
+            <element signature="e#29#69#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/UserController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="67" lean-forward="true" selection-start-line="67" selection-end-line="67" />
+        <state relative-caret-position="493">
+          <caret line="65" column="8" selection-start-line="65" selection-start-column="8" selection-end-line="65" selection-end-column="8" />
           <folding>
             <element signature="e#41#81#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/tests/Feature/Admin/AdminTest.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="28" column="5" lean-forward="true" selection-start-line="28" selection-start-column="5" selection-end-line="28" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/Feature/User/UpdateUserModuleTest.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2091">
+          <caret line="125" lean-forward="true" selection-start-line="125" selection-end-line="125" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Requests/UpdateUserRequest.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="40" column="27" selection-start-line="40" selection-start-column="27" selection-end-line="40" selection-end-column="27" />
+          <folding>
+            <element signature="e#37#56#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Requests/CreateUserRequest.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="43" column="5" lean-forward="true" selection-start-line="43" selection-start-column="5" selection-end-line="43" selection-end-column="5" />
+          <folding>
+            <element signature="e#37#56#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/user/_fields.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="89" column="32" lean-forward="true" selection-start-line="89" selection-start-column="16" selection-end-line="89" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/tests/TestCase.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="33" column="20" lean-forward="true" selection-start-line="33" selection-start-column="20" selection-end-line="33" selection-end-column="20" />
+        <state relative-caret-position="425">
+          <caret line="34" lean-forward="true" selection-start-line="34" selection-end-line="34" />
+          <folding>
+            <element signature="e#25#58#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/factories/UserFactory.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="16" column="8" selection-start-line="16" selection-start-column="8" selection-end-line="16" selection-end-column="8" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tests/Feature/User/CreateUserModuleTest.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="572">
-          <caret line="184" column="33" selection-start-line="184" selection-start-column="25" selection-end-line="184" selection-end-column="33" />
+        <state relative-caret-position="289">
+          <caret line="32" column="63" lean-forward="true" selection-start-line="32" selection-start-column="8" selection-end-line="32" selection-end-column="63" />
+          <folding>
+            <element signature="e#38#57#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Model/User.php">
+    <entry file="file://$PROJECT_DIR$/tests/Feature/User/UserModuleTest.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="354">
-          <caret line="21" column="7" lean-forward="true" selection-start-line="21" selection-start-column="7" selection-end-line="21" selection-end-column="7" />
-          <folding>
-            <element signature="e#29#69#0#PHP" expanded="true" />
-          </folding>
+        <state relative-caret-position="456">
+          <caret line="37" column="12" lean-forward="true" selection-start-line="37" selection-start-column="12" selection-end-line="37" selection-end-column="12" />
         </state>
       </provider>
     </entry>

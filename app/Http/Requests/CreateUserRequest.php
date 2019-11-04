@@ -38,8 +38,8 @@ class CreateUserRequest extends FormRequest
                 'nullable',
                 Rule::exists('managements', 'id')
             ],
-            'password' => ['required', 'string', 'min:6'],
-            //'password-confirm' => ['required', 'string', 'min:6'],
+            'password' => ['required', 'string', 'min:6','confirmed'],
+            'password_confirmation' => ['required','min:6','same:password'],
         ];
     }
 
@@ -53,15 +53,15 @@ class CreateUserRequest extends FormRequest
     public function createUser()
     {
         //DB::trasaction(function () {
-            $data = $this->validated();
-            User::create([
-                'names' => $data['names'],
-                'surnames' => $data['surnames'],
-                'email' => $data['email'],
-                'role_id' => $data['role_id'],
-                'management_id' => $data['management_id'],
-                'password' => bcrypt($data['password'])
-            ]);
+                $data = $this->validated();
+                User::create([
+                    'names' => $data['names'],
+                    'surnames' => $data['surnames'],
+                    'email' => $data['email'],
+                    'role_id' => $data['role_id'],
+                    'management_id' => $data['management_id'],
+                    'password' => bcrypt($data['password'])
+                ]);
         //});
     }
 }

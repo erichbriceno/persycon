@@ -29,6 +29,7 @@ class CreateUserModuleTest extends TestCase
     /** @test */
     function it_create_a_new_user()
     {
+        $this->withoutExceptionHandling();
         $this->post(route('user.store'), $this->getValidData())
             ->assertRedirect(route('users'));
 
@@ -177,17 +178,29 @@ class CreateUserModuleTest extends TestCase
     /** @test */
     function the_password_must_be_verified()
     {
-        self::markTestIncomplete();
-        $this->withoutExceptionHandling();
-
         $this->from(route('user.create'))
             ->post(route('user.store'), $this->getValidData([
-                'password' => 'clave',
-                'password-confirm' => 'clave',
-
+                'password' => 'clave1',
+                'password_confirmation' => 'clave1',
             ]))->assertRedirect(route('users'));
 
         $this->assertDatabaseHas('users', [
+            'names' => 'Erich Javier',
+            'email' => 'erichbriceno@gmail.com',
+        ]);
+    }
+
+    /** @test */
+    function the_password_and_password_confirm_are_be_same()
+    {
+        $this->from(route('user.create'))
+            ->post(route('user.store'), $this->getValidData([
+                'password' => 'clave1',
+                'password_confirmation' => 'clave2',
+            ]))->assertRedirect(route('user.create'))
+            ->assertSessionHasErrors(['password']);
+
+        $this->assertDatabaseMissing('users', [
             'names' => 'Erich Javier',
             'email' => 'erichbriceno@gmail.com',
         ]);
