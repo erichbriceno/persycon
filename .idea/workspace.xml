@@ -3,18 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="454049b8-6a53-4da5-99bd-66ec409040d3" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/CreateUserRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/CreateUserRequest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/UpdateUserRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/UpdateUserRequest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Model/Management.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Model/Management.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Model/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Model/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/factories/UserFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/UserFactory.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_10_31_141059_add_management_id_to_users.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_10_31_141059_add_management_id_to_users.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/lang/es.json" beforeDir="false" afterPath="$PROJECT_DIR$/resources/lang/es.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/user/_fields.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/user/_fields.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Feature/User/SearchUsersTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/User/SearchUsersModuleTest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Feature/User/UserModuleTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/User/UserModuleTest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/TestCase.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/TestCase.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -238,6 +226,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -245,75 +234,10 @@
               <item name="persycon" type="b2602c69:ProjectViewProjectNode" />
               <item name="persycon" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="persycon" type="b2602c69:ProjectViewProjectNode" />
-              <item name="persycon" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="persycon" type="b2602c69:ProjectViewProjectNode" />
-              <item name="persycon" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="Http" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="persycon" type="b2602c69:ProjectViewProjectNode" />
-              <item name="persycon" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="Http" type="462c0819:PsiDirectoryNode" />
-              <item name="Requests" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="persycon" type="b2602c69:ProjectViewProjectNode" />
-              <item name="persycon" type="462c0819:PsiDirectoryNode" />
-              <item name="database" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="persycon" type="b2602c69:ProjectViewProjectNode" />
-              <item name="persycon" type="462c0819:PsiDirectoryNode" />
-              <item name="database" type="462c0819:PsiDirectoryNode" />
-              <item name="factories" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="persycon" type="b2602c69:ProjectViewProjectNode" />
-              <item name="persycon" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="persycon" type="b2602c69:ProjectViewProjectNode" />
-              <item name="persycon" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="lang" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="persycon" type="b2602c69:ProjectViewProjectNode" />
-              <item name="persycon" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="persycon" type="b2602c69:ProjectViewProjectNode" />
-              <item name="persycon" type="462c0819:PsiDirectoryNode" />
-              <item name="tests" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="persycon" type="b2602c69:ProjectViewProjectNode" />
-              <item name="persycon" type="462c0819:PsiDirectoryNode" />
-              <item name="tests" type="462c0819:PsiDirectoryNode" />
-              <item name="Feature" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="persycon" type="b2602c69:ProjectViewProjectNode" />
-              <item name="persycon" type="462c0819:PsiDirectoryNode" />
-              <item name="tests" type="462c0819:PsiDirectoryNode" />
-              <item name="Feature" type="462c0819:PsiDirectoryNode" />
-              <item name="User" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -410,12 +334,13 @@
       <workItem from="1572529381469" duration="3607000" />
       <workItem from="1572550170849" duration="1205000" />
       <workItem from="1572612858294" duration="21883000" />
-      <workItem from="1572664772965" duration="5266000" />
+      <workItem from="1572664772965" duration="5551000" />
+      <workItem from="1572874296444" duration="607000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="300911000" />
+    <option name="totallyTimeSpent" value="301803000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -428,10 +353,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info id="Favorites" order="0" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.15938166" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.1609808" />
       <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="0" />
       <window_info anchor="bottom" id="Database Changes" order="1" />
