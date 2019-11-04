@@ -38,7 +38,9 @@ class UserController extends Controller
     {
         $title = 'PAPELERA DE USUARIOS';
         $emptyMessage = 'There are no users deleted';
-        $users = User::onlyTrashed()->paginate(15);
+        $users = User::onlyTrashed()
+            ->with('role')
+            ->paginate(15);
 
         return view('user.users', compact('title','users', 'emptyMessage'));
     }

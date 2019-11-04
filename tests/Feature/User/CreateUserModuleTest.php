@@ -33,8 +33,8 @@ class CreateUserModuleTest extends TestCase
             ->assertRedirect(route('users'));
 
         $this->assertDatabaseHas('users', [
-            'first_name' => 'Erich',
-            'last_name' => 'Briceño',
+            'names' => 'Erich Javier',
+            'surnames' => 'Briceño',
             'email' => 'erichbriceno@gmail.com',
             'role_id' => Role::Where('description', 'User')->first()->id,
             'management_id' => Management::Where('name', 'All')->first()->id,
@@ -42,13 +42,13 @@ class CreateUserModuleTest extends TestCase
     }
 
     /** @test */
-    function the_first_name_is_required()
+    function the_names_is_required()
     {
         $this->from(route('user.create'))
             ->post(route('user.store'), $this->getValidData([
-                'first_name' => ''
+                'names' => ''
             ]))->assertRedirect(route('user.create'))
-        ->assertSessionHasErrors(['first_name']);
+        ->assertSessionHasErrors(['names']);
 
         $this->assertDatabaseMissing('users', [
             'email' => 'erichbriceno@gmail.com',
@@ -56,13 +56,13 @@ class CreateUserModuleTest extends TestCase
     }
 
     /** @test */
-    function the_last_name_is_required()
+    function the_surnames_is_required()
     {
         $this->from(route('user.create'))
             ->post(route('user.store'), $this->getValidData([
-                'last_name' => ''
+                'surnames' => ''
             ]))->assertRedirect(route('user.create'))
-            ->assertSessionHasErrors(['last_name']);
+            ->assertSessionHasErrors(['surnames']);
 
         $this->assertDatabaseMissing('users', [
             'email' => 'erichbriceno@gmail.com',
@@ -79,7 +79,7 @@ class CreateUserModuleTest extends TestCase
             ->assertSessionHasErrors(['email']);
 
         $this->assertDatabaseMissing('users', [
-            'first_name' => 'Erich',
+            'names' => 'Erich Javier',
         ]);
     }
 
@@ -93,7 +93,7 @@ class CreateUserModuleTest extends TestCase
             ->assertSessionHasErrors(['role_id']);
 
         $this->assertDatabaseMissing('users', [
-            'first_name' => 'Erich',
+            'names' => 'Erich Javier',
             'email' => 'erichbriceno@gmail.com',
         ]);
     }
@@ -108,7 +108,7 @@ class CreateUserModuleTest extends TestCase
             ->assertSessionHasErrors(['role_id']);
 
         $this->assertDatabaseMissing('users', [
-            'first_name' => 'Erich',
+            'names' => 'Erich Javier',
             'email' => 'erichbriceno@gmail.com',
         ]);
     }
@@ -123,7 +123,7 @@ class CreateUserModuleTest extends TestCase
             ->assertSessionHasErrors(['role_id']);
 
         $this->assertDatabaseMissing('users', [
-            'first_name' => 'Erich',
+            'names' => 'Erich Javier',
             'email' => 'erichbriceno@gmail.com',
         ]);
     }
@@ -139,7 +139,7 @@ class CreateUserModuleTest extends TestCase
             ->assertSessionDoesntHaveErrors('managemnet_id');
 
         $this->assertDatabaseHas('users', [
-            'first_name' => 'Erich',
+            'names' => 'Erich Javier',
             'email' => 'erichbriceno@gmail.com',
         ]);
     }
@@ -154,7 +154,7 @@ class CreateUserModuleTest extends TestCase
             ->assertSessionHasErrors(['management_id']);
 
         $this->assertDatabaseMissing('users', [
-            'first_name' => 'Erich',
+            'names' => 'Erich Javier',
             'email' => 'erichbriceno@gmail.com',
         ]);
     }
@@ -169,10 +169,28 @@ class CreateUserModuleTest extends TestCase
             ->assertSessionHasErrors(['password']);
 
         $this->assertDatabaseMissing('users', [
-            'first_name' => 'Erich',
+            'names' => 'Erich Javier',
             'email' => 'erichbriceno@gmail.com',
         ]);
+    }
 
+    /** @test */
+    function the_password_must_be_verified()
+    {
+        self::markTestIncomplete();
+        $this->withoutExceptionHandling();
+
+        $this->from(route('user.create'))
+            ->post(route('user.store'), $this->getValidData([
+                'password' => 'clave',
+                'password-confirm' => 'clave',
+
+            ]))->assertRedirect(route('users'));
+
+        $this->assertDatabaseHas('users', [
+            'names' => 'Erich Javier',
+            'email' => 'erichbriceno@gmail.com',
+        ]);
     }
 
 }

@@ -24,8 +24,8 @@ class UserSeeder extends Seeder
 
         factory(User::class)->create([
             'management_id' => $this->managements->where('name', 'All')->first()->id,
-            'first_name' => 'Erich',
-            'last_name' => 'Briceño',
+            'names' => 'Erich Javier',
+            'surnames' => 'Briceño',
             'email' => 'erichbriceno@gmail.com',
             'role_id' => $this->roles->where('description', 'Master')->first()->id,
             'password' => bcrypt('secreto1'),

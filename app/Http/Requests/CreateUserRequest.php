@@ -26,10 +26,9 @@ class CreateUserRequest extends FormRequest
     public function rules()
     {
         return [
-            'first_name' => ['required', 'present','string', 'max:255'],
-            'last_name' => ['required', 'present','string', 'max:255'],
+            'names' => ['required', 'present','string', 'max:255'],
+            'surnames' => ['required', 'present','string', 'max:255'],
             'email' => ['required', 'present', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:6'],
             'role_id' => [
                 'required',
                 'present',
@@ -38,14 +37,16 @@ class CreateUserRequest extends FormRequest
             'management_id' => [
                 'nullable',
                 Rule::exists('managements', 'id')
-            ]
+            ],
+            'password' => ['required', 'string', 'min:6'],
+            //'password-confirm' => ['required', 'string', 'min:6'],
         ];
     }
 
     public function messages()
     {
         return [
-            'name.required' => 'El campo nombre es',
+            'names.required' => 'El campo nombre es',
         ];
     }
 
@@ -54,8 +55,8 @@ class CreateUserRequest extends FormRequest
         //DB::trasaction(function () {
             $data = $this->validated();
             User::create([
-                'first_name' => $data['first_name'],
-                'last_name' => $data['last_name'],
+                'names' => $data['names'],
+                'surnames' => $data['surnames'],
                 'email' => $data['email'],
                 'role_id' => $data['role_id'],
                 'management_id' => $data['management_id'],

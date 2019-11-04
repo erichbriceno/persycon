@@ -15,11 +15,11 @@ class SearchUsersModuleTest extends TestCase
     function search_users_by_name()
     {
         factory(User::class)->create([
-            'first_name' => 'Pedro'
+            'names' => 'Pedro'
         ]);
 
         factory(User::class)->create([
-            'first_name' => 'Santiago'
+            'names' => 'Santiago'
         ]);
 
         $this->get(route('users', ['search' => 'Pedro']))
@@ -33,11 +33,11 @@ class SearchUsersModuleTest extends TestCase
     function show_results_with_a_partial_search_by_name()
     {
         factory(User::class)->create([
-            'first_name' => 'Pedro'
+            'names' => 'Pedro'
         ]);
 
         factory(User::class)->create([
-            'first_name' => 'Santiago'
+            'names' => 'Santiago'
         ]);
 
         $this->get(route('users', ['search' => 'Pe']))
@@ -51,12 +51,12 @@ class SearchUsersModuleTest extends TestCase
     function search_users_by_email()
     {
         $pedro = factory(User::class)->create([
-            'first_name' => 'Pedro',
+            'names' => 'Pedro',
             'email' => 'erichbriceno@gmail.com'
         ]);
 
         $santiago = factory(User::class)->create([
-            'first_name' => 'Santiago',
+            'names' => 'Santiago',
             'email' => 'elyotepongo@hotmail.com'
         ]);
 
@@ -72,12 +72,12 @@ class SearchUsersModuleTest extends TestCase
     function show_results_with_a_partial_search_by_email()
     {
         $pedro = factory(User::class)->create([
-            'first_name' => 'Pedro',
+            'names' => 'Pedro',
             'email' => 'erichbriceno@gmail.com'
         ]);
 
         $santiago = factory(User::class)->create([
-            'first_name' => 'Santiago',
+            'names' => 'Santiago',
             'email' => 'elyotepongo@hotmail.com'
         ]);
 
@@ -93,17 +93,17 @@ class SearchUsersModuleTest extends TestCase
     function search_users_by_management()
     {
         $pedro = factory(User::class)->create([
-            'first_name' => 'Pedro',
+            'names' => 'Pedro',
             'management_id' => Management::Where('name', 'Mariche')->first()->id
         ]);
 
         $santiago = factory(User::class)->create([
-            'first_name' => 'Santiago',
+            'names' => 'Santiago',
             'management_id' => null
         ]);
 
         $jose = factory(User::class)->create([
-            'first_name' => 'Jose',
+            'names' => 'Jose',
             'management_id' => Management::Where('name', 'CNS')->first()->id
         ]);
 
@@ -121,17 +121,17 @@ class SearchUsersModuleTest extends TestCase
     function partial_search_by_management_name()
     {
         $pedro = factory(User::class)->create([
-            'first_name' => 'Pedro',
+            'names' => 'Pedro',
             'management_id' => Management::Where('name', 'Mariche')->first()->id
         ]);
 
         $santiago = factory(User::class)->create([
-            'first_name' => 'Santiago',
+            'names' => 'Santiago',
             'management_id' => null
         ]);
 
         $jose = factory(User::class)->create([
-            'first_name' => 'Jose',
+            'names' => 'Jose',
             'management_id' => Management::Where('name', 'CNS')->first()->id
         ]);
 

@@ -16,11 +16,11 @@ class UserModuleTest extends TestCase
     function it_shows_the_users_list()
     {
         factory(User::class)->create([
-            'first_name' => 'Pedro',
+            'names' => 'Pedro',
         ]);
 
         factory(User::class)->create([
-            'first_name' => 'Santiago'
+            'names' => 'Santiago'
         ]);
 
         $this->get(route('users'))
@@ -39,7 +39,7 @@ class UserModuleTest extends TestCase
 
         $this->get(route('user.details', $user))
             ->assertStatus(200)
-            ->assertSee('Erich')
+            ->assertSee('Erich Javier')
             ->assertSee('Briceño')
             ->assertSee('User');
 
@@ -96,12 +96,12 @@ class UserModuleTest extends TestCase
     function it_shows_the_deleted_users()
     {
         factory(User::class)->create([
-            'first_name' => 'Pedro',
+            'names' => 'Pedro',
             'deleted_at' => now(),
         ]);
 
         factory(User::class)->create([
-            'first_name' => 'Santiago'
+            'names' => 'Santiago'
         ]);
 
         $this->get(route('users.trash'))

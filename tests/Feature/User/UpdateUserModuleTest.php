@@ -24,7 +24,8 @@ class UpdateUserModuleTest extends TestCase
             ->assertRedirect(route('user.details',$user));
 
         $this->assertDatabaseHas('users', [
-            'first_name' => 'Erich',
+            'names' => 'Erich Javier',
+            'surnames' => 'Briceño',
             'email' => 'erichbriceno@gmail.com',
             'role_id' => Role::Where('description', 'Administrator')->first()->id,
             'management_id' => Management::Where('name', 'All')->first()->id,
@@ -32,19 +33,35 @@ class UpdateUserModuleTest extends TestCase
     }
 
     /** @test */
-    function the_name_is_required_when_updating_a_user()
+    function the_names_is_required_when_updating_a_user()
     {
         $user = factory(User::class)->create();
 
         $this->from(route('user.edit', $user))
             ->put(route('user.update', $user), $this->getValidData([
-                'first_name' => ''
+                'names' => ''
             ]))
         ->assertRedirect(route('user.edit', $user))
-        ->assertSessionHasErrors(['first_name']);
+        ->assertSessionHasErrors(['names']);
 
         $this->assertEquals(1, User::count());
-        $this->assertDatabaseMissing('users', ['first_name' => 'erich']);
+        $this->assertDatabaseMissing('users', ['names' => 'Erich Javier']);
+    }
+
+    /** @test */
+    function the_surnames_is_required_when_updating_a_user()
+    {
+        $user = factory(User::class)->create();
+
+        $this->from(route('user.edit', $user))
+            ->put(route('user.update', $user), $this->getValidData([
+                'surnames' => ''
+            ]))
+            ->assertRedirect(route('user.edit', $user))
+            ->assertSessionHasErrors(['surnames']);
+
+        $this->assertEquals(1, User::count());
+        $this->assertDatabaseMissing('users', ['surnames' => 'Briceño']);
     }
 
 
@@ -61,7 +78,7 @@ class UpdateUserModuleTest extends TestCase
             ->assertSessionHasErrors(['role_id']);
 
         $this->assertEquals(1, User::count());
-        $this->assertDatabaseMissing('users', ['first_name' => 'Erich']);
+        $this->assertDatabaseMissing('users', ['names' => 'Erich Javier']);
     }
 
     /** @test */
@@ -77,7 +94,7 @@ class UpdateUserModuleTest extends TestCase
             ->assertSessionHasErrors(['email']);
 
         $this->assertEquals(1, User::count());
-        $this->assertDatabaseMissing('users', ['first_name' => 'Erich']);
+        $this->assertDatabaseMissing('users', ['names' => 'Erich Javier']);
     }
 
     /** @test */
@@ -128,7 +145,8 @@ class UpdateUserModuleTest extends TestCase
 
         $this->assertEquals(1, User::count());
         $this->assertDatabaseHas('users', [
-            'first_name' => 'Erich',
+            'names' => 'Erich Javier',
+            'surnames' => 'Briceño',
             'email' => 'erichbriceno@gmail.com',
         ]);
     }

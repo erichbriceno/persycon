@@ -11,16 +11,16 @@
 
                     <div class="card-body">
                         <div class="form-group row">
-                            <label for="first_name" class="col-md-4 col-form-label text-md-right">@lang('First Name')</label>
+                            <label for="names" class="col-md-4 col-form-label text-md-right">@lang('Names')</label>
                             <div class="col-md-6">
-                                <input id="first_name" type="text" readonly class="form-control" name="first_name" value="{{ $user->first_name }}">
+                                <input id="names" type="text" readonly class="form-control" name="names" value="{{ $user->names }}">
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label for="last_name" class="col-md-4 col-form-label text-md-right">@lang('Last Name')</label>
+                            <label for="surnames" class="col-md-4 col-form-label text-md-right">@lang('Surnames')</label>
                             <div class="col-md-6">
-                                <input id="last_name" type="text" readonly class="form-control" name="last_name" value="{{ $user->last_name }}">
+                                <input id="surnames" type="text" readonly class="form-control" name="surnames" value="{{ $user->surnames }}">
                             </div>
                         </div>
 

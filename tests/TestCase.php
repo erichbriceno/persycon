@@ -24,12 +24,13 @@ abstract class TestCase extends BaseTestCase
     {
 
         return array_merge([
-            'first_name' => 'Erich',
-            'last_name' => 'Briceño',
+            'names' => 'Erich Javier',
+            'surnames' => 'Briceño',
             'email' => 'erichbriceno@gmail.com',
-            'password' => 'secreto1',
             'role_id' => Role::Where('description', 'User')->first()->id,
             'management_id' => Management::Where('name', 'All')->first()->id,
+            'password' => 'secreto1',
+            //'password-confirm' => 'secreto1',
         ], $custom);
 
     }
