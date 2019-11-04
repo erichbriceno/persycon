@@ -109,8 +109,50 @@ class UpdateUserModuleTest extends TestCase
         $this->from(route('user.edit', $user))
             ->put(route('user.update', $user),$this->getValidData([
                 'password' => '',
+                'password_confirmation' => '',
             ]))
             ->assertRedirect(route('user.details', $user));
+    }
+
+    /** @test */
+    function the_password_must_be_verified_if_not_empty()
+    {
+        $oldPassword = 'CLAVE_ANTERIOR';
+
+        $user = factory(User::class)->create([
+            'password' => bcrypt($oldPassword)
+        ]);
+
+        $this->from(route('user.edit', $user))
+            ->put(route('user.update', $user),$this->getValidData([
+                'names' => 'Erich Javier',
+                'password' => 'NUEVA_CLAVE',
+                'password_confirmation' => 'NUEVA_CLAVE',
+            ]))
+            ->assertRedirect(route('user.details', $user));
+
+        $this->assertDatabaseHas('users', [
+            'names' => 'Erich Javier',
+        ]);
+    }
+
+    /** @test */
+    function the_password_and_password_confirm_are_be_same()
+    {
+        $oldPassword = 'CLAVE_ANTERIOR';
+
+        $user = factory(User::class)->create([
+            'password' => bcrypt($oldPassword)
+        ]);
+
+        $this->from(route('user.edit', $user))
+            ->put(route('user.update', $user),$this->getValidData([
+                'names' => 'Erich Javier',
+                'password' => 'NUEVA_CLAVE',
+                'password_confirmation' => 'OTRAS_CLAVE',
+            ]))
+            ->assertRedirect(route('user.edit', $user))
+        ->assertSessionHasErrors('password_confirmation');
     }
 
     /** @test */

@@ -38,7 +38,8 @@ class UpdateUserRequest extends FormRequest
                 'nullable',
                 Rule::exists('managements', 'id')
             ],
-            'password' => '',
+            'password' => ['confirmed'],
+            'password_confirmation' => ['same:password'],
         ];
     }
 
