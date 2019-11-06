@@ -32,9 +32,17 @@ class UserSeeder extends Seeder
         ]);
 
 
-        foreach (range(1, 50) as $i) {
+        foreach (range(1, 10) as $i) {
             $user = factory(User::class)->create([
-                'role_id' => $this->roles->where('description', 'User')->first()->id,
+                'role_id' => $this->roles->random()->id,
+                'management_id' => rand(0, 2) ? $this->managements->random()->id :  null,
+                'active' => false
+            ]);
+        }
+
+        foreach (range(1, 40) as $i) {
+            $user = factory(User::class)->create([
+                'role_id' => $this->roles->random()->id,
                 'management_id' => rand(0, 2) ? $this->managements->random()->id :  null,
             ]);
         }

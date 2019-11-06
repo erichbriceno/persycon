@@ -60,7 +60,7 @@ class CreateUserRequest extends FormRequest
                     'email' => $data['email'],
                     'role_id' => $data['role_id'],
                     'management_id' => $data['management_id'],
-                    'password' => bcrypt($data['password'])
+                    'password' => bcrypt($data['password']),
                 ]);
         //});
     }

@@ -2,10 +2,23 @@
     <td>{{ $user->id }}</td>
     <td>
         {{ $user->name }}
-        <span class="note">{{ $user->role->description }}</span>
+        @if($user->active)
+            <span style="font-size: 0.7rem;">
+                <span style="color: #a1a6a9;">
+                    <i class="fas fa-user-check"></i>
+                </span>
+            </span>
+        @else
+            <span style="font-size: 0.7rem;">
+                <span style="color: #a1a6a9;">
+                    <i class="fas fa-user-lock"></i>
+                </span>
+            </span>
+        @endif
+        <span class="note">@lang($user->role->description)</span>
     </td>
     <td>{{ $user->email }}</td>
-    <td>{{ $user->management->name }}</td>
+    <td>@lang($user->management->name)</td>
     <td>
         <span class="note">Registro: {{ $user->created_at->format('d/m/Y') }}</span>
         <span class="note">Último login: {{ $user->created_at->format('d/m/Y') }}</span>

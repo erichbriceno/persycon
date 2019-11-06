@@ -44,7 +44,7 @@
                     &nbsp;
                     <div class="btn-group drop-skills">
                         <button type="button" class="btn btn-sm btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Grupos
+                            @lang('Roles')
                         </button>
                         <div class="drop-menu skills-list">
                             @foreach($roles as $role)

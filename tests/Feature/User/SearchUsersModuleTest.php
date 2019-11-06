@@ -3,7 +3,7 @@
 namespace Tests\Feature\User;
 
 use Tests\TestCase;
-use App\Model\{Management, User};
+use App\Model\{Management, Role, User};
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 
@@ -210,6 +210,69 @@ class SearchUsersModuleTest extends TestCase
             ->assertViewHas('users', function ($users) use ( $pedro, $santiago, $jose) {
                 return $users->contains($jose)
                     && $users->contains($pedro)
+                    && $users->contains($santiago);
+            });
+    }
+
+    /** @test */
+    function search_users_by_state_active()
+    {
+        $this->withoutExceptionHandling();
+        $pedro = factory(User::class)->create([
+            'active' => true,
+        ]);
+
+        $santiago = factory(User::class)->create([
+            'active' => false,
+        ]);
+
+        $this->get(route('users', ['state' => 'active']))
+            ->assertStatus(200)
+            ->assertSee('LISTADO DE USUARIOS' )
+            ->assertViewHas('users', function ($users) use ( $pedro, $santiago) {
+                return $users->contains($pedro)
+                    && !$users->contains($santiago);
+            });
+    }
+
+    /** @test */
+    function search_users_by_state_inactive()
+    {
+        $this->withoutExceptionHandling();
+        $pedro = factory(User::class)->create([
+            'active' => true,
+        ]);
+
+        $santiago = factory(User::class)->create([
+            'active' => false,
+        ]);
+
+        $this->get(route('users', ['state' => 'inactive']))
+            ->assertStatus(200)
+            ->assertSee('LISTADO DE USUARIOS' )
+            ->assertViewHas('users', function ($users) use ( $pedro, $santiago) {
+                return !$users->contains($pedro)
+                    && $users->contains($santiago);
+            });
+    }
+
+    /** @test */
+    function search_users_by_state_all()
+    {
+        $this->withoutExceptionHandling();
+        $pedro = factory(User::class)->create([
+            'active' => true,
+        ]);
+
+        $santiago = factory(User::class)->create([
+            'active' => false,
+        ]);
+
+        $this->get(route('users', ['state' => 'all']))
+            ->assertStatus(200)
+            ->assertSee('LISTADO DE USUARIOS' )
+            ->assertViewHas('users', function ($users) use ( $pedro, $santiago) {
+                return $users->contains($pedro)
                     && $users->contains($santiago);
             });
     }

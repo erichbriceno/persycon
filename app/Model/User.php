@@ -59,6 +59,16 @@ class User extends Authenticatable
             ->orWhere('email', 'like', "%{$search}%");
     }
 
+    public function scopeByState($query, $state)
+    {
+        if($state == 'active') {
+            return $query->where('active', true);
+        }
+        if($state == 'inactive') {
+            return $query->where('active', false);
+        }
+    }
+
     public function scopeByManagement($query, $management)
     {
         if(!empty($management)) {

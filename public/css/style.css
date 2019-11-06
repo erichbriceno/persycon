@@ -75,3 +75,8 @@
     font-weight: 200;
     color: #a1a6a9;
 }
+
+.note-active {
+    font-size: 0.7rem;
+    color: #a1a6a9;
+}

@@ -25,6 +25,6 @@ class RoleSeeder extends Seeder
             'description' => 'User',
         ]);
 
-        factory(Role::class)->times(2)->create();
+        //factory(Role::class)->times(2)->create();
     }
 }

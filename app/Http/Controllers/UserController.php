@@ -15,11 +15,13 @@ class UserController extends Controller
         $users = User::query()
             ->with('role', 'management')
             ->byManagement(request('management'))
+            ->byState(request('state'))
+            //->byRole(request('role'))
             ->search(request('search'))
             ->orderBy('id')
             ->paginate();
 
-        $users->appends(request(['search', 'management']));
+        $users->appends(request(['search', 'management', 'state']));
 
         return view('user.users', [
             'users' => $users,
