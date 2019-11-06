@@ -2,10 +2,10 @@
     <td>{{ $user->id }}</td>
     <td>
         {{ $user->name }}
-        <span class="note">@lang($user->management->name)</span>
+        <span class="note">{{ $user->role->description }}</span>
     </td>
     <td>{{ $user->email }}</td>
-    <td>{{ $user->role->description }}</td>
+    <td>{{ $user->management->name }}</td>
     <td>
         <span class="note">Registro: {{ $user->created_at->format('d/m/Y') }}</span>
         <span class="note">Último login: {{ $user->created_at->format('d/m/Y') }}</span>

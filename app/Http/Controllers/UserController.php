@@ -12,25 +12,24 @@ class UserController extends Controller
 
     public function index()
     {
-        $title = 'LISTADO DE USUARIOS';
-        $emptyMessage = 'There are no registered users';
-
         $users = User::query()
             ->with('role', 'management')
-            ->when(request('management'), function ($query, $management) {
-                if($management === 'with_management') {
-                    $query->has('management');
-                } elseif ($management === 'without_management') {
-                    $query->doesntHave('management');
-                }
-            })
+            ->byManagement(request('management'))
             ->search(request('search'))
             ->orderBy('id')
             ->paginate();
 
         $users->appends(request(['search', 'management']));
 
-        return view('user.users', compact('title','users', 'emptyMessage'));
+        return view('user.users', [
+            'users' => $users,
+            'title'  => 'LISTADO DE USUARIOS',
+            'emptyMessage' => 'There are no registered users',
+            'roles' => Role::all(),
+            'managements' => Management::all(),
+            'states' => trans('users.filters.states'),
+            'checkedRoles' => collect(request('roles')),
+        ]);
     }
 
     public function trashed()
@@ -38,7 +37,7 @@ class UserController extends Controller
         $title = 'PAPELERA DE USUARIOS';
         $emptyMessage = 'There are no users deleted';
         $users = User::onlyTrashed()
-            ->with('role')
+            ->with('role', 'management')
             ->paginate(15);
 
         return view('user.users', compact('title','users', 'emptyMessage'));

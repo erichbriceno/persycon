@@ -1,3 +1,7 @@
+.erich {
+    height: 28px;
+}
+
 .drop-skills {
     position: relative;
     overflow: visible;
@@ -6,6 +10,7 @@
 .drop-skills .btn {
     position: relative;
     z-index: 0;
+
 }
 
 .skills-list {

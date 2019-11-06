@@ -54,15 +54,24 @@ class User extends Authenticatable
         if( empty($search)) {
             return;
         }
-        
-        $query->where('names', 'like', "%{$search}%")
-            ->orWhere('surnames', 'like', "%{$search}%")
-            ->orWhere('email', 'like', "%{$search}%")
-            ->orWhereHas('management', function ($query) use ($search) {
-                $query->where('name', 'like', "%{$search}%");
-            });
+
+        $query->whereRaw('CONCAT(names, " ", surnames) like ?', "%{$search}%")
+            ->orWhere('email', 'like', "%{$search}%");
     }
 
+    public function scopeByManagement($query, $management)
+    {
+        if(!empty($management)) {
+            if($management === 'Unassigned') {
+                $query->where('management_id', null);
+            }else {
+                $query->whereHas('management', function ($query) use ($management) {
+                    $query->where('name', $management);
+                });
+            }
+        }
+    }
+    
     public function getNameAttribute()
     {
         return "{$this->names} {$this->surnames}";

@@ -23,7 +23,7 @@ class UserSeeder extends Seeder
         $this->fetchRelations();
 
         factory(User::class)->create([
-            'management_id' => $this->managements->where('name', 'All')->first()->id,
+            'management_id' => $this->managements->where('name', 'PO')->first()->id,
             'names' => 'Erich Javier',
             'surnames' => 'Briceño',
             'email' => 'erichbriceno@gmail.com',

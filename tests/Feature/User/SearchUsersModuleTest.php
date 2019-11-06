@@ -48,6 +48,46 @@ class SearchUsersModuleTest extends TestCase
     }
 
     /** @test */
+    function search_users_by_full_name()
+    {
+        factory(User::class)->create([
+            'names' => 'Pedro',
+            'surnames' => 'Briceño'
+        ]);
+
+        factory(User::class)->create([
+            'names' => 'Santiago',
+            'surnames' => 'Briceño'
+        ]);
+
+        $this->get(route('users', ['search' => 'Pedro Briceño']))
+            ->assertStatus(200)
+            ->assertSee('LISTADO DE USUARIOS' )
+            ->assertSee('Pedro')
+            ->assertDontSee('Santiago');
+    }
+
+    /** @test */
+    function show_results_with_a_partial_search_by_full_name()
+    {
+        factory(User::class)->create([
+            'names' => 'Pedro',
+            'surnames' => 'Briceño'
+        ]);
+
+        factory(User::class)->create([
+            'names' => 'Santiago',
+            'surnames' => 'Briceño'
+        ]);
+
+        $this->get(route('users', ['search' => 'Pedro B']))
+            ->assertStatus(200)
+            ->assertSee('LISTADO DE USUARIOS' )
+            ->assertSee('Pedro')
+            ->assertDontSee('Santiago');
+    }
+
+    /** @test */
     function search_users_by_email()
     {
         $pedro = factory(User::class)->create([
@@ -107,7 +147,7 @@ class SearchUsersModuleTest extends TestCase
             'management_id' => Management::Where('name', 'CNS')->first()->id
         ]);
 
-        $this->get(route('users', ['search' => 'CNS']))
+        $this->get(route('users', ['management' => 'CNS']))
             ->assertStatus(200)
             ->assertSee('LISTADO DE USUARIOS' )
             ->assertViewHas('users', function ($users) use ( $pedro, $santiago, $jose) {
@@ -118,8 +158,37 @@ class SearchUsersModuleTest extends TestCase
     }
 
     /** @test */
-    function partial_search_by_management_name()
+    function search_users_by_management_is_unassigned()
     {
+        $pedro = factory(User::class)->create([
+            'names' => 'Pedro',
+            'management_id' => Management::Where('name', 'Mariche')->first()->id
+        ]);
+
+        $santiago = factory(User::class)->create([
+            'names' => 'Santiago',
+            'management_id' => null
+        ]);
+
+        $jose = factory(User::class)->create([
+            'names' => 'Jose',
+            'management_id' => null
+        ]);
+
+        $this->get(route('users', ['management' => 'Unassigned']))
+            ->assertStatus(200)
+            ->assertSee('LISTADO DE USUARIOS' )
+            ->assertViewHas('users', function ($users) use ( $pedro, $santiago, $jose) {
+                return $users->contains($jose)
+                    && !$users->contains($pedro)
+                    && $users->contains($santiago);
+            });
+    }
+
+    /** @test */
+    function search_users_by_all_management_and_unassigned_management()
+    {
+        //$this->withoutExceptionHandling();
         $pedro = factory(User::class)->create([
             'names' => 'Pedro',
             'management_id' => Management::Where('name', 'Mariche')->first()->id
@@ -135,13 +204,13 @@ class SearchUsersModuleTest extends TestCase
             'management_id' => Management::Where('name', 'CNS')->first()->id
         ]);
 
-        $this->get(route('users', ['search' => 'CN']))
+        $this->get(route('users', ['management' => '']))
             ->assertStatus(200)
             ->assertSee('LISTADO DE USUARIOS' )
             ->assertViewHas('users', function ($users) use ( $pedro, $santiago, $jose) {
                 return $users->contains($jose)
-                    && !$users->contains($pedro)
-                    && !$users->contains($santiago);
+                    && $users->contains($pedro)
+                    && $users->contains($santiago);
             });
     }
 
