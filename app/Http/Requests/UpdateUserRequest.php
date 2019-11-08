@@ -40,6 +40,7 @@ class UpdateUserRequest extends FormRequest
             ],
             'password' => ['confirmed'],
             'password_confirmation' => ['same:password'],
+            'active' => 'boolean'
         ];
     }
 
@@ -51,6 +52,7 @@ class UpdateUserRequest extends FormRequest
             'email' => $this->email,
             'role_id' => $this->role_id,
             'management_id' => $this->management_id,
+            'active' => $this->active,
         ]);
         if ($this->password != null) {
             $user->password = bcrypt($this->password);

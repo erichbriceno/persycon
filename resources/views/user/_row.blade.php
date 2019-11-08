@@ -2,19 +2,13 @@
     <td>{{ $user->id }}</td>
     <td>
         {{ $user->name }}
-        @if($user->active)
-            <span style="font-size: 0.7rem;">
-                <span style="color: #a1a6a9;">
-                    <i class="fas fa-user-check"></i>
-                </span>
+        <span style="font-size: 0.7rem; color: #a1a6a9;">
+                    @if($user->active)
+                        <i class="fas fa-user-check"></i>
+                    @else
+                        <i class="fas fa-user-lock"></i>
+                    @endif
             </span>
-        @else
-            <span style="font-size: 0.7rem;">
-                <span style="color: #a1a6a9;">
-                    <i class="fas fa-user-lock"></i>
-                </span>
-            </span>
-        @endif
         <span class="note">@lang($user->role->description)</span>
     </td>
     <td>{{ $user->email }}</td>

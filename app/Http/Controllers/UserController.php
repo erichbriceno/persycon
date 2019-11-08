@@ -80,7 +80,6 @@ class UserController extends Controller
 
     public function update(UpdateUserRequest $request, User $user)
     {
-
         $request->updateUser($user);
 
         return redirect()->route('user.details', $user);

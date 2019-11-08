@@ -193,4 +193,42 @@ class UpdateUserModuleTest extends TestCase
         ]);
     }
 
+    /** @test */
+    function it_updates_a_user_state_to_false()
+    {
+        $user = factory(User::class)->create();
+
+        $this->put(route('user.update', $user), $this->getValidData([
+            'active' => false,
+        ]))
+            ->assertRedirect(route('user.details',$user));
+
+        $this->assertDatabaseHas('users', [
+            'names' => 'Erich Javier',
+            'surnames' => 'Briceño',
+            'email' => 'erichbriceno@gmail.com',
+            'active' => false
+        ]);
+    }
+
+    /** @test */
+    function it_updates_a_user_state_to_true()
+    {
+        $user = factory(User::class)->create([
+            'active' => false,
+        ]);
+
+        $this->put(route('user.update', $user), $this->getValidData([
+            'active' => true,
+        ]))
+            ->assertRedirect(route('user.details',$user));
+
+        $this->assertDatabaseHas('users', [
+            'names' => 'Erich Javier',
+            'surnames' => 'Briceño',
+            'email' => 'erichbriceno@gmail.com',
+            'active' => true
+        ]);
+    }
+
 }
