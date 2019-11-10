@@ -3,12 +3,12 @@
     <td>
         {{ $user->name }}
         <span style="font-size: 0.7rem; color: #a1a6a9;">
-                    @if($user->active)
-                        <i class="fas fa-user-check"></i>
-                    @else
-                        <i class="fas fa-user-lock"></i>
-                    @endif
-            </span>
+            @if($user->active)
+                <i class="fas fa-user-check"></i>
+            @else
+                <i class="fas fa-user-lock"></i>
+            @endif
+        </span>
         <span class="note">@lang($user->role->description)</span>
     </td>
     <td>{{ $user->email }}</td>

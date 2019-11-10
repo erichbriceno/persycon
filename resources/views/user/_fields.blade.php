@@ -84,6 +84,29 @@
     </div>
 </div>
 
+<div class="form-group row">
+    <div class="col-md-10">
+        <div class="form-inline justify-content-end">
+            @foreach(trans('users.state') as $state => $label )
+            <div class="form-check form-check-inline">
+                <input class="form-check-input"
+                       type="radio"
+                       name="state"
+                       id="state_{{ $state }}"
+                       value="{{ $state }}"
+                       {{ old('state', $user->state) == $state ? 'checked' : '' }}>
+                <label class="form-check-label" for="state_{{ $state }}" >{{ $label }}</label>
+            </div>
+            @endforeach
+        </div>
+        @error('state')
+        <span class="invalid-feedback" role="alert">
+            <strong>{{ $message }}</strong>
+        </span>
+        @enderror
+    </div>
+</div>
+
 <div class="row">
     <div class="col-md-10">
         <div class="form-inline justify-content-end">

@@ -39,6 +39,7 @@ class CreateUserModuleTest extends TestCase
             'email' => 'erichbriceno@gmail.com',
             'role_id' => Role::Where('description', 'User')->first()->id,
             'management_id' => Management::Where('name', 'All')->first()->id,
+            'active' => true
         ]);
     }
 
@@ -205,5 +206,37 @@ class CreateUserModuleTest extends TestCase
             'email' => 'erichbriceno@gmail.com',
         ]);
     }
+
+    /** @test */
+    function the_state_id_must_be_valid()
+    {
+        $this->from(route('user.create'))
+            ->post(route('user.store'), $this->getValidData([
+                'state' => 'no-valid-state'
+            ]))->assertRedirect(route('user.create'))
+            ->assertSessionHasErrors(['state']);
+
+        $this->assertDatabaseMissing('users', [
+            'names' => 'Erich Javier',
+            'email' => 'erichbriceno@gmail.com',
+        ]);
+    }
+
+    /** @test */
+    function the_state_is_required()
+    {
+        $this->from(route('user.create'))
+            ->post(route('user.store'), $this->getValidData([
+                'state' => null
+            ]))->assertRedirect(route('user.create'))
+            ->assertSessionHasErrors(['state']);
+
+        $this->assertDatabaseMissing('users', [
+            'names' => 'Erich Javier',
+            'email' => 'erichbriceno@gmail.com',
+        ]);
+    }
+
+
 
 }

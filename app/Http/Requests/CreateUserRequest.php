@@ -40,6 +40,9 @@ class CreateUserRequest extends FormRequest
             ],
             'password' => ['required', 'string', 'min:6','confirmed'],
             'password_confirmation' => ['required','min:6','same:password'],
+            'state' => [
+                Rule::in(['active','inactive'])
+            ]
         ];
     }
 
@@ -52,16 +55,17 @@ class CreateUserRequest extends FormRequest
 
     public function createUser()
     {
-        //DB::trasaction(function () {
-                $data = $this->validated();
-                User::create([
-                    'names' => $data['names'],
-                    'surnames' => $data['surnames'],
-                    'email' => $data['email'],
-                    'role_id' => $data['role_id'],
-                    'management_id' => $data['management_id'],
-                    'password' => bcrypt($data['password']),
-                ]);
-        //});
+
+        $user = User::create([
+            'names' => $this->names,
+            'surnames' => $this->surnames,
+            'email' => $this->email,
+            'role_id' => $this->role_id,
+            'management_id' => $this->management_id,
+            'password' => bcrypt($this->password),
+            'active' => $this->state == 'active'
+            ]);
+
+        $user->save();
     }
 }

@@ -31,7 +31,7 @@ abstract class TestCase extends BaseTestCase
             'management_id' => Management::Where('name', 'All')->first()->id,
             'password' => 'secreto1',
             'password_confirmation' => 'secreto1',
-            'active' => true
+            'state' => 'active'
         ], $custom);
 
     }

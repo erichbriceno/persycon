@@ -199,7 +199,7 @@ class UpdateUserModuleTest extends TestCase
         $user = factory(User::class)->create();
 
         $this->put(route('user.update', $user), $this->getValidData([
-            'active' => false,
+            'state' => 'inactive',
         ]))
             ->assertRedirect(route('user.details',$user));
 
@@ -215,11 +215,11 @@ class UpdateUserModuleTest extends TestCase
     function it_updates_a_user_state_to_true()
     {
         $user = factory(User::class)->create([
-            'active' => false,
+            'active' => '0',
         ]);
 
         $this->put(route('user.update', $user), $this->getValidData([
-            'active' => true,
+            'state' => 'active',
         ]))
             ->assertRedirect(route('user.details',$user));
 
@@ -228,6 +228,36 @@ class UpdateUserModuleTest extends TestCase
             'surnames' => 'Briceño',
             'email' => 'erichbriceno@gmail.com',
             'active' => true
+        ]);
+    }
+
+    /** @test */
+    function the_state_id_must_be_valid_when_update()
+    {
+        $user = factory(User::class)->create([
+            'active' => '1',
+        ]);
+
+        $this->from(route('user.edit', $user))
+            ->put(route('user.update', $user), $this->getValidData([
+            'state' => 'no-valid-state',
+        ]))
+            ->assertRedirect(route('user.edit', $user))
+            ->assertSessionHasErrors(['state']);
+    }
+
+    /** @test */
+    function the_state_is_required_when_update()
+    {
+        $this->from(route('user.create'))
+            ->post(route('user.store'), $this->getValidData([
+                'state' => null
+            ]))->assertRedirect(route('user.create'))
+            ->assertSessionHasErrors(['state']);
+
+        $this->assertDatabaseMissing('users', [
+            'names' => 'Erich Javier',
+            'email' => 'erichbriceno@gmail.com',
         ]);
     }
 

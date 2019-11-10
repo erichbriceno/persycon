@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'names', 'surnames', 'email', 'role_id', 'management_id', 'password', 'active'
+        'names', 'surnames', 'email', 'role_id', 'management_id', 'password', 'active', 'state'
     ];
 
     /**
@@ -34,6 +34,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $casts = [
+        'active' => 'bool',
         'email_verified_at' => 'datetime',
     ];
 
@@ -59,16 +60,6 @@ class User extends Authenticatable
             ->orWhere('email', 'like', "%{$search}%");
     }
 
-    public function scopeByState($query, $state)
-    {
-        if($state == 'active') {
-            return $query->where('active', true);
-        }
-        if($state == 'inactive') {
-            return $query->where('active', false);
-        }
-    }
-
     public function scopeByManagement($query, $management)
     {
         if(!empty($management)) {
@@ -81,10 +72,29 @@ class User extends Authenticatable
             }
         }
     }
-    
+
+    public function scopeByState($query, $state)
+    {
+        if ($state == 'active') {
+            return $query->where('active', true);
+        }
+        if ($state == 'inactive') {
+            return $query->where('active', false);
+        }
+    }
+
+    public function setStateAttribute($value)
+    {
+        $this->attributes['active'] = $value == 'active';
+    }
+
+    public function getStateAttribute()
+    {
+        return $this->active ? 'active' : 'inactive';
+    }
+
     public function getNameAttribute()
     {
         return "{$this->names} {$this->surnames}";
     }
-
 }

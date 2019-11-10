@@ -40,19 +40,22 @@ class UpdateUserRequest extends FormRequest
             ],
             'password' => ['confirmed'],
             'password_confirmation' => ['same:password'],
-            'active' => 'boolean'
+            'state' => [
+                Rule::in(['active','inactive'])
+            ]
         ];
     }
 
     public function updateUser(User $user)
     {
+        //dd($this->state == 'active');
         $user->fill([
             'names' => $this->names,
             'surnames' => $this->surnames,
             'email' => $this->email,
             'role_id' => $this->role_id,
             'management_id' => $this->management_id,
-            'active' => $this->active,
+            'active' => $this->state == 'active'
         ]);
         if ($this->password != null) {
             $user->password = bcrypt($this->password);

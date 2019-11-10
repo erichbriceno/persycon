@@ -14,7 +14,7 @@ class AddActiveToUsers extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->boolean('active')->after('password')->default(true);
+            $table->boolean('active')->after('password');
         });
     }
 

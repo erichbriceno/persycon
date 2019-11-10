@@ -32,19 +32,20 @@ class SearchUsersModuleTest extends TestCase
     /** @test */
     function show_results_with_a_partial_search_by_name()
     {
-        factory(User::class)->create([
+        $pedro = factory(User::class)->create([
             'names' => 'Pedro'
         ]);
 
-        factory(User::class)->create([
+        $santiago = factory(User::class)->create([
             'names' => 'Santiago'
         ]);
 
         $this->get(route('users', ['search' => 'Pe']))
             ->assertStatus(200)
             ->assertSee('LISTADO DE USUARIOS' )
-            ->assertSee('Pedro')
-            ->assertDontSee('Santiago');
+            ->assertViewHas('users', function ($users) use ($pedro, $santiago) {
+                return $users->contains($pedro) && !$users->contains($santiago);
+            });
     }
 
     /** @test */
@@ -70,12 +71,12 @@ class SearchUsersModuleTest extends TestCase
     /** @test */
     function show_results_with_a_partial_search_by_full_name()
     {
-        factory(User::class)->create([
+        $pedro = factory(User::class)->create([
             'names' => 'Pedro',
             'surnames' => 'Briceño'
         ]);
 
-        factory(User::class)->create([
+        $santiago = factory(User::class)->create([
             'names' => 'Santiago',
             'surnames' => 'Briceño'
         ]);
@@ -83,8 +84,10 @@ class SearchUsersModuleTest extends TestCase
         $this->get(route('users', ['search' => 'Pedro B']))
             ->assertStatus(200)
             ->assertSee('LISTADO DE USUARIOS' )
-            ->assertSee('Pedro')
-            ->assertDontSee('Santiago');
+            ->assertViewHas('users', function ($users) use ($pedro, $santiago) {
+                return $users->contains($pedro) && !$users->contains($santiago);
+            });
+
     }
 
     /** @test */
