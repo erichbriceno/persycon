@@ -42,7 +42,7 @@
         <select name="role_id" id="role_id" class="form-control">
             @foreach($roles as $role)
                 <option value="{{ $role->id }}"{{ old('role_id', $user->role_id) == $role->id ? ' selected' : '' }}>
-                    @lang($role->description)
+                    @lang($role->name)
                 </option>
             @endforeach
         </select>

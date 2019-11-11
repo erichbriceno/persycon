@@ -13,16 +13,19 @@ class RoleSeeder extends Seeder
     public function run()
     {
         factory(Role::class)->create([
-            'description' => 'Master',
+            'name' => 'Master',
+            'description' => 'All permissions activated',
             'selectable' => false
         ]);
 
         factory(Role::class)->create([
-            'description' => 'Administrator',
+            'name' => 'Administrator',
+            'description' => 'All active management permissions',
         ]);
 
         factory(Role::class)->create([
-            'description' => 'User',
+            'name' => 'User',
+            'description' => 'Only user permissions',
         ]);
 
         //factory(Role::class)->times(2)->create();

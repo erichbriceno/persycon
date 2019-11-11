@@ -12,7 +12,7 @@ $factory->define(User::class, function (Faker $faker) {
         'surnames' => $faker->lastName,
         'email' => $faker->unique()->safeEmail,
         'email_verified_at' => now(),
-        'role_id' => Role::Where('description', 'User')->first()->id,
+        'role_id' => Role::Where('name', 'User')->first()->id,
         'management_id' => null,
         'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi',
         'active' => '1',

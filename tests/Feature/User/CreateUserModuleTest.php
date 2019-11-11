@@ -37,7 +37,7 @@ class CreateUserModuleTest extends TestCase
             'names' => 'Erich Javier',
             'surnames' => 'Briceño',
             'email' => 'erichbriceno@gmail.com',
-            'role_id' => Role::Where('description', 'User')->first()->id,
+            'role_id' => Role::Where('name', 'User')->first()->id,
             'management_id' => Management::Where('name', 'All')->first()->id,
             'active' => true
         ]);
@@ -120,7 +120,7 @@ class CreateUserModuleTest extends TestCase
     {
         $this->from(route('user.create'))
             ->post(route('user.store'), $this->getValidData([
-                'role_id' => Role::Where('description', 'Master')->first()->id
+                'role_id' => Role::Where('name', 'Master')->first()->id
             ]))->assertRedirect(route('user.create'))
             ->assertSessionHasErrors(['role_id']);
 

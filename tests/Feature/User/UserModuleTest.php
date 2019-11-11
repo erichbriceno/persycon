@@ -37,7 +37,7 @@ class UserModuleTest extends TestCase
             'names' => 'Erich Javier',
             'surnames' => 'Briceño',
             'email' => 'erichbriceno@gmail.com',
-            'role_id' => Role::Where('description', 'User')->first()->id,
+            'role_id' => Role::Where('name', 'User')->first()->id,
             'management_id' => Management::Where('name', 'All')->first()->id,
             'password' => 'secreto1',
         ]);

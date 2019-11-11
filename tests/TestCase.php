@@ -27,7 +27,7 @@ abstract class TestCase extends BaseTestCase
             'names' => 'Erich Javier',
             'surnames' => 'Briceño',
             'email' => 'erichbriceno@gmail.com',
-            'role_id' => Role::Where('description', 'User')->first()->id,
+            'role_id' => Role::Where('name', 'User')->first()->id,
             'management_id' => Management::Where('name', 'All')->first()->id,
             'password' => 'secreto1',
             'password_confirmation' => 'secreto1',
@@ -40,16 +40,16 @@ abstract class TestCase extends BaseTestCase
     {
 
         factory(Role::class)->create([
-            'description' => 'Master',
+            'name' => 'Master',
             'selectable' => false
         ]);
 
         factory(Role::class)->create([
-            'description' => 'Administrator',
+            'name' => 'Administrator',
         ]);
 
         factory(Role::class)->create([
-            'description' => 'User',
+            'name' => 'User',
         ]);
 
     }

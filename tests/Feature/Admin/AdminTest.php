@@ -13,10 +13,8 @@ class AdminTest extends TestCase
         /** @test */
     function it_authorizer_admin_can_see_the_menu()
     {
-        //$this->loadRolesTable();
-        $this->withoutExceptionHandling();
         $user = factory(User::class)->create([
-            'role_id' => Role::Where('description', 'Master')->first()->id,
+            'role_id' => Role::Where('name', 'Master')->first()->id,
         ]);
 
         $this->actingAs($user);
@@ -31,7 +29,6 @@ class AdminTest extends TestCase
     /** @test */
     function when_an_administrator_goes_to_the_project_link_he_can_see_them()
     {
-        $this->loadRolesTable();
         $user = factory(User::class)->create();
 
         $this->actingAs($user);

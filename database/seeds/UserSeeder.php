@@ -27,7 +27,7 @@ class UserSeeder extends Seeder
             'names' => 'Erich Javier',
             'surnames' => 'Briceño',
             'email' => 'erichbriceno@gmail.com',
-            'role_id' => $this->roles->where('description', 'Master')->first()->id,
+            'role_id' => $this->roles->where('name', 'Master')->first()->id,
             'password' => bcrypt('secreto1'),
         ]);
 

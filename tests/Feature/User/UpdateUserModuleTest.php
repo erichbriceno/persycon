@@ -18,7 +18,7 @@ class UpdateUserModuleTest extends TestCase
         $user = factory(User::class)->create();
 
         $this->put(route('user.update', $user), $this->getValidData([
-            'role_id' => Role::Where('description', 'Administrator')->first()->id,
+            'role_id' => Role::Where('name', 'Administrator')->first()->id,
             'management_id' => Management::Where('name', 'All')->first()->id,
         ]))
             ->assertRedirect(route('user.details',$user));
@@ -27,7 +27,7 @@ class UpdateUserModuleTest extends TestCase
             'names' => 'Erich Javier',
             'surnames' => 'Briceño',
             'email' => 'erichbriceno@gmail.com',
-            'role_id' => Role::Where('description', 'Administrator')->first()->id,
+            'role_id' => Role::Where('name', 'Administrator')->first()->id,
             'management_id' => Management::Where('name', 'All')->first()->id,
         ]);
     }

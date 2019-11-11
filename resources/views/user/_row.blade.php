@@ -9,7 +9,7 @@
                 <i class="fas fa-user-lock"></i>
             @endif
         </span>
-        <span class="note">@lang($user->role->description)</span>
+        <span class="note">@lang($user->role->name)</span>
     </td>
     <td>{{ $user->email }}</td>
     <td>@lang($user->management->name)</td>

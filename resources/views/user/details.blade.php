@@ -34,7 +34,7 @@
                         <div class="form-group row">
                             <label for="role_id" class="col-md-4 col-form-label text-md-right">@lang('Role')</label>
                             <div class="col-md-6">
-                                <input id="role_id" type="text" readonly class="form-control" name="role_id" value="@lang($user->role->description)">
+                                <input id="role_id" type="text" readonly class="form-control" name="role_id" value="@lang($user->role->name)">
                             </div>
                         </div>
 
