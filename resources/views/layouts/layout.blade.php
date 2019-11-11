@@ -37,7 +37,7 @@
 
                 <div class="col-4">
                     <div class="form-inline justify-content-end">
-                        @yield('title')
+                        {{ trans("titles.title.{$view}") }}
                     </div>
                 </div>
 

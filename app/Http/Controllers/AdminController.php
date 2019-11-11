@@ -3,34 +3,32 @@
 namespace App\Http\Controllers;
 
 
-use Illuminate\Validation\Rule;
-use App\Http\Requests\CreateUserRequest;
-use App\Model\{ User, Role, Group, Project, Management };
+use App\Model\{ Group, Project, Management };
 
 class AdminController extends Controller
 {
     public function project()
     {
-        $title ='LISTADO DE PROYECTOS';
-        $projects = Project::paginate(20);
-
-        return view('admin.project', compact('title','projects'));
+        return view('admin.project', [
+        'view' => 'projects',
+        'projects' => Project::paginate(20),
+        ]);
     }
 
     public function management()
     {
-        $title = 'LISTADO DE GERENCIAS';
-        $managements = Management::paginate(20);
-
-        return view('admin.management', compact('title','managements'));
+        return view('admin.management', [
+            'view' => 'managements',
+            'managements' => Management::paginate(20),
+        ]);
     }
 
     public function group()
     {
-        $title = 'LISTADO DE GRUPOS';
-        $groups = Group::paginate(20);
-
-        return view('admin.groups', compact('title','groups'));
+        return view('admin.groups',[
+        'view' => 'groups',
+        'groups' => Group::paginate(20),
+        ]);
     }
 
 }

@@ -1,7 +1,5 @@
 @extends('layouts.layout')
 
-@section('title', $title )
-
 @section('content')
     <table class="table table-sm">
         <thead class="thead-light">

@@ -24,42 +24,43 @@ class UserController extends Controller
         $users->appends(request(['search', 'management', 'state']));
 
         return view('user.users', [
+            'view' => 'index',
             'users' => $users,
-            'title'  => 'LISTADO DE USUARIOS',
-            'emptyMessage' => 'There are no registered users',
             'roles' => Role::all(),
             'managements' => Management::all(),
-            'states' => trans('users.filters.states'),
             'checkedRoles' => collect(request('roles')),
         ]);
     }
 
     public function trashed()
     {
-        $title = 'PAPELERA DE USUARIOS';
-        $emptyMessage = 'There are no users deleted';
         $users = User::onlyTrashed()
             ->with('role', 'management')
             ->paginate(15);
 
-        return view('user.users', compact('title','users', 'emptyMessage'));
+        return view('user.users', [
+            'view' => 'trash',
+            'users' => $users,
+
+        ]);
     }
 
     public function details(User $user)
     {
-        $title = 'DETALLES DEL USUARIO';
-
-        return view('user.details', compact('title', 'user'));
+        return view('user.details',[
+            'view' => 'details',
+            'user' => $user
+        ]);
     }
 
     public function create()
     {
-        $title = 'REGISTRAR USUARIO';
-        $user = New User;
-        $managements = Management::all(); //Debo incluir el valor null o vacio
-        $roles = Role::orderBy('description', 'DESC')->get();
-
-        return view('user.create', compact('title', 'roles', 'user', 'managements'));
+        return view('user.create', [
+            'view' => 'create',
+            'user' =>  New User,
+            'roles' => Role::orderBy('description', 'DESC')->get(),
+            'managements' => Management::all()
+        ]);
     }
 
     public function store(CreateUserRequest $request)
@@ -71,11 +72,12 @@ class UserController extends Controller
 
     public function edit(User $user)
     {
-        $title = 'EDITAR USUARIO';
-        $managements = Management::all();
-        $roles = Role::orderBy('description', 'DESC')->get();
-
-        return view('user.edit', compact('title', 'roles', 'user', 'managements'));
+        return view('user.edit', [
+            'view' => 'edit',
+            'user' => $user,
+            'managements' => Management::all(),
+            'roles' => Role::orderBy('description', 'DESC')->get(),
+        ]);
     }
 
     public function update(UpdateUserRequest $request, User $user)

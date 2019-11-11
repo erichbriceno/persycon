@@ -20,7 +20,7 @@ class CreateUserModuleTest extends TestCase
         $this->get(route('user.create'))
             ->assertViewIs('user.create')
             ->assertStatus(200)
-            ->assertSee('REGISTRAR USUARIO')
+            ->assertSee(trans('titles.title.create'))
             ->assertViewHas('roles', function ($roles) use ($role) {
                 return $roles->contains($role);
             });

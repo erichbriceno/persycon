@@ -1,10 +1,9 @@
 @extends('layouts.layout')
 
-@section('title', $title )
-
 @section('content')
 
-    @includeWhen(isset($states), 'layouts._filters')
+    @includeWhen($view == 'index', 'layouts._filters')
+    @includeWhen($view == 'trash', 'layouts._back')
 
     @if ($users->isNotEmpty())
         <div class="table-responsive-lg">
@@ -26,6 +25,6 @@
         </div>
         {{ $users->onEachSide(1)->links() }}
     @else
-        <p>@lang($emptyMessage)</p>
+        <h4>{{trans("users.emptyMessage.{$view}")}}</h4>
     @endif
 @endsection
