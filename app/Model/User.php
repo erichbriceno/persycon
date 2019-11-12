@@ -2,6 +2,7 @@
 
 namespace App\Model;
 
+use App\Querys\UserQuery;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -38,6 +39,17 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    /**
+     * Create a new Eloquent query builder for the model.
+     *
+     * @param  \Illuminate\Database\Query\Builder  $query
+     * @return \Illuminate\Database\Eloquent\Builder|static
+     */
+    public function newEloquentBuilder($query)
+    {
+        return new UserQuery($query);
+    }
+
     public function role()
     {
         return $this->belongsTo(Role::class);
@@ -50,38 +62,6 @@ class User extends Authenticatable
         ]);
     }
 
-    public function scopeSearch($query, $search)
-    {
-        if( empty($search)) {
-            return;
-        }
-
-        $query->whereRaw('CONCAT(names, " ", surnames) like ?', "%{$search}%")
-            ->orWhere('email', 'like', "%{$search}%");
-    }
-
-    public function scopeByManagement($query, $management)
-    {
-        if(!empty($management)) {
-            if($management === 'Unassigned') {
-                $query->where('management_id', null);
-            }else {
-                $query->whereHas('management', function ($query) use ($management) {
-                    $query->where('name', $management);
-                });
-            }
-        }
-    }
-
-    public function scopeByState($query, $state)
-    {
-        if ($state == 'active') {
-            return $query->where('active', true);
-        }
-        if ($state == 'inactive') {
-            return $query->where('active', false);
-        }
-    }
 
     public function setStateAttribute($value)
     {

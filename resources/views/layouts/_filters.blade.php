@@ -54,9 +54,9 @@
                                        type="checkbox"
                                        class="form-check-input"
                                        id="skill1"
-                                       value="{{ $role->description }}"
-                                        {{ $checkedRoles->contains($role->description) ? 'checked' : '' }}>
-                                <label class="form-check-label" for="skill1">{{ $role->description }}</label>
+                                       value="{{ $role->name }}"
+                                        {{ $checkedRoles->contains($role->name) ? 'checked' : '' }}>
+                                <label class="form-check-label" for="skill1">@lang($role->name)</label>
                             </div>
                         @endforeach
                     </div>
