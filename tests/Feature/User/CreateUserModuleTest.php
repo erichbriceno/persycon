@@ -162,6 +162,21 @@ class CreateUserModuleTest extends TestCase
     }
 
     /** @test */
+    function the_management_id_can_not_be_Unassigned()
+    {
+        $this->from(route('user.create'))
+            ->post(route('user.store'), $this->getValidData([
+                'management_id' => Management::where('name', 'Unassigned')->first()->id
+            ]))->assertRedirect(route('user.create'))
+            ->assertSessionHasErrors(['management_id']);
+
+        $this->assertDatabaseMissing('users', [
+            'names' => 'Erich Javier',
+            'email' => 'erichbriceno@gmail.com',
+        ]);
+    }
+
+    /** @test */
     function the_password_is_required()
     {
         $this->from(route('user.create'))

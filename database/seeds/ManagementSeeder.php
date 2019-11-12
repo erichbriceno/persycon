@@ -13,6 +13,12 @@ class ManagementSeeder extends Seeder
     public function run()
     {
         factory(Management::class)->create([
+            'name' => 'Unassigned',
+            'description' => '',
+            'selectable' => false
+        ]);
+
+        factory(Management::class)->create([
             'name' => 'PO',
             'description' => 'Master Administrator',
         ]);

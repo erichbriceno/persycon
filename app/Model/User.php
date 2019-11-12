@@ -2,7 +2,7 @@
 
 namespace App\Model;
 
-use App\Querys\UserQuery;
+use App\Queries\UserQuery;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;

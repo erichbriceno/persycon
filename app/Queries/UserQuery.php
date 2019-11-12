@@ -1,17 +1,27 @@
 <?php
 
-namespace App\Querys;
+namespace App\Queries;
 
 use Illuminate\Database\Eloquent\Builder;
 
 class UserQuery extends Builder
 {
-    public function search($search)
-    {
-        if( empty($search)) {
-            return $this;
-        }
+    use FiltersQueries;
 
+    public function filterRules(): array
+    {
+        return [
+            'search' => 'filled',
+            'state' => 'in:active,inactive',
+            'management' => 'exists:managements,name',
+        ];
+    }
+
+
+
+
+    public function filterBySearch($search)
+    {
         return $this->whereRaw('CONCAT(names, " ", surnames) like ?', "%{$search}%")
             ->orWhere('email', 'like', "%{$search}%");
             //->orWhereHas('team', function ($query) use ($search) {
@@ -19,19 +29,14 @@ class UserQuery extends Builder
             //});
     }
 
-    public function byState($state)
+    public function filterByState($state)
     {
-        if ($state == 'active') {
-            return $this->where('active', true);
-        }
-        if ($state == 'inactive') {
-            return $this->where('active', false);
-        }
-        return $this;
+        return $this->where('active', $state == 'active');
     }
 
-    public function byManagement($management)
+    public function filterByManagement($management)
     {
+
         if(!empty($management)) {
             if($management === 'Unassigned') {
                 $this->where('management_id', null);
@@ -43,4 +48,7 @@ class UserQuery extends Builder
         }
         return $this;
     }
+
+
+
 }

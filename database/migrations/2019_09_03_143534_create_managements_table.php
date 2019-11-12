@@ -17,6 +17,7 @@ class CreateManagementsTable extends Migration
             $table->bigIncrements('id');
             $table->string('name')->unique();
             $table->string('description');
+            $table->boolean('selectable')->default(true);
             $table->timestamps();
         });
     }

@@ -32,11 +32,11 @@ class UpdateUserRequest extends FormRequest
             'role_id' => [
                 'required',
                 'present',
-                Rule::exists('roles', 'id')->where('selectable', true),
+                 Rule::exists('roles', 'id')->where('selectable', true),
             ],
             'management_id' => [
                 'nullable',
-                Rule::exists('managements', 'id')
+                 Rule::exists('managements', 'id')->where('selectable', true)
             ],
             'password' => ['confirmed'],
             'password_confirmation' => ['same:password'],

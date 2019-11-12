@@ -57,6 +57,12 @@ abstract class TestCase extends BaseTestCase
     public function loadManagemetsTable()
     {
         factory(Management::class)->create([
+            'name' => 'Unassigned',
+            'description' => '',
+            'selectable' => false
+        ]);
+
+        factory(Management::class)->create([
             'name' => 'All',
             'description' => 'Master Administrator',
         ]);

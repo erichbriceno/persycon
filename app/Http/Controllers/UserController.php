@@ -3,21 +3,18 @@
 namespace App\Http\Controllers;
 
 
-use App\Http\Requests\UpdateUserRequest;
+use Illuminate\Http\Request;
 use App\Model\{Management, User, Role};
-use App\Http\Requests\CreateUserRequest;
+use App\Http\Requests\{CreateUserRequest, UpdateUserRequest};
 
 class UserController extends Controller
 {
 
-    public function index()
+    public function index(Request $request)
     {
         $users = User::query()
             ->with('role', 'management')
-            ->byManagement(request('management'))
-            ->byState(request('state'))
-            //->byRole(request('role'))
-            ->search(request('search'))
+            ->filterBy($request->only(['search', 'management', 'state' ]))
             ->orderBy('id')
             ->paginate();
 
@@ -27,7 +24,7 @@ class UserController extends Controller
             'view' => 'index',
             'users' => $users,
             'roles' => Role::all(),
-            'managements' => Management::all(),
+            'managements' => Management::where('selectable', true)->get(),
             'checkedRoles' => collect(request('roles')),
         ]);
     }
@@ -59,7 +56,7 @@ class UserController extends Controller
             'view' => 'create',
             'user' =>  New User,
             'roles' => Role::orderBy('description', 'DESC')->get(),
-            'managements' => Management::all()
+            'managements' => Management::where('selectable', true)->get(),
         ]);
     }
 
@@ -75,8 +72,8 @@ class UserController extends Controller
         return view('user.edit', [
             'view' => 'edit',
             'user' => $user,
-            'managements' => Management::all(),
             'roles' => Role::orderBy('description', 'DESC')->get(),
+            'managements' => Management::where('selectable', true)->get(),
         ]);
     }
 
