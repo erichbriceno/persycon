@@ -14,19 +14,20 @@ class UserQuery extends Builder
             'search' => 'filled',
             'state' => 'in:active,inactive',
             'management' => 'exists:managements,name',
+            'roles' => 'array|exists:roles,name',
         ];
     }
 
-
-
-
     public function filterBySearch($search)
     {
-        return $this->whereRaw('CONCAT(names, " ", surnames) like ?', "%{$search}%")
+        //$this->whereRaw('CONCAT(names, " ", surnames) like ?', "%{$search}%")
+        //    ->orWhere('email', 'like', "%{$search}%");
+
+        $this->where(function ($query) use ($search) {
+            $query->whereRaw('CONCAT(names, " ", surnames) like ?', "%{$search}%")
             ->orWhere('email', 'like', "%{$search}%");
-            //->orWhereHas('team', function ($query) use ($search) {
-            //    $query->where('name', 'like', "%{$search}%");
-            //});
+        });
+        return $this;
     }
 
     public function filterByState($state)
@@ -49,6 +50,12 @@ class UserQuery extends Builder
         return $this;
     }
 
+    public function filterByRoles(array $roles)
+    {
+        return $this->WhereHas('role', function ($query) use ($roles) {
+               $query->whereIn('name', $roles);
+            });
+    }
 
 
 }

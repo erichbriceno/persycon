@@ -12,13 +12,16 @@ class UserController extends Controller
 
     public function index(Request $request)
     {
+
         $users = User::query()
             ->with('role', 'management')
-            ->filterBy($request->only(['search', 'management', 'state' ]))
+            ->filterBy($request->only(['search', 'management', 'state', 'roles' ]))
             ->orderBy('id')
+            //->toSql();
+            //dd($users);
             ->paginate();
 
-        $users->appends(request(['search', 'management', 'state']));
+        $users->appends($request->only(['search', 'management', 'state', 'roles' ]));
 
         return view('user.users', [
             'view' => 'index',

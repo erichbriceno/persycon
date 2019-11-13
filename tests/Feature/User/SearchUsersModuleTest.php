@@ -280,4 +280,36 @@ class SearchUsersModuleTest extends TestCase
             });
     }
 
+    /** @test */
+    function search_users_by_roles()
+    {
+        $this->withoutExceptionHandling();
+
+        $pedro = factory(User::class)->create([
+            'role_id' => Role::Where('name', 'User')->first()->id,
+        ]);
+
+        $santiago = factory(User::class)->create([
+            'role_id' => Role::Where('name', 'Master')->first()->id,
+        ]);
+
+        $jose = factory(User::class)->create([
+            'role_id' => Role::Where('name', 'Administrator')->first()->id,
+        ]);
+
+        $this->get(route('users',
+            ['roles' => [
+                'User',
+                'Master'
+                ]
+            ]))
+            ->assertStatus(200)
+            ->assertSee('LISTADO DE USUARIOS' )
+            ->assertViewHas('users', function ($users) use ( $pedro, $santiago, $jose) {
+                return $users->contains($pedro)
+                    && $users->contains($santiago)
+                    && !$users->contains($jose);
+            });
+    }
+
 }
