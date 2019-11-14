@@ -312,4 +312,64 @@ class SearchUsersModuleTest extends TestCase
             });
     }
 
+    /** @test */
+    function filter_users_created_from_date()
+    {
+        $newestUser = factory(User::class)->create([
+            'created_at' => '2018-10-02 12:00:00',
+        ]);
+        $oldestUser = factory(User::class)->create([
+            'created_at' => '2018-09-29 12:00:00',
+        ]);
+        $newUser = factory(User::class)->create([
+            'created_at' => '2018-10-01 00:00:00',
+        ]);
+        $oldUser = factory(User::class)->create([
+            'created_at' => '2018-09-30 23:59:59',
+        ]);
+
+        $response = $this->get(route('users', ['from' => '01/10/2018']));
+
+        $response->assertOk();
+
+        $response->assertViewHas('users', function ($users)
+            use ( $newUser, $newestUser, $oldUser, $oldestUser) {
+                return
+                    $users->contains($newUser)
+                    && $users->contains($newestUser)
+                    && !$users->contains($oldUser)
+                    && !$users->contains($oldestUser);
+            });
+
+    }
+    /** @test */
+    function filter_users_created_to_date()
+    {
+        $newestUser = factory(User::class)->create([
+            'created_at' => '2018-10-02 12:00:00',
+        ]);
+        $oldestUser = factory(User::class)->create([
+            'created_at' => '2018-09-29 12:00:00',
+        ]);
+        $newUser = factory(User::class)->create([
+            'created_at' => '2018-10-01 00:00:00',
+        ]);
+        $oldUser = factory(User::class)->create([
+            'created_at' => '2018-09-30 23:59:59',
+        ]);
+
+        $response = $this->get(route('users', ['to' => '30/09/2018']));
+
+        $response->assertOk();
+
+        $response->assertViewHas('users', function ($users)
+            use ( $newUser, $newestUser, $oldUser, $oldestUser) {
+                return
+                    $users->contains($oldestUser)
+                    && $users->contains($oldUser)
+                    && !$users->contains($newestUser)
+                    && !$users->contains($newUser);
+            });
+    }
+
 }

@@ -2,6 +2,7 @@
 
 namespace App\Queries;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 
 class UserQuery extends Builder
@@ -15,19 +16,17 @@ class UserQuery extends Builder
             'state' => 'in:active,inactive',
             'management' => 'exists:managements,name',
             'roles' => 'array|exists:roles,name',
+            'from' => 'date_format:d/m/Y',
+            'to' => 'date_format:d/m/Y'
         ];
     }
 
     public function filterBySearch($search)
     {
-        //$this->whereRaw('CONCAT(names, " ", surnames) like ?', "%{$search}%")
-        //    ->orWhere('email', 'like', "%{$search}%");
-
-        $this->where(function ($query) use ($search) {
+        return $this->where(function ($query) use ($search) {
             $query->whereRaw('CONCAT(names, " ", surnames) like ?', "%{$search}%")
             ->orWhere('email', 'like', "%{$search}%");
         });
-        return $this;
     }
 
     public function filterByState($state)
@@ -37,7 +36,6 @@ class UserQuery extends Builder
 
     public function filterByManagement($management)
     {
-
         if(!empty($management)) {
             if($management === 'Unassigned') {
                 $this->where('management_id', null);
@@ -57,5 +55,18 @@ class UserQuery extends Builder
             });
     }
 
+    public function filterByFrom($date)
+    {
+        $date = Carbon::createFromFormat('d/m/Y', $date);
+
+        $this->whereDate('created_at', '>=', $date);
+    }
+
+    public function filterByTo($date)
+    {
+        $date = Carbon::createFromFormat('d/m/Y', $date);
+
+        $this->whereDate('created_at', '<=', $date);
+    }
 
 }

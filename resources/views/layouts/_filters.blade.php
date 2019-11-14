@@ -21,7 +21,7 @@
     </div>
 
     <div class="row row-filters">
-        <div class="col-md-6">
+        <div class="col-md-5">
             <div class="form-inline form-search">
                 <div class="btn-group">
                     <input type="search" name="search" value="{{ request('search') }}" class="form-control form-control-sm" placeholder="Buscar...">
@@ -63,14 +63,16 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-7">
             <div class="form-inline form-dates justify-content-end">
-                <label for="date_start" class="form-label-sm">Fecha</label>&nbsp;
-                <div class="input-group">
-                    <input type="text" class="form-control form-control-sm" name="date_start" id="date_start" placeholder="Desde">
+                <label for="from" class="form-label-sm">@lang('Date')</label>&nbsp;
+                <div class="input-group date">
+                    <input type="text" class="form-control form-control-sm" name="from" id="from" placeholder="@lang('From')" value="{{ request('from') }}">
+{{--                    <snap class="btn btn-outline-secondary btn-sm"><i class="far fa-calendar-alt"></i></snap>--}}
                 </div>
-                <div class="input-group">
-                    <input type="text" class="form-control form-control-sm" name="date_end" id="date_end" placeholder="Hasta">
+                <div class="input-group date">
+                    <input type="text" class="form-control form-control-sm" name="to" id="to" placeholder="@lang('To')" value="{{ request('to') }}">
+{{--                    <snap class="btn btn-outline-secondary btn-sm"><i class="far fa-calendar-alt"></i></snap>--}}
                 </div>
                 &nbsp;
                 <button type="submit" class="btn btn-sm btn-secondary">Filtrar <i class="fas fa-cog"></i></button>

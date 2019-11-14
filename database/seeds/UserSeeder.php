@@ -36,7 +36,8 @@ class UserSeeder extends Seeder
             $user = factory(User::class)->create([
                 'role_id' => $this->roles->random()->id,
                 'management_id' => rand(0, 2) ? $this->managements->random()->id :  null,
-                'active' => false
+                'active' => false,
+                'created_at' => now()->subDays(rand(1, 90))
             ]);
         }
 
@@ -44,6 +45,7 @@ class UserSeeder extends Seeder
             $user = factory(User::class)->create([
                 'role_id' => $this->roles->random()->id,
                 'management_id' => rand(0, 2) ? $this->managements->random()->id :  null,
+                'created_at' => now()->subDays(rand(1, 90))
             ]);
         }
     }
