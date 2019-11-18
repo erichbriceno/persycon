@@ -65,17 +65,17 @@
         </div>
         <div class="col-md-7">
             <div class="form-inline form-dates justify-content-end">
-                <label for="from" class="form-label-sm">@lang('Date')</label>&nbsp;
+                <label for="from" class="form-label-sm">@lang('Dates')</label>&nbsp
+                <snap><i class="far fa-calendar-alt"></i></snap>
+                &nbsp;
                 <div class="input-group date">
-                    <input type="text" class="form-control form-control-sm" name="from" id="from" placeholder="@lang('From')" value="{{ request('from') }}">
-{{--                    <snap class="btn btn-outline-secondary btn-sm"><i class="far fa-calendar-alt"></i></snap>--}}
+                    <input type="text" class="form-control form-control-sm text-right" name="from" id="from" placeholder="@lang('From')" value="{{ request('from') }}">
                 </div>
                 <div class="input-group date">
-                    <input type="text" class="form-control form-control-sm" name="to" id="to" placeholder="@lang('To')" value="{{ request('to') }}">
-{{--                    <snap class="btn btn-outline-secondary btn-sm"><i class="far fa-calendar-alt"></i></snap>--}}
+                    <input type="text" class="form-control form-control-sm text-right" name="to" id="to" placeholder="@lang('To')" value="{{ request('to') }}">
                 </div>
                 &nbsp;
-                <button type="submit" class="btn btn-sm btn-secondary">Filtrar <i class="fas fa-cog"></i></button>
+                <button type="submit" class="btn btn-sm btn-secondary">@lang('Filter') <i class="fas fa-cog"></i></button>
             </div>
         </div>
     </div>

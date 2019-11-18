@@ -1,5 +1,8 @@
-.erich {
-    height: 28px;
+a.logo {
+    font-family: "Montserrat", sans-serif;
+    font-size: 2rem;
+    font-stretch: ultra-expanded;
+    text-shadow: 1px 1px 0px #fff;
 }
 
 .drop-skills {

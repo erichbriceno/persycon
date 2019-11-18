@@ -1,0 +1,14 @@
+@font-face {
+    font-family: SoThin;
+    src:url('../fonts/SoThin.ttf');
+}
+
+@font-face {
+    font-family: Nunito;
+    src:url('../fonts/Nunito-Regular.ttf');
+}
+
+@font-face {
+    font-family: Montserrat;
+    src:url('../fonts/Montserrat-Light.ttf');
+}

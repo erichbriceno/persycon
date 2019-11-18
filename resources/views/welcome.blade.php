@@ -7,7 +7,7 @@
         <title>PerSyCon</title>
 
         <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+        <link href="{{ asset('css/fonts.css') }}" rel="stylesheet">
 
         <!-- Styles -->
         <link href="{{ asset('css/home.css') }}" rel="stylesheet">

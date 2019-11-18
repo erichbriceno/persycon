@@ -13,19 +13,23 @@
     <script src="{{ asset('js/app.js') }}" defer></script>
 
     <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <link href="{{ asset('css/fonts.css') }}" rel="stylesheet">
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 </head>
 <body>
 <header>
     <nav class="navbar navbar-expand-md navbar-light bg-white">
         <div class="container">
-            <a class="navbar-brand p-0" href="{{ url('/') }}">
-                <img src="/images/LogoWhite.png" alt="Styde" height="50">
-            </a>
+            <div class="col-10 form-inline">
+                <div class="col-8 pr-5 ">
+                    <a class="navbar-brand logo" href="{{ url('/') }}">
+                        PerSyCon
+                    </a>
+                </div>
+            </div>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                 <span class="navbar-toggler-icon"></span>
             </button>

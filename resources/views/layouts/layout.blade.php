@@ -12,24 +12,25 @@
 
 
     <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link href="//fonts.gstatic.com" rel="dns-prefetch" >
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
     <link href="{{ asset('css/all.css') }}" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/fonts.css') }}" rel="stylesheet">
     <link href="{{ asset('css/bootstrap-datepicker.css') }}" rel="stylesheet">
 
  </head>
 <body>
 <header>
     <nav class="navbar navbar-expand-md navbar-light bg-white">
-        <div class="container ">
-            <div class="col-10 form-inline">
+        <div class="container pl-0">
+            <div class="col-10 form-inline pl-0">
                 <div class="col-8">
-                    <a class="navbar-brand p-0" href="{{ url('/') }}">
-                        <img src="/images/LogoWhite.png" alt="PerSyCon" height="50">
+                    <a class="navbar-brand logo" href="{{ url('/') }}">
+                        PerSyCon
                     </a>
                 </div>
 
