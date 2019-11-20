@@ -12,25 +12,7 @@ class UserModuleTest extends TestCase
 
     protected $role;
 
-    /** @test */
-    function it_shows_the_users_list()
-    {
-        factory(User::class)->create([
-            'names' => 'Pedro',
-        ]);
-
-        factory(User::class)->create([
-            'names' => 'Santiago'
-        ]);
-
-        $this->get(route('users'))
-            ->assertStatus(200)
-            ->assertSee('LISTADO DE USUARIOS' )
-            ->assertSee('Pedro')
-            ->assertSee('Santiago');
-    }
-
-    /** @test */
+     /** @test */
     function it_displays_the_users_details()
     {
         $user = factory(User::class)->create([
@@ -56,15 +38,6 @@ class UserModuleTest extends TestCase
         $this->get('/users/1')
             ->assertStatus(404)
             ->assertSee('Página no encontrada');
-    }
-
-    /** @test */
-    function it_show_a_message_when_user_list_its_empty()
-    {
-        $this->get('/users')
-            ->assertStatus(200)
-            ->assertSee('No hay usuarios registrados');
-
     }
 
     /** @test */
@@ -114,7 +87,6 @@ class UserModuleTest extends TestCase
             ->assertSee('PAPELERA DE USUARIOS')
             ->assertSee('Pedro')
             ->assertDontSee('Santiago');
-
     }
 
     /** @test */

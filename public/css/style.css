@@ -5,6 +5,12 @@ a.logo {
     text-shadow: 1px 1px 0px #fff;
 }
 
+a.indecorate:link
+{
+    text-decoration:none;
+    color: #495057
+}
+
 .drop-skills {
     position: relative;
     overflow: visible;

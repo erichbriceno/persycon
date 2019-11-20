@@ -15,9 +15,16 @@ class UserController extends Controller
     {
 
         $users = User::query()
+            ->when($request->routeIs('users.trash'), function ($q) {
+                $q->onlyTrashed();
+            })
             ->with('role', 'management')
             ->filterBy($request->only(['search', 'management', 'state', 'roles', 'from', 'to' ]))
-            ->orderBy('id')
+            ->when(request('order'), function ($q) {
+                $q->orderBy(request('order'), request('direction', 'asc' ));
+            }, function ($q) {
+                $q->orderBy('id');
+            })
             ->paginate();
 
         $users->appends($request->only(['search', 'management', 'state', 'roles', 'from', 'to' ]));
@@ -25,26 +32,12 @@ class UserController extends Controller
         $sortable->setCurrentOrder(request('order'), request('direction'));
 
         return view('user.users', [
-            'view' => 'index',
+            'view' => $request->routeIs('users.trash') ? 'trash' : 'index',
             'users' => $users,
             'roles' => Role::all(),
             'managements' => Management::where('selectable', true)->get(),
             'checkedRoles' => collect(request('roles')),
             'sortable' => $sortable
-        ]);
-    }
-
-    public function trashed(Sortable $sortable)
-    {
-        $users = User::onlyTrashed()
-            ->with('role', 'management')
-            ->paginate(15);
-
-        return view('user.users', [
-            'view' => 'trash',
-            'users' => $users,
-            'sortable' => $sortable
-
         ]);
     }
 

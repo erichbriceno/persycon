@@ -45,7 +45,7 @@ Route::put('/users/{user}/edit', 'UserController@update')
     ->where('user', '[0-9]+')
     ->name('user.update');
 
-Route::get('users/trash', 'UserController@trashed')
+Route::get('users/trash', 'UserController@index')
     ->name('users.trash');
 
 Route::patch('users/{user}/trash', 'UserController@trash')
