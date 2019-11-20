@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Validator;
 
 trait FiltersQueries
 {
+    protected $valid;
 
     public function filterBy(array $filters)
     {
@@ -14,7 +15,9 @@ trait FiltersQueries
 
         $validator = Validator::make(array_intersect_key($filters, $rules), $rules);
 
-        foreach ($validator->valid() as $name => $value)
+        $this->valid = $validator->valid();
+
+        foreach ($this->valid as $name => $value)
         {
             $this->applyFilter($name, $value);
         }

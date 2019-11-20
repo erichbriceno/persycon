@@ -17,7 +17,9 @@ class UserQuery extends Builder
             'management' => 'exists:managements,name',
             'roles' => 'array|exists:roles,name',
             'from' => 'date_format:d/m/Y',
-            'to' => 'date_format:d/m/Y'
+            'to' => 'date_format:d/m/Y',
+            'order' => 'in:id,names,email,created_at',
+            'direction' => 'in:asc,desc',
         ];
     }
 
@@ -67,6 +69,24 @@ class UserQuery extends Builder
         $date = Carbon::createFromFormat('d/m/Y', $date);
 
         $this->whereDate('created_at', '<=', $date);
+    }
+
+    public function filterByOrder($order)
+    {
+        $this->orderBy($order , $this->valid['direction'] ?? 'asc');
+    }
+
+    public function filterByDirection($direction)
+    {
+
+    }
+
+    public function onlyTrashedIf($trashed)
+    {
+        if ($trashed) {
+            $this->onlyTrashed();
+        }
+        return $this;
     }
 
 }

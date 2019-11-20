@@ -15,21 +15,15 @@ class UserController extends Controller
     {
 
         $users = User::query()
-            ->when($request->routeIs('users.trash'), function ($q) {
-                $q->onlyTrashed();
-            })
+
             ->with('role', 'management')
-            ->filterBy($request->only(['search', 'management', 'state', 'roles', 'from', 'to' ]))
-            ->when(request('order'), function ($q) {
-                $q->orderBy(request('order'), request('direction', 'asc' ));
-            }, function ($q) {
-                $q->orderBy('id');
-            })
+            ->onlyTrashedIf($request->routeIs('users.trash'))
+            ->filterBy($request->only(['search', 'management', 'state', 'roles', 'from', 'to', 'order', 'direction']))
+            ->orderBy('id')
             ->paginate();
 
-        $users->appends($request->only(['search', 'management', 'state', 'roles', 'from', 'to' ]));
-
-        $sortable->setCurrentOrder(request('order'), request('direction'));
+        $users->appends($request->only(['search', 'management', 'state', 'roles', 'from', 'to', 'order', 'direction']));
+        $sortable->appends($request->only(['search', 'management', 'state', 'roles', 'from', 'to', 'order', 'direction']));
 
         return view('user.users', [
             'view' => $request->routeIs('users.trash') ? 'trash' : 'index',

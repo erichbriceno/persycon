@@ -9,13 +9,20 @@ class Sortable
     protected $currentUrl;
     protected $currentColumn;
     protected $currentDirection;
+    protected $query = [];
 
     public function __construct($currentUrl)
     {
         $this->currentUrl = $currentUrl;
     }
 
-    public function setCurrentOrder($order, $direction = 'asc')
+    public function appends(array $query)
+    {
+        $this->query = $query;
+        $this->setCurrentOrder($this->query['order'] ?? null, $this->query['direction'] ?? 'asc');
+    }
+
+    protected function setCurrentOrder($order, $direction = 'asc')
     {
         $this->currentColumn = $order;
         $this->currentDirection = $direction;
@@ -31,10 +38,12 @@ class Sortable
 
     protected function buildSortableUrl($column, $direction = 'asc')
     {
-        return $this->currentUrl.'?'.Arr::query([
+        return $this->currentUrl.'?'.Arr::query(array_merge(
+            $this->query,
+            [
                 'order' => $column,
                 'direction' => $direction
-            ]);
+            ]));
     }
 
     public function classes($column)

@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\User;
+namespace Tests\Feature\Unit;
 
 use App\Sortable;
 use Tests\TestCase;
@@ -24,9 +24,8 @@ class SortableTest extends TestCase
     }
 
     /** @test */
-    function builds_url_with_sortable_data()
+    function builds_a_url_with_sortable_data()
     {
-
         $this->assertSame(
             'http://persycon.test/users?order=names&direction=asc',
             $this->sortable->url('names')
@@ -34,9 +33,20 @@ class SortableTest extends TestCase
     }
 
     /** @test */
+    function appends_query_data_to_the_url()
+    {
+        $this->sortable->appends(['a' => 'parameter', 'and' => 'another-parameter']);
+
+        $this->assertSame(
+            'http://persycon.test/users?a=parameter&and=another-parameter&order=names&direction=asc',
+            $this->sortable->url('names')
+        );
+    }
+
+    /** @test */
     function builds_url_with_desc_order_if_the_current_column_matches_the_given_one_and_the_current_direction_is_asc()
     {
-        $this->sortable->setCurrentOrder('names', 'asc');
+        $this->sortable->appends(['order' => 'names', 'direction' => 'asc']);
 
         $this->assertSame(
             'http://persycon.test/users?order=names&direction=desc',
@@ -55,7 +65,7 @@ class SortableTest extends TestCase
     /** @test */
     function returns_a_css_class_to_indicate_the_column_is_sorted_in_ascendent_order()
     {
-        $this->sortable->setCurrentOrder('names');
+        $this->sortable->appends(['order' => 'names']);
 
         $this->assertSame('fa-caret-square-up', $this->sortable->classes('names'));
     }
@@ -63,9 +73,9 @@ class SortableTest extends TestCase
     /** @test */
     function returns_a_css_class_to_indicate_the_column_is_sorted_in_descendent_order()
     {
-        $this->sortable->setCurrentOrder('name', 'desc');
+        $this->sortable->appends(['order' => 'names', 'direction' => 'desc']);
 
-        $this->assertSame('fa-caret-square-down', $this->sortable->classes('name'));
+        $this->assertSame('fa-caret-square-down', $this->sortable->classes('names'));
     }
 }
 
