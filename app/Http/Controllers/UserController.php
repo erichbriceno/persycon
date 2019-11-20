@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 
+use App\Sortable;
 use Illuminate\Http\Request;
 use App\Model\{Management, User, Role};
 use App\Http\Requests\{CreateUserRequest, UpdateUserRequest};
@@ -10,18 +11,18 @@ use App\Http\Requests\{CreateUserRequest, UpdateUserRequest};
 class UserController extends Controller
 {
 
-    public function index(Request $request)
+    public function index(Request $request, Sortable $sortable)
     {
 
         $users = User::query()
             ->with('role', 'management')
             ->filterBy($request->only(['search', 'management', 'state', 'roles', 'from', 'to' ]))
             ->orderBy('id')
-            //->toSql();
-            //dd($users);
             ->paginate();
 
         $users->appends($request->only(['search', 'management', 'state', 'roles', 'from', 'to' ]));
+
+        $sortable->setCurrentOrder(request('order'), request('direction'));
 
         return view('user.users', [
             'view' => 'index',
@@ -29,10 +30,11 @@ class UserController extends Controller
             'roles' => Role::all(),
             'managements' => Management::where('selectable', true)->get(),
             'checkedRoles' => collect(request('roles')),
+            'sortable' => $sortable
         ]);
     }
 
-    public function trashed()
+    public function trashed(Sortable $sortable)
     {
         $users = User::onlyTrashed()
             ->with('role', 'management')
@@ -41,6 +43,7 @@ class UserController extends Controller
         return view('user.users', [
             'view' => 'trash',
             'users' => $users,
+            'sortable' => $sortable
 
         ]);
     }

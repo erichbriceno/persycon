@@ -10,12 +10,12 @@
             <table class="table table-sm">
                 <thead class="thead-light">
                     <tr>
-                        <th scope="col">#<span class="oi oi-caret-bottom"></span><span class="oi oi-caret-top"></span></th>
-                        <th scope="col">@lang('Full Name') <i class="fas fa-angle-double-up"></i><i class="fas fa-angle-double-down"></i></th>
-                        <th scope="col">@lang('Email') <i class="fas fa-angle-double-up"></i><i class="fas fa-angle-double-down"></i></th>
-                        <th scope="col">@lang('Management') <i class="fas fa-angle-double-up"></i><i class="fas fa-angle-double-down"></i></th>
-                        <th scope="col">@lang('Dates')<i class="fas fa-angle-double-up"></i><i class="fas fa-angle-double-down"></th>
-                        <th scope="col"class="text-right th-actions pr-3">@lang('Actions')</th>
+                        <th scope="col"><a href="{{ $sortable->url('id') }}">@lang('ID')</a>&nbsp<i class="fas {{ $sortable->classes('id') }}"></i></th>
+                        <th scope="col"><a href="{{ $sortable->url('names') }}">@lang('Full Name')</a>&nbsp<i class="fas {{ $sortable->classes('names') }}"></i></th>
+                        <th scope="col"><a href="{{ $sortable->url('email') }}">@lang('Email')</a>&nbsp<i class="fas {{ $sortable->classes('email') }}"></i></th>
+                        <th scope="col"><a href="{{ $sortable->url('management') }}">@lang('Management')</a>&nbsp<i class="fas {{ $sortable->classes('management') }}"></i></th>
+                        <th scope="col"><a href="{{ $sortable->url('create_at') }}">@lang('Dates')</a>&nbsp<i class="fas {{ $sortable->classes('create_at') }}"></i></th>
+                        <th scope="col"class="text-right th-actions pr-4">@lang('Actions')</th>
                     </tr>
                 </thead>
                 <tbody>
