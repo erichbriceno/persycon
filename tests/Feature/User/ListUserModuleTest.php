@@ -3,7 +3,7 @@
 namespace Tests\Feature\User;
 
 use Tests\TestCase;
-use App\Model\{Management, User};
+use App\Model\{User};
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class ListUserModuleTest extends TestCase
@@ -50,7 +50,7 @@ class ListUserModuleTest extends TestCase
                 'Rita Rotino'
             ]);
 
-        $this->get(route('users', ['order' => 'names', 'direction' => 'desc']))
+        $this->get(route('users', ['order' => 'names-desc']))
             ->assertSeeInOrder([
                 'Rita Rotino',
                 'Monica Belussi',
@@ -72,7 +72,7 @@ class ListUserModuleTest extends TestCase
                 'Marcela Roa',
             ]);
 
-        $this->get(route('users', ['order' => 'id', 'direction' => 'desc']))
+        $this->get(route('users', ['order' => 'id-desc']))
             ->assertSeeInOrder([
                 'Marcela Roa',
                 'Rita Rotino',
@@ -94,7 +94,7 @@ class ListUserModuleTest extends TestCase
                 'ccorreo@test.com',
             ]);
 
-        $this->get(route('users', ['order' => 'email', 'direction' => 'desc']))
+        $this->get(route('users', ['order' => 'email-desc']))
             ->assertSeeInOrder([
                 'ccorreo@test.com',
                 'bcorreo@test.com',
@@ -116,7 +116,7 @@ class ListUserModuleTest extends TestCase
                 'Monica Belussi',
             ]);
 
-        $this->get(route('users', ['order' => 'created_at', 'direction' => 'desc']))
+        $this->get(route('users', ['order' => 'created_at-desc']))
             ->assertSeeInOrder([
                 'Monica Belussi',
                 'Rita Rotino',
@@ -139,30 +139,13 @@ class ListUserModuleTest extends TestCase
                 'Rita Rotino',
             ]);
 
-        $this->get(route('users', ['order' => 'invalid_column', 'direction' => 'desc']))
+        $this->get(route('users', ['order' => 'invalid_column-desc']))
             ->assertOk()
             ->assertSeeInOrder([
                 'Monica Belussi',
                 'Marcela Roa',
                 'Rita Rotino',
             ]);
-    }
-
-    /** @test */
-    function invalid_direction_query_data_is_ignored_and_the_default_order_is_used_instead()
-    {
-        factory(User::class)->create(['names' => 'Monica Belussi']);
-        factory(User::class)->create(['names' => 'Marcela Roa']);
-        factory(User::class)->create(['names' => 'Rita Rotino']);
-
-        $this->get(route('users', ['order' => 'names', 'direction' => 'down']))
-            ->assertOk()
-            ->assertSeeInOrder([
-                'Marcela Roa',
-                'Monica Belussi',
-                'Rita Rotino',
-            ]);
-
     }
 
 }

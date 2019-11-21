@@ -2,6 +2,8 @@
 
 namespace App\Model;
 
+use App\Queries\QueryFilter;
+use App\Queries\UserFilter;
 use App\Queries\UserQuery;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -62,6 +64,10 @@ class User extends Authenticatable
         ]);
     }
 
+    public function scopeFilterBy($query, QueryFilter $filters, array $data)
+    {
+        return $filters->applyTo($query, $data);
+    }
 
     public function setStateAttribute($value)
     {

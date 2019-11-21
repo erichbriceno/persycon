@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 
+use App\Queries\UserFilter;
 use App\Sortable;
 use Illuminate\Http\Request;
 use App\Model\{Management, User, Role};
@@ -11,19 +12,19 @@ use App\Http\Requests\{CreateUserRequest, UpdateUserRequest};
 class UserController extends Controller
 {
 
-    public function index(Request $request, Sortable $sortable)
+    public function index(Request $request, UserFilter $filters, Sortable $sortable)
     {
 
         $users = User::query()
 
             ->with('role', 'management')
             ->onlyTrashedIf($request->routeIs('users.trash'))
-            ->filterBy($request->only(['search', 'management', 'state', 'roles', 'from', 'to', 'order', 'direction']))
+            ->filterBy($filters, $request->only(['search', 'management', 'state', 'roles', 'from', 'to', 'order', 'direction']))
             ->orderBy('id')
             ->paginate();
 
-        $users->appends($request->only(['search', 'management', 'state', 'roles', 'from', 'to', 'order', 'direction']));
-        $sortable->appends($request->only(['search', 'management', 'state', 'roles', 'from', 'to', 'order', 'direction']));
+        $users->appends($filters->valid());
+        $sortable->appends($filters->valid());
 
         return view('user.users', [
             'view' => $request->routeIs('users.trash') ? 'trash' : 'index',

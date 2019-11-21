@@ -1,17 +1,21 @@
 <?php
 
+
 namespace App\Queries;
+
 
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Validator;
 
-trait FiltersQueries
+abstract class QueryFilter
 {
     protected $valid;
 
-    public function filterBy(array $filters)
+    abstract public function rules(): array;
+
+    public function applyTo($query, array $filters)
     {
-        $rules = $this->filterRules();
+        $rules = $this->rules();
 
         $validator = Validator::make(array_intersect_key($filters, $rules), $rules);
 
@@ -19,20 +23,25 @@ trait FiltersQueries
 
         foreach ($this->valid as $name => $value)
         {
-            $this->applyFilter($name, $value);
+            $this->applyFilter($query, $name, $value);
         }
 
-        return $this;
+        return $query;
     }
 
-    public function applyFilter($name, $value): void
+    public function applyFilter($query, $name, $value): void
     {
         $method = 'filterBy' . Str::studly($name);
 
         if (method_exists($this, $method)) {
-            $this->$method($value);
+            $this->$method($query, $value);
         } else {
-            $this->where($name, $value);
+            $query->where($name, $value);
         }
+    }
+
+    public function valid()
+    {
+        return $this->valid;
     }
 }

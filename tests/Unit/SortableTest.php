@@ -27,7 +27,7 @@ class SortableTest extends TestCase
     function builds_a_url_with_sortable_data()
     {
         $this->assertSame(
-            'http://persycon.test/users?order=names&direction=asc',
+            'http://persycon.test/users?order=names',
             $this->sortable->url('names')
         );
     }
@@ -38,7 +38,7 @@ class SortableTest extends TestCase
         $this->sortable->appends(['a' => 'parameter', 'and' => 'another-parameter']);
 
         $this->assertSame(
-            'http://persycon.test/users?a=parameter&and=another-parameter&order=names&direction=asc',
+            'http://persycon.test/users?a=parameter&and=another-parameter&order=names',
             $this->sortable->url('names')
         );
     }
@@ -46,11 +46,11 @@ class SortableTest extends TestCase
     /** @test */
     function builds_url_with_desc_order_if_the_current_column_matches_the_given_one_and_the_current_direction_is_asc()
     {
-        $this->sortable->appends(['order' => 'names', 'direction' => 'asc']);
+        $this->sortable->appends(['order' => 'names']);
 
         $this->assertSame(
-            'http://persycon.test/users?order=names&direction=desc',
-            $this->sortable->url('names', 'desc')
+            'http://persycon.test/users?order=names-desc',
+            $this->sortable->url('names')
         );
     }
 
@@ -73,7 +73,7 @@ class SortableTest extends TestCase
     /** @test */
     function returns_a_css_class_to_indicate_the_column_is_sorted_in_descendent_order()
     {
-        $this->sortable->appends(['order' => 'names', 'direction' => 'desc']);
+        $this->sortable->appends(['order' => 'names-desc']);
 
         $this->assertSame('fa-caret-square-down', $this->sortable->classes('names'));
     }
