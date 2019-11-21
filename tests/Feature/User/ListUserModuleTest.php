@@ -127,6 +127,7 @@ class ListUserModuleTest extends TestCase
     /** @test */
     function invalid_order_query_data_is_ignored_and_the_default_order_is_used_instead()
     {
+        $this->withoutExceptionHandling();
         factory(User::class)->create(['names' => 'Monica Belussi', 'created_at' => now()->subDays(2)]);
         factory(User::class)->create(['names' => 'Marcela Roa', 'created_at' => now()->subDays(5)]);
         factory(User::class)->create(['names' => 'Rita Rotino', 'created_at' => now()->subDays(3)]);

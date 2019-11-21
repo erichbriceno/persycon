@@ -24,6 +24,15 @@ class SortableTest extends TestCase
     }
 
     /** @test */
+    function gets_the_info_about_the_column_name_and_the_order_direction()
+    {
+        $this->assertSame(['names', 'asc'], Sortable::info('names'));
+        $this->assertSame(['names', 'desc'], Sortable::info('names-desc'));
+        $this->assertSame(['email', 'asc'], Sortable::info('email'));
+        $this->assertSame(['email', 'desc'], Sortable::info('email-desc'));
+    }
+
+    /** @test */
     function builds_a_url_with_sortable_data()
     {
         $this->assertSame(

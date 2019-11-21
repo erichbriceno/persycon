@@ -4,6 +4,8 @@
 namespace App\Queries;
 
 
+use App\Rules\SortableColumn;
+use App\Sortable;
 use Carbon\Carbon;
 use Illuminate\Support\Str;
 
@@ -22,7 +24,7 @@ class UserFilter extends QueryFilter
             'roles' => 'array|exists:roles,name',
             'from' => 'date_format:d/m/Y',
             'to' => 'date_format:d/m/Y',
-            'order' => 'in:id,names,email,date,id-desc,names-desc,email-desc,date-desc',
+            'order' => [new SortableColumn(['id', 'names', 'email', 'date'])],
         ];
     }
 
@@ -76,11 +78,9 @@ class UserFilter extends QueryFilter
 
     public function filterByOrder($query, $value)
     {
-        if (Str::endsWith($value, '-desc')) {
-            return $query->orderByDesc($this->getColumnName(Str::substr($value, 0,-5)));
-        } else {
-            return $query->orderBy($this->getColumnName($value));
-        }
+        [$column, $direction] = Sortable::info($value);
+
+            return $query->orderBy($this->getColumnName($column), $direction);
     }
 
     protected function getColumnName($alias)
