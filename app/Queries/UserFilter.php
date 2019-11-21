@@ -9,6 +9,9 @@ use Illuminate\Support\Str;
 
 class UserFilter extends QueryFilter
 {
+    protected $aliases = [
+        'date' => 'created_at',
+    ];
 
     public function rules(): array
     {
@@ -19,7 +22,7 @@ class UserFilter extends QueryFilter
             'roles' => 'array|exists:roles,name',
             'from' => 'date_format:d/m/Y',
             'to' => 'date_format:d/m/Y',
-            'order' => 'in:id,names,email,created_at,id-desc,names-desc,email-desc,created_at-desc',
+            'order' => 'in:id,names,email,date,id-desc,names-desc,email-desc,date-desc',
         ];
     }
 
@@ -74,10 +77,15 @@ class UserFilter extends QueryFilter
     public function filterByOrder($query, $value)
     {
         if (Str::endsWith($value, '-desc')) {
-            return $query->orderByDesc(Str::substr($value, 0,-5));
+            return $query->orderByDesc($this->getColumnName(Str::substr($value, 0,-5)));
         } else {
-            return $query->orderBy($value);
+            return $query->orderBy($this->getColumnName($value));
         }
+    }
+
+    protected function getColumnName($alias)
+    {
+        return $this->aliases[$alias] ?? $alias;
     }
 
 }

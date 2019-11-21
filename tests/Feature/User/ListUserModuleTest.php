@@ -109,14 +109,14 @@ class ListUserModuleTest extends TestCase
         factory(User::class)->create(['names' => 'Marcela Roa', 'created_at' => now()->subDays(5)]);
         factory(User::class)->create(['names' => 'Rita Rotino', 'created_at' => now()->subDays(3)]);
 
-        $this->get(route('users', ['order' => 'created_at']))
+        $this->get(route('users', ['order' => 'date']))
             ->assertSeeInOrder([
                 'Marcela Roa',
                 'Rita Rotino',
                 'Monica Belussi',
             ]);
 
-        $this->get(route('users', ['order' => 'created_at-desc']))
+        $this->get(route('users', ['order' => 'date-desc']))
             ->assertSeeInOrder([
                 'Monica Belussi',
                 'Rita Rotino',
