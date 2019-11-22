@@ -75,7 +75,9 @@
                     <input type="text" class="form-control form-control-sm text-right" name="to" id="to" placeholder="@lang('To')" value="{{ request('to') }}">
                 </div>
                 &nbsp;
-                <button type="submit" class="btn btn-sm btn-secondary">@lang('Filter') <i class="fas fa-cog"></i></button>
+                <button type="submit" class="btn btn-sm btn-outline-secondary">@lang('Filter') <i class="fas fa-cog"></i></button>
+                &nbsp;
+                <a href="{{ route('users') }}" class="btn btn-outline-secondary btn-sm"><i class="fas fa-times"></i></a>
             </div>
         </div>
     </div>

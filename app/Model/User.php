@@ -64,10 +64,6 @@ class User extends Authenticatable
         ]);
     }
 
-    public function scopeFilterBy($query, QueryFilter $filters, array $data)
-    {
-        return $filters->applyTo($query, $data);
-    }
 
     public function setStateAttribute($value)
     {
