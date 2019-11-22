@@ -1,7 +1,15 @@
 @csrf
+
+@if($user->id)
+<div class="form-group row">
+    <label for="id" class="col-md-4 col-form-label text-md-right">@lang('Id')</label>
+    <div class="col-md-6">
+        <input id="id" type="text" readonly class="form-control" name="id" value="{{ $user->id }}">
+    </div>
+</div>
+@endif
 <div class="form-group row">
     <label for="names" class="col-md-4 col-form-label text-md-right">@lang('Names')</label>
-
     <div class="col-md-6">
         <input id="names" type="text" class="form-control @error('Names') is-invalid @enderror" name="names" value="{{ old('names', $user->names) }}" required autocomplete="names" autofocus>
         @error('names')

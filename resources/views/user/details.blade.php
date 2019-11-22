@@ -9,6 +9,13 @@
 
                     <div class="card-body">
                         <div class="form-group row">
+                            <label for="id" class="col-md-4 col-form-label text-md-right">@lang('Id')</label>
+                            <div class="col-md-6">
+                                <input id="id" type="text" readonly class="form-control" name="id" value="{{ $user->id }}">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
                             <label for="names" class="col-md-4 col-form-label text-md-right">@lang('Names')</label>
                             <div class="col-md-6">
                                 <input id="names" type="text" readonly class="form-control" name="names" value="{{ $user->names }}">
@@ -41,6 +48,13 @@
                             <label for="management_id" class="col-md-4 col-form-label text-md-right">@lang('Management')</label>
                             <div class="col-md-6">
                                 <input id="management_id" type="text" readonly class="form-control" name="management_id" value="@lang($user->management->name)">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="state" class="col-md-4 col-form-label text-md-right">@lang('State')</label>
+                            <div class="col-md-6">
+                                <input id="state" type="text" readonly class="form-control" name="state" value="@lang($user->state)">
                             </div>
                         </div>
 
