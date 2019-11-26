@@ -18,6 +18,7 @@ class UserController extends Controller
         $users = User::query()
 
             ->with('role', 'management')
+            ->withLastLogin()
             ->onlyTrashedIf($request->routeIs('users.trash'))
             ->filterBy($filters, $request->only(['search', 'management', 'state', 'roles', 'from', 'to', 'order', 'direction']))
             ->orderBy('id')

@@ -2,8 +2,6 @@
 
 namespace App\Model;
 
-use App\Queries\QueryFilter;
-use App\Queries\UserFilter;
 use App\Queries\UserQuery;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -39,6 +37,7 @@ class User extends Authenticatable
     protected $casts = [
         'active' => 'bool',
         'email_verified_at' => 'datetime',
+        'last_login_at' => 'datetime',
     ];
 
     /**
@@ -64,7 +63,6 @@ class User extends Authenticatable
         ]);
     }
 
-
     public function setStateAttribute($value)
     {
         $this->attributes['active'] = $value == 'active';
@@ -79,4 +77,17 @@ class User extends Authenticatable
     {
         return "{$this->names} {$this->surnames}";
     }
+
+//    public function scopeWithLastLogin($query)
+//    {
+//        $subselect = Login::select('logins.created_at')
+//            ->whereColumn('user_id', 'users.id')
+//            ->latest() //orderByDesc('created_at')
+//            ->limit(1);
+//
+//        $query->addSelect([
+//            'last_login_at' => $subselect,
+//        ]);
+//
+//    }
 }

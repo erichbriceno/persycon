@@ -2,6 +2,7 @@
 
 namespace App\Queries;
 
+use App\Model\Login;
 use Illuminate\Database\Eloquent\Builder;
 
 class UserQuery extends Builder
@@ -18,6 +19,20 @@ class UserQuery extends Builder
         if ($trashed) {
             $this->onlyTrashed();
         }
+        return $this;
+    }
+
+    public function withLastLogin()
+    {
+        $subselect = Login::select('logins.created_at')
+            ->whereColumn('user_id', 'users.id')
+            ->latest() //orderByDesc('created_at')
+            ->limit(1);
+
+        $this->addSelect([
+            'last_login_at' => $subselect,
+        ]);
+
         return $this;
     }
 

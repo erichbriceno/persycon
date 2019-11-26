@@ -1,10 +1,6 @@
 <?php
 
-use App\Model\{
-        User,
-        Role,
-        Management
-    };
+use App\Model\{Login, User, Role, Management};
 use Illuminate\Database\Seeder;
 
 class UserSeeder extends Seeder
@@ -31,22 +27,12 @@ class UserSeeder extends Seeder
             'password' => bcrypt('secreto1'),
         ]);
 
-
         foreach (range(1, 10) as $i) {
-            $user = factory(User::class)->create([
-                'role_id' => $this->roles->random()->id,
-                'management_id' => rand(0, 2) ? $this->managements->random()->id :  null,
-                'active' => false,
-                'created_at' => now()->subDays(rand(1, 90))
-            ]);
+            $this->createRandomUser(false);
         }
 
         foreach (range(1, 40) as $i) {
-            $user = factory(User::class)->create([
-                'role_id' => $this->roles->random()->id,
-                'management_id' => rand(0, 2) ? $this->managements->random()->id :  null,
-                'created_at' => now()->subDays(rand(1, 90))
-            ]);
+            $this->createRandomUser(true);
         }
     }
 
@@ -55,5 +41,19 @@ class UserSeeder extends Seeder
         $this->roles = Role::all();
         $this->managements = Management::where('selectable', true)->get();
 
+    }
+
+    public function createRandomUser($active): void
+    {
+        $user = factory(User::class)->create([
+            'role_id' => $this->roles->random()->id,
+            'management_id' => rand(0, 2) ? $this->managements->random()->id : null,
+            'active' => $active,
+            'created_at' => now()->subDays(rand(1, 90))
+        ]);
+
+        factory(Login::class)->times(rand(1, 10))->create([
+            'user_id' => $user->id,
+        ]);
     }
 }
