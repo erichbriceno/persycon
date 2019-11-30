@@ -9,6 +9,7 @@ class DatabaseSeeder extends Seeder
         $this->truncateTables([
             'managements',
             'projects',
+            'saimes',
             'groups',
             'roles',
             'users',
@@ -17,6 +18,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             ManagementSeeder::class,
             ProjectSeeder::class,
+            SaimeSeeder::class,
             GroupSeeder::class,
             RoleSeeder::class,
             UserSeeder::class
