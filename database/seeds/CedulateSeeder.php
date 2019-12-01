@@ -1,9 +1,9 @@
 <?php
 
-use App\Model\Saime;
+use App\Model\Cedulate;
 use Illuminate\Database\Seeder;
 
-class SaimeSeeder extends Seeder
+class CedulateSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,7 +12,7 @@ class SaimeSeeder extends Seeder
      */
     public function run()
     {
-        factory(Saime::class)->create([
+        factory(Cedulate::class)->create([
             'idpersona' => 'FESASATE335',
             'letra' =>  'V',
             'numerocedula' => 13683474,
@@ -24,7 +24,7 @@ class SaimeSeeder extends Seeder
             'sexo' =>   'm',
         ]);
 
-        factory(Saime::class)->create([
+        factory(Cedulate::class)->create([
             'idpersona' => 'FESASATE336',
             'letra' =>  'V',
             'numerocedula' => 16368933,
@@ -36,7 +36,7 @@ class SaimeSeeder extends Seeder
             'sexo' =>   'm',
         ]);
 
-        factory(Saime::class)->create([
+        factory(Cedulate::class)->create([
             'idpersona' => 'FESASATE337',
             'letra' =>  'V',
             'numerocedula' => 16368929,
@@ -48,7 +48,7 @@ class SaimeSeeder extends Seeder
             'sexo' =>   'f',
         ]);
 
-        factory(Saime::class)->times(50)->create();
+        factory(Cedulate::class)->times(50)->create();
 
     }
 }

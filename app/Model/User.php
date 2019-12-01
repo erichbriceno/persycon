@@ -78,16 +78,4 @@ class User extends Authenticatable
         return "{$this->names} {$this->surnames}";
     }
 
-//    public function scopeWithLastLogin($query)
-//    {
-//        $subselect = Login::select('logins.created_at')
-//            ->whereColumn('user_id', 'users.id')
-//            ->latest() //orderByDesc('created_at')
-//            ->limit(1);
-//
-//        $query->addSelect([
-//            'last_login_at' => $subselect,
-//        ]);
-//
-//    }
 }

@@ -7,9 +7,9 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->truncateTables([
+            'saime_datos_ac',
             'managements',
             'projects',
-            'saimes',
             'groups',
             'roles',
             'users',
@@ -17,8 +17,8 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             ManagementSeeder::class,
+            CedulateSeeder::class,
             ProjectSeeder::class,
-            SaimeSeeder::class,
             GroupSeeder::class,
             RoleSeeder::class,
             UserSeeder::class

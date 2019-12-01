@@ -2,10 +2,10 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\Model\Saime;
+use App\Model\Cedulate;
 use Faker\Generator as Faker;
 
-$factory->define(Saime::class, function (Faker $faker) {
+$factory->define(Cedulate::class, function (Faker $faker) {
     return [
         'idpersona' => $faker->unique()->md5,
         'letra' =>  rand(0,10)?'V':'E',

@@ -4,10 +4,9 @@
 namespace App\Queries;
 
 
-use App\Rules\SortableColumn;
 use App\Sortable;
 use Carbon\Carbon;
-use Illuminate\Support\Str;
+use App\Rules\SortableColumn;
 
 class UserFilter extends QueryFilter
 {
