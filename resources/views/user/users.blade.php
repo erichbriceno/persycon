@@ -10,7 +10,7 @@
             <table class="table table-sm">
                 <thead class="thead-light">
                     <tr>
-                        <th scope="col"><a href="{{ $sortable->url('id') }}" class="indecorate">@lang('ID')</a>&nbsp<i class="fas {{ $sortable->classes('id') }}"></i></th>
+                        <th scope="col"><a href="{{ $sortable->url('cedule') }}" class="indecorate">@lang('Cedule')</a>&nbsp<i class="fas {{ $sortable->classes('cedule') }}"></i></th>
                         <th scope="col"><a href="{{ $sortable->url('names') }}" class="indecorate">@lang('Full Name')</a>&nbsp<i class="fas {{ $sortable->classes('names') }}"></i></th>
                         <th scope="col"><a href="{{ $sortable->url('email') }}" class="indecorate">@lang('Email')</a>&nbsp<i class="fas {{ $sortable->classes('email') }}"></i></th>
                         <th scope="col">@lang('Management')</th>

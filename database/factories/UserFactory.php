@@ -8,6 +8,8 @@ use Faker\Generator as Faker;
 
 $factory->define(User::class, function (Faker $faker) {
     return [
+        'nat' =>  rand(0,10)?'V':'E',
+        'numberced' => $faker->unique()->numberBetween(500000,37000000),
         'names' => $faker->name,
         'surnames' => $faker->lastName,
         'email' => $faker->unique()->safeEmail,

@@ -91,9 +91,7 @@ class UserController extends Controller
 
         $user = User::onlyTrashed()->where('id', $id)->firstOrFail();
 
-        $user->deleted_at = null;
-
-        $user->update();
+        $user->restore();
 
         return redirect()->route('users.trash');
     }

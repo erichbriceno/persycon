@@ -1,5 +1,5 @@
 <tr>
-    <td>{{ $user->id }}</td>
+    <td>{{ $user->cedule }}</td>
     <td>
         {{ $user->name }}
         <span style="font-size: 0.7rem; color: #a1a6a9;">

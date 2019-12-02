@@ -20,6 +20,8 @@ class UserSeeder extends Seeder
 
         factory(User::class)->create([
             'management_id' => $this->managements->where('name', 'PO')->first()->id,
+            'nat' => 'V',
+            'numberced' => '13683474',
             'names' => 'Erich Javier',
             'surnames' => 'Briceño',
             'email' => 'erichbriceno@gmail.com',

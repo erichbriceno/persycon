@@ -17,7 +17,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'names', 'surnames', 'email', 'role_id', 'management_id', 'password', 'active', 'state'
+        'nat','numberced','names', 'surnames', 'email', 'role_id', 'management_id', 'password', 'active', 'state'
     ];
 
     /**
@@ -76,6 +76,11 @@ class User extends Authenticatable
     public function getNameAttribute()
     {
         return "{$this->names} {$this->surnames}";
+    }
+
+    public function getCeduleAttribute()
+    {
+        return "{$this->nat}{$this->numberced}";
     }
 
 }

@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Cedulate extends Model
 {
 
+    const FIRST_NAME = 'primernombre';
+
     /**
      * The table associated with the model.
      *
@@ -15,14 +17,31 @@ class Cedulate extends Model
     protected $table = 'saime_datos_AC';
 
 
+    public function getNameAttribute()
+    {
+        return "{$this->primernombre} {$this->segundonombre} {$this->primerapellido} {$this->segundoapellido}";
+    }
+
     public function getNamesAttribute()
     {
         return "{$this->primernombre} {$this->segundonombre}";
     }
 
-    public function getNameAttribute()
+    public function getSurnameAttribute()
     {
-        return "{$this->primernombre} {$this->segundonombre} {$this->primerapellido} {$this->segundoapellido}";
+        return "{$this->primerapellido} {$this->segundoapellido}";
     }
+
+    public function getBirthdateAttribute()
+    {
+        return $this->fechanacimiento;
+    }
+
+    public function getCeduleAttribute()
+    {
+        return "{$this->letra}{$this->numerocedula}";
+    }
+
+
 
 }

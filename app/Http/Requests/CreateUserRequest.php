@@ -26,6 +26,8 @@ class CreateUserRequest extends FormRequest
     public function rules()
     {
         return [
+            'nat' => '',
+            'numberced' => '',
             'names' => ['required', 'present','string', 'max:255'],
             'surnames' => ['required', 'present','string', 'max:255'],
             'email' => ['required', 'present', 'string', 'email', 'max:255', 'unique:users'],
@@ -57,6 +59,8 @@ class CreateUserRequest extends FormRequest
     {
 
         $user = User::create([
+            'nat' => $this->nat,
+            'numberced' => $this->numberced,
             'names' => $this->names,
             'surnames' => $this->surnames,
             'email' => $this->email,
