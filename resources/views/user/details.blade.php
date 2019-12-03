@@ -16,6 +16,14 @@
                         </div>
 
                         <div class="form-group row">
+                            <label for="cedule" class="col-md-4 col-form-label text-md-right">@lang('Cedule')</label>
+                            <div class="col-md-6">
+                                <input id="cedule" type="text" readonly class="form-control" name="cedule" value="{{ $user->cedule }}">
+                            </div>
+                        </div>
+
+
+                        <div class="form-group row">
                             <label for="names" class="col-md-4 col-form-label text-md-right">@lang('Names')</label>
                             <div class="col-md-6">
                                 <input id="names" type="text" readonly class="form-control" name="names" value="{{ $user->names }}">
@@ -61,7 +69,7 @@
                         <div class="row">
                             <div class="col-md-10">
                                 <div class="form-inline justify-content-end">
-                                    <a href="{{ route('user.edit', ['id' => $user->id]) }}" class="btn btn-sm btn-secondary" role="button" aria-disabled="true">Edit</a>
+                                    <a href="{{ route('user.edit', $user) }}" class="btn btn-sm btn-secondary" role="button" aria-disabled="true">Edit</a>
                                     &nbsp;
                                     <a href="{{ route('users') }}" class="btn btn-sm btn-secondary" role="button" aria-disabled="true">Back</a>
                                 </div>

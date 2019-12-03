@@ -8,6 +8,21 @@
     </div>
 </div>
 @endif
+
+<div class="form-group row">
+    <label for="nat" class="col-md-4 col-form-label text-md-right">@lang('Nat')</label>
+    <div class="col-md-6">
+        <input id="nat" type="text"  class="form-control" name="nat" value="{{ $user->nat }}">
+    </div>
+</div>
+
+<div class="form-group row">
+    <label for="numberced" class="col-md-4 col-form-label text-md-right">@lang('Cedule')</label>
+    <div class="col-md-6">
+        <input id="numberced" type="text"  class="form-control" name="numberced" value="{{ $user->numberced }}">
+    </div>
+</div>
+
 <div class="form-group row">
     <label for="names" class="col-md-4 col-form-label text-md-right">@lang('Names')</label>
     <div class="col-md-6">
