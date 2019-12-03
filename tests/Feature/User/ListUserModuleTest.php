@@ -125,6 +125,28 @@ class ListUserModuleTest extends TestCase
     }
 
     /** @test */
+    function users_list_are_ordered_by_cedulate()
+    {
+        factory(User::class)->create(['numberced' => '13']);
+        factory(User::class)->create(['numberced' => '4']);
+        factory(User::class)->create(['numberced' => '16']);
+
+        $this->get(route('users', ['order' => 'cedule']))
+            ->assertSeeInOrder([
+                '4',
+                '13',
+                '16',
+            ]);
+
+        $this->get(route('users', ['order' => 'cedule-desc']))
+            ->assertSeeInOrder([
+                '16',
+                '13',
+                '4',
+            ]);
+    }
+
+    /** @test */
     function invalid_order_query_data_is_ignored_and_the_default_order_is_used_instead()
     {
         $this->withoutExceptionHandling();

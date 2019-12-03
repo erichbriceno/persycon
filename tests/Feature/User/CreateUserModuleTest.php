@@ -43,6 +43,95 @@ class CreateUserModuleTest extends TestCase
         ]);
     }
 
+
+    /** @test */
+    function the_nat_is_required()
+    {
+        $this->from(route('user.create'))
+            ->post(route('user.store'), $this->getValidData([
+                'nat' => ''
+            ]))->assertRedirect(route('user.create'))
+            ->assertSessionHasErrors(['nat']);
+
+        $this->assertDatabaseMissing('users', [
+            'names' => 'Erich Javier',
+            'email' => 'erichbriceno@gmail.com',
+        ]);
+    }
+
+    /** @test */
+    function the_nat_must_be_valid()
+    {
+        $this->from(route('user.create'))
+            ->post(route('user.store'), $this->getValidData([
+                'nat' => 'A'
+            ]))->assertRedirect(route('user.create'))
+            ->assertSessionHasErrors(['nat']);
+
+        $this->assertDatabaseMissing('users', [
+            'names' => 'Erich Javier',
+            'email' => 'erichbriceno@gmail.com',
+        ]);
+    }
+
+
+
+    /** @test */
+    function the_numberced_is_required()
+    {
+        $this->from(route('user.create'))
+            ->post(route('user.store'), $this->getValidData([
+                'numberced' => ''
+            ]))->assertRedirect(route('user.create'))
+            ->assertSessionHasErrors(['numberced']);
+
+        $this->assertDatabaseMissing('users', [
+            'names' => 'Erich Javier',
+            'email' => 'erichbriceno@gmail.com',
+        ]);
+    }
+
+    /** @test */
+    function the_numberced_must_be_greater_than_300k()
+    {
+        $this->from(route('user.create'))
+            ->post(route('user.store'), $this->getValidData([
+                'numberced' => '299999'
+            ]))->assertRedirect(route('user.create'))
+            ->assertSessionHasErrors(['numberced']);
+
+        $this->from(route('user.create'))
+            ->post(route('user.store'), $this->getValidData([
+                'numberced' => '300000'
+            ]))->assertRedirect(route('users'));
+
+        $this->assertDatabaseHas('users', [
+            'names' => 'Erich Javier',
+            'email' => 'erichbriceno@gmail.com',
+        ]);
+    }
+
+    /** @test */
+    function the_number_must_be_less_than_100Mill()
+    {
+        $this->from(route('user.create'))
+            ->post(route('user.store'), $this->getValidData([
+                'numberced' => '100000001'
+            ]))->assertRedirect(route('user.create'))
+            ->assertSessionHasErrors(['numberced']);
+
+        $this->from(route('user.create'))
+            ->post(route('user.store'), $this->getValidData([
+                'numberced' => '100000000'
+            ]))->assertRedirect(route('users'));
+
+        $this->assertDatabaseHas('users', [
+            'names' => 'Erich Javier',
+            'email' => 'erichbriceno@gmail.com',
+        ]);
+    }
+
+
     /** @test */
     function the_names_is_required()
     {
