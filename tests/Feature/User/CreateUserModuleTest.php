@@ -34,6 +34,8 @@ class CreateUserModuleTest extends TestCase
             ->assertRedirect(route('users'));
 
         $this->assertDatabaseHas('users', [
+            'nat' => 'V',
+            'numberced' => '13683474',
             'names' => 'Erich Javier',
             'surnames' => 'Briceño',
             'email' => 'erichbriceno@gmail.com',

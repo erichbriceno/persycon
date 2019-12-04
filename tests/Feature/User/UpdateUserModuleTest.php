@@ -13,19 +13,22 @@ class UpdateUserModuleTest extends TestCase
     protected $role;
 
         /** @test */
-    function it_updates_a_user()
+    function it_update_a_users_allowed_fields()
     {
         $user = factory(User::class)->create();
 
-        $this->put(route('user.update', $user), $this->getValidData([
-            'role_id' => Role::Where('name', 'Administrator')->first()->id,
-            'management_id' => Management::Where('name', 'All')->first()->id,
-        ]))
+        $this->put(route('user.update', $user),
+            [
+                'email' => 'erichbriceno@gmail.com',
+                'role_id' => Role::Where('name', 'Administrator')->first()->id,
+                'management_id' => Management::Where('name', 'All')->first()->id,
+                'password' => 'secreto1',
+                'password_confirmation' => 'secreto1',
+                'state' => 'active'
+            ])
             ->assertRedirect(route('user.details',$user));
 
         $this->assertDatabaseHas('users', [
-            'names' => 'Erich Javier',
-            'surnames' => 'Briceño',
             'email' => 'erichbriceno@gmail.com',
             'role_id' => Role::Where('name', 'Administrator')->first()->id,
             'management_id' => Management::Where('name', 'All')->first()->id,
@@ -33,37 +36,66 @@ class UpdateUserModuleTest extends TestCase
     }
 
     /** @test */
-    function the_names_is_required_when_updating_a_user()
+    function the_cedule_a_user_cannot_be_updated()
     {
-        $user = factory(User::class)->create();
+        $user = factory(User::class)->create([
+            'nat' => 'V',
+            'numberced' => '13683474'
+        ]);
 
         $this->from(route('user.edit', $user))
-            ->put(route('user.update', $user), $this->getValidData([
-                'names' => ''
+            ->put(route('user.update', $user), $this->getUpdateValidData([
+                'nat' => 'E',
+                'numberced' => '6666'
             ]))
-        ->assertRedirect(route('user.edit', $user))
-        ->assertSessionHasErrors(['names']);
+            ->assertRedirect(route('user.details',$user));
 
         $this->assertEquals(1, User::count());
-        $this->assertDatabaseMissing('users', ['names' => 'Erich Javier']);
+        $this->assertDatabaseHas('users', [
+            'nat' => 'V',
+            'numberced' => '13683474'
+        ]);
     }
+
 
     /** @test */
-    function the_surnames_is_required_when_updating_a_user()
+    function the_names_a_user_cannot_be_updated()
     {
-        $user = factory(User::class)->create();
+        $user = factory(User::class)->create([
+            'names' => 'Old Name'
+        ]);
 
         $this->from(route('user.edit', $user))
-            ->put(route('user.update', $user), $this->getValidData([
-                'surnames' => ''
+            ->put(route('user.update', $user), $this->getUpdateValidData([
+                'names' => 'New Name'
             ]))
-            ->assertRedirect(route('user.edit', $user))
-            ->assertSessionHasErrors(['surnames']);
+        ->assertRedirect(route('user.details',$user));
 
         $this->assertEquals(1, User::count());
-        $this->assertDatabaseMissing('users', ['surnames' => 'Briceño']);
+        $this->assertDatabaseHas('users', [
+            'names' => 'Old Name'
+        ]);
     }
 
+
+    /** @test */
+    function the_surnames_a_user_cannot_be_updated()
+    {
+        $user = factory(User::class)->create([
+            'surnames' => 'Old Surname'
+        ]);
+
+        $this->from(route('user.edit', $user))
+            ->put(route('user.update', $user), $this->getUpdateValidData([
+                'surnames' => 'New Surname'
+            ]))
+            ->assertRedirect(route('user.details',$user));
+
+        $this->assertEquals(1, User::count());
+        $this->assertDatabaseHas('users', [
+            'surnames' => 'Old Surname'
+        ]);
+    }
 
     /** @test */
     function the_role_must_be_avalible_when_updating_a_user()
@@ -124,15 +156,14 @@ class UpdateUserModuleTest extends TestCase
         ]);
 
         $this->from(route('user.edit', $user))
-            ->put(route('user.update', $user),$this->getValidData([
-                'names' => 'Erich Javier',
+            ->put(route('user.update', $user),$this->getUpdateValidData([
                 'password' => 'NUEVA_CLAVE',
                 'password_confirmation' => 'NUEVA_CLAVE',
             ]))
             ->assertRedirect(route('user.details', $user));
 
         $this->assertDatabaseHas('users', [
-            'names' => 'Erich Javier',
+            'email' => 'erichbriceno@gmail.com',
         ]);
     }
 
@@ -146,8 +177,7 @@ class UpdateUserModuleTest extends TestCase
         ]);
 
         $this->from(route('user.edit', $user))
-            ->put(route('user.update', $user),$this->getValidData([
-                'names' => 'Erich Javier',
+            ->put(route('user.update', $user),$this->getUpdateValidData([
                 'password' => 'NUEVA_CLAVE',
                 'password_confirmation' => 'OTRAS_CLAVE',
             ]))
@@ -178,18 +208,18 @@ class UpdateUserModuleTest extends TestCase
     function the_users_email_can_stay_the_same_when_updating_a_user()
     {
         $user = factory(User::class)->create([
-            'email' => 'erichbriceno@gmail.com'
+            'email' => 'correoinicial@gmail.com'
         ]);
 
         $this->from(route('user.edit', $user))
-            ->put(route('user.update', $user), $this->getValidData())
+            ->put(route('user.update', $user), $this->getUpdateValidData([
+                'email' => 'correoinicial@gmail.com'
+            ]))
             ->assertRedirect(route('user.details', $user));
 
         $this->assertEquals(1, User::count());
         $this->assertDatabaseHas('users', [
-            'names' => 'Erich Javier',
-            'surnames' => 'Briceño',
-            'email' => 'erichbriceno@gmail.com',
+            'email' => 'correoinicial@gmail.com',
         ]);
     }
 
@@ -198,14 +228,12 @@ class UpdateUserModuleTest extends TestCase
     {
         $user = factory(User::class)->create();
 
-        $this->put(route('user.update', $user), $this->getValidData([
+        $this->put(route('user.update', $user), $this->getUpdateValidData([
             'state' => 'inactive',
         ]))
             ->assertRedirect(route('user.details',$user));
 
         $this->assertDatabaseHas('users', [
-            'names' => 'Erich Javier',
-            'surnames' => 'Briceño',
             'email' => 'erichbriceno@gmail.com',
             'active' => false
         ]);
@@ -218,14 +246,12 @@ class UpdateUserModuleTest extends TestCase
             'active' => '0',
         ]);
 
-        $this->put(route('user.update', $user), $this->getValidData([
+        $this->put(route('user.update', $user), $this->getUpdateValidData([
             'state' => 'active',
         ]))
             ->assertRedirect(route('user.details',$user));
 
         $this->assertDatabaseHas('users', [
-            'names' => 'Erich Javier',
-            'surnames' => 'Briceño',
             'email' => 'erichbriceno@gmail.com',
             'active' => true
         ]);
@@ -239,7 +265,7 @@ class UpdateUserModuleTest extends TestCase
         ]);
 
         $this->from(route('user.edit', $user))
-            ->put(route('user.update', $user), $this->getValidData([
+            ->put(route('user.update', $user), $this->getUpdateValidData([
             'state' => 'no-valid-state',
         ]))
             ->assertRedirect(route('user.edit', $user))
@@ -250,13 +276,12 @@ class UpdateUserModuleTest extends TestCase
     function the_state_is_required_when_update()
     {
         $this->from(route('user.create'))
-            ->post(route('user.store'), $this->getValidData([
+            ->post(route('user.store'), $this->getUpdateValidData([
                 'state' => null
             ]))->assertRedirect(route('user.create'))
             ->assertSessionHasErrors(['state']);
 
         $this->assertDatabaseMissing('users', [
-            'names' => 'Erich Javier',
             'email' => 'erichbriceno@gmail.com',
         ]);
     }

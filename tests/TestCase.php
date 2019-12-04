@@ -22,7 +22,6 @@ abstract class TestCase extends BaseTestCase
 
     protected function getValidData(array $custom = [])
     {
-
         return array_merge([
             'nat' => 'V',
             'numberced' => '13683474',
@@ -35,7 +34,18 @@ abstract class TestCase extends BaseTestCase
             'password_confirmation' => 'secreto1',
             'state' => 'active'
         ], $custom);
+    }
 
+    protected function getUpdateValidData(array $custom = [])
+    {
+        return array_merge([
+            'email' => 'erichbriceno@gmail.com',
+            'role_id' => Role::Where('name', 'User')->first()->id,
+            'management_id' => Management::Where('name', 'All')->first()->id,
+            'password' => 'secreto1',
+            'password_confirmation' => 'secreto1',
+            'state' => 'active'
+        ], $custom);
     }
 
     protected function loadRolesTable()

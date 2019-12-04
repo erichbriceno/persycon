@@ -26,8 +26,6 @@ class UpdateUserRequest extends FormRequest
     public function rules()
     {
         return [
-            'names' => ['required', 'string', 'max:255'],
-            'surnames' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($this->user)],
             'role_id' => [
                 'required',
@@ -48,10 +46,7 @@ class UpdateUserRequest extends FormRequest
 
     public function updateUser(User $user)
     {
-        //dd($this->state == 'active');
         $user->fill([
-            'names' => $this->names,
-            'surnames' => $this->surnames,
             'email' => $this->email,
             'role_id' => $this->role_id,
             'management_id' => $this->management_id,
@@ -61,6 +56,5 @@ class UpdateUserRequest extends FormRequest
             $user->password = bcrypt($this->password);
         }
         $user->save();
-
     }
 }
