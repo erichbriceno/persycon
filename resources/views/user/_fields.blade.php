@@ -10,47 +10,36 @@
 @endif
 
 <div class="form-group row">
-    <label for="nat" class="col-md-4 col-form-label text-md-right">@lang('Nat')</label>
+    <label for="cedule" class="col-md-4 col-form-label text-md-right">@lang('Cedule')</label>
     <div class="col-md-6">
-        <input id="nat" type="text"  class="form-control" name="nat" value="{{ $user->nat }}">
-    </div>
-</div>
-
-<div class="form-group row">
-    <label for="numberced" class="col-md-4 col-form-label text-md-right">@lang('Cedule')</label>
-    <div class="col-md-6">
-        <input id="numberced" type="text"  class="form-control" name="numberced" value="{{ $user->numberced }}">
+        <input id="cedule" type="text"  class="form-control @error('Cedule') is-invalid @enderror" name="cedule" value="{{ $user->cedule }}" {{ $user->cedule === '' ? 'autofocus' : 'readonly'  }}>
+        @error('Cedule')
+        <span class="invalid-feedback" role="alert">
+            <strong>{{ $message }}</strong>
+        </span>
+        @enderror
     </div>
 </div>
 
 <div class="form-group row">
     <label for="names" class="col-md-4 col-form-label text-md-right">@lang('Names')</label>
     <div class="col-md-6">
-        <input id="names" type="text" class="form-control @error('Names') is-invalid @enderror" name="names" value="{{ old('names', $user->names) }}" required autocomplete="names" autofocus>
-        @error('names')
-        <span class="invalid-feedback" role="alert">
-            <strong>{{ $message }}</strong>
-        </span>
-        @enderror
+        <input id="names" type="text" class="form-control" name="names" value="{{ old('names', $user->names) }}" required autocomplete="names" readonly>
     </div>
 </div>
 
 <div class="form-group row">
     <label for="surnames" class="col-md-4 col-form-label text-md-right">@lang('Surnames')</label>
     <div class="col-md-6">
-        <input id="surnames" type="text" class="form-control @error('Surnames') is-invalid @enderror" name="surnames" value="{{ old('surnames', $user->surnames) }}" required autocomplete="surnames" autofocus>
-        @error('surnames')
-        <span class="invalid-feedback" role="alert">
-            <strong>{{ $message }}</strong>
-        </span>
-        @enderror
+        <input id="surnames" type="text" class="form-control" name="surnames" value="{{ old('surnames', $user->surnames) }}" required autocomplete="surnames" readonly>
     </div>
 </div>
 
+@if($user->cedule)
 <div class="form-group row">
     <label for="email" class="col-md-4 col-form-label text-md-right">@lang('E-Mail Address')</label>
     <div class="col-md-6">
-        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email', $user->email) }}" required autocomplete="email">
+        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email', $user->email) }}" required autocomplete="email" autofocus>
         @error('email')
         <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>
@@ -129,12 +118,16 @@
         @enderror
     </div>
 </div>
-
+@endif
 <div class="row">
     <div class="col-md-10">
         <div class="form-inline justify-content-end">
             <button type="submit" class="btn btn-sm btn-primary btn-sm">
-                @lang('Save')
+                @if($user->cedule)
+                    @lang('Save')
+                @else
+                    @lang('Find')
+                @endif
             </button>
             &nbsp;
             <a href="{{ route('users') }}" class="btn btn-sm btn-primary btn-sm">@lang('Back')</a>

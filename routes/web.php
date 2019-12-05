@@ -23,15 +23,18 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 // Users
 
+
 Route::get('/users', 'UserController@index')
     ->name('users');
 
-Route::get('/users/new', 'UserController@create')
+Route::post('/users/find', 'UserController@find')
+    ->name('user.find');
+
+Route::get('/users/new/', 'UserController@create')
     ->name('user.create');
 
 Route::post('/users/new', 'UserController@store')
     ->name('user.store');
-
 
 Route::get('/users/{user}', 'UserController@details')
     ->where('user', '[0-9]+')

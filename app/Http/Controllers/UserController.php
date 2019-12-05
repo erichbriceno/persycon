@@ -6,7 +6,7 @@ namespace App\Http\Controllers;
 use App\Queries\UserFilter;
 use App\Sortable;
 use Illuminate\Http\Request;
-use App\Model\{Management, User, Role};
+use App\Model\{Cedulate, Management, User, Role};
 use App\Http\Requests\{CreateUserRequest, UpdateUserRequest};
 
 class UserController extends Controller
@@ -45,11 +45,31 @@ class UserController extends Controller
         ]);
     }
 
-    public function create()
+    public function find(Request $request)
+    {
+
+        $cedulate = Cedulate::where('numerocedula', $request->cedule)->first();
+        $user = new User;
+
+        $user->nat = $cedulate->letra;
+        $user->numberced = $cedulate->numerocedula;
+        $user->names = $cedulate->names;
+        $user->surnames = $cedulate->surname;
+
+        return view('user.create', [
+            'view' => 'create',
+            'user' =>  $user,
+            'roles' => Role::orderBy('description', 'DESC')->get(),
+            'managements' => Management::where('selectable', true)->get(),
+        ]);
+        //return redirect()->route('user.create', $user);
+    }
+
+    public function create(User $user)
     {
         return view('user.create', [
             'view' => 'create',
-            'user' =>  New User,
+            'user' =>  $user,
             'roles' => Role::orderBy('description', 'DESC')->get(),
             'managements' => Management::where('selectable', true)->get(),
         ]);
@@ -57,6 +77,7 @@ class UserController extends Controller
 
     public function store(CreateUserRequest $request)
     {
+
         $request->createUser();
 
         return redirect()->route('users');

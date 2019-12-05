@@ -3,7 +3,7 @@
 namespace Tests\Feature\User;
 
 use Tests\TestCase;
-use App\Model\{Management, Role, User};
+use App\Model\{Cedulate, Management, Role, User};
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class CreateUserModuleTest extends TestCase
@@ -27,9 +27,33 @@ class CreateUserModuleTest extends TestCase
     }
 
     /** @test */
-    function it_create_a_new_user()
+    function it_find_a_citizen()
     {
         $this->withoutExceptionHandling();
+
+        factory(Cedulate::class)->create([
+            'idpersona' => 'FESASATE335',
+            'letra' =>  'V',
+            'numerocedula' => '13683474',
+            'primernombre' => 'ERICH',
+            'segundonombre' => 'JAVIER',
+            'primerapellido' => 'BRICENO',
+            'segundoapellido' => 'FERNANDEZ',
+            'fechanacimiento' => '1978-09-06',
+            'sexo' =>   'm',
+        ]);
+
+        $this->post(route('user.find'), ['cedule' => '13683474'])
+            ->assertViewIs('user.create')
+            ->assertStatus(200)
+            ->assertSee(trans('titles.title.create'))
+            ->assertSee('ERICH JAVIER')
+            ->assertViewHas('user');
+        }
+
+    /** @test */
+    function it_create_a_new_user()
+    {
         $this->post(route('user.store'), $this->getValidData())
             ->assertRedirect(route('users'));
 

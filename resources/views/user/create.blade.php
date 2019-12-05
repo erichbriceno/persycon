@@ -8,7 +8,7 @@
                 <div class="card-header">@lang('Register user')</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('user.create') }}">
+                    <form method="POST" action="{{ route('user.find') }}">
                         @include('user._fields')
                     </form>
                 </div>
