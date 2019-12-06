@@ -27,6 +27,14 @@ class CreateUserModuleTest extends TestCase
     }
 
     /** @test */
+    function it_loads_the_new_users_page_with_error_when_dont_have_cedule_number()
+    {
+        $this->get(route('user.create'))
+            ->assertViewIs('user.create');
+
+    }
+
+    /** @test */
     function it_create_a_new_user()
     {
         $this->post(route('user.store'), $this->getValidData())

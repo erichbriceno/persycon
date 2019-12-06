@@ -45,17 +45,27 @@ class UserController extends Controller
         ]);
     }
 
-    public function create($cedule)
+    public function find()
     {
-        $cedulate = Cedulate::where('numerocedula', $cedule)->first();
-
+        return view('user.create', [
+            'view' => 'create',
+            'user' =>  new User,
+            'roles' => Role::orderBy('description', 'DESC')->get(),
+            'managements' => Management::where('selectable', true)->get(),
+        ]);
+    }
+    public function create($cedule = null)
+    {
         $user = new User;
 
-        $user->nat = $cedulate->letra;
-        $user->numberced  = $cedulate->numerocedula;
-        $user->names = "$cedulate->primernombre $cedulate->segundonombre";
-        $user->surnames = "$cedulate->primerapellido $cedulate->segundoapellido";
+        if($cedule) {
+            $cedulate = Cedulate::where('numerocedula', $cedule)->first();
 
+            $user->nat = $cedulate->letra;
+            $user->numberced  = $cedulate->numerocedula;
+            $user->names = "$cedulate->primernombre $cedulate->segundonombre";
+            $user->surnames = "$cedulate->primerapellido $cedulate->segundoapellido";
+        }
 
         return view('user.create', [
             'view' => 'create',
