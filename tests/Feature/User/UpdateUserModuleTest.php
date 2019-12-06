@@ -275,10 +275,15 @@ class UpdateUserModuleTest extends TestCase
     /** @test */
     function the_state_is_required_when_update()
     {
-        $this->from(route('user.create'))
-            ->post(route('user.store'), $this->getUpdateValidData([
-                'state' => null
-            ]))->assertRedirect(route('user.create'))
+        $user = factory(User::class)->create([
+            'active' => '1',
+        ]);
+
+        $this->from(route('user.edit', $user))
+            ->put(route('user.update', $user), $this->getUpdateValidData([
+                'state' => '',
+            ]))
+            ->assertRedirect(route('user.edit', $user))
             ->assertSessionHasErrors(['state']);
 
         $this->assertDatabaseMissing('users', [

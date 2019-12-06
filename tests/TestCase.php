@@ -2,7 +2,7 @@
 
 namespace Tests;
 
-use App\Model\{Role, Management};
+use App\Model\{Cedulate, Role, Management};
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 
 abstract class TestCase extends BaseTestCase
@@ -18,6 +18,7 @@ abstract class TestCase extends BaseTestCase
 
         $this->loadRolesTable();
         $this->loadManagemetsTable();
+        $this->loadCedulatesTable();
     }
 
     protected function getValidData(array $custom = [])
@@ -108,6 +109,46 @@ abstract class TestCase extends BaseTestCase
             'name' => 'ODC',
             'description' => 'Oficinas Decentralizadas',
         ]);
+    }
+
+    public function loadCedulatesTable()
+    {
+        factory(Cedulate::class)->create([
+            'idpersona' => 'FESASATE335',
+            'letra' =>  'V',
+            'numerocedula' => 13683474,
+            'primernombre' => 'ERICH',
+            'segundonombre' => 'JAVIER',
+            'primerapellido' => 'BRICENO',
+            'segundoapellido' => 'FERNANDEZ',
+            'fechanacimiento' => '1978-09-06',
+            'sexo' =>   'm',
+        ]);
+
+        factory(Cedulate::class)->create([
+            'idpersona' => 'FESASATE336',
+            'letra' =>  'V',
+            'numerocedula' => 16638933,
+            'primernombre' => 'DANIEL',
+            'segundonombre' => 'JOSE',
+            'primerapellido' => 'BRICENO',
+            'segundoapellido' => 'FERNANDEZ',
+            'fechanacimiento' => '1983-03-07',
+            'sexo' =>   'm',
+        ]);
+
+        factory(Cedulate::class)->create([
+            'idpersona' => 'FESASATE337',
+            'letra' =>  'V',
+            'numerocedula' => 16638929,
+            'primernombre' => 'ANA',
+            'segundonombre' => 'LISBETH KARINA',
+            'primerapellido' => 'BRICENO',
+            'segundoapellido' => 'FERNANDEZ',
+            'fechanacimiento' => '1984-10-20',
+            'sexo' =>   'f',
+        ]);
+
     }
 
 }

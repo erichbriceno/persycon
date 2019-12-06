@@ -13,8 +13,6 @@ class SaimeConsultTest extends TestCase
     /** @test */
     function it_returns_a_cedulate_names_when_consulted()
     {
-        $this->createErichSaime();
-
         $person = Cedulate::where('letra','V')
             ->where('numerocedula', '13683474')
             ->first();
@@ -26,8 +24,6 @@ class SaimeConsultTest extends TestCase
     /** @test */
     function it_returns_a_cedulate_idPerson_when_consulted()
     {
-        $this->createErichSaime();
-
         $person = Cedulate::where('letra','V')
             ->where('numerocedula', '13683474')
             ->first();
@@ -36,20 +32,4 @@ class SaimeConsultTest extends TestCase
     }
 
 
-
-
-    public function createErichSaime(): void
-    {
-        factory(Cedulate::class)->create([
-            'idpersona' => 'FESASATE335',
-            'letra' => 'V',
-            'numerocedula' => 13683474,
-            'primernombre' => 'ERICH',
-            'segundonombre' => 'JAVIER',
-            'primerapellido' => 'BRICENO',
-            'segundoapellido' => 'FERNANDEZ',
-            'fechanacimiento' => '1978-09-06',
-            'sexo' => 'm',
-        ]);
-    }
 }

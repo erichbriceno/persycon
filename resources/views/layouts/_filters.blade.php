@@ -15,7 +15,7 @@
             <div class="form-inline justify-content-end">
                 <a href="{{ route('users.trash') }}" class="btn btn-outline-secondary btn-sm">@lang('Trash')</a>
                 &nbsp;
-                <a href="{{ route('user.create') }}" class="btn btn-primary btn-sm">@lang('New user')</a>
+                <a href="{{ route('user.create',['cedule' => '13683474']) }}" class="btn btn-primary btn-sm">@lang('New user')</a>
             </div>
         </div>
     </div>
