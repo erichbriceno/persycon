@@ -12,7 +12,7 @@
 <div class="form-group row">
     <label for="cedule" class="col-md-4 col-form-label text-md-right">@lang('Cedule')</label>
     <div class="col-md-6">
-        <input id="cedule" type="text"  class="form-control @error('Cedule') is-invalid @enderror" name="cedule" value="{{ $user->cedule }}" {{ $user->cedule === '' ? 'autofocus' : 'readonly'  }}>
+        <input id="cedule" type="text"  class="form-control @error('Cedule') is-invalid @enderror" name="cedule" value="{{ $user->cedule }}" readonly>
         @error('Cedule')
         <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>
@@ -35,7 +35,6 @@
     </div>
 </div>
 
-@if($user->cedule)
 <div class="form-group row">
     <label for="email" class="col-md-4 col-form-label text-md-right">@lang('E-Mail Address')</label>
     <div class="col-md-6">
@@ -118,7 +117,7 @@
         @enderror
     </div>
 </div>
-@endif
+
 <div class="row">
     <div class="col-md-10">
         <div class="form-inline justify-content-end">

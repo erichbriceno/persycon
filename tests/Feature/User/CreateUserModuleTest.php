@@ -16,40 +16,16 @@ class CreateUserModuleTest extends TestCase
     function it_loads_the_new_users_page()
     {
         $role = factory(Role::class)->create();
+        factory(Cedulate::class)->create($this->getCeduleValidData());
 
-        $this->get(route('user.create'))
-            ->assertViewIs('user.create')
+        $this->get(route('user.create',['cedule' => '13683474']))
             ->assertStatus(200)
+            ->assertViewIs('user.create')
             ->assertSee(trans('titles.title.create'))
             ->assertViewHas('roles', function ($roles) use ($role) {
                 return $roles->contains($role);
             });
     }
-
-    /** @test */
-    function it_find_a_citizen()
-    {
-        $this->withoutExceptionHandling();
-
-        factory(Cedulate::class)->create([
-            'idpersona' => 'FESASATE335',
-            'letra' =>  'V',
-            'numerocedula' => '13683474',
-            'primernombre' => 'ERICH',
-            'segundonombre' => 'JAVIER',
-            'primerapellido' => 'BRICENO',
-            'segundoapellido' => 'FERNANDEZ',
-            'fechanacimiento' => '1978-09-06',
-            'sexo' =>   'm',
-        ]);
-
-        $this->post(route('user.find'), ['cedule' => '13683474'])
-            ->assertViewIs('user.create')
-            ->assertStatus(200)
-            ->assertSee(trans('titles.title.create'))
-            ->assertSee('ERICH JAVIER')
-            ->assertViewHas('user');
-        }
 
     /** @test */
     function it_create_a_new_user()

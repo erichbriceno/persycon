@@ -48,6 +48,21 @@ abstract class TestCase extends BaseTestCase
         ], $custom);
     }
 
+    protected function getCeduleValidData(array $custom = [])
+    {
+        return array_merge([
+            'idpersona' => 'FESASATE335',
+            'letra' =>  'V',
+            'numerocedula' => '13683474',
+            'primernombre' => 'ERICH',
+            'segundonombre' => 'JAVIER',
+            'primerapellido' => 'BRICENO',
+            'segundoapellido' => 'FERNANDEZ',
+            'fechanacimiento' => '1978-09-06',
+            'sexo' =>   'm',
+        ], $custom);
+    }
+
     protected function loadRolesTable()
     {
 

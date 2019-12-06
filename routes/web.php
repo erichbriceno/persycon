@@ -27,10 +27,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/users', 'UserController@index')
     ->name('users');
 
-Route::post('/users/find', 'UserController@find')
-    ->name('user.find');
-
-Route::get('/users/new/', 'UserController@create')
+Route::get('/users/new/{cedule}', 'UserController@create')
     ->name('user.create');
 
 Route::post('/users/new', 'UserController@store')

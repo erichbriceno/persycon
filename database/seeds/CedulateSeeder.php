@@ -27,7 +27,7 @@ class CedulateSeeder extends Seeder
         factory(Cedulate::class)->create([
             'idpersona' => 'FESASATE336',
             'letra' =>  'V',
-            'numerocedula' => 16368933,
+            'numerocedula' => 16638933,
             'primernombre' => 'DANIEL',
             'segundonombre' => 'JOSE',
             'primerapellido' => 'BRICENO',
@@ -39,7 +39,7 @@ class CedulateSeeder extends Seeder
         factory(Cedulate::class)->create([
             'idpersona' => 'FESASATE337',
             'letra' =>  'V',
-            'numerocedula' => 16368929,
+            'numerocedula' => 16638929,
             'primernombre' => 'ANA',
             'segundonombre' => 'LISBETH KARINA',
             'primerapellido' => 'BRICENO',
