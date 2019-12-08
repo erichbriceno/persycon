@@ -8,9 +8,13 @@
                 <div class="card-header">@lang('Register user')</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('user.store') }}">
+                    @if($user->cedule)
+                        <form method="POST" action="{{ route('user.store') }}">
+                    @else
+                        <form method="POST" action="{{ route('user.finder') }}">
+                    @endif
                         @include('user._fields')
-                    </form>
+                        </form>
                 </div>
             </div>
         </div>

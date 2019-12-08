@@ -54,6 +54,11 @@ class UserController extends Controller
             'managements' => Management::where('selectable', true)->get(),
         ]);
     }
+
+    public function finder(Request $request)
+    {
+        return redirect()->route('user.create',$request->cedule);
+    }
     public function create($cedule = null)
     {
         $user = new User;

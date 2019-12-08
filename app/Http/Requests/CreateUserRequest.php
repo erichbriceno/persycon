@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Model\User;
+use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -26,8 +27,9 @@ class CreateUserRequest extends FormRequest
     public function rules()
     {
         return [
-            'nat' => Rule::in(['V','E']),
-            'numberced' => 'required|numeric|min:300000|max:100000000',
+            'cedule' => '',
+            //'nat' => Rule::in(['V','E']),
+            //'numberced' => 'required|numeric|min:300000|max:100000000',
             'names' => ['required', 'present','string', 'max:255'],
             'surnames' => ['required', 'present','string', 'max:255'],
             'email' => ['required', 'present', 'string', 'email', 'max:255', 'unique:users'],
@@ -59,8 +61,8 @@ class CreateUserRequest extends FormRequest
     {
 
         $user = User::create([
-            'nat' => $this->nat,
-            'numberced' => $this->numberced,
+            'nat' => Str::substr($this->cedule, 0, 1),
+            'numberced' => Str::substr($this->cedule, 1, 8),
             'names' => $this->names,
             'surnames' => $this->surnames,
             'email' => $this->email,

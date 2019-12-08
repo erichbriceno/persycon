@@ -30,6 +30,9 @@ Route::get('/users', 'UserController@index')
 Route::get('/users/find', 'UserController@find')
     ->name('user.find');
 
+Route::post('/users/find', 'UserController@finder')
+    ->name('user.finder');
+
 Route::get('/users/new/{cedule?}', 'UserController@create')
     ->name('user.create');
 
