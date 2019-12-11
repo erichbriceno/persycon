@@ -13,6 +13,8 @@ class ListUserModuleTest extends TestCase
     /** @test */
     function it_shows_the_users_list()
     {
+        $this->withoutExceptionHandling();
+
         factory(User::class)->create([
             'names' => 'Pedro',
         ]);

@@ -2,8 +2,8 @@
 
 namespace Tests\Feature\Unit;
 
-use App\Sortable;
 use Tests\TestCase;
+use App\Sortable;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 

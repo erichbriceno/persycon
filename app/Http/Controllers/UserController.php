@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 
 
-use App\Queries\UserFilter;
 use App\Sortable;
+use Illuminate\Support\Str;
+use App\Queries\UserFilter;
 use Illuminate\Http\Request;
 use App\Model\{Cedulate, Management, User, Role};
-use App\Http\Requests\{CreateUserRequest, UpdateUserRequest};
+use App\Http\Requests\{CreateUserRequest, FindCitizenRequest, UpdateUserRequest};
 
 class UserController extends Controller
 {
@@ -55,7 +56,7 @@ class UserController extends Controller
         ]);
     }
 
-    public function finder(Request $request)
+    public function finder(FindCitizenRequest $request)
     {
         return redirect()->route('user.create',$request->cedule);
     }
@@ -64,7 +65,9 @@ class UserController extends Controller
         $user = new User;
 
         if($cedule) {
-            $cedulate = Cedulate::where('numerocedula', $cedule)->first();
+            $cedulate = Cedulate::where('letra', Str::substr($cedule, 0, 1))
+                ->where('numerocedula', (int) Str::substr($cedule, 1, 8))
+                ->first();
 
             $user->nat = $cedulate->letra;
             $user->numberced  = $cedulate->numerocedula;

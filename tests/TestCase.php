@@ -150,6 +150,56 @@ abstract class TestCase extends BaseTestCase
             'sexo' =>   'f',
         ]);
 
+        factory(Cedulate::class)->create([
+            'letra' =>  'E',
+            'numerocedula' => 13683475,
+        ]);
+
+        factory(Cedulate::class)->create([
+            'letra' =>  'V',
+            'numerocedula' => 300000,
+        ]);
+
+        factory(Cedulate::class)->create([
+            'letra' =>  'V',
+            'numerocedula' => 90000000,
+        ]);
+
+        factory(Cedulate::class)->create([
+            'letra' =>  'E',
+            'numerocedula' => 300000,
+        ]);
+
+        factory(Cedulate::class)->create([
+            'letra' =>  'E',
+            'numerocedula' => 90000000,
+        ]);
+
+        factory(Cedulate::class)->create([
+            'letra' =>  'V',
+            'numerocedula' => 2,
+        ]);
+
+        factory(Cedulate::class)->create([
+            'letra' =>  'V',
+            'numerocedula' => 299999,
+        ]);
+
+        factory(Cedulate::class)->create([
+            'letra' =>  'V',
+            'numerocedula' => 90000001,
+        ]);
+
+        factory(Cedulate::class)->create([
+            'letra' =>  'E',
+            'numerocedula' => 299999,
+        ]);
+
+        factory(Cedulate::class)->create([
+            'letra' =>  'E',
+            'numerocedula' => 90000001,
+        ]);
+
     }
 
 }

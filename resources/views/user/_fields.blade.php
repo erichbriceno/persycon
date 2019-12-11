@@ -12,7 +12,7 @@
 <div class="form-group row">
     <label for="cedule" class="col-md-4 col-form-label text-md-right">@lang('Cedule')</label>
     <div class="col-md-6">
-        <input id="cedule" type="text"  class="form-control @error('Cedule') is-invalid @enderror" name="cedule" value="{{ $user->cedule }}" {{ $user->cedule ? 'readonly' : 'autofocus' }}>
+        <input id="cedule" type="text"  class="form-control @error('Cedule') is-invalid @enderror" name="cedule" value="{{ $user->cedule }}" {{ $user->cedule ? 'readonly' : 'autofocus' }} required>
         @error('Cedule')
         <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>

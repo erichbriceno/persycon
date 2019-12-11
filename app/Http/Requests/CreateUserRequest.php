@@ -28,9 +28,7 @@ class CreateUserRequest extends FormRequest
     public function rules()
     {
         return [
-            'cedule' => new ValidCedule,
-            //'nat' => Rule::in(['V','E']),
-            //'numberced' => 'required|numeric|min:300000|max:100000000',
+            'cedule' => ['required', new ValidCedule],
             'names' => ['required', 'present','string', 'max:255'],
             'surnames' => ['required', 'present','string', 'max:255'],
             'email' => ['required', 'present', 'string', 'email', 'max:255', 'unique:users'],
