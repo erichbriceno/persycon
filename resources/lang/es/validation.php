@@ -114,6 +114,7 @@ return [
     'unique'               => 'El campo :attribute ya ha sido registrado.',
     'uploaded'             => 'Subir :attribute ha fallado.',
     'url'                  => 'El formato :attribute es inválido.',
+    'usercreate'           => 'El usuario ya existe',
     'uuid'                 => 'El campo :attribute debe ser un UUID válido.',
 
     /*

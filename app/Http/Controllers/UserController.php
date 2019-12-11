@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 
+use App\Rules\ValidCedule;
 use App\Sortable;
 use Illuminate\Support\Str;
 use App\Queries\UserFilter;
@@ -62,18 +63,22 @@ class UserController extends Controller
     }
     public function create($cedule = null)
     {
+        $validate = new ValidCedule;
+
+        if(! $validate->passes('cedule', $cedule)) {
+            return redirect()->route('user.find');
+        }
+
         $user = new User;
 
-        if($cedule) {
-            $cedulate = Cedulate::where('letra', Str::substr($cedule, 0, 1))
-                ->where('numerocedula', (int) Str::substr($cedule, 1, 8))
-                ->first();
+        $cedulate = Cedulate::where('letra', Str::substr($cedule, 0, 1))
+            ->where('numerocedula', (int) Str::substr($cedule, 1, 8))
+            ->first();
 
-            $user->nat = $cedulate->letra;
-            $user->numberced  = $cedulate->numerocedula;
-            $user->names = "$cedulate->primernombre $cedulate->segundonombre";
-            $user->surnames = "$cedulate->primerapellido $cedulate->segundoapellido";
-        }
+        $user->nat = $cedulate->letra;
+        $user->numberced  = $cedulate->numerocedula;
+        $user->names = "$cedulate->primernombre $cedulate->segundonombre";
+        $user->surnames = "$cedulate->primerapellido $cedulate->segundoapellido";
 
         return view('user.create', [
             'view' => 'create',

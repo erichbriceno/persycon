@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Model\User;
+use App\Rules\UserExist;
 use App\Rules\ValidCedule;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
@@ -28,7 +29,11 @@ class CreateUserRequest extends FormRequest
     public function rules()
     {
         return [
-            'cedule' => ['required', new ValidCedule],
+            'cedule' => [
+                'required',
+                new ValidCedule,
+                new UserExist,
+            ],
             'names' => ['required', 'present','string', 'max:255'],
             'surnames' => ['required', 'present','string', 'max:255'],
             'email' => ['required', 'present', 'string', 'email', 'max:255', 'unique:users'],

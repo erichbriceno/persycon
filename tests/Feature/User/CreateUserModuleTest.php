@@ -27,11 +27,17 @@ class CreateUserModuleTest extends TestCase
     }
 
     /** @test */
-    function it_loads_the_new_users_page_with_error_when_dont_have_cedule_number()
+    function it_redirect_to_finder_page_when_dont_have_cedule()
     {
         $this->get(route('user.create'))
-            ->assertViewIs('user.create');
+            ->assertRedirect(route('user.find'));
+    }
 
+    /** @test */
+    function it_redirect_to_finder_page_when_cedule_is_invalid()
+    {
+        $this->get(route('user.create', ['cedule' => 'invalid-cedule']))
+            ->assertRedirect(route('user.find'));
     }
 
     /** @test */
@@ -83,9 +89,20 @@ class CreateUserModuleTest extends TestCase
         ]);
     }
 
+    /** @test */
+    function the_cedule_must_be_unique()
+    {
+        $this->from(route('user.create',['cedule' => 'V13683474']))
+            ->post(route('user.store'), $this->getValidData([
+                'cedule' => 'V13683474'
+            ]))->assertRedirect(route('user.create',['cedule' => 'V13683474']))
+            ->assertSessionHasErrors(['cedule']);
 
-
-
+        $this->assertDatabaseMissing('users', [
+            'names' => 'Erich Javier',
+            'email' => 'erichbriceno@gmail.com',
+        ]);
+    }
 
     /** @test */
     function the_names_is_required()
