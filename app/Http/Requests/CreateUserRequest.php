@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Model\User;
+use App\Rules\ValidCedule;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
@@ -27,7 +28,7 @@ class CreateUserRequest extends FormRequest
     public function rules()
     {
         return [
-            'cedule' => '',
+            'cedule' => new ValidCedule,
             //'nat' => Rule::in(['V','E']),
             //'numberced' => 'required|numeric|min:300000|max:100000000',
             'names' => ['required', 'present','string', 'max:255'],

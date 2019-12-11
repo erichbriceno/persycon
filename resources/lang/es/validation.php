@@ -29,6 +29,7 @@ return [
         'array'   => ':attribute tiene que tener entre :min - :max ítems.',
     ],
     'boolean'              => 'El campo :attribute debe tener un valor verdadero o falso.',
+    'cedule'               => 'La cedula es invalida',
     'confirmed'            => 'La confirmación de :attribute no coincide.',
     'date'                 => ':attribute no es una fecha válida.',
     'date_equals'          => ':attribute debe ser una fecha igual a :date.',
