@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Model\User;
+use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -47,7 +48,7 @@ class UpdateUserRequest extends FormRequest
     public function updateUser(User $user)
     {
         $user->fill([
-            'email' => $this->email,
+            'email' => Str::lower($this->email),
             'role_id' => $this->role_id,
             'management_id' => $this->management_id,
             'active' => $this->state == 'active'

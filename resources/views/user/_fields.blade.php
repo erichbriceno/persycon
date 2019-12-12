@@ -1,5 +1,10 @@
 @csrf
 
+@if ($errors->any())
+    <p>Hay errores!</p>
+    <p>{{ $errors->first('cedule') }}</p>
+@endif
+
 @if($user->id)
 <div class="form-group row">
     <label for="id" class="col-md-4 col-form-label text-md-right">@lang('Id')</label>

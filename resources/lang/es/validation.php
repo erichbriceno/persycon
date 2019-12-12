@@ -30,6 +30,7 @@ return [
     ],
     'boolean'              => 'El campo :attribute debe tener un valor verdadero o falso.',
     'cedule'               => 'La cedula es invalida',
+    'ceduleexist'          => 'Cedula no registrada en el AC',
     'confirmed'            => 'La confirmación de :attribute no coincide.',
     'date'                 => ':attribute no es una fecha válida.',
     'date_equals'          => ':attribute debe ser una fecha igual a :date.',
@@ -114,7 +115,7 @@ return [
     'unique'               => 'El campo :attribute ya ha sido registrado.',
     'uploaded'             => 'Subir :attribute ha fallado.',
     'url'                  => 'El formato :attribute es inválido.',
-    'usercreate'           => 'El usuario ya existe',
+    'userexist'           => 'El usuario ya existe',
     'uuid'                 => 'El campo :attribute debe ser un UUID válido.',
 
     /*

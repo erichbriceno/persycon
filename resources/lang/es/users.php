@@ -4,7 +4,7 @@ return [
     'roles' => ['master' => 'Maestro', 'admin' => 'Administrador', 'user' => 'Usuario'],
     'filters' => [
         'roles' => ['master' => 'Maestro', 'admin' => 'Administrador', 'user' => 'Usuario'],
-        'states' => ['all' => 'Todos', 'active' => 'Activos', 'inactive' => 'Inactivos'],
+        'states' => ['active' => 'Activos', 'inactive' => 'Inactivos', 'all' => 'Todos'],
     ],
     'state' => ['active' => 'Activo', 'inactive'=> 'Inactivo'],
     'emptyMessage' => [

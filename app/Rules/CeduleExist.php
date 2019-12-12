@@ -2,11 +2,11 @@
 
 namespace App\Rules;
 
-use App\Model\User;
-use Illuminate\Support\Str;
+use App\Model\Cedulate;
 use Illuminate\Contracts\Validation\Rule;
+use Illuminate\Support\Str;
 
-class UserExist implements Rule
+class CeduleExist implements Rule
 {
     /**
      * Create a new rule instance.
@@ -27,7 +27,7 @@ class UserExist implements Rule
      */
     public function passes($attribute, $value)
     {
-        return User::where('nat', Str::substr($value, 0, 1))->where('numberced', (int) Str::substr($value, 1, 8))->count() == 0;
+        return Cedulate::where('letra', Str::substr($value, 0, 1))->where('numerocedula', (int) Str::substr($value, 1, 8))->count() == 1;
     }
 
     /**
@@ -37,6 +37,7 @@ class UserExist implements Rule
      */
     public function message()
     {
-        return trans('validation.userexist');
+        return trans('validation.ceduleexist');
     }
+
 }

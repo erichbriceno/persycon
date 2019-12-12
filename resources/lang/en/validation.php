@@ -31,6 +31,7 @@ return [
     ],
     'boolean' => 'The :attribute field must be true or false.',
     'cedule' => 'The cedule is invalid',
+    'ceduleexist' => 'Cedule not registered in the AC',
     'confirmed' => 'The :attribute confirmation does not match.',
     'date' => 'The :attribute is not a valid date.',
     'date_equals' => 'The :attribute must be a date equal to :date.',
@@ -116,7 +117,7 @@ return [
     'unique' => 'The :attribute has already been taken.',
     'uploaded' => 'The :attribute failed to upload.',
     'url' => 'The :attribute format is invalid.',
-    'usercreate' => 'User already exists',
+    'userexist' => 'User already exists',
     'uuid' => 'The :attribute must be a valid UUID.',
 
     /*

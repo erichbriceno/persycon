@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Model\User;
+use App\Rules\CeduleExist;
 use App\Rules\UserExist;
 use App\Rules\ValidCedule;
 use Illuminate\Support\Str;
@@ -32,6 +33,7 @@ class CreateUserRequest extends FormRequest
             'cedule' => [
                 'required',
                 new ValidCedule,
+                new CeduleExist,
                 new UserExist,
             ],
             'names' => ['required', 'present','string', 'max:255'],
@@ -57,7 +59,7 @@ class CreateUserRequest extends FormRequest
     public function messages()
     {
         return [
-            'names.required' => 'El campo nombre es',
+            'names.required' => 'El campo nombre es requerido',
         ];
     }
 
@@ -69,7 +71,7 @@ class CreateUserRequest extends FormRequest
             'numberced' => Str::substr($this->cedule, 1, 8),
             'names' => $this->names,
             'surnames' => $this->surnames,
-            'email' => $this->email,
+            'email' => Str::lower($this->email),
             'role_id' => $this->role_id,
             'management_id' => $this->management_id,
             'password' => bcrypt($this->password),

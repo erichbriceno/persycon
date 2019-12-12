@@ -10,8 +10,6 @@ class CreateUserModuleTest extends TestCase
 {
     use RefreshDatabase;
 
-    protected $role;
-
     /** @test */
     function it_loads_the_new_users_page()
     {
@@ -62,6 +60,7 @@ class CreateUserModuleTest extends TestCase
     /** @test */
     function the_cedule_is_required()
     {
+
         $this->from(route('user.create',['cedule' => Cedulate::first()->cedule]))
             ->post(route('user.store'), $this->getValidData([
                 'cedule' => ''
@@ -92,16 +91,27 @@ class CreateUserModuleTest extends TestCase
     /** @test */
     function the_cedule_must_be_unique()
     {
+
+        $role = factory(Role::class)->create();
+
+        factory(User::class)->create([
+            'management_id' => null,
+            'nat' => 'V',
+            'numberced' => '13683474',
+            'names' => 'Erich Javier',
+            'surnames' => 'Briceno',
+            'email' => 'erichbriceno@gmail.com',
+            'role_id' => $role->id,
+            'password' => bcrypt('secreto1'),
+        ]);
+
         $this->from(route('user.create',['cedule' => 'V13683474']))
             ->post(route('user.store'), $this->getValidData([
                 'cedule' => 'V13683474'
             ]))->assertRedirect(route('user.create',['cedule' => 'V13683474']))
             ->assertSessionHasErrors(['cedule']);
 
-        $this->assertDatabaseMissing('users', [
-            'names' => 'Erich Javier',
-            'email' => 'erichbriceno@gmail.com',
-        ]);
+        $this->assertSame(1, User::where('numberced','13683474')->count());
     }
 
     /** @test */

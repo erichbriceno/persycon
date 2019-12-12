@@ -2,7 +2,6 @@
 
 namespace App\Rules;
 
-use App\Model\Cedulate;
 use Illuminate\Support\Str;
 use Illuminate\Contracts\Validation\Rule;
 
@@ -29,8 +28,7 @@ class ValidCedule implements Rule
     {
         return  $this->validNationality($value) &&
                 $this->validNumberCed($value) &&
-                Str::length($value) < 10 &&
-                $this->validCeduleExist($value);
+                Str::length($value) < 10 ;
     }
 
     /**
@@ -56,8 +54,5 @@ class ValidCedule implements Rule
             array("options" => array("min_range"=>300000, "max_range"=>90000000))) != false;
     }
 
-    private function validCeduleExist($cedule)
-    {
-        return Cedulate::where('letra', Str::substr($cedule, 0, 1))->where('numerocedula', (int) Str::substr($cedule, 1, 8))->count() != 0;
-    }
+
 }
