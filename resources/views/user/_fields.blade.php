@@ -49,16 +49,16 @@
 </div>
 
 <div class="form-group row">
-    <label for="role_id" class="col-md-4 col-form-label text-md-right">@lang('Role')</label>
+    <label for="role" class="col-md-4 col-form-label text-md-right">@lang('Role')</label>
     <div class="col-md-6">
-        <select name="role_id" id="role_id" class="form-control @error('role_id') is-invalid @enderror">
+        <select name="role" id="role" class="form-control @error('role') is-invalid @enderror">
             @foreach($roles as $role)
-                <option value="{{ $role->id }}"{{ old('role_id', $user->role_id) == $role->id ? ' selected' : '' }}>
+                <option value="{{ $role->id }}"{{ old('role', $user->role_id) == $role->id ? ' selected' : '' }}>
                     @lang($role->name)
                 </option>
             @endforeach
         </select>
-        @error('role_id')
+        @error('role')
         <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>
         </span>
@@ -67,19 +67,19 @@
 </div>
 
 <div class="form-group row">
-    <label for="management_id" class="col-md-4 col-form-label text-md-right">@lang('Management')</label>
+    <label for="management" class="col-md-4 col-form-label text-md-right">@lang('Management')</label>
     <div class="col-md-6">
-        <select name="management_id" id="management_id" class="form-control @error('management_id') is-invalid @enderror">
-            <option value="" {{ old('management_id', $user->management_id) == null ? ' selected' : '' }}>
+        <select name="management" id="management" class="form-control @error('management') is-invalid @enderror">
+            <option value="" {{ old('management', $user->management_id) == null ? ' selected' : '' }}>
                 @lang('Unassigned')
             </option>
             @foreach($managements as $management)
-                    <option value="{{ $management->id }}"{{ old('management_id', $user->management_id) == $management->id ? ' selected' : '' }}>
-                        @lang($management->name)
-                    </option>
+                <option value="{{ $management->id }}"{{ old('management', $user->management_id) == $management->id ? ' selected' : '' }}>
+                    @lang($management->name)
+                </option>
             @endforeach
         </select>
-        @error('management_id')
+        @error('management')
         <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>
         </span>

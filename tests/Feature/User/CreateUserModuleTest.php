@@ -161,9 +161,9 @@ class CreateUserModuleTest extends TestCase
     {
         $this->from(route('user.create',['cedule' => Cedulate::first()->cedule]))
             ->post(route('user.store'), $this->getValidData([
-                'role_id' => ''
+                'role' => ''
             ]))->assertRedirect(route('user.create',['cedule' => Cedulate::first()->cedule]))
-            ->assertSessionHasErrors(['role_id']);
+            ->assertSessionHasErrors(['role']);
 
         $this->assertDatabaseMissing('users', [
             'names' => 'Erich Javier',
@@ -176,9 +176,9 @@ class CreateUserModuleTest extends TestCase
     {
         $this->from(route('user.create',['cedule' => Cedulate::first()->cedule]))
             ->post(route('user.store'), $this->getValidData([
-                'role_id' => '999'
+                'role' => '999'
             ]))->assertRedirect(route('user.create',['cedule' => Cedulate::first()->cedule]))
-            ->assertSessionHasErrors(['role_id']);
+            ->assertSessionHasErrors(['role']);
 
         $this->assertDatabaseMissing('users', [
             'names' => 'Erich Javier',
@@ -191,9 +191,9 @@ class CreateUserModuleTest extends TestCase
     {
         $this->from(route('user.create',['cedule' => Cedulate::first()->cedule]))
             ->post(route('user.store'), $this->getValidData([
-                'role_id' => Role::Where('name', 'Master')->first()->id
+                'role' => Role::Where('name', 'Master')->first()->id
             ]))->assertRedirect(route('user.create',['cedule' => Cedulate::first()->cedule]))
-            ->assertSessionHasErrors(['role_id']);
+            ->assertSessionHasErrors(['role']);
 
         $this->assertDatabaseMissing('users', [
             'names' => 'Erich Javier',
@@ -207,9 +207,9 @@ class CreateUserModuleTest extends TestCase
     {
         $this->from(route('user.create',['cedule' => Cedulate::first()->cedule]))
             ->post(route('user.store'), $this->getValidData([
-                'management_id' => ''
+                'management' => ''
             ]))->assertRedirect(route('users'))
-            ->assertSessionDoesntHaveErrors('managemnet_id');
+            ->assertSessionDoesntHaveErrors('managemnet');
 
         $this->assertDatabaseHas('users', [
             'names' => 'Erich Javier',
@@ -222,9 +222,9 @@ class CreateUserModuleTest extends TestCase
     {
         $this->from(route('user.create',['cedule' => Cedulate::first()->cedule]))
             ->post(route('user.store'), $this->getValidData([
-                'management_id' => '999'
+                'management' => '999'
             ]))->assertRedirect(route('user.create',['cedule' => Cedulate::first()->cedule]))
-            ->assertSessionHasErrors(['management_id']);
+            ->assertSessionHasErrors(['management']);
 
         $this->assertDatabaseMissing('users', [
             'names' => 'Erich Javier',
@@ -237,9 +237,9 @@ class CreateUserModuleTest extends TestCase
     {
         $this->from(route('user.create',['cedule' => Cedulate::first()->cedule]))
             ->post(route('user.store'), $this->getValidData([
-                'management_id' => Management::where('name', 'Unassigned')->first()->id
+                'management' => Management::where('name', 'Unassigned')->first()->id
             ]))->assertRedirect(route('user.create',['cedule' => Cedulate::first()->cedule]))
-            ->assertSessionHasErrors(['management_id']);
+            ->assertSessionHasErrors(['management']);
 
         $this->assertDatabaseMissing('users', [
             'names' => 'Erich Javier',

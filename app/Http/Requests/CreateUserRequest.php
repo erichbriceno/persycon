@@ -39,12 +39,12 @@ class CreateUserRequest extends FormRequest
             'names' => ['required', 'present','string', 'max:255'],
             'surnames' => ['required', 'present','string', 'max:255'],
             'email' => ['required', 'present', 'string', 'email', 'max:255', 'unique:users'],
-            'role_id' => [
+            'role' => [
                 'required',
                 'present',
                 Rule::exists('roles', 'id')->where('selectable', true),
             ],
-            'management_id' => [
+            'management' => [
                 'nullable',
                  Rule::exists('managements', 'id')->where('selectable', true)
             ],
@@ -73,8 +73,8 @@ class CreateUserRequest extends FormRequest
             'names' => $this->names,
             'surnames' => $this->surnames,
             'email' => Str::lower($this->email),
-            'role_id' => $this->role_id,
-            'management_id' => $this->management_id,
+            'role_id' => $this->role,
+            'management_id' => $this->management,
             'password' => bcrypt($this->password),
             'active' => $this->state == 'active'
             ]);

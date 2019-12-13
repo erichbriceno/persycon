@@ -20,7 +20,7 @@ class UpdateUserModuleTest extends TestCase
         $this->put(route('user.update', $user),
             [
                 'email' => 'erichbriceno@gmail.com',
-                'role_id' => Role::Where('name', 'Administrator')->first()->id,
+                'role' => Role::Where('name', 'Administrator')->first()->id,
                 'management_id' => Management::Where('name', 'All')->first()->id,
                 'password' => 'secreto1',
                 'password_confirmation' => 'secreto1',
@@ -104,10 +104,10 @@ class UpdateUserModuleTest extends TestCase
 
         $this->from(route('user.edit', $user))
             ->put(route('user.update', $user), $this->getValidData([
-                'role_id' => 1,
+                'role' => 1,
             ]))
             ->assertRedirect(route('user.edit', $user))
-            ->assertSessionHasErrors(['role_id']);
+            ->assertSessionHasErrors(['role']);
 
         $this->assertEquals(1, User::count());
         $this->assertDatabaseMissing('users', ['names' => 'Erich Javier']);

@@ -28,7 +28,7 @@ class UpdateUserRequest extends FormRequest
     {
         return [
             'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($this->user)],
-            'role_id' => [
+            'role' => [
                 'required',
                 'present',
                  Rule::exists('roles', 'id')->where('selectable', true),
@@ -40,6 +40,7 @@ class UpdateUserRequest extends FormRequest
             'password' => ['confirmed'],
             'password_confirmation' => ['same:password'],
             'state' => [
+                'required',
                 Rule::in(['active','inactive'])
             ]
         ];
@@ -49,7 +50,7 @@ class UpdateUserRequest extends FormRequest
     {
         $user->fill([
             'email' => Str::lower($this->email),
-            'role_id' => $this->role_id,
+            'role_id' => $this->role,
             'management_id' => $this->management_id,
             'active' => $this->state == 'active'
         ]);

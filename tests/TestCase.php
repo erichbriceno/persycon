@@ -30,8 +30,8 @@ abstract class TestCase extends BaseTestCase
             'names' => 'Erich Javier',
             'surnames' => 'Briceño',
             'email' => 'erichbriceno@gmail.com',
-            'role_id' => Role::Where('name', 'User')->first()->id,
-            'management_id' => Management::Where('name', 'All')->first()->id,
+            'role' => Role::Where('name', 'User')->first()->id,
+            'management' => Management::Where('name', 'All')->first()->id,
             'password' => 'secreto1',
             'password_confirmation' => 'secreto1',
             'state' => 'active'
@@ -42,8 +42,8 @@ abstract class TestCase extends BaseTestCase
     {
         return array_merge([
             'email' => 'erichbriceno@gmail.com',
-            'role_id' => Role::Where('name', 'User')->first()->id,
-            'management_id' => Management::Where('name', 'All')->first()->id,
+            'role' => Role::Where('name', 'User')->first()->id,
+            'management' => Management::Where('name', 'All')->first()->id,
             'password' => 'secreto1',
             'password_confirmation' => 'secreto1',
             'state' => 'active'
