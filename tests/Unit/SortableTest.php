@@ -3,7 +3,7 @@
 namespace Tests\Feature\Unit;
 
 use Tests\TestCase;
-use App\Sortable;
+use App\Utils\Sortable;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 

@@ -2,9 +2,9 @@
 
 namespace Tests\Unit;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 use App\Rules\SortableColumn;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class SortableColumnTest extends TestCase
 {

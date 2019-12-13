@@ -4,7 +4,7 @@
 namespace App\Queries;
 
 
-use App\Sortable;
+use App\Utils\Sortable;
 use Carbon\Carbon;
 use App\Rules\SortableColumn;
 

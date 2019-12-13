@@ -2,7 +2,7 @@
 
 namespace App\Rules;
 
-use App\Sortable;
+use App\Utils\Sortable;
 use Illuminate\Contracts\Validation\Rule;
 
 class SortableColumn implements Rule

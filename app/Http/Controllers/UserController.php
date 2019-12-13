@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 
 use App\Rules\ValidCedule;
-use App\Sortable;
+use App\Utils\Sortable;
 use Illuminate\Support\Str;
 use App\Queries\UserFilter;
 use Illuminate\Http\Request;

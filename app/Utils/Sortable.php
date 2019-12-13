@@ -2,8 +2,7 @@
 
 namespace App\Utils;
 
-use Illuminate\Support\Arr;
-use Illuminate\Support\Str;
+use Illuminate\Support\{ Arr, Str};
 
 class Sortable
 {
@@ -12,7 +11,7 @@ class Sortable
     protected $currentDirection;
     protected $query = [];
 
-    public function __construct($currentUrl)
+    public function __construct($currentUrl = null)
     {
         $this->currentUrl = $currentUrl;
     }
