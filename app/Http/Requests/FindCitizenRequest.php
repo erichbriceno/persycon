@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests;
 
-use App\Rules\{ UserExist, ValidCedule };
+use App\Rules\{CeduleExist, UserExist, ValidCedule};
 use Illuminate\Foundation\Http\FormRequest;
 
 class FindCitizenRequest extends FormRequest
@@ -28,6 +28,7 @@ class FindCitizenRequest extends FormRequest
             'cedule' => [
                 'required',
                 new ValidCedule,
+                new CeduleExist,
                 new UserExist,
             ],
         ];

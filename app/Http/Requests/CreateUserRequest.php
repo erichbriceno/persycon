@@ -51,6 +51,7 @@ class CreateUserRequest extends FormRequest
             'password' => ['required', 'string', 'min:6','confirmed'],
             'password_confirmation' => ['required','min:6','same:password'],
             'state' => [
+                'required',
                 Rule::in(['active','inactive'])
             ]
         ];
@@ -59,7 +60,7 @@ class CreateUserRequest extends FormRequest
     public function messages()
     {
         return [
-            'names.required' => 'El campo nombre es requerido',
+            'role_id.rule' => 'El rol es inválido.',
         ];
     }
 

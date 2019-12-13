@@ -1,10 +1,5 @@
 @csrf
 
-@if ($errors->any())
-    <p>Hay errores!</p>
-    <p>{{ $errors->first('cedule') }}</p>
-@endif
-
 @if($user->id)
 <div class="form-group row">
     <label for="id" class="col-md-4 col-form-label text-md-right">@lang('Id')</label>
@@ -17,8 +12,8 @@
 <div class="form-group row">
     <label for="cedule" class="col-md-4 col-form-label text-md-right">@lang('Cedule')</label>
     <div class="col-md-6">
-        <input id="cedule" type="text"  class="form-control @error('Cedule') is-invalid @enderror" name="cedule" value="{{ $user->cedule }}" {{ $user->cedule ? 'readonly' : 'autofocus' }} required>
-        @error('Cedule')
+        <input id="cedule" type="text"  class="form-control @error('cedule') is-invalid @enderror" name="cedule" value="{{ old('cedule', $user->cedule) }}" {{ $user->cedule ? 'readonly' : 'autofocus' }} required>
+        @error('cedule')
         <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>
         </span>
@@ -29,14 +24,14 @@
 <div class="form-group row">
     <label for="names" class="col-md-4 col-form-label text-md-right">@lang('Names')</label>
     <div class="col-md-6">
-        <input id="names" type="text" class="form-control" name="names" value="{{ old('names', $user->names) }}" required autocomplete="names" readonly>
+        <input id="names" type="text" class="form-control" name="names" value="{{ $user->names }}" required autocomplete="names" readonly>
     </div>
 </div>
 
 <div class="form-group row">
     <label for="surnames" class="col-md-4 col-form-label text-md-right">@lang('Surnames')</label>
     <div class="col-md-6">
-        <input id="surnames" type="text" class="form-control" name="surnames" value="{{ old('surnames', $user->surnames) }}" required autocomplete="surnames" readonly>
+        <input id="surnames" type="text" class="form-control" name="surnames" value="{{ $user->surnames }}" required autocomplete="surnames" readonly>
     </div>
 </div>
 
@@ -56,20 +51,25 @@
 <div class="form-group row">
     <label for="role_id" class="col-md-4 col-form-label text-md-right">@lang('Role')</label>
     <div class="col-md-6">
-        <select name="role_id" id="role_id" class="form-control">
+        <select name="role_id" id="role_id" class="form-control @error('role_id') is-invalid @enderror">
             @foreach($roles as $role)
                 <option value="{{ $role->id }}"{{ old('role_id', $user->role_id) == $role->id ? ' selected' : '' }}>
                     @lang($role->name)
                 </option>
             @endforeach
         </select>
+        @error('role_id')
+        <span class="invalid-feedback" role="alert">
+            <strong>{{ $message }}</strong>
+        </span>
+        @enderror
     </div>
 </div>
 
 <div class="form-group row">
     <label for="management_id" class="col-md-4 col-form-label text-md-right">@lang('Management')</label>
     <div class="col-md-6">
-        <select name="management_id" id="management_id" class="form-control">
+        <select name="management_id" id="management_id" class="form-control @error('management_id') is-invalid @enderror">
             <option value="" {{ old('management_id', $user->management_id) == null ? ' selected' : '' }}>
                 @lang('Unassigned')
             </option>
@@ -79,6 +79,11 @@
                     </option>
             @endforeach
         </select>
+        @error('management_id')
+        <span class="invalid-feedback" role="alert">
+            <strong>{{ $message }}</strong>
+        </span>
+        @enderror
     </div>
 </div>
 
@@ -116,11 +121,14 @@
             </div>
             @endforeach
         </div>
-        @error('state')
-        <span class="invalid-feedback" role="alert">
-            <strong>{{ $message }}</strong>
-        </span>
-        @enderror
+        <div class="form-inline justify-content-end">
+            @error('state')
+                <span class="text-danger">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
+        </div>
+
     </div>
 </div>
 @endif
@@ -129,14 +137,10 @@
     <div class="col-md-10">
         <div class="form-inline justify-content-end">
             <button type="submit" class="btn btn-sm btn-primary btn-sm">
-                @if($user->cedule)
-                    @lang('Save')
-                @else
-                    @lang('Find')
-                @endif
+                @lang($user->cedule ? 'Save' : 'Find')
             </button>
             &nbsp;
-            <a href="{{ route('users') }}" class="btn btn-sm btn-primary btn-sm">@lang('Back')</a>
+            <a href="{{ route($user->cedule ? 'user.find' : 'users') }}" class="btn btn-sm btn-primary btn-sm">@lang('Back')</a>
         </div>
     </div>
 </div>
