@@ -85,7 +85,19 @@ a.indecorate:link
     color: #a1a6a9;
 }
 
+.note-plus {
+    display: block;
+    font-size: 0.8em;
+    line-height: 1.25;
+    font-weight: 200;
+}
+
 .note-active {
+    font-size: 0.7rem;
+    color: #a1a6a9;
+}
+
+.icons {
     font-size: 0.7rem;
     color: #a1a6a9;
 }

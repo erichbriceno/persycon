@@ -77,7 +77,7 @@
                 &nbsp;
                 <button type="submit" class="btn btn-sm btn-outline-secondary">@lang('Filter') <i class="fas fa-cog"></i></button>
                 &nbsp;
-                <a href="{{ route('users') }}" class="btn btn-outline-secondary btn-sm"><i class="fas fa-times"></i></a>
+                <a href="{{ route('users', ['state' => 'active']) }}" class="btn btn-outline-secondary btn-sm"><i class="fas fa-times"></i></a>
             </div>
         </div>
     </div>

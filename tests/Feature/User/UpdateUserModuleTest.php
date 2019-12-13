@@ -114,6 +114,38 @@ class UpdateUserModuleTest extends TestCase
     }
 
     /** @test */
+    function the_role_must_be_present_when_updating_a_user()
+    {
+        $user = factory(User::class)->create();
+
+        $this->from(route('user.edit', $user))
+            ->put(route('user.update', $user), $this->getValidData([
+                'role' => '',
+            ]))
+            ->assertRedirect(route('user.edit', $user))
+            ->assertSessionHasErrors(['role']);
+
+        $this->assertEquals(1, User::count());
+        $this->assertDatabaseMissing('users', ['names' => 'Erich Javier']);
+    }
+
+    /** @test */
+    function the_management_must_be_avalible_when_updating_a_user()
+    {
+        $user = factory(User::class)->create();
+
+        $this->from(route('user.edit', $user))
+            ->put(route('user.update', $user), $this->getValidData([
+                'management' => 300,
+            ]))
+            ->assertRedirect(route('user.edit', $user))
+            ->assertSessionHasErrors(['management']);
+
+        $this->assertEquals(1, User::count());
+        $this->assertDatabaseMissing('users', ['names' => 'Erich Javier']);
+    }
+
+    /** @test */
     function the_email_must_be_valid_when_updating_a_user()
     {
         $user = factory(User::class)->create();

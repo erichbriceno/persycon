@@ -2,17 +2,17 @@
     <td>{{ $user->cedule }}</td>
     <td>
         {{ $user->name }}
-        <span style="font-size: 0.7rem; color: #a1a6a9;">
+        <span class="note">@lang($user->role->name)
+
             @if($user->active)
                 <i class="fas fa-user-check"></i>
             @else
                 <i class="fas fa-user-lock"></i>
             @endif
         </span>
-        <span class="note">@lang($user->role->name)</span>
     </td>
-    <td>{{ $user->email }}</td>
-    <td>@lang($user->management->name)</td>
+    <td><span class="note-plus">{{ $user->email }}</span></td>
+    <td><span class="note-plus">@lang($user->management->name)</span></td>
     <td>
         <span class="note">Registro: {{ $user->created_at->format('d/m/Y') }}</span>
         <span class="note">Último login: {{ optional($user->last_login_at)->format('d/m/Y h:ia') ?: 'N/A' }}</span>

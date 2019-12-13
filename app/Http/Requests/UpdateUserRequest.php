@@ -33,7 +33,7 @@ class UpdateUserRequest extends FormRequest
                 'present',
                  Rule::exists('roles', 'id')->where('selectable', true),
             ],
-            'management_id' => [
+            'management' => [
                 'nullable',
                  Rule::exists('managements', 'id')->where('selectable', true)
             ],

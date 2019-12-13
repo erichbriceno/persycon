@@ -12,7 +12,8 @@
 <div class="form-group row">
     <label for="cedule" class="col-md-4 col-form-label text-md-right">@lang('Cedule')</label>
     <div class="col-md-6">
-        <input id="cedule" type="text"  class="form-control @error('cedule') is-invalid @enderror" name="cedule" value="{{ old('cedule', $user->cedule) }}" {{ $user->cedule ? 'readonly' : 'autofocus' }} required>
+        <input id="cedule" type="text" class="form-control @error('cedule') is-invalid @enderror" name="cedule" value="{{ old('cedule', $user->cedule) }}" {{ $user->cedule ? 'readonly' : 'autofocus' }} placeholder ="{{ trans('users.fields.cedule') }}" required
+        >
         @error('cedule')
         <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>
@@ -39,7 +40,7 @@
 <div class="form-group row">
     <label for="email" class="col-md-4 col-form-label text-md-right">@lang('E-Mail Address')</label>
     <div class="col-md-6">
-        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email', $user->email) }}" required autocomplete="email" autofocus>
+        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email', $user->email) }}" placeholder ="{{ trans('users.fields.email') }}" autocomplete="email" required autofocus>
         @error('email')
         <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>
@@ -90,7 +91,7 @@
 <div class="form-group row">
     <label for="password" class="col-md-4 col-form-label text-md-right">@lang('Password')</label>
     <div class="col-md-6">
-        <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password">
+        <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder ="{{ trans('users.fields.password') }}">
         @error('password')
         <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>
@@ -111,12 +112,7 @@
         <div class="form-inline justify-content-end">
             @foreach(trans('users.state') as $state => $label )
             <div class="form-check form-check-inline">
-                <input class="form-check-input"
-                       type="radio"
-                       name="state"
-                       id="state_{{ $state }}"
-                       value="{{ $state }}"
-                       {{ old('state', $user->state) == $state ? 'checked' : '' }}>
+                <input class="form-check-input" type="radio" name="state" id="state_{{ $state }}" value="{{ $state }}" {{ old('state', $user->state) == $state ? 'checked' : '' }}>
                 <label class="form-check-label" for="state_{{ $state }}" >{{ $label }}</label>
             </div>
             @endforeach
