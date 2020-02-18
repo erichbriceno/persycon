@@ -12,7 +12,7 @@ return [
         'trash'     => 'No hay usuarios eliminados'
     ],
     'fields'    => [
-        'cedule'    => 'V12345678 - E81000000 - 12345678',
+        'cedule'    => 'V12345678 - E81000000',
         'email'     => 'usuario@correo.com',
         'password'  => 'Debe contener mínimo 6 caracteres',
     ]
