@@ -9,7 +9,7 @@ class AdminController extends Controller
 {
     public function project()
     {
-        return view('admin.project', [
+        return view('project.project', [
         'view' => 'projects',
         'projects' => Project::paginate(20),
         ]);
