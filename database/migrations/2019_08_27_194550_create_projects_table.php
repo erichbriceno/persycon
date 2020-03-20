@@ -18,6 +18,8 @@ class CreateProjectsTable extends Migration
             $table->string('name')->unique();
             $table->string('description');
             $table->timestamps();
+            $table->time('ends')->nullable();
+            $table->softDeletes();
         });
     }
 

@@ -85,6 +85,13 @@ a.indecorate:link
     color: #a1a6a9;
 }
 
+.note-black {
+    display: block;
+    font-size: 0.75em;
+    line-height: 1.25;
+    font-weight: 200;
+}
+
 .note-plus {
     display: block;
     font-size: 0.8em;
