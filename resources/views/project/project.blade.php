@@ -29,6 +29,6 @@
         </table>
         {{ $projects->onEachSide(1)->links() }}
     @else
-        <h4>{{trans("projects.emptyMessage.index")}}</h4>
+        <h4>{{trans('projects.emptyMessage.index')}}</h4>
     @endif
 @endsection

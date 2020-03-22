@@ -7,7 +7,7 @@ use Faker\Generator as Faker;
 
 $factory->define(Project::class, function (Faker $faker) {
     return [
-        'name' => $faker->name,
+        'name' => "{$faker->firstName} {$faker->numberBetween(2018,2020)}" ,
         'description' => $faker->sentence(3),
     ];
 });

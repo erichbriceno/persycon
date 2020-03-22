@@ -3,18 +3,11 @@
 namespace App\Http\Controllers;
 
 
-use App\Model\{ Group, Project, Management };
+use App\Model\{ Group, Management };
 
 class AdminController extends Controller
 {
-    public function project()
-    {
-        return view('project.project', [
-        'view' => 'projects',
-        'projects' => Project::paginate(20),
-        ]);
-    }
-
+    
     public function management()
     {
         return view('admin.management', [

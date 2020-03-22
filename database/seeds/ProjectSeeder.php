@@ -17,6 +17,10 @@ class ProjectSeeder extends Seeder
             'description' => 'Elecciones Regionales 2019',
         ]);
 
+        factory(Project::class)->create([
+            'name' => 'Mantenimiento 2020',
+            'description' => 'Mantenimiento de la Plataforma 2020',
+        ]);
 
         factory(Project::class)->times(10)->create();
 

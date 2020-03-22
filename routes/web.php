@@ -23,7 +23,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 // Users
 
-
 Route::get('/users', 'UserController@index')
     ->name('users');
 
@@ -66,8 +65,10 @@ Route::delete('/users/{id}', 'UserController@destroy')
     ->where('user', '[0-9]+')
     ->name('user.destory');
 
+// Projects
+Route::get('/projects', 'ProjectController@project')->name('projects');
+
 // Others
-Route::get('/projects', 'AdminController@project')->name('projects');
 
 Route::get('/managements', 'AdminController@management')->name('managements');
 
