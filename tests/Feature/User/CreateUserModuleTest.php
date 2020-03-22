@@ -18,7 +18,7 @@ class CreateUserModuleTest extends TestCase
         $this->get(route('user.create',['cedule' => Cedulate::first()->cedule ]))
             ->assertStatus(200)
             ->assertViewIs('user.create')
-            ->assertSee(trans('titles.title.create'))
+            ->assertSee(trans('titles.user.create'))
             ->assertViewHas('roles', function ($roles) use ($role) {
                 return $roles->contains($role);
             });

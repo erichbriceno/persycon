@@ -66,7 +66,11 @@ Route::delete('/users/{id}', 'UserController@destroy')
     ->name('user.destory');
 
 // Projects
-Route::get('/projects', 'ProjectController@project')->name('projects');
+Route::get('/projects', 'ProjectController@index')
+    ->name('projects');
+
+Route::get('/projects/new', 'ProjectController@create')
+    ->name('project.create');
 
 // Others
 

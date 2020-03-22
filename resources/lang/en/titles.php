@@ -1,16 +1,23 @@
 <?php
 
 return [
-    'title' => [
+    'admin' => [
+        'managements' => 'LIST OF MANAGEMENT',
+        'groups' => 'LIST OF GROUPS',
+        'home' => 'HOME',
+    ],
+    'user' => [
         'index' => 'LIST OF USERS',
         'trash' => 'TRASH USERS',
         'details' => 'USER DETAILS',
         'create' => 'CREATE USER',
         'edit' => 'EDIT USER',
-        'home' => 'HOME',
-        'projects' => 'LIST OF PROJECTS',
-        'managements' => 'LIST OF MANAGEMENT',
-        'groups' => 'LIST OF GROUPS',
-        ]
+    ],
+    'project' => [
+        'index' => 'LIST OF PROJECTS',
+        'trash' => 'TRASH PROJECTS',
+        'create' => 'CREATE PROJECT',
+        'edit' => 'EDIT PROJECT',
+    ],
 ];
 

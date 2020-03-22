@@ -7,7 +7,7 @@
             <div class="form-inline justify-content-end">
                 <a href="#" class="btn btn-outline-secondary btn-sm">@lang('Trash')</a>
                 &nbsp;
-                <a href="#" class="btn btn-primary btn-sm">@lang('Create Project')</a>
+                <a href="{{ route('project.create') }}" class="btn btn-primary btn-sm">@lang('Create Project')</a>
             </div>
         </div>
     </div>

@@ -30,6 +30,7 @@ class UserController extends Controller
         $sortable->appends($filters->valid());
 
         return view('user.users', [
+            'module' => 'user',
             'view' => $request->routeIs('users.trash') ? 'trash' : 'index',
             'users' => $users,
             'roles' => Role::all(),
@@ -42,6 +43,7 @@ class UserController extends Controller
     public function details(User $user)
     {
         return view('user.details',[
+            'module' => 'user',
             'view' => 'details',
             'user' => $user
         ]);
@@ -50,6 +52,7 @@ class UserController extends Controller
     public function find()
     {
         return view('user.create', [
+            'module' => 'user',
             'view' => 'create',
             'user' =>  new User,
             'roles' => Role::orderBy('description', 'DESC')->get(),
@@ -81,6 +84,7 @@ class UserController extends Controller
         $user->surnames = "$cedulate->primerapellido $cedulate->segundoapellido";
 
         return view('user.create', [
+            'module' => 'user',
             'view' => 'create',
             'user' =>  $user,
             'roles' => Role::orderBy('description', 'DESC')->get(),
@@ -99,6 +103,7 @@ class UserController extends Controller
     public function edit(User $user)
     {
         return view('user.edit', [
+            'module' => 'user',
             'view' => 'edit',
             'user' => $user,
             'roles' => Role::orderBy('description', 'DESC')->get(),

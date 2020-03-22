@@ -9,13 +9,21 @@ use App\Model\{ Project };
 class ProjectController extends Controller
 {
  
-    public function project()
-        {
-            return view('project.project', [
-            'view' => 'projects',
-            'projects' => Project::paginate(20),
-            ]);
-        }
+    public function index()
+    {
+        return view('project.project', [
+        'module' => 'project',
+        'view' => 'index',
+        'projects' => Project::paginate(20),
+        ]);
+    }
 
+    public function create()
+    {
+        return view('project.create', [
+            'module' => 'project',
+            'view' => 'create',
+            ]);
+    }
 
 }

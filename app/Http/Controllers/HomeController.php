@@ -24,7 +24,8 @@ class HomeController extends Controller
     public function index()
     {
         return view('home',[
-        'view' => 'home',
+            'module' => 'admin',
+            'view' => 'home',
         ]);
 
     }

@@ -36,7 +36,7 @@
 
                 <div class="col-4">
                     <div class="form-inline justify-content-end">
-                        {{ trans("titles.title.{$view}") }}
+                        {{ trans("titles.{$module}.{$view}") }}
                     </div>
                 </div>
 
