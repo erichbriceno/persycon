@@ -11,7 +11,7 @@ class ProjectController extends Controller
  
     public function index()
     {
-        return view('project.project', [
+        return view('project.projects', [
         'module' => 'project',
         'view' => 'index',
         'projects' => Project::paginate(20),
