@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Model\{ Project };
+use App\Http\Requests\CreateProjectRequest;
 
 
 class ProjectController extends Controller
@@ -24,6 +24,14 @@ class ProjectController extends Controller
             'module' => 'project',
             'view' => 'create',
             ]);
+    }
+
+    public function store(CreateProjectRequest $request)
+    {
+        
+        $request->createProject();
+
+        return redirect()->route('projects');
     }
 
 }

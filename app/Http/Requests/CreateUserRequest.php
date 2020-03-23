@@ -3,12 +3,11 @@
 namespace App\Http\Requests;
 
 use App\Model\User;
-use App\Rules\CeduleExist;
-use App\Rules\UserExist;
-use App\Rules\ValidCedule;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
+use App\Rules\{CeduleExist, UserExist, ValidCedule};
+
 
 class CreateUserRequest extends FormRequest
 {

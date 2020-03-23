@@ -72,6 +72,10 @@ Route::get('/projects', 'ProjectController@index')
 Route::get('/projects/new', 'ProjectController@create')
     ->name('project.create');
 
+Route::post('/projects/store', 'ProjectController@store')
+    ->name('project.store');
+
+
 // Others
 
 Route::get('/managements', 'AdminController@management')->name('managements');

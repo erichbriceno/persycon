@@ -24,12 +24,20 @@ class CreateProjectModuleTest extends TestCase
     /** @test */
     function it_create_a_new_project()
     {
+        $this->withoutExceptionHandling();
         $this->post(route('project.store'), [
                 'name' => 'Municipales 2020',
                 'description' => 'Elecciones Municipales 2020',
-                'from' =>  '2020-03-22',
+                'start' =>  now(),
                 'active' => true,
             ])
-            ->assertRedirect(route('projects'));   
+            ->assertRedirect(route('projects'));
+        
+        $this->assertDatabaseHas('projects', [
+            'name' => 'Municipales 2020',
+            'description' => 'Elecciones Municipales 2020',
+            'start' =>  '2020-03-22',
+            'state' => true
+            ]);
     }
 }

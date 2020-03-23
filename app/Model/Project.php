@@ -7,7 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class Project extends Model
 {
     protected $fillable = [
-        'name', 'description',
+        'name', 
+        'description', 
+        'start',
+        'ending',
+        'state'
     ];
 
 }

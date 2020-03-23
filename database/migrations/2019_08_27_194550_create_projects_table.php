@@ -17,8 +17,10 @@ class CreateProjectsTable extends Migration
             $table->bigIncrements('id');
             $table->string('name')->unique();
             $table->string('description');
+            $table->timestamp('start');
+            $table->timestamp('ending')->nullable();
+            $table->boolean('state');
             $table->timestamps();
-            $table->time('ends')->nullable();
             $table->softDeletes();
         });
     }
