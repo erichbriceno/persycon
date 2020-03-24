@@ -25,7 +25,8 @@ class CreateProjectRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => '',
+            //'name' => ['required', 'present','string', 'max:255'],
+            'name' => ['required'],
             'description' => '',
             'start' => '',
             'ending' => '',
@@ -37,10 +38,10 @@ class CreateProjectRequest extends FormRequest
     {
 
         $project = Project::create([
-            'name' => 'Municipales 2020',
-            'description' => 'Elecciones Municipales 2020',
-            'start' => now(),
-            'ending' => null,
+            'name' =>"$this->name " . today()->year,
+            'description' => $this->description,
+            'start' => $this->start,
+            'ending' => $this->ending??null,
             'state' => true
         ]);
 

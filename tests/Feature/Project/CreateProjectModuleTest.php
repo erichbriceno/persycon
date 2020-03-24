@@ -24,20 +24,34 @@ class CreateProjectModuleTest extends TestCase
     /** @test */
     function it_create_a_new_project()
     {
-        $this->withoutExceptionHandling();
-        $this->post(route('project.store'), [
-                'name' => 'Municipales 2020',
-                'description' => 'Elecciones Municipales 2020',
-                'start' =>  now(),
-                'active' => true,
-            ])
+        $this->post(route('project.store'), $this->getProjectData())
             ->assertRedirect(route('projects'));
         
         $this->assertDatabaseHas('projects', [
             'name' => 'Municipales 2020',
             'description' => 'Elecciones Municipales 2020',
-            'start' =>  '2020-03-22',
-            'state' => true
+            'start' => '2020-03-20',
+            'state' => '1'
             ]);
     }
+
+    /** @test */
+    function the_name_is_required()
+    {
+        //$this->withoutExceptionHandling();
+        $this->from(route('project.create'))
+            ->post(route('project.store'), $this->getProjectData([
+                'name' => '',
+                ]))
+            ->assertRedirect(route('project.create'))
+            ->assertSessionHasErrors(['name']);
+    
+        $this->assertDatabaseMissing('projects', [
+            'name' => 'Municipales 2020',
+            'description' => 'Elecciones Municipales 2020',
+            'start' => '2020-03-20',
+            'state' => '1'
+            ]);
+    }
+
 }

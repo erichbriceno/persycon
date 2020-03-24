@@ -38,6 +38,16 @@ abstract class TestCase extends BaseTestCase
         ], $custom);
     }
 
+    protected function getProjectData(array $custom = [])
+    {
+        return array_merge([
+            'name' => 'Municipales',
+                'description' => 'Elecciones Municipales 2020',
+                'start' => '2020-03-20',
+                'active' => true,
+            ], $custom);
+    }
+
     protected function getUpdateValidData(array $custom = [])
     {
         return array_merge([
