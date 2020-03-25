@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Model\Project;
+use App\Rules\NameProject;
 use Illuminate\Foundation\Http\FormRequest;
 
 class CreateProjectRequest extends FormRequest
@@ -26,7 +27,10 @@ class CreateProjectRequest extends FormRequest
     {
         return [
             //'name' => ['required', 'present','string', 'max:255'],
-            'name' => ['required'],
+            'name' => [
+                'required',
+                new NameProject,
+                ],
             'description' => '',
             'start' => '',
             'ending' => '',

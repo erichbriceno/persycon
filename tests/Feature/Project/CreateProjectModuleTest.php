@@ -38,7 +38,6 @@ class CreateProjectModuleTest extends TestCase
     /** @test */
     function the_name_is_required()
     {
-        //$this->withoutExceptionHandling();
         $this->from(route('project.create'))
             ->post(route('project.store'), $this->getProjectData([
                 'name' => '',
@@ -54,4 +53,36 @@ class CreateProjectModuleTest extends TestCase
             ]);
     }
 
+    /** @test */
+    function the_name_must_contain_a_word()
+    {
+        //$this->withoutExceptionHandling();
+        $this->from(route('project.create'))
+            ->post(route('project.store'), $this->getProjectData([
+                'name' => 'Elecciones Municipales',
+                ]))
+            ->assertRedirect(route('project.create'))
+            ->assertSessionHasErrors(['name']);
+    
+        $this->assertDatabaseMissing('projects', [
+            'name' => 'Municipales 2020',
+            'description' => 'Elecciones Municipales 2020',
+            'start' => '2020-03-20',
+            'state' => '1'
+            ]);
+
+        $this->from(route('project.create'))
+            ->post(route('project.store'), $this->getProjectData([
+                'name' => 'Elecciones',
+            ]))
+            ->assertRedirect(route('projects'));
+        
+        $this->assertDatabaseHas('projects', [
+            'name' => 'Elecciones 2020',
+            'description' => 'Elecciones Municipales 2020',
+            'start' => '2020-03-20',
+            'state' => '1'
+            ]);
+    }
+   
 }

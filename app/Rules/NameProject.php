@@ -2,12 +2,10 @@
 
 namespace App\Rules;
 
-use App\Model\Cedulate;
 use Illuminate\Support\Str;
 use Illuminate\Contracts\Validation\Rule;
 
-
-class CeduleExist implements Rule
+class NameProject implements Rule
 {
     /**
      * Create a new rule instance.
@@ -28,7 +26,7 @@ class CeduleExist implements Rule
      */
     public function passes($attribute, $value)
     {
-        return Cedulate::where('letra', Str::substr($value, 0, 1))->where('numerocedula', (int) Str::substr($value, 1, 8))->count() == 1;
+        return ! Str::contains($value, ' ');
     }
 
     /**
@@ -38,7 +36,6 @@ class CeduleExist implements Rule
      */
     public function message()
     {
-        return trans('validation.ceduleexist');
+        return 'The validation error para una sola palabra.';
     }
-
 }
