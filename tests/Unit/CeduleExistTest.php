@@ -2,8 +2,8 @@
 
 namespace Tests\Unit;
 
-use App\Rules\CeduleExist;
 use Tests\TestCase;
+use App\Rules\CeduleExist;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class CeduleExistTest extends TestCase

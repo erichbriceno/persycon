@@ -41,7 +41,8 @@ abstract class TestCase extends BaseTestCase
     protected function getProjectData(array $custom = [])
     {
         return array_merge([
-            'name' => 'Municipales',
+                'name' => 'Municipales',
+                'year' => '2020',
                 'description' => 'Elecciones Municipales 2020',
                 'start' => '2020-03-20',
                 'active' => true,
