@@ -3,6 +3,7 @@
 namespace Tests\Feature\User;
 
 use Tests\TestCase;
+use App\Model\Project;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class CreateProjectModuleTest extends TestCase
@@ -82,6 +83,24 @@ class CreateProjectModuleTest extends TestCase
             'start' => '2020-03-20',
             'state' => '1'
             ]);
+    }
+
+    /** @test */
+    function the_name_must_be_unique()
+    {
+        factory(Project::class)->create([
+            'name' => 'Municipales 2020',
+        ]);
+
+        $this->from(route('project.create'))
+            ->post(route('project.store'), $this->getProjectData([
+                'name' => 'Municipales',
+                'year' => '2020',
+                ]))
+            ->assertRedirect(route('project.create'))
+            ->assertSessionHasErrors(['name']);
+            
+        $this->assertSame(1, Project::where('name','Municipales 2020')->count());
     }
 
     /** @test */
@@ -466,12 +485,12 @@ class CreateProjectModuleTest extends TestCase
     }
 
     /** @test */
-    function the_ending_date_must_not_be_more_than_two_years_from_the_start_date()
+    function the_end_date_cannot_be_more_than_two_years_from_the_current_date()
     {
         $this->from(route('project.create'))
             ->post(route('project.store'), $this->getProjectData([
-                'start'  => '2020-03-26',
-                'ending' => '2022-03-27',
+                'start'  => today(),
+                'ending' => today()->add('2 years 1 day'),
                 ]))
                 ->assertRedirect(route('project.create'))
                 ->assertSessionHasErrors(['ending']);
@@ -479,8 +498,22 @@ class CreateProjectModuleTest extends TestCase
         $this->assertDatabaseMissing('projects', [
             'name' => 'Municipales 2020',
             'description' => 'Elecciones Municipales 2020',
-            'start'  => '2020-03-26',
-            'ending' => '2022-03-27',
+            'start'  => today(),
+            'ending' => today()->add('2 years 1 day'),
+            ]);
+        
+        $this->from(route('project.create'))
+            ->post(route('project.store'), $this->getProjectData([
+                'start'  => today(),
+                'ending' => today()->add('2 years'),
+                ]))
+                ->assertRedirect(route('projects'));
+    
+        $this->assertDatabaseHas('projects', [
+            'name' => 'Municipales 2020',
+            'description' => 'Elecciones Municipales 2020',
+            'start'  => today(),
+            'ending' => today()->add('2 years'),
             ]);
         
     }

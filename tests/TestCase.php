@@ -25,8 +25,6 @@ abstract class TestCase extends BaseTestCase
     {
         return array_merge([
             'cedule' => 'V13683474',
-            //'nat' => 'V',
-            //'numberced' => '13683474',
             'names' => 'Erich Javier',
             'surnames' => 'Briceño',
             'email' => 'erichbriceno@gmail.com',

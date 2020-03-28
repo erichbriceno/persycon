@@ -3,8 +3,8 @@
 namespace App\Http\Requests;
 
 use App\Model\Project;
-use App\Rules\NameProject;
-use App\Rules\YearBetween;
+use Illuminate\Validation\Rule;
+use App\Rules\{NameProject, NameProjectUnique, YearBetween};
 use Illuminate\Foundation\Http\FormRequest;
 
 class CreateProjectRequest extends FormRequest
@@ -27,10 +27,10 @@ class CreateProjectRequest extends FormRequest
     public function rules()
     {
         return [
-            //'name' => ['required', 'present','string', 'max:255'],
             'name' => [
                 'required',
                 new NameProject,
+                new NameProjectUnique("$this->name " . "$this->year"),
                 ],
             'year' => [
                 'required',
@@ -50,8 +50,8 @@ class CreateProjectRequest extends FormRequest
             'ending' => [
                 'date',
                 'nullable',
-                //'after:start',
-                //'before:start + 2 year',
+                'after:start',
+                'before:now + 2 year',
                 ],
             'state' => ''
         ];
@@ -59,7 +59,6 @@ class CreateProjectRequest extends FormRequest
 
     public function createProject()
     {
-        //dd("$this->name " . "$this->year");
         $project = Project::create([
             'name' =>"$this->name " . "$this->year",
             'description' => $this->description,

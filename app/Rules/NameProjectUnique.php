@@ -2,18 +2,20 @@
 
 namespace App\Rules;
 
+use App\Model\Project;
 use Illuminate\Contracts\Validation\Rule;
 
-class EndingBefore implements Rule
+class NameProjectUnique implements Rule
 {
+    protected $nameCompuest;
     /**
      * Create a new rule instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($nameCompuest)
     {
-        //
+        $this->nameCompuest = $nameCompuest;
     }
 
     /**
@@ -25,7 +27,8 @@ class EndingBefore implements Rule
      */
     public function passes($attribute, $value)
     {
-        //
+        //dd($this->nameCompuest);
+        return Project::where('name',$this->nameCompuest)->count() == 0;
     }
 
     /**
@@ -35,6 +38,6 @@ class EndingBefore implements Rule
      */
     public function message()
     {
-        return 'The validation error message.';
+        return 'The validation error para nombre repetido.';
     }
 }
