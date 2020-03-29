@@ -42,8 +42,8 @@ abstract class TestCase extends BaseTestCase
                 'name' => 'Municipales',
                 'year' => '2020',
                 'description' => 'Elecciones Municipales 2020',
-                'start' => '2020-03-20',
-                'active' => true,
+                'from' => '2020-03-20',
+                'state' => true,
             ], $custom);
     }
 

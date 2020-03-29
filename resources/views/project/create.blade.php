@@ -8,7 +8,7 @@
                 <div class="card-header">@lang('Create Project')</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('user.store') }}">
+                    <form method="POST" action="{{ route('project.store') }}">
                         @include('project._fields')
                     </form>
                 </div>

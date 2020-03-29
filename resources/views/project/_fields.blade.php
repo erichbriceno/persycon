@@ -10,9 +10,26 @@
         </span>
         @enderror
     </div>
+
     <div class="col-md-2">
-        <input id="year" type="text" class="form-control" name="year" value="2020" readonly>
+        <select name="year" id="year" class="form-control @error('year') is-invalid @enderror">
+            <option value="2019">
+                2019
+            </option>
+            <option value="2020">
+                2020
+            </option>
+            <option value="2021">
+                2021
+            </option>
+        </select>
+        @error('year')
+        <span class="invalid-feedback" role="alert">
+            <strong>{{ $message }}</strong>
+        </span>
+        @enderror
     </div>
+
 </div>
 
 <div class="form-group row">
@@ -33,11 +50,22 @@
     <div class="col-md-3">
         <div class="input-group date">
             <input type="text" class="form-control form-control-sm text-right" name="from" id="from" placeholder="@lang('Start')" value="{{ request('from') }}">
+            @error('from')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
         </div>
     </div>
+    
     <div class="col-md-3">
         <div class="input-group date">
             <input type="text" class="form-control form-control-sm text-right" name="to" id="to" placeholder="@lang('Ending')" value="{{ request('to') }}">
+            @error('to')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
         </div>
     </div>
 </div>

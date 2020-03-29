@@ -3,7 +3,6 @@
 namespace App\Http\Requests;
 
 use App\Model\Project;
-use Illuminate\Validation\Rule;
 use App\Rules\{NameProject, NameProjectUnique, YearBetween};
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -41,19 +40,19 @@ class CreateProjectRequest extends FormRequest
                 'string', 
                 'max:50'
                 ],
-            'start' => [
+            'from' => [
                 'required',
                 'date',
                 'after:now - 1 year',
                 'before:now + 1 year',
                 ], 
-            'ending' => [
+            'to' => [
                 'date',
                 'nullable',
-                'after:start',
+                'after:from',
                 'before:now + 2 year',
                 ],
-            'state' => ''
+            'state' => 'boolean'
         ];
     }
 
@@ -62,11 +61,11 @@ class CreateProjectRequest extends FormRequest
         $project = Project::create([
             'name' =>"$this->name " . "$this->year",
             'description' => $this->description,
-            'start' => $this->start,
-            'ending' => $this->ending??null,
+            'start' => $this->from,
+            'ending' => $this->to??null,
             'state' => true
         ]);
-
+        
         $project->save();
     }
 }

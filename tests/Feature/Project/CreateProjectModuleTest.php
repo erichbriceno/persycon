@@ -242,10 +242,10 @@ class CreateProjectModuleTest extends TestCase
     {
         $this->from(route('project.create'))
             ->post(route('project.store'), $this->getProjectData([
-                'start' => '',
+                'from' => '',
                 ]))
             ->assertRedirect(route('project.create'))
-            ->assertSessionHasErrors(['start']);
+            ->assertSessionHasErrors(['from']);
     
         $this->assertDatabaseMissing('projects', [
             'name' => 'Municipales 2020',
@@ -260,10 +260,10 @@ class CreateProjectModuleTest extends TestCase
     {
         $this->from(route('project.create'))
             ->post(route('project.store'), $this->getProjectData([
-                'start' => 'date-no-valid',
+                'from' => 'date-no-valid',
                 ]))
             ->assertRedirect(route('project.create'))
-            ->assertSessionHasErrors(['start']);
+            ->assertSessionHasErrors(['from']);
     
         $this->assertDatabaseMissing('projects', [
             'name' => 'Municipales 2020',
@@ -275,10 +275,10 @@ class CreateProjectModuleTest extends TestCase
         
         $this->from(route('project.create'))
         ->post(route('project.store'), $this->getProjectData([
-            'start' => '2019-02-29',
+            'from' => '2019-02-29',
             ]))
         ->assertRedirect(route('project.create'))
-        ->assertSessionHasErrors(['start']);
+        ->assertSessionHasErrors(['from']);
 
         $this->assertDatabaseMissing('projects', [
         'name' => 'Municipales 2020',
@@ -289,7 +289,7 @@ class CreateProjectModuleTest extends TestCase
 
         $this->from(route('project.create'))
         ->post(route('project.store'), $this->getProjectData([
-            'start' => '2020-02-29',
+            'from' => '2020-02-29',
             ]))
         ->assertRedirect(route('projects'));
 
@@ -306,10 +306,10 @@ class CreateProjectModuleTest extends TestCase
     {
         $this->from(route('project.create'))
             ->post(route('project.store'), $this->getProjectData([
-                'start' => today()->sub('1 year'),
+                'from' => today()->sub('1 year'),
                 ]))
             ->assertRedirect(route('project.create'))
-            ->assertSessionHasErrors(['start']);
+            ->assertSessionHasErrors(['from']);
     
         $this->assertDatabaseMissing('projects', [
             'name' => 'Municipales 2020',
@@ -320,7 +320,7 @@ class CreateProjectModuleTest extends TestCase
         
         $this->from(route('project.create'))
             ->post(route('project.store'), $this->getProjectData([
-                'start' => today()->sub('1 year - 1 day'),
+                'from' => today()->sub('1 year - 1 day'),
                 ]))
             ->assertRedirect(route('projects'));
     
@@ -338,10 +338,10 @@ class CreateProjectModuleTest extends TestCase
         //$this->withoutExceptionHandling();
         $this->from(route('project.create'))
             ->post(route('project.store'), $this->getProjectData([
-                'start' => today()->add('1 year 1 day'),
+                'from' => today()->add('1 year 1 day'),
                 ]))
             ->assertRedirect(route('project.create'))
-            ->assertSessionHasErrors(['start']);
+            ->assertSessionHasErrors(['from']);
     
         $this->assertDatabaseMissing('projects', [
             'name' => 'Municipales 2020',
@@ -352,7 +352,7 @@ class CreateProjectModuleTest extends TestCase
         
         $this->from(route('project.create'))
             ->post(route('project.store'), $this->getProjectData([
-                'start' => today()->add('1 year'),
+                'from' => today()->add('1 year'),
                 ]))
             ->assertRedirect(route('projects'));
     
@@ -369,11 +369,11 @@ class CreateProjectModuleTest extends TestCase
     {
         $this->from(route('project.create'))
             ->post(route('project.store'), $this->getProjectData([
-                'start' => '2020-02-22',
-                'ending' => 'date-no-valid',
+                'from' => '2020-02-22',
+                'to' => 'date-no-valid',
                 ]))
             ->assertRedirect(route('project.create'))
-            ->assertSessionHasErrors(['ending']);
+            ->assertSessionHasErrors(['to']);
     
         $this->assertDatabaseMissing('projects', [
             'name' => 'Municipales 2020',
@@ -385,11 +385,11 @@ class CreateProjectModuleTest extends TestCase
         
         $this->from(route('project.create'))
             ->post(route('project.store'), $this->getProjectData([
-                'start' => '2019-02-22',
-                'ending' => '2019-02-29',
+                'from' => '2019-02-22',
+                'to' => '2019-02-29',
                 ]))
             ->assertRedirect(route('project.create'))
-            ->assertSessionHasErrors(['ending']);
+            ->assertSessionHasErrors(['to']);
     
         $this->assertDatabaseMissing('projects', [
                 'name' => 'Municipales 2020',
@@ -401,8 +401,8 @@ class CreateProjectModuleTest extends TestCase
 
         $this->from(route('project.create'))
             ->post(route('project.store'), $this->getProjectData([
-                'start' => '2020-02-25',
-                'ending' => '2020-02-29',
+                'from' => '2020-02-25',
+                'to' => '2020-02-29',
                 ]))
             ->assertRedirect(route('projects'));
     
@@ -420,7 +420,7 @@ class CreateProjectModuleTest extends TestCase
     {
         $this->from(route('project.create'))
             ->post(route('project.store'), $this->getProjectData([
-                'ending' => null,
+                'to' => null,
                 ]))
             ->assertRedirect(route('projects'));
     
@@ -438,11 +438,11 @@ class CreateProjectModuleTest extends TestCase
         //$this->markTestSkipped();
         $this->from(route('project.create'))
             ->post(route('project.store'), $this->getProjectData([
-                'start' => '2020-03-26',
-                'ending' => '2020-03-22',
+                'from' => '2020-03-26',
+                'to' => '2020-03-22',
                 ]))
             ->assertRedirect(route('project.create'))
-            ->assertSessionHasErrors(['ending']);
+            ->assertSessionHasErrors(['to']);
         
         $this->assertDatabaseMissing('projects', [
             'name' => 'Municipales 2020',
@@ -454,11 +454,11 @@ class CreateProjectModuleTest extends TestCase
         
         $this->from(route('project.create'))
             ->post(route('project.store'), $this->getProjectData([
-                'start' => '2020-03-26',
-                'ending' => '2020-03-26',
+                'from' => '2020-03-26',
+                'to' => '2020-03-26',
                 ]))
             ->assertRedirect(route('project.create'))
-            ->assertSessionHasErrors(['ending']);
+            ->assertSessionHasErrors(['to']);
         
         $this->assertDatabaseMissing('projects', [
             'name' => 'Municipales 2020',
@@ -470,8 +470,8 @@ class CreateProjectModuleTest extends TestCase
 
         $this->from(route('project.create'))
             ->post(route('project.store'), $this->getProjectData([
-                'start' => '2020-03-26',
-                'ending' => '2020-03-27',
+                'from' => '2020-03-26',
+                'to' => '2020-03-27',
                 ]))
             ->assertRedirect(route('projects'));
         
@@ -489,11 +489,11 @@ class CreateProjectModuleTest extends TestCase
     {
         $this->from(route('project.create'))
             ->post(route('project.store'), $this->getProjectData([
-                'start'  => today(),
-                'ending' => today()->add('2 years 1 day'),
+                'from'  => today(),
+                'to' => today()->add('2 years 1 day'),
                 ]))
                 ->assertRedirect(route('project.create'))
-                ->assertSessionHasErrors(['ending']);
+                ->assertSessionHasErrors(['to']);
     
         $this->assertDatabaseMissing('projects', [
             'name' => 'Municipales 2020',
@@ -504,8 +504,8 @@ class CreateProjectModuleTest extends TestCase
         
         $this->from(route('project.create'))
             ->post(route('project.store'), $this->getProjectData([
-                'start'  => today(),
-                'ending' => today()->add('2 years'),
+                'from'  => today(),
+                'to' => today()->add('2 years'),
                 ]))
                 ->assertRedirect(route('projects'));
     
