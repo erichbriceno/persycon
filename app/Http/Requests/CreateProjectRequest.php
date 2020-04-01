@@ -2,9 +2,10 @@
 
 namespace App\Http\Requests;
 
+use Carbon\Carbon;
 use App\Model\Project;
-use App\Rules\{NameProject, NameProjectUnique, YearBetween};
 use Illuminate\Foundation\Http\FormRequest;
+use App\Rules\{NameProject, NameProjectUnique, YearBetween};
 
 class CreateProjectRequest extends FormRequest
 {
@@ -42,12 +43,13 @@ class CreateProjectRequest extends FormRequest
                 ],
             'from' => [
                 'required',
-                'date',
+                //'date',
+                'date_format:d/m/Y',
                 'after:now - 1 year',
                 'before:now + 1 year',
                 ], 
             'to' => [
-                'date',
+                'date_format:d/m/Y',
                 'nullable',
                 'after:from',
                 'before:now + 2 year',
@@ -61,8 +63,8 @@ class CreateProjectRequest extends FormRequest
         $project = Project::create([
             'name' =>"$this->name " . "$this->year",
             'description' => $this->description,
-            'start' => $this->from,
-            'ending' => $this->to??null,
+            'start' => Carbon::createFromFormat('d/m/Y', $this->from)->format('Y-m-d'),
+            'ending' => $this->to?Carbon::createFromFormat('d/m/Y', $this->to)->format('Y-m-d'):null,
             'state' => true
         ]);
         

@@ -65,12 +65,12 @@ class CreateProjectModuleTest extends TestCase
             ->assertSessionHasErrors(['name']);
     
         $this->assertDatabaseMissing('projects', [
-            'name' => 'Municipales Municipales',
+            'name' => 'Elecciones Municipales',
             'description' => 'Elecciones Municipales 2020',
             'start' => '2020-03-20',
             'state' => '1'
-            ]);
-
+            ]);	
+        
         $this->from(route('project.create'))
             ->post(route('project.store'), $this->getProjectData([
                 'name' => 'Elecciones',
@@ -83,6 +83,8 @@ class CreateProjectModuleTest extends TestCase
             'start' => '2020-03-20',
             'state' => '1'
             ]);
+
+        
     }
 
     /** @test */
@@ -106,8 +108,6 @@ class CreateProjectModuleTest extends TestCase
     /** @test */
     function the_name_must_be_made_up_of_the_name_and_the_year()
     {
-        $this->withoutExceptionHandling();
-        
         $this->from(route('project.create'))
             ->post(route('project.store'), $this->getProjectData([
                 'name' => 'Caracola',
@@ -275,7 +275,7 @@ class CreateProjectModuleTest extends TestCase
         
         $this->from(route('project.create'))
         ->post(route('project.store'), $this->getProjectData([
-            'from' => '2019-02-29',
+            'from' => '29/02/2019',
             ]))
         ->assertRedirect(route('project.create'))
         ->assertSessionHasErrors(['from']);
@@ -289,7 +289,7 @@ class CreateProjectModuleTest extends TestCase
 
         $this->from(route('project.create'))
         ->post(route('project.store'), $this->getProjectData([
-            'from' => '2020-02-29',
+            'from' => '29/02/2020',
             ]))
         ->assertRedirect(route('projects'));
 
@@ -306,7 +306,7 @@ class CreateProjectModuleTest extends TestCase
     {
         $this->from(route('project.create'))
             ->post(route('project.store'), $this->getProjectData([
-                'from' => today()->sub('1 year'),
+                'from' => today()->sub('1 year')->format('d/m/Y'),
                 ]))
             ->assertRedirect(route('project.create'))
             ->assertSessionHasErrors(['from']);
@@ -320,7 +320,7 @@ class CreateProjectModuleTest extends TestCase
         
         $this->from(route('project.create'))
             ->post(route('project.store'), $this->getProjectData([
-                'from' => today()->sub('1 year - 1 day'),
+                'from' => today()->sub('1 year - 1 day')->format('d/m/Y'),
                 ]))
             ->assertRedirect(route('projects'));
     
@@ -335,10 +335,9 @@ class CreateProjectModuleTest extends TestCase
     /** @test */
     function the_start_date_cannot_be_more_than_one_year()
     {
-        //$this->withoutExceptionHandling();
         $this->from(route('project.create'))
             ->post(route('project.store'), $this->getProjectData([
-                'from' => today()->add('1 year 1 day'),
+                'from' => today()->add('1 year 1 day')->format('d/m/Y'),
                 ]))
             ->assertRedirect(route('project.create'))
             ->assertSessionHasErrors(['from']);
@@ -352,7 +351,7 @@ class CreateProjectModuleTest extends TestCase
         
         $this->from(route('project.create'))
             ->post(route('project.store'), $this->getProjectData([
-                'from' => today()->add('1 year'),
+                'from' => today()->add('1 year')->format('d/m/Y'),
                 ]))
             ->assertRedirect(route('projects'));
     
@@ -369,7 +368,7 @@ class CreateProjectModuleTest extends TestCase
     {
         $this->from(route('project.create'))
             ->post(route('project.store'), $this->getProjectData([
-                'from' => '2020-02-22',
+                'from' => today()->format('d/m/Y'),
                 'to' => 'date-no-valid',
                 ]))
             ->assertRedirect(route('project.create'))
@@ -378,15 +377,15 @@ class CreateProjectModuleTest extends TestCase
         $this->assertDatabaseMissing('projects', [
             'name' => 'Municipales 2020',
             'description' => 'Elecciones Municipales 2020',
-            'start' => '2020-02-22',
+            'start' =>  today(),
             'ending' => 'date-no-valid',
             'state' => '1'
             ]);
         
         $this->from(route('project.create'))
             ->post(route('project.store'), $this->getProjectData([
-                'from' => '2019-02-22',
-                'to' => '2019-02-29',
+                'from' => '22/02/2019',
+                'to' => '29/02/2019',
                 ]))
             ->assertRedirect(route('project.create'))
             ->assertSessionHasErrors(['to']);
@@ -401,15 +400,15 @@ class CreateProjectModuleTest extends TestCase
 
         $this->from(route('project.create'))
             ->post(route('project.store'), $this->getProjectData([
-                'from' => '2020-02-25',
-                'to' => '2020-02-29',
+                'from' => '22/02/2020',
+                'to' => '29/02/2020',
                 ]))
             ->assertRedirect(route('projects'));
     
         $this->assertDatabaseHas('projects', [
             'name' => 'Municipales 2020',
             'description' => 'Elecciones Municipales 2020',
-            'start' => '2020-02-25',
+            'start' => '2020-02-22',
             'ending' => '2020-02-29',
             'state' => '1'
             ]);
@@ -435,11 +434,10 @@ class CreateProjectModuleTest extends TestCase
     /** @test */
     function the_ending_date_must_be_greater_than_the_start_date()
     {
-        //$this->markTestSkipped();
         $this->from(route('project.create'))
             ->post(route('project.store'), $this->getProjectData([
-                'from' => '2020-03-26',
-                'to' => '2020-03-22',
+                'from' => '26/03/2020',
+                'to' => '22/03/2020',
                 ]))
             ->assertRedirect(route('project.create'))
             ->assertSessionHasErrors(['to']);
@@ -454,8 +452,8 @@ class CreateProjectModuleTest extends TestCase
         
         $this->from(route('project.create'))
             ->post(route('project.store'), $this->getProjectData([
-                'from' => '2020-03-26',
-                'to' => '2020-03-26',
+                'from' => '26/03/2020',
+                'to' => '26/03/2020',
                 ]))
             ->assertRedirect(route('project.create'))
             ->assertSessionHasErrors(['to']);
@@ -470,8 +468,8 @@ class CreateProjectModuleTest extends TestCase
 
         $this->from(route('project.create'))
             ->post(route('project.store'), $this->getProjectData([
-                'from' => '2020-03-26',
-                'to' => '2020-03-27',
+                'from' => '26/03/2020',
+                'to' => '27/03/2020',
                 ]))
             ->assertRedirect(route('projects'));
         
@@ -487,25 +485,26 @@ class CreateProjectModuleTest extends TestCase
     /** @test */
     function the_end_date_cannot_be_more_than_two_years_from_the_current_date()
     {
+        //$this->withoutExceptionHandling();
         $this->from(route('project.create'))
-            ->post(route('project.store'), $this->getProjectData([
-                'from'  => today(),
-                'to' => today()->add('2 years 1 day'),
-                ]))
-                ->assertRedirect(route('project.create'))
-                ->assertSessionHasErrors(['to']);
-    
+        ->post(route('project.store'), $this->getProjectData([
+            'from'  => today()->format('d-m-Y'),
+            'to' => today()->add('2 years 1 day')->format('d-m-Y'),
+            ]))
+            ->assertRedirect(route('project.create'))
+            ->assertSessionHasErrors(['to']);
+
         $this->assertDatabaseMissing('projects', [
             'name' => 'Municipales 2020',
             'description' => 'Elecciones Municipales 2020',
             'start'  => today(),
             'ending' => today()->add('2 years 1 day'),
-            ]);
-        
+        ]);
+
         $this->from(route('project.create'))
             ->post(route('project.store'), $this->getProjectData([
-                'from'  => today(),
-                'to' => today()->add('2 years'),
+                'from'  => today()->format('d/m/Y'),
+                'to' => today()->add('2 years - 1 day')->format('d/m/Y'),
                 ]))
                 ->assertRedirect(route('projects'));
     
@@ -513,7 +512,7 @@ class CreateProjectModuleTest extends TestCase
             'name' => 'Municipales 2020',
             'description' => 'Elecciones Municipales 2020',
             'start'  => today(),
-            'ending' => today()->add('2 years'),
+            'ending' => today()->add('2 years - 1 day'),
             ]);
         
     }

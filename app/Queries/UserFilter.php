@@ -4,8 +4,8 @@
 namespace App\Queries;
 
 
-use App\Utils\Sortable;
 use Carbon\Carbon;
+use App\Utils\Sortable;
 use App\Rules\SortableColumn;
 
 class UserFilter extends QueryFilter
