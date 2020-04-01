@@ -35,6 +35,6 @@ class YearBetween implements Rule
      */
     public function message()
     {
-        return 'The validation error para validar el año entre.';
+        return trans('projects.errorsValidations.year.yearBetween', ['year' => now()->format('Y')]);
     }
 }

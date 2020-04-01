@@ -23,6 +23,11 @@ class ProjectController extends Controller
         return view('project.create', [
             'module' => 'project',
             'view' => 'create',
+            'years' => [
+                today()->sub('1 year')->format('Y'),
+                today()->format('Y'),
+                today()->add('1 year')->format('Y'),
+                ]
             ]);
     }
 

@@ -3,7 +3,7 @@
 <div class="form-group row">
     <label for="name" class="col-md-4 col-form-label text-md-right">@lang('Name')</label>
     <div class="col-md-4">
-        <input id="name" name="name" type="text" class="form-control" required autocomplete="name" placeholder ="{{ trans('projects.fieldsPlaceholder.name') }}" value="{{ old('name') }}">
+        <input id="name" name="name" type="text" class="form-control @error('name') is-invalid @enderror" required autocomplete="name" placeholder ="{{ trans('projects.fieldsPlaceholder.name') }}" value="{{ old('name') }}">
         @error('name')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
@@ -12,30 +12,25 @@
     </div>
 
     <div class="col-md-2">
-        <select name="year" id="year" class="form-control @error('year') is-invalid @enderror">
-            <option value="2019">
-                2019
-            </option>
-            <option value="2020">
-                2020
-            </option>
-            <option value="2021">
-                2021
-            </option>
+        <select id="year" name="year" class="form-control @error('year') is-invalid @enderror">
+            @foreach($years as $year)
+                <option value="{{ $year }}"{{ old('year') == $year ? ' selected' : '' }}>
+                    @lang($year)
+                </option>
+            @endforeach
         </select>
         @error('year')
-        <span class="invalid-feedback" role="alert">
-            <strong>{{ $message }}</strong>
-        </span>
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
         @enderror
     </div>
-
 </div>
 
 <div class="form-group row">
     <label for="description" class="col-md-4 col-form-label text-md-right">@lang('Description')</label>
     <div class="col-md-6">
-        <input id="description" type="text" class="form-control" name="description" required autocomplete="description">
+        <input id="description" name="description" type="text" class="form-control @error('description') is-invalid @enderror" required autocomplete="description" placeholder ="{{ trans('projects.fieldsPlaceholder.description') }}" value="{{ old('description') }}">
         @error('description')
         <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>
@@ -49,7 +44,7 @@
                 
     <div class="col-md-3">
         <div class="input-group date">
-            <input type="text" class="form-control form-control-sm text-right" name="from" id="from" placeholder="@lang('Start')" value="{{ request('from') }}" required autocomplete="from">
+            <input id="from" name="from" type="text" class="form-control form-control-sm text-right @error('from') is-invalid @enderror" required placeholder="@lang('Start')" value="{{ old('from') }}">
             @error('from')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
@@ -60,7 +55,7 @@
     
     <div class="col-md-3">
         <div class="input-group date">
-            <input type="text" class="form-control form-control-sm text-right" name="to" id="to" placeholder="@lang('Ending')" value="{{ request('to') }}">
+            <input id="to" name="to" type="text" class="form-control form-control-sm text-right @error('to') is-invalid @enderror" placeholder="@lang('Ending')" value="{{ old('to') }}">
             @error('to')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>

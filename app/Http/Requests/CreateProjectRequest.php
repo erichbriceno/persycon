@@ -49,8 +49,8 @@ class CreateProjectRequest extends FormRequest
                 'before:now + 1 year',
                 ], 
             'to' => [
-                'date_format:d/m/Y',
                 'nullable',
+                'date_format:d/m/Y',
                 'after:from',
                 'before:now + 2 year',
                 ],
@@ -62,7 +62,16 @@ class CreateProjectRequest extends FormRequest
     {
         return [
             'name.required' => trans('projects.errorsValidations.name.required'),
-            'name.alpha' => trans('projects.errorsValidations.name.alpha'),
+            'name.alpha'    => trans('projects.errorsValidations.name.alpha'),
+            'year.required' => trans('projects.errorsValidations.year.required'),
+            'description.max' => trans('projects.errorsValidations.description.max'),
+            'from.required' => trans('projects.errorsValidations.date.required',['time' => trans('projects.errorsValidations.date.start')]),
+            'from.date_format' => trans('projects.errorsValidations.date.date_format'),
+            'from.after' => trans('projects.errorsValidations.date.after',['time' => today()->sub('1 year')->format('d/m/Y')]),
+            'from.before' => trans('projects.errorsValidations.date.before',['time' => today()->add('1 year')->format('d/m/Y')]),
+            'to.date_format' => trans('projects.errorsValidations.date.date_format'),
+            'to.after' => trans('projects.errorsValidations.date.toAfter'),
+            'to.before' => trans('projects.errorsValidations.date.before',['time' => today()->add('2 year')->format('d/m/Y')]),
         ];
     }
 

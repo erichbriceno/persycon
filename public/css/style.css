@@ -110,5 +110,5 @@ a.indecorate:link
 }
 
 .invalid-feedback {
-    display: contents;
+    display: block;
 }
