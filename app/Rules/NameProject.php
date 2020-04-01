@@ -36,6 +36,6 @@ class NameProject implements Rule
      */
     public function message()
     {
-        return 'The validation error para una sola palabra.';
+        return trans('projects.errorsValidations.name.nameProject');
     }
 }

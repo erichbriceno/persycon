@@ -108,3 +108,7 @@ a.indecorate:link
     font-size: 0.7rem;
     color: #a1a6a9;
 }
+
+.invalid-feedback {
+    display: contents;
+}

@@ -38,6 +38,6 @@ class NameProjectUnique implements Rule
      */
     public function message()
     {
-        return 'The validation error para nombre repetido.';
+        return trans('projects.errorsValidations.name.uniqueName',['name' => $this->nameCompuest]);
     }
 }

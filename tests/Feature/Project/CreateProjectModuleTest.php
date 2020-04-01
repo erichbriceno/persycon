@@ -83,8 +83,37 @@ class CreateProjectModuleTest extends TestCase
             'start' => '2020-03-20',
             'state' => '1'
             ]);
+    }
 
-        
+    /** @test */
+    function The_name_must_only_contain_alpha_characters()
+    {
+        $this->from(route('project.create'))
+            ->post(route('project.store'), $this->getProjectData([
+                'name' => 'Elecciones_Municipales',
+                ]))
+            ->assertRedirect(route('project.create'))
+            ->assertSessionHasErrors(['name']);
+    
+        $this->assertDatabaseMissing('projects', [
+            'name' => 'Elecciones_Municipales 2020',
+            'description' => 'Elecciones Municipales 2020',
+            'start' => '2020-03-20',
+            'state' => '1'
+            ]);	
+
+        $this->from(route('project.create'))
+            ->post(route('project.store'), $this->getProjectData([
+                'name' => 'Elección',
+                ]))
+            ->assertRedirect(route('projects'));
+    
+        $this->assertDatabaseHas('projects', [
+            'name' => 'Elección 2020',
+            'description' => 'Elecciones Municipales 2020',
+            'start' => '2020-03-20',
+            'state' => '1'
+            ]);	
     }
 
     /** @test */

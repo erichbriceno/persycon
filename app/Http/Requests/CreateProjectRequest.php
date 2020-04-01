@@ -30,6 +30,7 @@ class CreateProjectRequest extends FormRequest
             'name' => [
                 'required',
                 new NameProject,
+                'alpha',
                 new NameProjectUnique("$this->name " . "$this->year"),
                 ],
             'year' => [
@@ -43,7 +44,6 @@ class CreateProjectRequest extends FormRequest
                 ],
             'from' => [
                 'required',
-                //'date',
                 'date_format:d/m/Y',
                 'after:now - 1 year',
                 'before:now + 1 year',
@@ -55,6 +55,14 @@ class CreateProjectRequest extends FormRequest
                 'before:now + 2 year',
                 ],
             'state' => 'boolean'
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'name.required' => trans('projects.errorsValidations.name.required'),
+            'name.alpha' => trans('projects.errorsValidations.name.alpha'),
         ];
     }
 
