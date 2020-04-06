@@ -12,8 +12,13 @@ return [
         'trash'     => 'No hay usuarios eliminados'
     ],
     'fields'    => [
-        'cedule'    => 'V12345678 - E81000000',
-        'email'     => 'usuario@correo.com',
-        'password'  => 'Debe contener mínimo 6 caracteres',
-    ]
+        'placeholder' => [
+            'cedule'    => 'V12345678 - E81000000',
+            'email'     => 'usuario@correo.com',
+            'password'  => 'Debe contener mínimo 6 caracteres',
+        ],
+    ],
+    'errorsValidations' => [
+        'required'  => 'El campo :field es obligatorio.',
+    ],
 ];

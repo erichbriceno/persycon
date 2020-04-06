@@ -35,10 +35,10 @@ class CreateUserRequest extends FormRequest
                 new CeduleExist,
                 new UserExist,
             ],
-            'names' => ['required', 'present','string', 'max:255'],
-            'surnames' => ['required', 'present','string', 'max:255'],
-            'email' => ['required', 'present', 'string', 'email', 'max:255', 'unique:users'],
-            'role' => [
+            'names'     => ['required', 'present','string', 'max:100'],
+            'surnames'  => ['required', 'present','string', 'max:100'],
+            'email'     => ['required', 'present', 'string', 'email', 'max:100', 'unique:users'],
+            'role'      => [
                 'required',
                 'present',
                 Rule::exists('roles', 'id')->where('selectable', true),
@@ -47,9 +47,9 @@ class CreateUserRequest extends FormRequest
                 'nullable',
                  Rule::exists('managements', 'id')->where('selectable', true)
             ],
-            'password' => ['required', 'string', 'min:6','confirmed'],
+            'password'  => ['required', 'string', 'min:6','confirmed'],
             'password_confirmation' => ['required','min:6','same:password'],
-            'state' => [
+            'state'     => [
                 'required',
                 Rule::in(['active','inactive'])
             ]
@@ -59,13 +59,12 @@ class CreateUserRequest extends FormRequest
     public function messages()
     {
         return [
-            'role_id.rule' => 'El rol es inválido.',
+            //'state_id.rule'           => 'Message for invalid value.',
         ];
     }
 
     public function createUser()
     {
-
         $user = User::create([
             'nat' => Str::substr($this->cedule, 0, 1),
             'numberced' => Str::substr($this->cedule, 1, 8),

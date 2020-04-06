@@ -31,15 +31,7 @@ class ValidCedule implements Rule
                 Str::length($value) < 10 ;
     }
 
-    /**
-     * Get the validation error message.
-     *
-     * @return string
-     */
-    public function message()
-    {
-        return trans('validation.cedule');
-    }
+
 
     private function validNationality($cedule)
     {
@@ -52,6 +44,16 @@ class ValidCedule implements Rule
             (int) Str::substr($cedule, 1, 8),
             FILTER_VALIDATE_INT,
             array("options" => array("min_range"=>300000, "max_range"=>90000000))) != false;
+    }
+
+    /**
+     * Get the validation error message.
+     *
+     * @return string
+     */
+    public function message()
+    {
+        return trans('validation.cedule');
     }
 
 

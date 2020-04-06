@@ -150,8 +150,15 @@ return [
     */
 
     'attributes' => [
+        'cedule'                => 'cedula',
         'name'                  => 'nombre',
+        'names'                 => 'nombres',
+        'surnames'              => 'apellidos',
+        'role'                  => 'rol',
+        'state'                 => 'estado',
         'username'              => 'usuario',
+        'management'            => 'gerencia',
+
         'email'                 => 'correo electrónico',
         'first_name'            => 'nombre',
         'last_name'             => 'apellido',

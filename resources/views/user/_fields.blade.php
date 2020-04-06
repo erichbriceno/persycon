@@ -4,7 +4,7 @@
 <div class="form-group row">
     <label for="id" class="col-md-4 col-form-label text-md-right">@lang('Id')</label>
     <div class="col-md-6">
-        <input id="id" type="text" readonly class="form-control" name="id" value="{{ $user->id }}">
+        <input id="id" name="id" type="text" readonly class="form-control" value="{{ $user->id }}">
     </div>
 </div>
 @endif
@@ -12,12 +12,11 @@
 <div class="form-group row">
     <label for="cedule" class="col-md-4 col-form-label text-md-right">@lang('Cedule')</label>
     <div class="col-md-6">
-        <input id="cedule" type="text" class="form-control @error('cedule') is-invalid @enderror" name="cedule" value="{{ old('cedule', $user->cedule) }}" {{ $user->cedule ? 'readonly' : 'autofocus' }} placeholder ="{{ trans('users.fields.cedule') }}" required
-        >
+        <input id="cedule" name="cedule" type="text" class="form-control @error('cedule') is-invalid @enderror" value="{{ old('cedule', $user->cedule) }}" {{ $user->cedule ? 'readonly' : 'autofocus' }} placeholder ="{{ trans('users.fields.placeholder.cedule') }}" required>
         @error('cedule')
-        <span class="invalid-feedback" role="alert">
-            <strong>{{ $message }}</strong>
-        </span>
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
         @enderror
     </div>
 </div>
@@ -25,14 +24,24 @@
 <div class="form-group row">
     <label for="names" class="col-md-4 col-form-label text-md-right">@lang('Names')</label>
     <div class="col-md-6">
-        <input id="names" type="text" class="form-control" name="names" value="{{ $user->names }}" required autocomplete="names" readonly>
+        <input id="names" name="names" type="text" class="form-control"  value="{{ $user->names }}" required autocomplete="names" readonly>
+        @error('names')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
     </div>
 </div>
 
 <div class="form-group row">
     <label for="surnames" class="col-md-4 col-form-label text-md-right">@lang('Surnames')</label>
     <div class="col-md-6">
-        <input id="surnames" type="text" class="form-control" name="surnames" value="{{ $user->surnames }}" required autocomplete="surnames" readonly>
+        <input id="surnames" name="surnames" type="text" class="form-control" value="{{ $user->surnames }}" required autocomplete="surnames" readonly>
+        @error('surnames')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
     </div>
 </div>
 
@@ -40,7 +49,7 @@
 <div class="form-group row">
     <label for="email" class="col-md-4 col-form-label text-md-right">@lang('E-Mail Address')</label>
     <div class="col-md-6">
-        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email', $user->email) }}" placeholder ="{{ trans('users.fields.email') }}" autocomplete="email" required autofocus>
+        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email', $user->email) }}" placeholder ="{{ trans('users.fields.placeholder.email') }}" autocomplete="email" required autofocus>
         @error('email')
         <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>
@@ -91,7 +100,7 @@
 <div class="form-group row">
     <label for="password" class="col-md-4 col-form-label text-md-right">@lang('Password')</label>
     <div class="col-md-6">
-        <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder ="{{ trans('users.fields.password') }}">
+        <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder ="{{ trans('users.fields.placeholder.password') }}">
         @error('password')
         <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>

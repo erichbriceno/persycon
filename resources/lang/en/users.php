@@ -12,9 +12,13 @@ return [
         'trash'     => 'There are no users deleted'
     ],
     'fields'    => [
-        'cedule'    => 'V12345678 - E81000000 - 12345678',
-        'email'     => 'example@mail.com',
-        'password'  => 'Must contain a minimum of 6 characters',
-    ]
+        'placeholder' => [
+            'cedule'    => 'V12345678 - E81000000',
+            'email'     => 'example@mail.com',
+            'password'  => 'Must contain a minimum of 6 characters',
+        ],
+    ],
+    'errorsValidations' => [
+        'required'  => 'The :field field is mandatory.',
+    ],
 ];
-

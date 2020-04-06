@@ -14,7 +14,7 @@
     <div class="col-md-2">
         <select id="year" name="year" class="form-control @error('year') is-invalid @enderror">
             @foreach($years as $year)
-                <option value="{{ $year }}"{{ old('year') == $year ? ' selected' : '' }}>
+                <option value="{{ $year }}"{{ old('year', today()->format('Y')) == $year ? ' selected' : '' }}>
                     @lang($year)
                 </option>
             @endforeach
