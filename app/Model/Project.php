@@ -14,4 +14,14 @@ class Project extends Model
         'state'
     ];
 
+    /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'start' => 'datetime',
+        'ending' => 'datetime',
+    ];
+
 }

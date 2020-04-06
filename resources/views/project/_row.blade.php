@@ -19,11 +19,10 @@
         <span class="note-black">1500</span>
     </td>
     <td>
-        <span class="note-black">Inicio: {{ $project->created_at->format('d/m/Y') }}</span>
+        <span class="note-black">Inicio: {{ $project->start->format('d/m/Y') }}</span>
         <span class="note">Fin: {{ optional($project->ends)->format('d/m/Y h:ia') ?: '-' }}</span>
     </td>
     <td class="text-center">
-        <a href="#" class="btn btn-outline-secondary btn-sm"><i class="fas fa-eye"></i></a>
         <a href="#" class="btn btn-outline-secondary btn-sm"><i class="fas fa-pencil-alt"></i></a>
         <a href="#" class="btn btn-outline-secondary btn-sm"><i class="fas fa-trash-alt"></i></a>             
     </td>
