@@ -5,9 +5,8 @@ namespace App\Http\Requests;
 use Carbon\Carbon;
 use App\Model\Project;
 use Illuminate\Foundation\Http\FormRequest;
-use App\Rules\{NameProject, NameProjectUnique, YearBetween};
 
-class CreateProjectRequest extends FormRequest
+class UpdateProjectRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -27,16 +26,6 @@ class CreateProjectRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => [
-                'required',
-                new NameProject,
-                'alpha',
-                new NameProjectUnique("$this->name " . "$this->year"),
-                ],
-            'year' => [
-                'required',
-                new YearBetween,
-                ],
             'description' => [
                 'required',
                 'string', 
@@ -72,14 +61,12 @@ class CreateProjectRequest extends FormRequest
         ];
     }
 
-    public function createProject()
+    public function updateProject(Project $project)
     {
-        $project = Project::create([
-            'name' =>"$this->name " . "$this->year",
+        $project->fill([
             'description' => $this->description,
             'start' => Carbon::createFromFormat('d/m/Y', $this->from)->format('Y-m-d'),
             'ending' => $this->to?Carbon::createFromFormat('d/m/Y', $this->to)->format('Y-m-d'):null,
-            'state' => true
         ]);
         
         $project->save();

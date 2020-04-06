@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 
-use App\Rules\ValidCedule;
 use App\Utils\Sortable;
-use Illuminate\Support\Str;
+use App\Rules\ValidCedule;
 use App\Queries\UserFilter;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Model\{Cedulate, Management, User, Role};
 use App\Http\Requests\{CreateUserRequest, FindCitizenRequest, UpdateUserRequest};

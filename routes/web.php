@@ -66,6 +66,7 @@ Route::delete('/users/{id}', 'UserController@destroy')
     ->name('user.destory');
 
 // Projects
+
 Route::get('/projects', 'ProjectController@index')
     ->name('projects');
 
@@ -74,6 +75,14 @@ Route::get('/projects/new', 'ProjectController@create')
 
 Route::post('/projects/store', 'ProjectController@store')
     ->name('project.store');
+
+Route::get('/projects/{project}/edit', 'ProjectController@edit')
+    ->where('project', '[0-9]+')    
+    ->name('project.edit');
+
+Route::put('/projects/{project}/edit', 'ProjectController@update')
+    ->where('project', '[0-9]+')
+    ->name('project.update');
 
 
 // Others

@@ -514,11 +514,10 @@ class CreateProjectModuleTest extends TestCase
     /** @test */
     function the_end_date_cannot_be_more_than_two_years_from_the_current_date()
     {
-        //$this->withoutExceptionHandling();
         $this->from(route('project.create'))
         ->post(route('project.store'), $this->getProjectData([
-            'from'  => today()->format('d-m-Y'),
-            'to' => today()->add('2 years 1 day')->format('d-m-Y'),
+            'from'  => today()->format('d/m/Y'),
+            'to' => today()->add('2 years 1 day')->format('d/m/Y'),
             ]))
             ->assertRedirect(route('project.create'))
             ->assertSessionHasErrors(['to']);

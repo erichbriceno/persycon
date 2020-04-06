@@ -29,7 +29,7 @@ return [
             'date_format'   => 'Formato valido dd/mm/yyyy',
             'after'         => 'Fecha valida posterior a :time',
             'before'        => 'Fecha valida anterior a :time',
-            'toAfter'       => 'Debe ser posterior a la de inicio',
+            'toAfter'       => 'Debe ser posterior a la fecha de inicio',
         ]
     ],
 ];
