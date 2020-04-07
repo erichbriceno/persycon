@@ -18,13 +18,12 @@ class UserController extends Controller
     {
 
         $users = User::query()
-
-            ->with('role', 'management')
-            ->withLastLogin()
-            ->onlyTrashedIf($request->routeIs('users.trash'))
-            ->filterBy($filters, $request->only(['search', 'management', 'state', 'roles', 'from', 'to', 'order', 'direction']))
-            ->orderBy('id')
-            ->paginate();
+                ->with('role', 'management')
+                ->withLastLogin()
+                ->onlyTrashedIf($request->routeIs('users.trash'))
+                ->filterBy($filters, $request->only(['search', 'management', 'state', 'roles', 'from', 'to', 'order', 'direction']))
+                ->orderBy('id')
+                ->paginate();
 
         $users->appends($filters->valid());
         $sortable->appends($filters->valid());

@@ -388,8 +388,6 @@ class UpdateProjectModuleTest extends TestCase
     /** @test */
     function the_end_date_cannot_be_more_than_two_years_from_the_current_date_when_updating_a_project()
     {
-        //$this->withoutExceptionHandling();
-        
         $project = factory(Project::class)->create();
 
         $this->from(route('project.edit', $project))

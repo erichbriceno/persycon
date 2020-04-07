@@ -84,6 +84,10 @@ Route::put('/projects/{project}/edit', 'ProjectController@update')
     ->where('project', '[0-9]+')
     ->name('project.update');
 
+Route::patch('projects/{project}/trash', 'ProjectController@trash')
+    ->where('project', '[0-9]+')
+    ->name('project.trash');
+
 
 // Others
 

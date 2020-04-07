@@ -3,10 +3,13 @@
 namespace App\Model;
 
 use Illuminate\Support\Str;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Model;
 
 class Project extends Model
 {
+    use SoftDeletes;
+    
     protected $fillable = [
         'name', 
         'description', 

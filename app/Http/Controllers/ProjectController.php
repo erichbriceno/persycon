@@ -11,10 +11,12 @@ class ProjectController extends Controller
  
     public function index()
     {
+        $projects = Project::paginate(20);
+        
         return view('project.projects', [
         'module' => 'project',
         'view' => 'index',
-        'projects' => Project::paginate(20),
+        'projects' => $projects,
         ]);
     }
 
@@ -60,5 +62,12 @@ class ProjectController extends Controller
         $request->updateProject($project);
 
         return redirect()->route('projects'); ;
+    }
+
+    public function trash(Project $project)
+    {
+        $project->delete();
+
+        return redirect()->route('projects');
     }
 }
