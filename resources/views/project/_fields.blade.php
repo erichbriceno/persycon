@@ -83,6 +83,8 @@
 <div class="row">
     <div class="col-md-10">
         <div class="form-inline justify-content-end">
+            <a href="{{ route('projects') }}" class="btn btn-sm btn-primary btn-sm">@lang('Back')</a>
+            &nbsp;
             <button type="submit" class="btn btn-sm btn-primary btn-sm">
                 @if($view == 'create')
                     @lang('Save')
@@ -90,8 +92,6 @@
                     @lang('Update')
                 @endif
             </button>
-            &nbsp;
-            <a href="{{ route('projects') }}" class="btn btn-sm btn-primary btn-sm">@lang('Back')</a>
         </div>
     </div>
 </div>

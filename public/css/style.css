@@ -112,3 +112,9 @@ a.indecorate
 .invalid-feedback {
     display: block;
 }
+
+.botton {
+    display:flex;   
+    align-items:center; 
+    padding-left: 0px;
+}

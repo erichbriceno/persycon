@@ -19,6 +19,11 @@
             </span>
         @enderror
     </div>
+    @if(!$user->id && $user->cedule)
+        <div class="col-md-1 botton">
+            <a href="{{ route('user.find') }}" class="btn btn-outline-danger btn-sm"><i class="fas fa-times-circle"></i></a>
+        </div>
+    @endif
 </div>
 
 <div class="form-group row">
@@ -141,11 +146,11 @@
 <div class="row">
     <div class="col-md-10">
         <div class="form-inline justify-content-end">
+            <a href="{{ route('users', ['state' => 'active']) }}" class="btn btn-sm btn-primary btn-sm">@lang('Back')</a>
+            &nbsp;
             <button type="submit" class="btn btn-sm btn-primary btn-sm">
                 @lang($user->cedule ? 'Save' : 'Find')
             </button>
-            &nbsp;
-            <a href="{{ route($user->cedule ? 'user.find' : 'users') }}" class="btn btn-sm btn-primary btn-sm">@lang('Back')</a>
         </div>
     </div>
 </div>
