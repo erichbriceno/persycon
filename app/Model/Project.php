@@ -3,6 +3,7 @@
 namespace App\Model;
 
 use Illuminate\Support\Str;
+use App\Queries\ProjectQuery;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Model;
 
@@ -28,6 +29,17 @@ class Project extends Model
         'ending'    => 'datetime',
         'state'     => 'boolean'
     ];
+
+      /**
+     * Create a new Eloquent query builder for the model.
+     *
+     * @param  \Illuminate\Database\Query\Builder  $query
+     * @return \Illuminate\Database\Eloquent\Builder|static
+     */
+    public function newEloquentBuilder($query)
+    {
+        return new ProjectQuery($query);
+    }
 
     public function getNamewAttribute()
     {

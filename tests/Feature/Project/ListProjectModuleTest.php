@@ -40,7 +40,7 @@ class ListProjectModuleTest extends TestCase
     }
 
     /** @test */
-    function users_list_are_ordered_by_id()
+    function projects_list_are_ordered_by_id()
     {
         factory(Project::class)->create(['name' => 'Elecciones 2019']);
         factory(Project::class)->create(['name' => 'Mantenimiento 2020']);

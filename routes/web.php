@@ -50,14 +50,14 @@ Route::put('/users/{user}/edit', 'UserController@update')
     ->where('user', '[0-9]+')
     ->name('user.update');
 
-Route::get('users/trash', 'UserController@index')
+Route::get('/users/trash', 'UserController@index')
     ->name('users.trash');
 
-Route::patch('users/{user}/trash', 'UserController@trash')
+Route::patch('/users/{user}/trash', 'UserController@trash')
     ->where('user', '[0-9]+')
     ->name('user.trash');
 
-Route::patch('users/{id}/restore', 'UserController@restore')
+Route::patch('/users/{id}/restore', 'UserController@restore')
     ->where('user', '[0-9]+')
     ->name('user.restore');
 
@@ -84,9 +84,20 @@ Route::put('/projects/{project}/edit', 'ProjectController@update')
     ->where('project', '[0-9]+')
     ->name('project.update');
 
-Route::patch('projects/{project}/trash', 'ProjectController@trash')
+Route::patch('/projects/{project}/trash', 'ProjectController@trash')
     ->where('project', '[0-9]+')
     ->name('project.trash');
+
+Route::get('/projects/trash', 'ProjectController@index')
+    ->name('projects.trash');
+
+Route::patch('/projects/{id}/restore', 'ProjectController@restore')
+    ->where('project', '[0-9]+')
+    ->name('project.restore');
+
+Route::delete('/projects/{id}', 'ProjectController@destroy')
+    ->where('project', '[0-9]+')
+    ->name('project.destory');
 
 
 // Others

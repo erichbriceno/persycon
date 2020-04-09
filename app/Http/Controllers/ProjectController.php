@@ -5,17 +5,21 @@ namespace App\Http\Controllers;
 use App\Model\{ Project };
 use App\Http\Requests\CreateProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
+use Illuminate\Http\Request;
 
 class ProjectController extends Controller
 {
  
-    public function index()
+    public function index(Request $request)
     {
-        $projects = Project::paginate(20);
+        $projects = Project::query()
+                ->onlyTrashedIf($request->routeIs('projects.trash'))
+                ->orderBy('id')
+                ->paginate(20);
         
         return view('project.projects', [
         'module' => 'project',
-        'view' => 'index',
+        'view' => $request->routeIs('projects.trash') ? 'trash' : 'index',
         'projects' => $projects,
         ]);
     }
@@ -69,5 +73,24 @@ class ProjectController extends Controller
         $project->delete();
 
         return redirect()->route('projects');
+    }
+
+    public function restore($id)
+    {
+
+        $project = Project::onlyTrashed()->where('id', $id)->firstOrFail();
+
+        $project->restore();
+
+        return redirect()->route('projects.trash');
+    }
+
+    public function destroy($id)
+    {
+        $project = Project::onlyTrashed()->where('id', $id)->firstOrFail();
+
+        $project->forceDelete();
+
+        return redirect()->route('projects.trash');
     }
 }
