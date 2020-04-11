@@ -10,9 +10,9 @@ class AdminController extends Controller
             
     public function management()
     {
-        return view('admin.management', [
-            'module' => 'admin',            
-            'view' => 'managements',
+        return view('managements.management', [
+            'module' => 'management',            
+            'view' => 'index',
             'managements' => Management::paginate(20),
         ]);
     }

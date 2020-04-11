@@ -2,7 +2,6 @@
 
 return [
     'admin' => [
-        'managements' => 'LISTADO DE GERENCIAS',
         'groups' => 'LISTADO DE GRUPOS',
         'home' => 'INICIO',
     ],
@@ -18,6 +17,12 @@ return [
         'trash' => 'PAPELERA DE PROYECTOS',
         'create' => 'CREAR PROYECTO',
         'edit' => 'EDITAR PROYECTO',
+    ],
+    'management' => [
+        'index' => 'LISTADO DE GERENCIAS',
+        'trash' => 'PAPELERA DE GERENCIAS',
+        'create' => 'CREAR GERENCIA',
+        'edit' => 'EDITAR GERENCIA',
     ],
 ];
 

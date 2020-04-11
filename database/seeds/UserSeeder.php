@@ -19,13 +19,13 @@ class UserSeeder extends Seeder
         $this->fetchRelations();
 
         factory(User::class)->create([
-            'management_id' => $this->managements->where('name', 'PO')->first()->id,
             'nat' => 'V',
             'numberced' => '13683474',
             'names' => 'Erich Javier',
             'surnames' => 'Briceño',
             'email' => 'erichbriceno@gmail.com',
             'role_id' => $this->roles->where('name', 'Master')->first()->id,
+            'management_id' => $this->managements->where('name', 'PO')->first()->id,
             'password' => bcrypt('secreto1'),
         ]);
 

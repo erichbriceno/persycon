@@ -81,6 +81,7 @@ class UserController extends Controller
         $user->numberced  = $cedulate->numerocedula;
         $user->names = "$cedulate->primernombre $cedulate->segundonombre";
         $user->surnames = "$cedulate->primerapellido $cedulate->segundoapellido";
+        $user->state = 'active';
 
         return view('user.create', [
             'module' => 'user',

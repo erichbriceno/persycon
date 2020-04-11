@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Model\{ Project };
-use App\Http\Requests\CreateProjectRequest;
-use App\Http\Requests\UpdateProjectRequest;
+use App\Model\Project;
 use Illuminate\Http\Request;
+use App\Http\Requests\{CreateProjectRequest, UpdateProjectRequest};
+
 
 class ProjectController extends Controller
 {

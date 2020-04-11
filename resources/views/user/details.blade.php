@@ -71,7 +71,7 @@
                                 <div class="form-inline justify-content-end">
                                     <a href="{{ route('user.edit', $user) }}" class="btn btn-sm btn-secondary" role="button" aria-disabled="true">Edit</a>
                                     &nbsp;
-                                    <a href="{{ route('users') }}" class="btn btn-sm btn-secondary" role="button" aria-disabled="true">Back</a>
+                                    <a href="{{ route('users', ['state' => 'active']) }}" class="btn btn-sm btn-secondary" role="button" aria-disabled="true">Back</a>
                                 </div>
                             </div>
                         </div>

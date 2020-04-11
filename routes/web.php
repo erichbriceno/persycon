@@ -99,10 +99,13 @@ Route::delete('/projects/{id}', 'ProjectController@destroy')
     ->where('project', '[0-9]+')
     ->name('project.destory');
 
+// Managemnets
+
+Route::get('/managements', 'ManagementController@index')
+    ->name('managements');
+
 
 // Others
-
-Route::get('/managements', 'AdminController@management')->name('managements');
 
 Route::get('/groups', 'AdminController@group')->name('groups');
 

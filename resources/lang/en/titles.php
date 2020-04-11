@@ -2,7 +2,6 @@
 
 return [
     'admin' => [
-        'managements' => 'LIST OF MANAGEMENT',
         'groups' => 'LIST OF GROUPS',
         'home' => 'HOME',
     ],
@@ -19,5 +18,12 @@ return [
         'create' => 'CREATE PROJECT',
         'edit' => 'EDIT PROJECT',
     ],
+    'management' => [
+        'index' => 'LIST OF MANAGEMENTS',
+        'trash' => 'TRASH MANAGEMENTS',
+        'create' => 'CREATE MANAGEMENTS',
+        'edit' => 'EDIT MANAGEMENTS',
+    ],
+
 ];
 
