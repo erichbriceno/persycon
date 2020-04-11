@@ -19,7 +19,7 @@ class CreateProjectsTable extends Migration
             $table->string('description');
             $table->date('start');
             $table->date('ending')->nullable();
-            $table->boolean('state');
+            $table->boolean('active');
             $table->timestamps();
             $table->softDeletes();
         });

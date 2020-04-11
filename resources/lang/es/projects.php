@@ -9,6 +9,10 @@ return [
         'name'              => 'Debe contener una sola palabra',
         'description'       => 'Describa el proyecto (máx. 50 caracteres)',
         ],
+    'state'     => [
+        'inactive'          => 'Inactivo',
+        'active'            => 'Activo'
+        ],
     'errorsValidations' => [
         'name' => [
             'required'      => 'El nombre es obligatorio.',

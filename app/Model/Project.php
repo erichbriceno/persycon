@@ -16,7 +16,7 @@ class Project extends Model
         'description', 
         'start',
         'ending',
-        'state'
+        'active'
     ];
 
     /**
@@ -27,7 +27,7 @@ class Project extends Model
     protected $casts = [
         'start'     => 'datetime',
         'ending'    => 'datetime',
-        'state'     => 'boolean'
+        'active'    => 'boolean'
     ];
 
       /**
@@ -49,6 +49,11 @@ class Project extends Model
     public function getYearAttribute()
     {
         return $this->name?Str::after($this->name,' '):null;
+    }
+
+    public function getStateAttribute()
+    {
+        return $this->active?'active':'inactive';
     }
 
 }

@@ -54,7 +54,6 @@ class CreateProjectRequest extends FormRequest
                 'after:from',
                 'before:now + 2 year',
                 ],
-            'state' => 'boolean'
         ];
     }
 
@@ -79,7 +78,7 @@ class CreateProjectRequest extends FormRequest
             'description' => $this->description,
             'start' => Carbon::createFromFormat('d/m/Y', $this->from)->format('Y-m-d'),
             'ending' => $this->to?Carbon::createFromFormat('d/m/Y', $this->to)->format('Y-m-d'):null,
-            'state' => true
+            'active' => true
         ]);
         
         $project->save();

@@ -99,6 +99,11 @@ a.indecorate
     font-weight: 200;
 }
 
+.note-danger {
+    font-size: 0.75rem;
+    color: #a70000;
+}
+
 .note-active {
     font-size: 0.7rem;
     color: #a1a6a9;

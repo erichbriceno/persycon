@@ -10,6 +10,6 @@ $factory->define(Project::class, function (Faker $faker) {
         'name' => "{$faker->firstName} {$faker->numberBetween(2018,2020)}" ,
         'description' => $faker->sentence(3),
         'start' => today(),
-        'state' => true,
+        'active' => rand(0,3)?1:0,
     ];
 });

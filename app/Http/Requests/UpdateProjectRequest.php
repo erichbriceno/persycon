@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use Carbon\Carbon;
 use App\Model\Project;
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateProjectRequest extends FormRequest
@@ -43,7 +44,10 @@ class UpdateProjectRequest extends FormRequest
                 'after:from',
                 'before:now + 2 year',
                 ],
-            'state' => 'boolean'
+            'state' => [
+                'required',
+                Rule::in(['active','inactive'])
+            ],
         ];
     }
 
@@ -64,9 +68,10 @@ class UpdateProjectRequest extends FormRequest
     public function updateProject(Project $project)
     {
         $project->fill([
-            'description' => $this->description,
-            'start' => Carbon::createFromFormat('d/m/Y', $this->from)->format('Y-m-d'),
-            'ending' => $this->to?Carbon::createFromFormat('d/m/Y', $this->to)->format('Y-m-d'):null,
+            'description'   => $this->description,
+            'start'         => Carbon::createFromFormat('d/m/Y', $this->from)->format('Y-m-d'),
+            'ending'        => $this->to?Carbon::createFromFormat('d/m/Y', $this->to)->format('Y-m-d'):null,
+            'active'        => $this->state == 'active',
         ]);
         
         $project->save();

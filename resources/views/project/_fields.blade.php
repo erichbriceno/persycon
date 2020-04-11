@@ -80,6 +80,30 @@
     </div>
 </div>
 
+@if($view === 'edit')
+<div class="form-group row">
+    <div class="col-md-10">
+        <div class="form-inline justify-content-end">
+            @foreach(trans('projects.state') as $state => $label )
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="state" id="state_{{ $state }}" value="{{ $state }}" {{ old('state', $project->state) == $state ? 'checked' : '' }}>
+                <label class="form-check-label" for="state_{{ $state }}" >{{ $label }}</label>
+            </div>
+            @endforeach
+        </div>
+        <div class="form-inline justify-content-end">
+            @error('state')
+                <span class="text-danger">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
+        </div>
+    </div>
+</div>
+@endif
+
+
+
 <div class="row">
     <div class="col-md-10">
         <div class="form-inline justify-content-end">

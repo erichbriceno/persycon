@@ -70,6 +70,8 @@ class ProjectController extends Controller
 
     public function trash(Project $project)
     {
+        $project->active = false;
+        $project->save();
         $project->delete();
 
         return redirect()->route('projects');

@@ -13,8 +13,6 @@ class DeleteProjectTest extends TestCase
     /** @test */
     function it_sends_a_project_to_the_trash()
     {
-        //$this->withoutExceptionHandling();
-        
         $project = factory(Project::class)->create([
             'name' => 'Municipales 2020'
         ]);
@@ -31,6 +29,30 @@ class DeleteProjectTest extends TestCase
         $project->refresh();
         $this->assertTrue($project->trashed());
     }
+
+
+    /** @test */
+    function it_when_a_project_is_deleted_it_becomes_inactive()
+    {
+        $project = factory(Project::class)->create([
+            'name' => 'Municipales 2020',
+            'active' => true
+        ]);
+
+        $this->patch(route('project.trash', $project))
+            ->assertRedirect(route('projects'));
+
+        $this->assertSoftDeleted('projects', [
+                'id' => $project->id,
+            ]);
+
+        $this->assertDatabaseHas('projects', [
+                'name' => 'Municipales 2020',
+                'active' => false
+            ]);
+    }
+
+    
 
     /** @test */
     function it_shows_the_trashed_projects_list()

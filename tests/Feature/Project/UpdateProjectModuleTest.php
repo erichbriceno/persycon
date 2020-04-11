@@ -20,6 +20,7 @@ class UpdateProjectModuleTest extends TestCase
                 'description'   => 'Breve descripción',
                 'from'          => '08/04/2020',
                 'to'            => '10/04/2020',
+                'state'         => 'active'
             ])->assertRedirect(route('projects'));
         
         $this->assertDatabaseHas('projects', [
@@ -44,6 +45,7 @@ class UpdateProjectModuleTest extends TestCase
                 'description'   => 'Breve descripción',
                 'from'          => '08/04/2020',
                 'to'            => '10/04/2020',
+                'state'         => 'active'
             ])->assertRedirect(route('projects'));
         
         $this->assertDatabaseHas('projects', [
@@ -80,6 +82,7 @@ class UpdateProjectModuleTest extends TestCase
                 'description'   => null,
                 'from'          => '08/04/2020',
                 'to'            => '10/04/2020',
+                'state'         => 'active'
             ])->assertRedirect(route('project.edit', $project))
             ->assertSessionHasErrors(['description']);
         
@@ -101,6 +104,7 @@ class UpdateProjectModuleTest extends TestCase
                 'description'   => 'mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm1',
                 'from'          => '08/04/2020',
                 'to'            => '10/04/2020',
+                'state'         => 'active',
             ])->assertRedirect(route('project.edit', $project))
             ->assertSessionHasErrors(['description']);
         
@@ -116,6 +120,7 @@ class UpdateProjectModuleTest extends TestCase
                 'description'   => '12345678901234567890123456789012345678901234567890',
                 'from'          => '08/04/2020',
                 'to'            => '10/04/2020',
+                'state'         => 'active',
             ])->assertRedirect(route('projects'));
         
         $this->assertDatabaseHas('projects', [
@@ -136,6 +141,7 @@ class UpdateProjectModuleTest extends TestCase
             [
 
                 'from'  => '',
+                'state'         => 'active',
             ])->assertRedirect(route('project.edit', $project))
             ->assertSessionHasErrors(['from']);
         
@@ -148,6 +154,7 @@ class UpdateProjectModuleTest extends TestCase
             ->put(route('project.update', $project),
             [
                 'from'  => null,
+                'state'         => 'active',
             ])->assertRedirect(route('project.edit', $project))
             ->assertSessionHasErrors(['from']);
         
@@ -167,6 +174,7 @@ class UpdateProjectModuleTest extends TestCase
         [
             'description'   => 'Breve descripción',
             'from'  => 'date-no-valid',
+            'state'         => 'active',
         ])->assertRedirect(route('project.edit', $project))
         ->assertSessionHasErrors(['from']);
     
@@ -180,6 +188,7 @@ class UpdateProjectModuleTest extends TestCase
             [
                 'description'   => 'Breve descripción',        
                 'from'  => '29/02/2019',
+                'state'         => 'active',
             ])->assertRedirect(route('project.edit', $project))
             ->assertSessionHasErrors(['from']);
         
@@ -194,6 +203,7 @@ class UpdateProjectModuleTest extends TestCase
             [
                 'description'   => 'Breve descripción',
                 'from'  => '29/02/2020',
+                'state'         => 'active',
             ])->assertRedirect(route('projects'));
         
         $this->assertDatabaseHas('projects', [
@@ -212,6 +222,7 @@ class UpdateProjectModuleTest extends TestCase
         [
             'description'   => 'Breve descripción',        
             'from' => today()->sub('1 year')->format('d/m/Y'),
+            'state'         => 'active',
         ])->assertRedirect(route('project.edit', $project))
         ->assertSessionHasErrors(['from']);
     
@@ -225,6 +236,7 @@ class UpdateProjectModuleTest extends TestCase
         [
             'description'   => 'Breve descripción',        
             'from' => today()->sub('1 year - 1 day')->format('d/m/Y'),
+            'state'         => 'active',
         ])->assertRedirect(route('projects'));
     
         $this->assertDatabaseHas('projects', [
@@ -243,6 +255,7 @@ class UpdateProjectModuleTest extends TestCase
         [
             'description'   => 'Breve descripción',        
             'from' => today()->add('1 year 1 day')->format('d/m/Y'),
+            'state'         => 'active',
         ])->assertRedirect(route('project.edit', $project))
         ->assertSessionHasErrors(['from']);
     
@@ -256,6 +269,7 @@ class UpdateProjectModuleTest extends TestCase
         [
             'description'   => 'Breve descripción',        
             'from' => today()->add('1 year')->format('d/m/Y'),
+            'state'         => 'active',
         ])->assertRedirect(route('projects'));
     
         $this->assertDatabaseHas('projects', [
@@ -274,7 +288,8 @@ class UpdateProjectModuleTest extends TestCase
         [
             'description'   => 'Breve descripción',
             'from'  => today()->format('d/m/Y'),
-            'to'    => 'date-no-valid',       
+            'to'    => 'date-no-valid',     
+            'state'         => 'active',  
         ])->assertRedirect(route('project.edit', $project))
         ->assertSessionHasErrors(['to']);
     
@@ -289,7 +304,8 @@ class UpdateProjectModuleTest extends TestCase
         [
             'description'   => 'Breve descripción',
             'from'  => '22/02/2019',
-            'to'    => '29/02/2019',       
+            'to'    => '29/02/2019',
+            'state'         => 'active',       
         ])->assertRedirect(route('project.edit', $project))
         ->assertSessionHasErrors(['to']);
     
@@ -304,7 +320,8 @@ class UpdateProjectModuleTest extends TestCase
         [
             'description'   => 'Breve descripción', 
             'from'          => '22/02/2020',
-            'to'            => '29/02/2020',       
+            'to'            => '29/02/2020', 
+            'state'         => 'active',      
         ])->assertRedirect(route('projects'));
     
         $this->assertDatabaseHas('projects', [
@@ -324,7 +341,8 @@ class UpdateProjectModuleTest extends TestCase
         [
             'description'   => 'Breve descripción', 
             'from'          => '22/02/2020',
-            'to'            => null,       
+            'to'            => null,
+            'state'         => 'active',       
         ])->assertRedirect(route('projects'));
     
         $this->assertDatabaseHas('projects', [
@@ -344,7 +362,8 @@ class UpdateProjectModuleTest extends TestCase
         [
             'description'   => 'Breve descripción',
             'from'          => '26/03/2020',
-            'to'            => '22/03/2020',     
+            'to'            => '22/03/2020', 
+            'state'         => 'active',    
         ])->assertRedirect(route('project.edit', $project))
         ->assertSessionHasErrors(['to']);
     
@@ -359,7 +378,8 @@ class UpdateProjectModuleTest extends TestCase
         [
             'description'   => 'Breve descripción',
             'from'          => '26/03/2020',
-            'to'            => '26/03/2020',     
+            'to'            => '26/03/2020', 
+            'state'         => 'active',    
         ])->assertRedirect(route('project.edit', $project))
         ->assertSessionHasErrors(['to']);
     
@@ -375,7 +395,8 @@ class UpdateProjectModuleTest extends TestCase
         [
             'description'   => 'Breve descripción', 
             'from'          => '26/03/2020',
-            'to'            => '27/03/2020',      
+            'to'            => '27/03/2020', 
+            'state'         => 'active',     
         ])->assertRedirect(route('projects'));
     
         $this->assertDatabaseHas('projects', [
@@ -395,7 +416,8 @@ class UpdateProjectModuleTest extends TestCase
         [
             'description'   => 'Breve descripción',
             'from'          => today()->format('d/m/Y'),
-            'to'            => today()->add('2 years 1 day')->format('d/m/Y'),    
+            'to'            => today()->add('2 years 1 day')->format('d/m/Y'), 
+            'state'         => 'active',   
         ])->assertRedirect(route('project.edit', $project))
         ->assertSessionHasErrors(['to']);
     
@@ -410,7 +432,8 @@ class UpdateProjectModuleTest extends TestCase
         [
             'description'   => 'Breve descripción', 
             'from'          => today()->format('d/m/Y'),
-            'to'            => today()->add('2 years - 1 day')->format('d/m/Y'),    
+            'to'            => today()->add('2 years - 1 day')->format('d/m/Y'),
+            'state'         => 'active',    
         ])->assertRedirect(route('projects'));
     
         $this->assertDatabaseHas('projects', [
@@ -419,4 +442,29 @@ class UpdateProjectModuleTest extends TestCase
             'ending'        => today()->add('2 years - 1 day'),
             ]);
     }
+
+    /** @test */
+    function the_project_updates_to_active_if_it_is_inactive()
+    {
+        //$this->withoutExceptionHandling();
+        
+        $project = factory(Project::class)->create([
+            'name'  => 'Consejales 2020',
+            'active' => true
+        ]);
+        
+        $this->from(route('project.edit', $project))
+            ->put(route('project.update', $project),
+            [
+                'description'   => 'Breve descripción',
+                'from'          => today()->format('d/m/Y'),
+                'state'         => 'inactive'
+            ])->assertRedirect(route('projects'));
+        
+        $this->assertDatabaseHas('projects', [
+            'name'  => 'Consejales 2020',
+            'active' => false
+            ]);
+    }
+
 }

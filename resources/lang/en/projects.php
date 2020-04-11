@@ -9,6 +9,10 @@ return [
         'name'              => 'Must contain a single word.',
         'description'       => 'Proyect descrption (50 characters max.).',
         ],
+    'state'     => [
+        'inactive'          => 'Inactive',
+        'active'            => 'Active'
+    ],
     'errorsValidations' => [
         'name' => [
             'required'      => 'The name field is mandatory.',

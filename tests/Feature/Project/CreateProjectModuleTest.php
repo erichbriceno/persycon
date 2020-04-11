@@ -32,7 +32,7 @@ class CreateProjectModuleTest extends TestCase
             'name' => 'Municipales 2020',
             'description' => 'Elecciones Municipales 2020',
             'start' => '2020-03-20',
-            'state' => '1'
+            'active' => true
             ]);
     }
 
@@ -50,7 +50,7 @@ class CreateProjectModuleTest extends TestCase
             'name' => 'Municipales 2020',
             'description' => 'Elecciones Municipales 2020',
             'start' => '2020-03-20',
-            'state' => '1'
+            'active' => true
             ]);
     }
 
@@ -68,7 +68,7 @@ class CreateProjectModuleTest extends TestCase
             'name' => 'Elecciones Municipales',
             'description' => 'Elecciones Municipales 2020',
             'start' => '2020-03-20',
-            'state' => '1'
+            'active' => true
             ]);	
         
         $this->from(route('project.create'))
@@ -81,7 +81,7 @@ class CreateProjectModuleTest extends TestCase
             'name' => 'Elecciones 2020',
             'description' => 'Elecciones Municipales 2020',
             'start' => '2020-03-20',
-            'state' => '1'
+            'active' => true
             ]);
     }
 
@@ -99,7 +99,7 @@ class CreateProjectModuleTest extends TestCase
             'name' => 'Elecciones_Municipales 2020',
             'description' => 'Elecciones Municipales 2020',
             'start' => '2020-03-20',
-            'state' => '1'
+            'active' => true
             ]);	
 
         $this->from(route('project.create'))
@@ -112,7 +112,7 @@ class CreateProjectModuleTest extends TestCase
             'name' => 'Elección 2020',
             'description' => 'Elecciones Municipales 2020',
             'start' => '2020-03-20',
-            'state' => '1'
+            'active' => true
             ]);	
     }
 
@@ -148,7 +148,7 @@ class CreateProjectModuleTest extends TestCase
             'name' => 'Caracola 2019',
             'description' => 'Elecciones Municipales 2020',
             'start' => '2020-03-20',
-            'state' => '1'
+            'active' => true
             ]);
     }
 
@@ -167,7 +167,7 @@ class CreateProjectModuleTest extends TestCase
             'name' => 'Municipales 2020',
             'description' => 'Elecciones Municipales 2020',
             'start' => '2020-03-20',
-            'state' => '1'
+            'active' => true
             ]);
     }
 
@@ -185,7 +185,7 @@ class CreateProjectModuleTest extends TestCase
             'name' => 'municipales 2018',
             'description' => 'Elecciones Municipales 2020',
             'start' => '2020-03-20',
-            'state' => '1'
+            'active' => true
             ]);
         
         $this->from(route('project.create'))
@@ -199,7 +199,7 @@ class CreateProjectModuleTest extends TestCase
             'name' => 'municipales 2022',
             'description' => 'Elecciones Municipales 2020',
             'start' => '2020-03-20',
-            'state' => '1'
+            'active' => true
             ]);
         
         $this->from(route('project.create'))
@@ -212,7 +212,7 @@ class CreateProjectModuleTest extends TestCase
             'name' => 'Municipales 2019',
             'description' => 'Elecciones Municipales 2020',
             'start' => '2020-03-20',
-            'state' => '1'
+            'active' => true
             ]);
         
     }
@@ -231,7 +231,7 @@ class CreateProjectModuleTest extends TestCase
             'name' => 'Municipales 2020',
             'description' => 'Elecciones Municipales 2020',
             'start' => '2020-03-20',
-            'state' => '1'
+            'active' => true
             ]);
     }
 
@@ -249,7 +249,7 @@ class CreateProjectModuleTest extends TestCase
             'name' => 'Municipales 2020',
             'description' => 'mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm1',
             'start' => '2020-03-20',
-            'state' => '1'
+            'active' => true
             ]);
     
         $this->from(route('project.create'))
@@ -262,7 +262,7 @@ class CreateProjectModuleTest extends TestCase
             'name' => 'Municipales 2020',
             'description' => 'mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm',
             'start' => '2020-03-20',
-            'state' => '1'
+            'active' => true
             ]);
     }
 
@@ -280,7 +280,7 @@ class CreateProjectModuleTest extends TestCase
             'name' => 'Municipales 2020',
             'description' => 'Elecciones Municipales 2020',
             'start' => '2020-03-20',
-            'state' => '1'
+            'active' => true
             ]);
     }
     
@@ -298,7 +298,7 @@ class CreateProjectModuleTest extends TestCase
             'name' => 'Municipales 2020',
             'description' => 'Elecciones Municipales 2020',
             'start' => 'date-no-valid',
-            'state' => '1'
+            'active' => true
             ]);
         
         
@@ -313,7 +313,7 @@ class CreateProjectModuleTest extends TestCase
         'name' => 'Municipales 2020',
         'description' => 'Elecciones Municipales 2020',
         'start' => '2019-02-29',
-        'state' => '1'
+        'active' => true
         ]);
 
         $this->from(route('project.create'))
@@ -326,7 +326,7 @@ class CreateProjectModuleTest extends TestCase
         'name' => 'Municipales 2020',
         'description' => 'Elecciones Municipales 2020',
         'start' => '2020-02-29',
-        'state' => '1'
+        'active' => true
         ]);
     }
 
@@ -344,7 +344,7 @@ class CreateProjectModuleTest extends TestCase
             'name' => 'Municipales 2020',
             'description' => 'Elecciones Municipales 2020',
             'start' => today()->sub('1 year'),
-            'state' => '1'
+            'active' => true
             ]);
         
         $this->from(route('project.create'))
@@ -357,7 +357,7 @@ class CreateProjectModuleTest extends TestCase
             'name' => 'Municipales 2020',
             'description' => 'Elecciones Municipales 2020',
             'start' => today()->sub('1 year - 1 day'),
-            'state' => '1'
+            'active' => true
             ]);
     }
 
@@ -375,7 +375,7 @@ class CreateProjectModuleTest extends TestCase
             'name' => 'Municipales 2020',
             'description' => 'Elecciones Municipales 2020',
             'start' => today()->add('1 year 1 day'),
-            'state' => '1'
+            'active' => true
             ]);
         
         $this->from(route('project.create'))
@@ -388,7 +388,7 @@ class CreateProjectModuleTest extends TestCase
             'name' => 'Municipales 2020',
             'description' => 'Elecciones Municipales 2020',
             'start' => today()->add('1 year'),
-            'state' => '1'
+            'active' => true
             ]);
     }
 
@@ -408,7 +408,7 @@ class CreateProjectModuleTest extends TestCase
             'description' => 'Elecciones Municipales 2020',
             'start' =>  today(),
             'ending' => 'date-no-valid',
-            'state' => '1'
+            'active' => true
             ]);
         
         $this->from(route('project.create'))
@@ -424,7 +424,7 @@ class CreateProjectModuleTest extends TestCase
                 'description' => 'Elecciones Municipales 2020',
                 'start' => '2019-02-22',
                 'ending' => '2019-02-29',
-                'state' => '1'
+                'active' => true
             ]);
 
         $this->from(route('project.create'))
@@ -439,7 +439,7 @@ class CreateProjectModuleTest extends TestCase
             'description' => 'Elecciones Municipales 2020',
             'start' => '2020-02-22',
             'ending' => '2020-02-29',
-            'state' => '1'
+            'active' => true
             ]);
     }
 
@@ -456,7 +456,7 @@ class CreateProjectModuleTest extends TestCase
             'name' => 'Municipales 2020',
             'description' => 'Elecciones Municipales 2020',
             'ending' => null,
-            'state' => '1'
+            'active' => true
             ]);
     }
 
@@ -476,7 +476,7 @@ class CreateProjectModuleTest extends TestCase
             'description' => 'Elecciones Municipales 2020',
             'start' => '2020-03-26',
             'ending' => '2020-03-22',
-            'state' => '1'
+            'active' => true
             ]);
         
         $this->from(route('project.create'))
@@ -492,7 +492,7 @@ class CreateProjectModuleTest extends TestCase
             'description' => 'Elecciones Municipales 2020',
             'start' => '2020-03-26',
             'ending' => '2020-03-26',
-            'state' => '1'
+            'active' => true
             ]);
 
         $this->from(route('project.create'))
@@ -507,7 +507,7 @@ class CreateProjectModuleTest extends TestCase
             'description' => 'Elecciones Municipales 2020',
             'start' => '2020-03-26',
             'ending' => '2020-03-27',
-            'state' => '1'
+            'active' => true
             ]);
     }
 
