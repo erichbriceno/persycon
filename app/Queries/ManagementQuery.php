@@ -4,7 +4,7 @@ namespace App\Queries;
 
 use Illuminate\Database\Eloquent\Builder;
 
-class ProjectQuery extends Builder
+class ManagementQuery extends Builder
 {
 
     public function onlyTrashedIf($trashed)

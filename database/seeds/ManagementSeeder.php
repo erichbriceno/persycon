@@ -32,6 +32,6 @@ class ManagementSeeder extends Seeder
             'name' => 'ODC',
             'description' => 'Oficinas Decentralizadas',
         ]);
-
+        
     }
 }

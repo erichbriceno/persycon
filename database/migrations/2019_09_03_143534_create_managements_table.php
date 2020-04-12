@@ -19,6 +19,7 @@ class CreateManagementsTable extends Migration
             $table->string('description');
             $table->boolean('selectable')->default(true);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

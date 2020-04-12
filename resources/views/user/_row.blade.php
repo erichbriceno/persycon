@@ -17,7 +17,7 @@
         <span class="note">Registro: {{ $user->created_at->format('d/m/Y') }}</span>
         <span class="note">Último login: {{ optional($user->last_login_at)->format('d/m/Y h:ia') ?: 'N/A' }}</span>
     </td>
-    <td class="form-inline justify-content-end">
+    <td class="form-inline justify-content-center">
         @includeWhen($user->trashed(), 'user._actionsTrash')
         @includeUnless($user->trashed(), 'user._actionsList')
     </td>

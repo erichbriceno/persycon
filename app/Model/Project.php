@@ -4,8 +4,8 @@ namespace App\Model;
 
 use Illuminate\Support\Str;
 use App\Queries\ProjectQuery;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Project extends Model
 {
@@ -30,7 +30,7 @@ class Project extends Model
         'active'    => 'boolean'
     ];
 
-      /**
+    /**
      * Create a new Eloquent query builder for the model.
      *
      * @param  \Illuminate\Database\Query\Builder  $query

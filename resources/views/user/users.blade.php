@@ -15,7 +15,7 @@
                         <th scope="col"><a href="{{ $sortable->url('email') }}" class="indecorate">@lang('Email')</a>&nbsp<i class="fas {{ $sortable->classes('email') }}"></i></th>
                         <th scope="col">@lang('Management')</th>
                         <th scope="col"><a href="{{ $sortable->url('date') }}" class="indecorate">@lang('Dates')</a>&nbsp<i class="fas {{ $sortable->classes('date') }}"></i></th>
-                        <th scope="col"class="text-right th-actions pr-4">@lang('Actions')</th>
+                        <th scope="col"class="text-center">@lang('Actions')</th>
                     </tr>
                 </thead>
                 <tbody>

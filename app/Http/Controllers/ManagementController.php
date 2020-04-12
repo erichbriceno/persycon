@@ -8,13 +8,17 @@ use Illuminate\Http\Request;
 class ManagementController extends Controller
 {
     
-    public function index()
+    public function index(Request $request)
     {
-        return view('managements.management', [
+        $managements = Management::query()
+            ->onlyTrashedIf($request->routeIs('managements.trash'))
+            ->orderBy('id')
+            ->paginate(20);
+        
+        return view('management.managements', [
             'module' => 'management',            
-            'view' => 'index',
-            'managements' => Management::paginate(20),
+            'view' => $request->routeIs('managements.trash') ? 'trash' : 'index',
+            'managements' => $managements,
         ]);
     }
-
 }

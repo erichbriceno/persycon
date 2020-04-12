@@ -104,6 +104,9 @@ Route::delete('/projects/{id}', 'ProjectController@destroy')
 Route::get('/managements', 'ManagementController@index')
     ->name('managements');
 
+Route::get('/managements/trash', 'ManagementController@index')
+    ->name('managements.trash');
+
 
 // Others
 

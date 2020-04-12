@@ -2,13 +2,13 @@
 
 namespace App\Model;
 
+use App\Queries\ManagementQuery;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Notifications\Notifiable;
 
 class Management extends Model
 {
-    use Notifiable;
+    use SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -16,6 +16,18 @@ class Management extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'description',
+        'name',
+        'description',
     ];
+
+    /**
+     * Create a new Eloquent query builder for the model.
+     *
+     * @param  \Illuminate\Database\Query\Builder  $query
+     * @return \Illuminate\Database\Eloquent\Builder|static
+     */
+    public function newEloquentBuilder($query)
+    {
+        return new ManagementQuery($query);
+    }
 }

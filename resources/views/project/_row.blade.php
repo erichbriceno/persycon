@@ -28,7 +28,7 @@
         <span class="note-black">Inicio: {{ $project->start->format('d/m/Y') }}</span>
         <span class="note">Fin: {{ optional($project->ending)->format('d/m/Y') ?: '-' }}</span>
     </td>
-    <td class="form-inline justify-content-end">
+    <td class="form-inline justify-content-center">
         @includeWhen($project->trashed(), 'project._actionsTrash')
         @includeUnless($project->trashed(), 'project._actionsList')
     </td>

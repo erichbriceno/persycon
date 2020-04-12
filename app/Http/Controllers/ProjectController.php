@@ -18,9 +18,9 @@ class ProjectController extends Controller
                 ->paginate(20);
         
         return view('project.projects', [
-        'module' => 'project',
-        'view' => $request->routeIs('projects.trash') ? 'trash' : 'index',
-        'projects' => $projects,
+            'module' => 'project',
+            'view' => $request->routeIs('projects.trash') ? 'trash' : 'index',
+            'projects' => $projects,
         ]);
     }
 

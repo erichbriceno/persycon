@@ -5,7 +5,6 @@
     @includeWhen($view == 'index', 'project._menu')
     @includeWhen($view == 'trash', 'project._back')
 
-    
     @if ($projects->isNotEmpty())
         <table class="table table-sm">
             <thead class="thead-light">
