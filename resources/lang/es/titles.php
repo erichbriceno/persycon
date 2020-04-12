@@ -3,6 +3,7 @@
 return [
     'admin' => [
         'groups' => 'LISTADO DE GRUPOS',
+        'coordinations' => 'LISTADO DE COORDINACIONES',
         'home' => 'INICIO',
     ],
     'user' => [

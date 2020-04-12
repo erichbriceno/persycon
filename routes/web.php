@@ -110,5 +110,9 @@ Route::get('/managements/trash', 'ManagementController@index')
 
 // Others
 
-Route::get('/groups', 'AdminController@group')->name('groups');
+Route::get('/groups', 'AdminController@group')
+    ->name('groups');
+
+Route::get('/coordinations', 'AdminController@coordination')
+    ->name('coordinations');
 

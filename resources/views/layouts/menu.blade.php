@@ -10,6 +10,7 @@
                         <a class="dropdown-item" href="{{ route('users', ['state' => 'active']) }}">@lang('Users')</a>
                         <a class="dropdown-item" href="{{ route('projects') }}">@lang('Projects')</a>
                         <a class="dropdown-item" href="{{ route('managements') }}">@lang('Managements')</a>
+                        <a class="dropdown-item" href="{{ route('coordinations') }}">@lang('Coordinations')</a>
                         <a class="dropdown-item" href="{{ route('groups') }}">@lang('Groups')</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="#">@lang('Statistics')</a>
