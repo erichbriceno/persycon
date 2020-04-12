@@ -64,7 +64,6 @@ class ProjectController extends Controller
     public function update(UpdateProjectRequest $request, Project $project)
     {
         $request->updateProject($project);
-
         return redirect()->route('projects'); ;
     }
 
@@ -73,26 +72,20 @@ class ProjectController extends Controller
         $project->active = false;
         $project->save();
         $project->delete();
-
         return redirect()->route('projects');
     }
 
     public function restore($id)
     {
-
         $project = Project::onlyTrashed()->where('id', $id)->firstOrFail();
-
         $project->restore();
-
         return redirect()->route('projects.trash');
     }
 
     public function destroy($id)
     {
         $project = Project::onlyTrashed()->where('id', $id)->firstOrFail();
-
         $project->forceDelete();
-
         return redirect()->route('projects.trash');
     }
 }

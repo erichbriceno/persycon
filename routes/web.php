@@ -107,6 +107,18 @@ Route::get('/managements', 'ManagementController@index')
 Route::get('/managements/trash', 'ManagementController@index')
     ->name('managements.trash');
 
+Route::patch('/managements/{management}/trash', 'ManagementController@trash')
+    ->where('management', '[0-9]+')
+    ->name('management.trash');
+
+Route::patch('/managements/{id}/restore', 'ManagementController@restore')
+    ->where('management', '[0-9]+')
+    ->name('management.restore');
+
+Route::delete('/managements/{id}', 'ManagementController@destroy')
+    ->where('management', '[0-9]+')
+    ->name('management.destory');
+
 
 // Others
 

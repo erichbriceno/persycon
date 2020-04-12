@@ -1,4 +1,4 @@
-<form method="POST" action="{{ route('user.trash', $management) }}">
+<form method="POST" action="{{ route('management.trash', $management) }}">
     @csrf
     @method('PATCH')
     <a href="{{ route('user.details', $management ) }}" class="btn btn-outline-secondary btn-sm"><i class="fas fa-eye"></i></a>
