@@ -8,6 +8,7 @@
         @endif
     </td>
     <td>{{ $project->description }}</td>
+    <td class="text-center">3</td>
     <td class="text-center">
         <span class="note-black">T1</span>
         <span class="note-black">10</span>

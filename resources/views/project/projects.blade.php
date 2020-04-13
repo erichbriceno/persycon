@@ -12,7 +12,8 @@
                 <th scope="col">#</th>
                 <th scope="col">@lang('Name')</th>
                 <th scope="col">@lang('Description')</th>
-                <th colspan="4" scope="col" class="text-center">@lang('Staff')</th>
+                <th scope="col" class="text-center" >@lang('Managements')</th>
+                <th scope="col" class="text-center" colspan="4" >@lang('Staff')</th>
                 <th scope="col" class="text-center">@lang('Dates')</th>
                 <th scope="col" class="text-center">@lang('Actions')</th>
             </tr>
