@@ -64,6 +64,7 @@ class ProjectController extends Controller
     public function update(UpdateProjectRequest $request, Project $project)
     {
         $request->updateProject($project);
+        
         return redirect()->route('projects'); ;
     }
 

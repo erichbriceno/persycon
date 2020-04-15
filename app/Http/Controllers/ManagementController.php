@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreateManagementRequest;
+use App\Http\Requests\UpdateManagementRequest;
 use App\Model\Management;
 use Illuminate\Http\Request;
 
@@ -46,5 +48,39 @@ class ManagementController extends Controller
         $management = Management::onlyTrashed()->where('id', $id)->firstOrFail();
         $management->forceDelete();
         return redirect()->route('managements.trash');
+    }
+
+    public function create()
+    {
+        $management = new Management;
+
+        return view('management.create', [
+            'module'    => 'management',
+            'view'      => 'create',
+            'management'=> $management,
+            ]);
+    }
+
+    public function store(CreateManagementRequest $request)
+    {
+        $request->createManagement();
+
+        return redirect()->route('managements');
+    }
+
+    public function edit(Management $management)
+    {
+        return view('management.edit', [
+            'module' => 'management',
+            'view' => 'edit',
+            'management' => $management,
+            ]);
+    }
+
+    public function update(UpdateManagementRequest $request, Management $management)
+    {
+        $request->updateManagement($management);
+        
+        return redirect()->route('managements'); ;
     }
 }

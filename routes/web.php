@@ -119,6 +119,19 @@ Route::delete('/managements/{id}', 'ManagementController@destroy')
     ->where('management', '[0-9]+')
     ->name('management.destory');
 
+Route::get('/managements/new', 'ManagementController@create')
+    ->name('management.create');
+
+Route::post('/managements/store', 'ManagementController@store')
+    ->name('management.store');
+
+Route::get('/managements/{management}/edit', 'ManagementController@edit')
+    ->where('management', '[0-9]+')    
+    ->name('management.edit');
+
+Route::put('/managements/{management}/edit', 'ManagementController@update')
+    ->where('management', '[0-9]+')
+    ->name('management.update');
 
 // Others
 
