@@ -16,6 +16,7 @@ class Management extends Model
      * @var array
      */
     protected $fillable = [
+        'acronym',
         'name',
         'description',
         'selectable'

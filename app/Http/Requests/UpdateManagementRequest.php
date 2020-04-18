@@ -3,6 +3,8 @@
 namespace App\Http\Requests;
 
 use App\Model\Management;
+use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateManagementRequest extends FormRequest
@@ -25,14 +27,17 @@ class UpdateManagementRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => [
+            'acronym' => [
                 'required',
                 'alpha',
+                'max:6',
+                Rule::unique('managements')->ignore($this->management)
                 ],
-            'description' => [
+            'name' => [
                 'required',
                 'string', 
-                'max:50'
+                'max:50',
+                Rule::unique('managements')->ignore($this->management)
                 ],
         ];
     }
@@ -40,7 +45,7 @@ class UpdateManagementRequest extends FormRequest
     public function messages()
     {
         return [
-            'description.max' => trans('projects.errorsValidations.description.max'),
+            //'description.max' => trans('projects.errorsValidations.description.max'),
         ];
     }
 
@@ -48,8 +53,8 @@ class UpdateManagementRequest extends FormRequest
     {
 
         $management->fill([
-            'name'          => $this->name,
-            'description'   => $this->description,
+            'acronym'   => Str::upper($this->acronym),
+            'name'      => $this->name,
         ]);
 
         $management->save();

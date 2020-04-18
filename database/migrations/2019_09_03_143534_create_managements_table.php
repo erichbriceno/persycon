@@ -15,8 +15,9 @@ class CreateManagementsTable extends Migration
     {
         Schema::create('managements', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('acronym')->unique();
             $table->string('name')->unique();
-            $table->string('description');
+            $table->string('description')->nullable();
             $table->boolean('selectable')->default(true);
             $table->timestamps();
             $table->softDeletes();

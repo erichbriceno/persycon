@@ -14,22 +14,26 @@ class ManagementSeeder extends Seeder
     {
         
         factory(Management::class)->create([
-            'name' => 'PO',
+            'acronym'   => 'PO',
+            'name'      => 'Gerencia de Proyectos',
             'description' => 'Master Administrator',
         ]);
 
         factory(Management::class)->create([
-            'name' => 'Mariche',
+            'acronym'   => 'PE',
+            'name'      => 'Mariche',
             'description' => 'Galpon CNE Mariche',
         ]);
 
         factory(Management::class)->create([
-            'name' => 'CNS',
-            'description' => 'Centro Nacional de Soporte	',
+            'acronym'   => 'CNS',
+            'name'      => 'Centro Nacional de Soporte',
+            'description' => 'Centro Nacional de Soporte',
         ]);
 
         factory(Management::class)->create([
-            'name' => 'ODC',
+            'acronym'   => 'ODC',
+            'name' => 'Oficinas Decentralizadas',
             'description' => 'Oficinas Decentralizadas',
         ]);
 

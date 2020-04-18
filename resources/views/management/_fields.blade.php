@@ -1,20 +1,20 @@
 @csrf
 
 <div class="form-group row">
-    <label for="name" class="col-md-4 col-form-label text-md-right">@lang('Name')</label>
+    <label for="acronym" class="col-md-4 col-form-label text-md-right">@lang('Acronym')</label>
     <div class="col-md-6">
         <input 
-            id="name" 
-            name="name" 
+            id="acronym" 
+            name="acronym" 
             type="text" 
-            class="form-control @error('name') is-invalid @enderror" 
+            class="form-control @error('acronym') is-invalid @enderror" 
             required 
-            autocomplete="name" 
-            placeholder ="{{ trans('projects.fieldsPlaceholder.name') }}" 
-            value="{{ old('name', $management->name) }}" 
+            autocomplete="acronym" 
+            placeholder ="{{ trans('managements.fieldsPlaceholder.acronym') }}" 
+            value="{{ old('acronym', $management->acronym) }}" 
             autofocus
             >
-        @error('name')
+        @error('acronym')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
             </span>
@@ -23,18 +23,18 @@
 </div>
 
 <div class="form-group row">
-    <label for="description" class="col-md-4 col-form-label text-md-right">@lang('Description')</label>
+    <label for="name" class="col-md-4 col-form-label text-md-right">@lang('Name')</label>
     <div class="col-md-6">
         <input 
-            id="description"
-            name="description"
+            id="name"
+            name="name"
             type="text"
-            class="form-control @error('description') is-invalid @enderror" 
+            class="form-control @error('name') is-invalid @enderror" 
             required
-            autocomplete="description"
-            placeholder ="{{ trans('projects.fieldsPlaceholder.description') }}" 
-            value="{{ old('description', $management->description) }}">
-        @error('description')
+            autocomplete="name"
+            placeholder ="{{ trans('managements.fieldsPlaceholder.name') }}" 
+            value="{{ old('name', $management->name) }}">
+        @error('name')
         <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>
         </span>

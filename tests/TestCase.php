@@ -47,6 +47,14 @@ abstract class TestCase extends BaseTestCase
             ], $custom);
     }
 
+    protected function getManagementData(array $custom = [])
+    {
+        return array_merge([
+                'acronym'   => 'PAPO',
+                'name'      => 'Pa los que quieren',
+            ], $custom);
+    }
+
     protected function getUpdateValidData(array $custom = [])
     {
         return array_merge([

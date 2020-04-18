@@ -5,11 +5,11 @@ return [
         'index'             => 'No hay gerencias creadas',
         'trash'             => 'No hay gerencias borradas'
     ],
-    /*
     'fieldsPlaceholder' => [
-        'name'              => 'Debe contener una sola palabra',
-        'description'       => 'Describa el proyecto (máx. 50 caracteres)',
+        'acronym'           => 'Acronimo de la gerencia (máx. 6 caracteres)',
+        'name'              => 'Nombre de la gerencia (máx. 50 caracteres)',
         ],
+    /*
     'state'     => [
         'inactive'          => 'Inactivo',
         'active'            => 'Activo'

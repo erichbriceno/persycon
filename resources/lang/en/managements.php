@@ -5,11 +5,11 @@ return [
         'index'             => 'There are no managements created',
         'trash'             => 'There are no managements deleted'
     ],
-    /*
     'fieldsPlaceholder' => [
-        'name'              => 'Must contain a single word.',
-        'description'       => 'Proyect descrption (50 characters max.).',
+        'acronym'           => 'Management acronyms (6 characters max.)',
+        'name'              => 'Management name (50 characters max.)',
         ],
+    /*
     'state'     => [
         'inactive'          => 'Inactive',
         'active'            => 'Active'

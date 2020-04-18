@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Model\Management;
+use Illuminate\Support\Str;
 use Illuminate\Foundation\Http\FormRequest;
 
 class CreateManagementRequest extends FormRequest
@@ -25,14 +26,17 @@ class CreateManagementRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => [
+            'acronym' => [
                 'required',
                 'alpha',
+                'max:6',
+                'unique:managements',
                 ],
-            'description' => [
+            'name' => [
                 'required',
                 'string', 
-                'max:50'
+                'max:50',
+                'unique:managements',
                 ],
         ];
     }
@@ -40,7 +44,7 @@ class CreateManagementRequest extends FormRequest
     public function messages()
     {
         return [
-            'description.max' => trans('projects.errorsValidations.description.max'),
+            //'description.max' => trans('projects.errorsValidations.description.max'),
         ];
     }
 
@@ -48,8 +52,8 @@ class CreateManagementRequest extends FormRequest
     {
 
         $management = Management::create([
-            'name'          => $this->name,
-            'description'   => $this->description,
+            'acronym'   => Str::upper($this->acronym),
+            'name'      => $this->name,
         ]);
 
         $management->save();

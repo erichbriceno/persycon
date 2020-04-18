@@ -1,7 +1,7 @@
 <tr>
     <th scope="row">{{ $management->id }}</th>
+    <td>{{ $management->acronym }}</td>
     <td>{{ $management->name }}</td>
-    <td>{{ $management->description }}</td>
     <td class="text-center">4</td>
     <td class="text-center">
         <span class="note-black">T1</span>

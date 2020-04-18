@@ -150,6 +150,7 @@ return [
     */
 
     'attributes' => [
+        'acronym'               => 'siglas',
         'cedule'                => 'cedula',
         'name'                  => 'nombre',
         'names'                 => 'nombres',
