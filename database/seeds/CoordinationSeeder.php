@@ -1,7 +1,8 @@
 <?php
 
-use App\Model\Coordination;
 use Illuminate\Database\Seeder;
+use App\Model\{ Coordination, Management};
+
 
 class CoordinationSeeder extends Seeder
 {
@@ -15,6 +16,7 @@ class CoordinationSeeder extends Seeder
         factory(Coordination::class)->create([
             'name'        => 'Operaciones',
             'description' => 'Actividades logsiticas',
+            'management_id' => Management::Where('acronym', 'PE')->first()->id,
             'active' => true,
         ]);
 

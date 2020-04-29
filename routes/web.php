@@ -133,11 +133,14 @@ Route::put('/managements/{management}/edit', 'ManagementController@update')
     ->where('management', '[0-9]+')
     ->name('management.update');
 
+// Coordinations
+Route::get('/coordinations', 'CoordinationController@index')
+    ->name('coordinations');
+
 // Others
 
 Route::get('/groups', 'AdminController@group')
     ->name('groups');
 
-Route::get('/coordinations', 'AdminController@coordination')
-    ->name('coordinations');
+
 

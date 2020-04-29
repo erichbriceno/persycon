@@ -24,4 +24,11 @@ class Coordination extends Model
         'active'    => 'boolean'
     ];
 
+    public function management()
+    {
+        return $this->belongsTo(Management::class)->withDefault([
+            'name' => 'Unassigned',
+        ]);
+    }
+
 }

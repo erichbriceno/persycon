@@ -1,9 +1,9 @@
-    <?php
+<?php
 
 return [
     'emptyMessage'  => [
-        'index'             => 'No hay gerencias creadas',
-        'trash'             => 'No hay gerencias borradas'
+        'index'             => 'No hay coordinaciones creadas',
+        'trash'             => 'No hay coordinaciones borradas'
     ],
     'fieldsPlaceholder' => [
         'acronym'           => 'Acronimo de la gerencia (máx. 6 caracteres)',

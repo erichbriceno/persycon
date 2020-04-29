@@ -13,14 +13,13 @@
                 <th scope="col">@lang('Acronym')</th>
                 <th scope="col">@lang('Name')</th>
                 <th scope="col" class="text-center">@lang('Coordinations')</th>
-                <th colspan="4" scope="col" class="text-center">@lang('Staff')</th>
-                <th colspan="3" scope="col" class="text-center">@lang('Status')</th>
+                <th scope="col" colspan="4" class="text-center">@lang('Staff')</th>
+                <th scope="col" colspan="3" class="text-center">@lang('Status')</th>
                 <th scope="col" class="text-center">@lang('Actions')</th>
             </tr>
             </thead>
             <tbody>
                 @each('management._row', $managements, 'management')
-            
             </tbody>
         </table>
         {{ $managements->onEachSide(1)->links() }}
