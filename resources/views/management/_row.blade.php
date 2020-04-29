@@ -1,6 +1,12 @@
 <tr>
     <th scope="row">{{ $management->id }}</th>
-    <td>{{ $management->acronym }}</td>
+    <td>{{ $management->acronym }}
+        @if(! $management->selectable)
+        <span class="note-danger">
+            <i class="fas fa-lock"></i>
+        </span>
+        @endif
+    </td>
     <td>{{ $management->name }}</td>
     <td class="text-center">4</td>
     <td class="text-center">
