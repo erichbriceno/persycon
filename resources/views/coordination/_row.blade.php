@@ -9,8 +9,7 @@
         <span class="note-black">80%</span>
     </td>
     <td class="form-inline justify-content-center">
-        <a href="#" class="btn btn-outline-secondary btn-sm"><i class="fas fa-eye"></i></a>
-        <a href="#" class="btn btn-outline-secondary btn-sm"><i class="fas fa-pencil-alt"></i></a>
-        <a href="#" class="btn btn-outline-secondary btn-sm"><i class="fas fa-trash-alt"></i></a>
+        @includeWhen($coordination->trashed(), 'coordination._actionsTrash')
+        @includeUnless($coordination->trashed(), 'coordination._actionsList')        
     </td>
 </tr>

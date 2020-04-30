@@ -137,6 +137,21 @@ Route::put('/managements/{management}/edit', 'ManagementController@update')
 Route::get('/coordinations', 'CoordinationController@index')
     ->name('coordinations');
 
+Route::get('/coordinations/trash', 'CoordinationController@index')
+    ->name('coordinations.trash');
+
+Route::patch('/coordinations/{coordination}/trash', 'CoordinationController@trash')
+    ->where('coordination', '[0-9]+')
+    ->name('coordination.trash');
+
+Route::patch('/coordinations/{id}/restore', 'CoordinationController@restore')
+    ->where('coordination', '[0-9]+')
+    ->name('coordination.restore');
+
+Route::delete('/coordinations/{id}', 'CoordinationController@destroy')
+    ->where('coordination', '[0-9]+')
+    ->name('coordination.destory');
+
 // Others
 
 Route::get('/groups', 'AdminController@group')

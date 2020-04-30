@@ -7,13 +7,41 @@ use App\Model\{ Coordination, Management };
 
 class CoordinationController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+        $coordinations = Coordination::query()
+                ->onlyTrashedIf($request->routeIs('coordinations.trash'))
+                ->orderBy('id')
+                ->paginate(20);
+        
         return view('coordination.coordinations',[
         'module' => 'coordination',
-        'view' => 'index',
-        'coordinations' => Coordination::paginate(20),
+        'view' => $request->routeIs('coordinations.trash') ? 'trash' : 'index',
+        'coordinations' => $coordinations,
         'managements'   => Management::where('active', true)->get(),
         ]);
     }
+    
+    public function trash(Coordination $coordination)
+    {
+        $coordination->active = false;
+        $coordination->save();
+        $coordination->delete();
+        return redirect()->route('coordinations');
+    }
+
+    public function restore($id)
+    {
+        $coordination = Coordination::onlyTrashed()->where('id', $id)->firstOrFail();
+        $coordination->restore();
+        return redirect()->route('coordinations.trash');
+    }
+
+    public function destroy($id)
+    {
+        $coordination = Coordination::onlyTrashed()->where('id', $id)->firstOrFail();
+        $coordination->forceDelete();
+        return redirect()->route('coordinations.trash');
+    }
+
 }
