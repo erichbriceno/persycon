@@ -105,27 +105,31 @@ abstract class TestCase extends BaseTestCase
         factory(Management::class)->create([
             'name' => 'Unassigned',
             'description' => '',
-            'selectable' => false
+            'active' => false
         ]);
 
         factory(Management::class)->create([
             'name' => 'All',
             'description' => 'Master Administrator',
+            'active' => true,
         ]);
 
         factory(Management::class)->create([
             'name' => 'Mariche',
             'description' => 'Galpon CNE Mariche',
+            'active' => true,
         ]);
 
         factory(Management::class)->create([
             'name' => 'CNS',
             'description' => 'Centro Nacional de Soporte',
+            'active' => true,
         ]);
 
         factory(Management::class)->create([
             'name' => 'ODC',
             'description' => 'Oficinas Decentralizadas',
+            'active' => true,
         ]);
     }
 

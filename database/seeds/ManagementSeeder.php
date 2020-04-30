@@ -37,7 +37,7 @@ class ManagementSeeder extends Seeder
             'description' => 'Oficinas Decentralizadas',
         ]);
 
-        factory(Management::class)->times(10)->create();
+        factory(Management::class)->times(2)->create();
         
     }
 }

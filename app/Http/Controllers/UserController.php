@@ -33,7 +33,7 @@ class UserController extends Controller
             'view' => $request->routeIs('users.trash') ? 'trash' : 'index',
             'users' => $users,
             'roles' => Role::all(),
-            'managements' => Management::where('selectable', true)->get(),
+            'managements' => Management::all(),
             'checkedRoles' => collect(request('roles')),
             'sortable' => $sortable
         ]);
@@ -55,7 +55,7 @@ class UserController extends Controller
             'view' => 'create',
             'user' =>  new User,
             'roles' => Role::orderBy('description', 'DESC')->get(),
-            'managements' => Management::where('selectable', true)->get(),
+            'managements' => Management::where('active', true)->get(),
         ]);
     }
 
@@ -88,7 +88,7 @@ class UserController extends Controller
             'view' => 'create',
             'user' =>  $user,
             'roles' => Role::orderBy('description', 'DESC')->get(),
-            'managements' => Management::where('selectable', true)->get(),
+            'managements' => Management::where('active', true)->get(),
         ]);
     }
 
@@ -107,7 +107,7 @@ class UserController extends Controller
             'view' => 'edit',
             'user' => $user,
             'roles' => Role::orderBy('description', 'DESC')->get(),
-            'managements' => Management::where('selectable', true)->get(),
+            'managements' => Management::where('active', true)->get(),
         ]);
     }
 

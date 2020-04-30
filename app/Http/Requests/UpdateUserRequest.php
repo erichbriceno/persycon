@@ -35,7 +35,7 @@ class UpdateUserRequest extends FormRequest
             ],
             'management' => [
                 'nullable',
-                 Rule::exists('managements', 'id')->where('selectable', true)
+                 Rule::exists('managements', 'id')->where('active', true)
             ],
             'password' => ['confirmed'],
             'password_confirmation' => ['same:password'],

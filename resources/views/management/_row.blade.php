@@ -1,7 +1,7 @@
 <tr>
     <th scope="row">{{ $management->id }}</th>
     <td>{{ $management->acronym }}
-        @if(! $management->selectable)
+        @if(! $management->active)
         <span class="note-danger">
             <i class="fas fa-lock"></i>
         </span>

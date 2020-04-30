@@ -13,7 +13,7 @@ class CoordinationController extends Controller
         'module' => 'coordination',
         'view' => 'index',
         'coordinations' => Coordination::paginate(20),
-        'managements'   => Management::where('selectable', true)->get(),
+        'managements'   => Management::where('active', true)->get(),
         ]);
     }
 }

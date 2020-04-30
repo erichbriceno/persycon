@@ -11,5 +11,6 @@ $factory->define(Management::class, function (Faker $faker) {
         'acronym'       => Str::upper($faker->unique()->word(1)),
         'name'          => $faker->name,
         'description'   => $faker->sentence(1),
+        'active'        => true,
     ];
 });

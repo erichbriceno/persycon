@@ -18,7 +18,7 @@ class CreateManagementsTable extends Migration
             $table->string('acronym')->unique();
             $table->string('name')->unique();
             $table->string('description')->nullable();
-            $table->boolean('selectable')->default(true);
+            $table->boolean('active')->default(true);
             $table->timestamps();
             $table->softDeletes();
         });

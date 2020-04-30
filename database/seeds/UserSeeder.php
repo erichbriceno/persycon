@@ -41,7 +41,7 @@ class UserSeeder extends Seeder
     protected function fetchRelations()
     {
         $this->roles = Role::all();
-        $this->managements = Management::where('selectable', true)->limit(4)->get();
+        $this->managements = Management::where('active', true)->limit(4)->get();
 
     }
 

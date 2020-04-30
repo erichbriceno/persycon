@@ -6,6 +6,7 @@ use App\Model\{ Coordination, Management};
 
 class CoordinationSeeder extends Seeder
 {
+    protected $managements;
     /**
      * Run the database seeds.
      *
@@ -16,11 +17,12 @@ class CoordinationSeeder extends Seeder
         factory(Coordination::class)->create([
             'name'        => 'Operaciones',
             'description' => 'Actividades logsiticas',
-            'management_id' => Management::Where('acronym', 'PE')->first()->id,
+            'management_id' => Management::where('acronym', 'PE')->first()->id,
             'active' => true,
         ]);
 
         factory(Coordination::class)->times(10)->create();
 
     }
+
 }

@@ -45,7 +45,7 @@ class CreateUserRequest extends FormRequest
             ],
             'management' => [
                 'nullable',
-                 Rule::exists('managements', 'id')->where('selectable', true)
+                 Rule::exists('managements', 'id')->where('active', true)
             ],
             'password'  => ['required', 'string', 'min:6','confirmed'],
             'password_confirmation' => ['required','min:6','same:password'],

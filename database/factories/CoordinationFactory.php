@@ -9,7 +9,7 @@ $factory->define(Coordination::class, function (Faker $faker) {
     return [
         'name' => "{$faker->firstName} {$faker->firstName}" ,
         'description' => $faker->sentence(3),
-        'management_id' => Management::Where('selectable', true)->get()->random()->id,
+        'management_id' => Management::Where('active', true)->get()->random()->id,
         'active' => true,
     ];
 });
