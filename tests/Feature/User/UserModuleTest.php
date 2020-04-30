@@ -27,8 +27,7 @@ class UserModuleTest extends TestCase
         $this->get(route('user.details', $user))
             ->assertStatus(200)
             ->assertSee('Erich Javier')
-            ->assertSee('Briceño')
-            ->assertSee('User');
+            ->assertSee('Briceño');
 
     }
 

@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">@lang('User Details')</div>
+                    <div class="card-header">@lang('User details')</div>
 
                     <div class="card-body">
                         <div class="form-group row">
@@ -69,9 +69,9 @@
                         <div class="row">
                             <div class="col-md-10">
                                 <div class="form-inline justify-content-end">
-                                    <a href="{{ route('user.edit', $user) }}" class="btn btn-sm btn-secondary" role="button" aria-disabled="true">Edit</a>
+                                    <a href="{{ route('user.edit', $user) }}" class="btn btn-sm btn-secondary" role="button" aria-disabled="true">@lang('Edit')</a>
                                     &nbsp;
-                                    <a href="{{ route('users', ['state' => 'active']) }}" class="btn btn-sm btn-secondary" role="button" aria-disabled="true">Back</a>
+                                    <a href="{{ route('users', ['state' => 'active']) }}" class="btn btn-sm btn-secondary" role="button" aria-disabled="true">@lang('Back')</a>
                                 </div>
                             </div>
                         </div>

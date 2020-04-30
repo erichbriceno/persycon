@@ -30,11 +30,11 @@
                 <div class="btn-group drop-skills">
                     <select name="management" id="management" class=" btn-secondary btn-sm select-field form-control-sm erich">
                         <option value=""{{ empty(request('management')) ? 'selected' : ''  }}>
-                            @lang('All')
+                            @lang('Managements')
                         </option>
                         @foreach($managements as $management)
                             <option value="{{ $management->name }}"{{ request('management') === $management->name ? 'selected' : ''  }}>
-                                {{ $management->name }}
+                                {{ $management->acronym }}
                             </option>
                         @endforeach
                         <option value="Unassigned" {{ request('management') === 'Unassigned' ? 'selected' : ''  }}>

@@ -120,6 +120,8 @@ class UserController extends Controller
 
     public function trash(User $user)
     {
+        $user->active = false;
+        $user->save();
         $user->delete();
 
         return redirect()->route('users');
