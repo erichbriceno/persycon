@@ -47,8 +47,8 @@
     <label for="management" class="col-md-4 col-form-label text-md-right">@lang('Management')</label>
     <div class="col-md-6">
         <select name="management" id="management" class="form-control @error('management') is-invalid @enderror">
-            <option value="" {{ old('management', $coordination->management_id) == null ? ' selected' : '' }}>
-                @lang('Unassigned')
+            <option>
+                @lang('Select management')
             </option>
             @foreach($managements as $management)
                 <option value="{{ $management->id }}"{{ old('management', $coordination->management_id) == $management->id ? ' selected' : '' }}>

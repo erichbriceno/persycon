@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Model\{ Coordination, Management };
+use App\Http\Requests\{CreateCoordinationRequest, UpdateProjectRequest};
 
 class CoordinationController extends Controller
 {
@@ -34,17 +35,9 @@ class CoordinationController extends Controller
             ]);
     }
 
-    public function store(Request $request)
+    public function store(CreateCoordinationRequest $request)
     {
-
-        $coordination = Coordination::create([
-            'name'          => $request->name,
-            'description'   => $request->description,
-            'management_id' => $request->management,
-            'active'        => true,
-        ]);
-
-        $coordination->save();
+        $request->createCoordination();
         
         return redirect()->route('coordinations');
     }

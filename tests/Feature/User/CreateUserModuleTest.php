@@ -50,8 +50,8 @@ class CreateUserModuleTest extends TestCase
             'names' => 'Erich Javier',
             'surnames' => 'Briceño',
             'email' => 'erichbriceno@gmail.com',
-            'role_id' => Role::Where('name', 'User')->first()->id,
-            'management_id' => Management::Where('name', 'All')->first()->id,
+            'role_id' => Role::where('name', 'User')->first()->id,
+            'management_id' => Management::where('name', 'All')->first()->id,
             'active' => true
         ]);
     }

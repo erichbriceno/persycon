@@ -235,7 +235,7 @@ class CreateProjectModuleTest extends TestCase
     }
 
     /** @test */
-    function The_description_of_must_have_more_than_50_characters()
+    function the_description_of_must_have_more_than_50_characters()
     {
         $this->from(route('project.create'))
             ->post(route('project.store'), $this->getProjectData([
