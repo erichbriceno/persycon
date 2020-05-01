@@ -63,3 +63,19 @@
         @enderror
     </div>
 </div>
+
+<div class="row">
+    <div class="col-md-10">
+        <div class="form-inline justify-content-end">
+            <a href="{{ route('coordinations') }}" class="btn btn-sm btn-primary btn-sm">@lang('Back')</a>
+            &nbsp;
+            <button type="submit" class="btn btn-sm btn-primary btn-sm">
+                @if($view == 'create')
+                    @lang('Save')
+                @else
+                    @lang('Update')
+                @endif
+            </button>
+        </div>
+    </div>
+</div>

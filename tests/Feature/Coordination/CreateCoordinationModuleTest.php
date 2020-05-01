@@ -3,7 +3,7 @@
 namespace Tests\Feature\User;
 
 use Tests\TestCase;
-use App\Model\Coordination;
+use App\Model\{Coordination, Management};
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class CreateCoordinationModuleTest extends TestCase
@@ -21,19 +21,21 @@ class CreateCoordinationModuleTest extends TestCase
             ->assertSee('Descripción')
             ->assertSee('Gerencia');
     }
-    // /** @test */
-    // function it_create_a_new_project()
-    // {
-    //     $this->post(route('project.store'), $this->getProjectData())
-    //         ->assertRedirect(route('projects'));
+
+    /** @test */
+    function it_create_a_new_coordination()
+    {
+        // $this->withoutExceptionHandling();
+
+        $this->post(route('coordination.store'), $this->getCoordinationData())
+            ->assertRedirect(route('coordinations'));
         
-    //     $this->assertDatabaseHas('projects', [
-    //         'name' => 'Municipales 2020',
-    //         'description' => 'Elecciones Municipales 2020',
-    //         'start' => '2020-03-20',
-    //         'active' => true
-    //         ]);
-    // }
+        $this->assertDatabaseHas('coordinations', [
+            'name'          => 'Lineas',
+            'description'   => 'Lineas de producción',
+            'active' => true
+            ]);
+    }
 
     // /** @test */
     // function the_name_is_required()

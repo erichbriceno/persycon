@@ -33,6 +33,21 @@ class CoordinationController extends Controller
             'managements'   => Management::where('active', true)->get(),
             ]);
     }
+
+    public function store(Request $request)
+    {
+
+        $coordination = Coordination::create([
+            'name'          => $request->name,
+            'description'   => $request->description,
+            'management_id' => $request->management,
+            'active'        => true,
+        ]);
+
+        $coordination->save();
+        
+        return redirect()->route('coordinations');
+    }
     
     public function trash(Coordination $coordination)
     {

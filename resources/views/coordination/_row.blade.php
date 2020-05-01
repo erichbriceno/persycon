@@ -2,7 +2,7 @@
     <th scope="row">{{ $coordination->id }}</th>
     <td>{{ $coordination->name }}</td>
     <td>{{ $coordination->description }}</td>
-    <td >{{ $coordination->management->acronym }}</td>
+    <td class="text-center">{{ $coordination->management->acronym }}</td>
     <td class="text-center">4</td>
     <td class="text-center">
         <span class="note-black">@lang('Activities')</span>

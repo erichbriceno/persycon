@@ -8,7 +8,7 @@
                 <div class="card-header">@lang('Create Coordination')</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('project.store') }}">
+                    <form method="POST" action="{{ route('coordination.store') }}">
                         @include('coordination._fields')
                     </form>
                 </div>

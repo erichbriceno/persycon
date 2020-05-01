@@ -55,6 +55,16 @@ abstract class TestCase extends BaseTestCase
             ], $custom);
     }
 
+    protected function getCoordinationData(array $custom = [])
+    {
+        return array_merge([
+                'name'          => 'Lineas',
+                'description'   => 'Lineas de producción',
+                'management' =>  Management::Where('name', 'Mariche')->first()->id,
+                'active'        => true,
+            ], $custom);
+    }
+
     protected function getUpdateValidData(array $custom = [])
     {
         return array_merge([

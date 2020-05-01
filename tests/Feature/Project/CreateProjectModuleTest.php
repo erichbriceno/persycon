@@ -214,7 +214,6 @@ class CreateProjectModuleTest extends TestCase
             'start' => '2020-03-20',
             'active' => true
             ]);
-        
     }
 
     /** @test */

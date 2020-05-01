@@ -155,6 +155,9 @@ Route::delete('/coordinations/{id}', 'CoordinationController@destroy')
 Route::get('/coordinations/new', 'CoordinationController@create')
     ->name('coordination.create');
 
+Route::post('/coordinations/store', 'CoordinationController@store')
+    ->name('coordination.store');
+
 // Others
 
 Route::get('/groups', 'AdminController@group')
