@@ -22,17 +22,17 @@
     </div>
 
     <div class="col-md-2">
-            @if($project->year)
-                <input type="text" class="form-control @error('year') is-invalid @enderror" value="{{ old('year', $project->year) }}" readonly>
-            @else
-                <select id="year" name="year" class="form-control @error('year') is-invalid @enderror">
-                    @foreach($years as $year)
-                        <option value="{{ $year }}"{{ old('year', $project->year??today()->format('Y') ) == $year ? ' selected' : '' }}>
-                            @lang($year)
-                        </option>
-                    @endforeach
-                </select>
-            @endif
+        @if($project->year)
+            <input type="text" class="form-control @error('year') is-invalid @enderror" value="{{ old('year', $project->year) }}" readonly>
+        @else
+            <select id="year" name="year" class="form-control @error('year') is-invalid @enderror">
+                @foreach($years as $year)
+                    <option value="{{ $year }}"{{ old('year', $project->year??today()->format('Y') ) == $year ? ' selected' : '' }}>
+                        @lang($year)
+                    </option>
+                @endforeach
+            </select>
+        @endif
         
         @error('year')
             <span class="invalid-feedback" role="alert">

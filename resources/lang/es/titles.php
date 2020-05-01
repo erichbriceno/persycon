@@ -27,5 +27,6 @@ return [
     'coordination'=> [
         'index'         => 'LISTADO DE COORDINACIONES',
         'trash'         => 'PAPELERA DE COORDINACIONES',
+        'create'        => 'CREAR COORDINACIONES',
     ]
 ];

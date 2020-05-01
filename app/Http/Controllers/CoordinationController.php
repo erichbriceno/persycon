@@ -21,6 +21,18 @@ class CoordinationController extends Controller
         'managements'   => Management::where('active', true)->get(),
         ]);
     }
+
+    public function create()
+    {
+        $coordination = new Coordination;
+
+        return view('coordination.create', [
+            'module' => 'coordination',
+            'view' => 'create',
+            'coordination' => $coordination,
+            'managements'   => Management::where('active', true)->get(),
+            ]);
+    }
     
     public function trash(Coordination $coordination)
     {

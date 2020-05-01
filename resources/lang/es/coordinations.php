@@ -6,8 +6,8 @@ return [
         'trash'             => 'No hay coordinaciones borradas'
     ],
     'fieldsPlaceholder' => [
-        'acronym'           => 'Acronimo de la gerencia (máx. 6 caracteres)',
-        'name'              => 'Nombre de la gerencia (máx. 50 caracteres)',
+        'name'              => 'Nombre de la coordinación (máx. 25 caracteres)',
+        'description'       => 'Descripción de la coordinación (máx. 50 caracteres)',
         ],
     /*
     'state'     => [

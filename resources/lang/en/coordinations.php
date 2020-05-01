@@ -6,8 +6,8 @@ return [
         'trash'             => 'There are no coordinations deleted'
     ],
     'fieldsPlaceholder' => [
-        'acronym'           => 'Management acronyms (6 characters max.)',
-        'name'              => 'Management name (50 characters max.)',
+        'name'              => 'Coordination name (25 characters max.)',
+        'description'       => 'Coordination description (50 characters max.)',
         ],
     /*
     'state'     => [

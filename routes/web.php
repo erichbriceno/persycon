@@ -152,6 +152,9 @@ Route::delete('/coordinations/{id}', 'CoordinationController@destroy')
     ->where('coordination', '[0-9]+')
     ->name('coordination.destory');
 
+Route::get('/coordinations/new', 'CoordinationController@create')
+    ->name('coordination.create');
+
 // Others
 
 Route::get('/groups', 'AdminController@group')

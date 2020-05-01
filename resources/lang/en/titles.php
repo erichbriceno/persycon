@@ -27,5 +27,6 @@ return [
     'coordination'=> [
         'index'         => 'LIST OF COORDINATIONS',
         'trash'         => 'TRASH COORDINATIONS',
+        'create'        => 'CREATE COORDINATIONS',
     ]
 ];
