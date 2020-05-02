@@ -11,8 +11,8 @@
             required 
             autocomplete="name" 
             placeholder ="{{ trans('coordinations.fieldsPlaceholder.name') }}" 
-            value="{{ old('name', $coordination->namew) }}" 
-            {{ $coordination->name ? 'readonly' : 'autofocus' }}
+            value="{{ old('name', $coordination->name) }}" 
+            autofocus
             >
         @error('name')
             <span class="invalid-feedback" role="alert">

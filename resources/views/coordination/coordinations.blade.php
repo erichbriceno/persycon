@@ -9,10 +9,9 @@
         <table class="table table-sm">
             <thead class="thead-light">
             <tr>
-                <th scope="col">#</th>
                 <th scope="col">@lang('Name')</th>
                 <th scope="col">@lang('Description')</th>
-                <th scope="col" class="text-center">@lang('Management')</th>
+                <th scope="col">@lang('Management')</th>
                 <th scope="col" class="text-center">@lang('Groups')</th>
                 <th scope="col" class="text-center">@lang('Status')</th>
                 <th scope="col" class="text-center">@lang('Actions')</th>

@@ -1,5 +1,4 @@
 <tr>
-    <th scope="row">{{ $management->id }}</th>
     <td>{{ $management->acronym }}
         @if(! $management->active)
         <span class="note-danger">

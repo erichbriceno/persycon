@@ -38,8 +38,6 @@ class CreateCoordinationModuleTest extends TestCase
     /** @test */
     function the_name_coordination_is_required()
     {
-        // $this->withoutExceptionHandling();
-
         $this->from(route('coordination.create'))
             ->post(route('coordination.store'), $this->getCoordinationData([
                 'name' => '',
@@ -50,7 +48,7 @@ class CreateCoordinationModuleTest extends TestCase
         $this->assertDatabaseMissing('coordinations', [
             'name'          => '',
             'description'   => 'Lineas de producción',
-            'active' => true
+            'active'        => true
             ]);
     }
 
@@ -200,5 +198,4 @@ class CreateCoordinationModuleTest extends TestCase
             'active'        => true
             ]);
         }
-    
 }

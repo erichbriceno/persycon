@@ -9,7 +9,6 @@
         <table class="table table-sm">
             <thead class="thead-light">
             <tr>
-                <th scope="col">#</th>
                 <th scope="col">@lang('Acronym')</th>
                 <th scope="col">@lang('Name')</th>
                 <th scope="col" class="text-center">@lang('Coordinations')</th>

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Model\{ Coordination, Management };
-use App\Http\Requests\{CreateCoordinationRequest, UpdateProjectRequest};
+use App\Http\Requests\{CreateCoordinationRequest, UpdateCoordinationRequest};
 
 class CoordinationController extends Controller
 {
@@ -12,7 +12,7 @@ class CoordinationController extends Controller
     {
         $coordinations = Coordination::query()
                 ->onlyTrashedIf($request->routeIs('coordinations.trash'))
-                ->orderBy('id')
+                ->orderBy('management_id')
                 ->paginate(20);
         
         return view('coordination.coordinations',[
@@ -41,7 +41,24 @@ class CoordinationController extends Controller
         
         return redirect()->route('coordinations');
     }
+
+    public function edit(Coordination $coordination)
+    {
+        return view('coordination.edit', [
+            'module'        => 'coordination',
+            'view'          => 'edit',
+            'coordination'  => $coordination,
+            'managements'   => Management::where('active', true)->get(),
+            ]);
+    }
     
+    public function update(UpdateCoordinationRequest $request, Coordination $coordination)
+    {
+        $request->updateCoordination($coordination);
+        
+        return redirect()->route('coordinations'); ;
+    }
+
     public function trash(Coordination $coordination)
     {
         $coordination->active = false;

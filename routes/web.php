@@ -158,10 +158,16 @@ Route::get('/coordinations/new', 'CoordinationController@create')
 Route::post('/coordinations/store', 'CoordinationController@store')
     ->name('coordination.store');
 
+Route::get('/coordinations/{coordination}/edit', 'CoordinationController@edit')
+    ->where('coordination', '[0-9]+')    
+    ->name('coordination.edit');
+
+Route::put('/coordinations/{coordination}/edit', 'CoordinationController@update')
+    ->where('coordination', '[0-9]+')
+    ->name('coordination.update');
+
+
 // Others
 
 Route::get('/groups', 'AdminController@group')
     ->name('groups');
-
-
-
