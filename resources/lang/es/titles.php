@@ -27,6 +27,13 @@ return [
     'coordination'=> [
         'index'         => 'LISTADO DE COORDINACIONES',
         'trash'         => 'PAPELERA DE COORDINACIONES',
-        'create'        => 'CREAR COORDINACIONES',
-    ]
+        'create'        => 'CREAR COORDINACIÓN',
+        'edit'          => 'EDITAR COORDINACIÓN',
+    ],
+    'group'     => [
+        'index'         => 'LISTADO DE GRUPOS',
+        'trash'         => 'PAPELERA DE GRUPOS',
+        'create'        => 'CREAR GRUPO',
+        'edit'          => 'EDITAR GRUPOS',
+    ],
 ];
