@@ -18,6 +18,7 @@ class CreateGroupsTable extends Migration
             $table->string('name')->unique();
             $table->string('description');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

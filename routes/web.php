@@ -167,7 +167,10 @@ Route::put('/coordinations/{coordination}/edit', 'CoordinationController@update'
     ->name('coordination.update');
 
 
-// Others
+// Groups
 
-Route::get('/groups', 'AdminController@group')
+Route::get('/groups', 'GroupController@index')
     ->name('groups');
+
+Route::get('/groups/trash', 'GroupController@index')
+    ->name('groups.trash');
