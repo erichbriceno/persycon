@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Model\{ Group, Coordination };
-use App\Http\Requests\{CreateGroupRequest};
+use App\Http\Requests\{CreateGroupRequest, UpdateGroupRequest};
 
 class GroupController extends Controller
 {
@@ -12,14 +12,13 @@ class GroupController extends Controller
     {
         $groups = Group::query()
                 ->onlyTrashedIf($request->routeIs('groups.trash'))
-                ->orderBy('id')
+                ->orderBy('coordination_id')
                 ->paginate(20);
         
         return view('group.groups',[
             'module'    => 'group',
             'view'      => $request->routeIs('groups.trash') ? 'trash' : 'index',
             'groups'    => $groups,
-            // 'coordinations'   => Coordination::where('active', true)->get(),
             ]);
         
     }
@@ -43,22 +42,22 @@ class GroupController extends Controller
         return redirect()->route('groups');
     }
 
-    // public function edit(Coordination $coordination)
-    // {
-    //     return view('coordination.edit', [
-    //         'module'        => 'coordination',
-    //         'view'          => 'edit',
-    //         'coordination'  => $coordination,
-    //         'managements'   => Management::where('active', true)->get(),
-    //         ]);
-    // }
+    public function edit(Group $group)
+    {
+        return view('group.edit', [
+            'module'    => 'group',
+            'view'      => 'edit',
+            'group'     => $group,
+            'coordinations'   => Coordination::where('active', true)->get(),
+            ]);
+    }
     
-    // public function update(UpdateCoordinationRequest $request, Coordination $coordination)
-    // {
-    //     $request->updateCoordination($coordination);
+    public function update(UpdateGroupRequest $request, Group $group)
+    {
+        $request->updateGroup($group);
         
-    //     return redirect()->route('coordinations'); ;
-    // }
+        return redirect()->route('groups'); ;
+    }
 
     public function trash(Group $group)
     {

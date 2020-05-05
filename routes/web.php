@@ -192,3 +192,11 @@ Route::get('/groups/new', 'GroupController@create')
 
 Route::post('/groups/store', 'GroupController@store')
     ->name('group.store');
+
+Route::get('/groups/{group}/edit', 'GroupController@edit')
+    ->where('group', '[0-9]+')    
+    ->name('group.edit');
+
+Route::put('/groups/{group}/edit', 'GroupController@update')
+    ->where('group', '[0-9]+')
+    ->name('group.update');
