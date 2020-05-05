@@ -18,9 +18,13 @@ class CreateCoordinationsTable extends Migration
             $table->bigIncrements('id');
             $table->string('name')->unique();
             $table->string('description');
+            $table->unsignedBigInteger('management_id');
             $table->boolean('active');
             $table->timestamps();
             $table->softDeletes();
+
+            //References
+            $table->foreign('management_id')->references('id')->on('managements');
         });
     }
 

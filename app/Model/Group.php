@@ -26,4 +26,9 @@ class Group extends Model
         return new GroupQuery($query);
     }
 
+    public function coordination()
+    {
+        return $this->belongsTo(Coordination::class);
+    }
+
 }

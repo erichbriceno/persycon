@@ -9,11 +9,12 @@
         <table class="table table-sm">
             <thead class="thead-light">
             <tr>
-                <th scope="col">#</th>
-                <th scope="col">Nombre</th>
-                <th scope="col">Descripcion</th>
-                <th scope="col">Creado</th>
-                <th scope="col">Acciones</th>
+                <th scope="col">@lang('Name')</th>
+                <th scope="col">@lang('Description')</th>
+                <th scope="col">@lang('Coordination')</th>
+                <th scope="col" class="text-center">@lang('Staff')</th>
+                <th scope="col" class="text-center">@lang('Status')</th>
+                <th scope="col" class="text-center">@lang('Actions')</th>
             </tr>
             </thead>
             <tbody>
@@ -23,5 +24,5 @@
         {{ $groups->onEachSide(1)->links() }}
     @else
         <h4>{{trans("groups.emptyMessage.{$view}")}}</h4>
-    @endif
+    @endif 
 @endsection

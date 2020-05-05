@@ -21,6 +21,13 @@ class CoordinationSeeder extends Seeder
             'active' => true,
         ]);
 
+        factory(Coordination::class)->create([
+            'name'        => 'Producción',
+            'description' => 'Actividades de producción',
+            'management_id' => Management::where('acronym', 'PE')->first()->id,
+            'active' => true,
+        ]);
+
         factory(Coordination::class)->times(10)->create();
 
     }

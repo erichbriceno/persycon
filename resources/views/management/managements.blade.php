@@ -12,8 +12,8 @@
                 <th scope="col">@lang('Acronym')</th>
                 <th scope="col">@lang('Name')</th>
                 <th scope="col" class="text-center">@lang('Coordinations')</th>
-                <th scope="col" colspan="4" class="text-center">@lang('Staff')</th>
-                <th scope="col" colspan="3" class="text-center">@lang('Status')</th>
+                <th scope="col" class="text-center" colspan="4" >@lang('Staff')</th>
+                <th scope="col" class="text-center" colspan="3" >@lang('Status')</th>
                 <th scope="col" class="text-center">@lang('Actions')</th>
             </tr>
             </thead>
