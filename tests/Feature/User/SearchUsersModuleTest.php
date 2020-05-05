@@ -147,10 +147,10 @@ class SearchUsersModuleTest extends TestCase
 
         $jose = factory(User::class)->create([
             'names' => 'Jose',
-            'management_id' => Management::Where('name', 'CNS')->first()->id
+            'management_id' => Management::Where('name', 'Centro Nacional de Soporte')->first()->id
         ]);
 
-        $this->get(route('users', ['management' => 'CNS']))
+        $this->get(route('users', ['management' => 'Centro Nacional de Soporte']))
             ->assertStatus(200)
             ->assertSee('LISTADO DE USUARIOS' )
             ->assertViewHas('users', function ($users) use ( $pedro, $santiago, $jose) {
@@ -191,7 +191,6 @@ class SearchUsersModuleTest extends TestCase
     /** @test */
     function search_users_by_all_management_and_unassigned_management()
     {
-        //$this->withoutExceptionHandling();
         $pedro = factory(User::class)->create([
             'names' => 'Pedro',
             'management_id' => Management::Where('name', 'Mariche')->first()->id
@@ -204,7 +203,7 @@ class SearchUsersModuleTest extends TestCase
 
         $jose = factory(User::class)->create([
             'names' => 'Jose',
-            'management_id' => Management::Where('name', 'CNS')->first()->id
+            'management_id' => Management::Where('name', 'Centro Nacional de Soporte')->first()->id
         ]);
 
         $this->get(route('users', ['management' => '']))

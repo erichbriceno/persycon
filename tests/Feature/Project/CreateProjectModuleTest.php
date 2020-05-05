@@ -217,7 +217,7 @@ class CreateProjectModuleTest extends TestCase
     }
 
     /** @test */
-    function the_description_is_required()
+    function the_project_description_is_required()
     {
         $this->from(route('project.create'))
             ->post(route('project.store'), $this->getProjectData([
@@ -227,15 +227,12 @@ class CreateProjectModuleTest extends TestCase
             ->assertSessionHasErrors(['description']);
     
         $this->assertDatabaseMissing('projects', [
-            'name' => 'Municipales 2020',
-            'description' => 'Elecciones Municipales 2020',
-            'start' => '2020-03-20',
-            'active' => true
+                'description' => '',
             ]);
     }
 
     /** @test */
-    function the_description_of_must_have_more_than_50_characters()
+    function the_project_description_of_must_have_more_than_50_characters()
     {
         $this->from(route('project.create'))
             ->post(route('project.store'), $this->getProjectData([

@@ -72,8 +72,6 @@ class UpdateCoordinationModuleTest extends TestCase
     /** @test */
     function the_name_can_be_kept_when_the_coordination_is_updated()
     {
-        // $this->withoutExceptionHandling();
-
         $coordination = factory(Coordination::class)->create([
             'name'          => 'Lineas',
         ]);

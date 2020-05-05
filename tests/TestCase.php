@@ -2,7 +2,7 @@
 
 namespace Tests;
 
-use App\Model\{Cedulate, Role, Management};
+use App\Model\{Cedulate, Role, Management, Coordination};
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 
 abstract class TestCase extends BaseTestCase
@@ -10,7 +10,7 @@ abstract class TestCase extends BaseTestCase
     use CreatesApplication;
 
     /****************** Complementos **************/
-
+    // $this->withoutExceptionHandling();
 
     public function setUp() :void
     {
@@ -18,6 +18,7 @@ abstract class TestCase extends BaseTestCase
 
         $this->loadRolesTable();
         $this->loadManagemetsTable();
+        $this->loadCoordinationsTable();
         $this->loadCedulatesTable();
     }
 
@@ -62,6 +63,15 @@ abstract class TestCase extends BaseTestCase
                 'description'   => 'Lineas de producción',
                 'management' =>  Management::Where('name', 'Mariche')->first()->id,
                 'active'        => true,
+            ], $custom);
+    }
+
+    protected function getGroupData(array $custom = [])
+    {
+        return array_merge([
+                'name'          => 'Despacho',
+                'description'   => 'Operaciones de desapcho',
+                'coordination'  =>  Coordination::Where('name', 'Operaciones')->first()->id,
             ], $custom);
     }
 
@@ -125,20 +135,40 @@ abstract class TestCase extends BaseTestCase
         ]);
 
         factory(Management::class)->create([
-            'name' => 'Mariche',
+            'acronym'   => 'PE',
+            'name'      => 'Mariche',
             'description' => 'Galpon CNE Mariche',
             'active' => true,
         ]);
 
         factory(Management::class)->create([
-            'name' => 'CNS',
+            'acronym'   => 'CNS',
+            'name'      => 'Centro Nacional de Soporte',
             'description' => 'Centro Nacional de Soporte',
             'active' => true,
         ]);
 
         factory(Management::class)->create([
-            'name' => 'ODC',
+            'acronym'   => 'ODC',
+            'name'      => 'Oficinas Decentralizadas',
             'description' => 'Oficinas Decentralizadas',
+            'active' => true,
+        ]);
+    }
+
+    public function loadCoordinationsTable()
+    {
+        factory(Coordination::class)->create([
+            'name'        => 'Operaciones',
+            'description' => 'Actividades logsiticas',
+            'management_id' => Management::where('acronym', 'PE')->first()->id,
+            'active' => true,
+        ]);
+
+        factory(Coordination::class)->create([
+            'name'        => 'Producción',
+            'description' => 'Actividades de producción',
+            'management_id' => Management::where('acronym', 'PE')->first()->id,
             'active' => true,
         ]);
     }

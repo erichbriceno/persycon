@@ -186,3 +186,9 @@ Route::patch('/groups/{id}/restore', 'GroupController@restore')
 Route::delete('/groups/{id}', 'GroupController@destroy')
     ->where('group', '[0-9]+')
     ->name('group.destory');
+
+Route::get('/groups/new', 'GroupController@create')
+    ->name('group.create');
+
+Route::post('/groups/store', 'GroupController@store')
+    ->name('group.store');

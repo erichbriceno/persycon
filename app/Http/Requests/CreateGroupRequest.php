@@ -2,11 +2,11 @@
 
 namespace App\Http\Requests;
 
-use App\Model\Coordination;
+use App\Model\Group;
 use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateCoordinationRequest extends FormRequest
+class CreateGroupRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -30,16 +30,16 @@ class CreateCoordinationRequest extends FormRequest
                 'required',
                 'string',
                 'max:25',
-                'unique:coordinations',
+                'unique:groups',
                 ],
             'description' => [
                 'required',
                 'string', 
                 'max:50'
                 ],
-            'management' => [
+            'coordination' => [
                 'required',
-                Rule::exists('managements', 'id')->where('active', true)
+                Rule::exists('coordinations', 'id')->where('active', true)
                 ],
         ];
     }
@@ -47,19 +47,18 @@ class CreateCoordinationRequest extends FormRequest
     public function messages()
     {
         return [
-            'description.max' => trans('coordinations.errorsValidations.description.max'),
+            'description.max' => trans('groups.errorsValidations.description.max'),
         ];
     }
 
-    public function createCoordination()
+    public function createGroup()
     {
-        $coordination = Coordination::create([
-            'name' => $this->name,
-            'description' => $this->description,
-            'management_id' => $this->management,
-            'active' => true
+        $group = Group::create([
+            'name'          => $this->name,
+            'description'   => $this->description,
+            'coordination_id' => $this->coordination,
         ]);
         
-        $coordination->save();
+        $group->save();
     }
 }

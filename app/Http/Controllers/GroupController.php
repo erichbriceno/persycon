@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Model\{ Group, Management };
-// use App\Http\Requests\{CreateCoordinationRequest, UpdateCoordinationRequest};
+use App\Http\Requests\{CreateGroupRequest};
 
 class GroupController extends Controller
 {
@@ -36,12 +36,12 @@ class GroupController extends Controller
     //         ]);
     // }
 
-    // public function store(CreateCoordinationRequest $request)
-    // {
-    //     $request->createCoordination();
+    public function store(CreateGroupRequest $request)
+    {
+        $request->createGroup();
         
-    //     return redirect()->route('coordinations');
-    // }
+        return redirect()->route('groups');
+    }
 
     // public function edit(Coordination $coordination)
     // {

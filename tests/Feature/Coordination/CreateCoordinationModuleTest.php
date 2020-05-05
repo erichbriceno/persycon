@@ -145,6 +145,25 @@ class CreateCoordinationModuleTest extends TestCase
     }
 
     /** @test */
+    function the_managenent_id_is_required()
+    {
+        $this->from(route('coordination.create'))
+            ->post(route('coordination.store'), [
+                'name'        => 'Dsitribucion',
+                'description' => 'Actividades logsiticas',
+                'active' => true,
+            ])
+            ->assertRedirect(route('coordination.create'))
+            ->assertSessionHasErrors(['management']);
+    
+        $this->assertDatabaseMissing('coordinations', [
+            'name'        => 'Dsitribucion',
+            'description' => 'Actividades logsiticas',
+            'active' => true,
+            ]);
+    }
+
+    /** @test */
     function the_managenent_id_must_be_valid()
     {
         $this->from(route('coordination.create'))
@@ -197,5 +216,5 @@ class CreateCoordinationModuleTest extends TestCase
             'management_id' =>  $management->id,
             'active'        => true
             ]);
-        }
+    }
 }

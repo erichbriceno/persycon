@@ -16,9 +16,7 @@ class DeleteCoordinationTest extends TestCase
     /** @test */
     function it_sends_a_coordination_to_the_trash()
     {
-        $coordination = factory(Coordination::class)->create([
-            'name' => ''
-        ]);
+        $coordination = factory(Coordination::class)->create();
 
         $this->patch(route('coordination.trash', $coordination))
             ->assertRedirect(route('coordinations'));
@@ -27,7 +25,7 @@ class DeleteCoordinationTest extends TestCase
                 'id' => $coordination->id,
             ]);
 
-        $this->assertSame(0, Coordination::all()->count());
+        $this->assertSame(2, Coordination::all()->count());
             
         $coordination->refresh();
         $this->assertTrue($coordination->trashed());
@@ -37,7 +35,7 @@ class DeleteCoordinationTest extends TestCase
     function it_shows_the_trashed_coordinations_list()
     {
         factory(Coordination::class)->create([
-            'name' => 'Operaciones',
+            'name' => 'Logistica',
         ]);
 
         $coordination = factory(Coordination::class)->create([
