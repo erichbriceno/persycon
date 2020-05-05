@@ -1,4 +1,4 @@
-    <?php
+<?php
 
 return [
     'emptyMessage'  => [
@@ -6,36 +6,21 @@ return [
         'trash'             => 'No hay grupos borrados'
     ],
     'fieldsPlaceholder' => [
-        'acronym'           => 'Acronimo de la gerencia (máx. 6 caracteres)',
-        'name'              => 'Nombre de la gerencia (máx. 50 caracteres)',
-        ],
-    /*
-    'state'     => [
-        'inactive'          => 'Inactivo',
-        'active'            => 'Activo'
+        'name'              => 'Nombre del grupo (máx. 25 caracteres)',
+        'description'       => 'Descripción del grupo (máx. 50 caracteres)',
         ],
     'errorsValidations' => [
         'name' => [
-            'required'      => 'El nombre es obligatorio.',
-            'nameProject'   => 'El nombre debe contener una sola palabra.',
-            'alpha'         => 'Permite solo caracteres alfabéticos. [A-z]',
-            'uniqueName'    => 'El nombre ":name" ya existe.',
-        ],
-        'year' => [
-            'required'      => 'El año es obligatorio',
-            'yearBetween'   => 'Valido :year ± 1',
+            'uniqueName'    => 'El nombre ":name" ya existe.', 
         ],
         'description' => [
             'max'           => 'La descripción no debe ser mayor que 50 caracteres.'
         ],
-        'date' => [
-            'start'         => 'inicio',
-            'required'      => 'La fecha de :time es obligatoria.',
-            'date_format'   => 'Formato valido dd/mm/yyyy',
-            'after'         => 'Fecha valida posterior a :time',
-            'before'        => 'Fecha valida anterior a :time',
-            'toAfter'       => 'Debe ser posterior a la fecha de inicio',
-        ]
+    ]
+    /*
+    'state'     => [
+        'inactive'          => 'Inactivo',
+        'active'            => 'Activo'
     ],
     */
 ];

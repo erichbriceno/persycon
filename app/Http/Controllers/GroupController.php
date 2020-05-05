@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Model\{ Group, Management };
+use App\Model\{ Group, Coordination };
 use App\Http\Requests\{CreateGroupRequest};
 
 class GroupController extends Controller
@@ -24,17 +24,17 @@ class GroupController extends Controller
         
     }
 
-    // public function create()
-    // {
-    //     $coordination = new Coordination;
+    public function create()
+    {
+        $group = new Group;
 
-    //     return view('coordination.create', [
-    //         'module' => 'coordination',
-    //         'view' => 'create',
-    //         'coordination' => $coordination,
-    //         'managements'   => Management::where('active', true)->get(),
-    //         ]);
-    // }
+        return view('group.create', [
+            'module'    => 'group',
+            'view'      => 'create',
+            'group'     => $group,
+            'coordinations'   => Coordination::where('active', true)->get(),
+            ]);
+    }
 
     public function store(CreateGroupRequest $request)
     {
