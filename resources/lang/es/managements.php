@@ -1,4 +1,4 @@
-    <?php
+<?php
 
 return [
     'emptyMessage'  => [
@@ -6,7 +6,7 @@ return [
         'trash'             => 'No hay gerencias borradas'
     ],
     'fieldsPlaceholder' => [
-        'acronym'           => 'Acronimo de la gerencia (máx. 6 caracteres)',
+        'acronym'           => 'Siglas de la gerencia (máx. 6 caracteres)',
         'name'              => 'Nombre de la gerencia (máx. 50 caracteres)',
         ],
 ];
