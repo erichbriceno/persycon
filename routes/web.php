@@ -174,3 +174,15 @@ Route::get('/groups', 'GroupController@index')
 
 Route::get('/groups/trash', 'GroupController@index')
     ->name('groups.trash');
+
+Route::patch('/groups/{group}/trash', 'GroupController@trash')
+    ->where('group', '[0-9]+')
+    ->name('group.trash');
+
+Route::patch('/groups/{id}/restore', 'GroupController@restore')
+    ->where('group', '[0-9]+')
+    ->name('group.restore');
+
+Route::delete('/groups/{id}', 'GroupController@destroy')
+    ->where('group', '[0-9]+')
+    ->name('group.destory');

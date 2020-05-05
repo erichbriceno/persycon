@@ -60,26 +60,24 @@ class GroupController extends Controller
     //     return redirect()->route('coordinations'); ;
     // }
 
-    // public function trash(Coordination $coordination)
-    // {
-    //     $coordination->active = false;
-    //     $coordination->save();
-    //     $coordination->delete();
-    //     return redirect()->route('coordinations');
-    // }
+    public function trash(Group $group)
+    {
+        $group->delete();
+        return redirect()->route('groups');
+    }
 
-    // public function restore($id)
-    // {
-    //     $coordination = Coordination::onlyTrashed()->where('id', $id)->firstOrFail();
-    //     $coordination->restore();
-    //     return redirect()->route('coordinations.trash');
-    // }
+    public function restore($id)
+    {
+        $group = Group::onlyTrashed()->where('id', $id)->firstOrFail();
+        $group->restore();
+        return redirect()->route('groups.trash');
+    }
 
-    // public function destroy($id)
-    // {
-    //     $coordination = Coordination::onlyTrashed()->where('id', $id)->firstOrFail();
-    //     $coordination->forceDelete();
-    //     return redirect()->route('coordinations.trash');
-    // }
+    public function destroy($id)
+    {
+        $group = Group::onlyTrashed()->where('id', $id)->firstOrFail();
+        $group->forceDelete();
+        return redirect()->route('groups.trash');
+    }
 
 }
