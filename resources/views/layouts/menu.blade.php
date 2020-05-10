@@ -30,6 +30,8 @@
                         @lang('Payroll')
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">@lang('Categorys')</a>
+                        <a class="dropdown-item" href="#">@lang('Job titles')</a>
                         <a class="dropdown-item" href="#">@lang('Interval')</a>
                         <a class="dropdown-item" href="#">@lang('Processing')</a>
                     </div>
