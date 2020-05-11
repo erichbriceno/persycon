@@ -15,17 +15,18 @@ class GroupSeeder extends Seeder
      */
     public function run()
     {
-        
+        $coordinations = Coordination::where('name','Producción')->first()->id;
+
         factory(Group::class)->create([
             'name'              => 'Líneas',
             'description'       => 'Líneas de Producción',
-            'coordination_id'   => Coordination::where('name','Producción')->first()->id,
+            'coordination_id'   => $coordinations,
         ]);
 
         factory(Group::class)->create([
             'name' => 'Soporte',
             'description' => 'Soporte de Maquinas',
-            'coordination_id'   => Coordination::where('name','Producción')->first()->id,
+            'coordination_id'   => $coordinations,
         ]);
 
         factory(Group::class)->create([
