@@ -12,20 +12,20 @@ class CategorySeeder extends Seeder
      */
     public function run()
     {
-        factory(Category::class)->create([
-            'name'  => 'T1',
-        ]);
+        // factory(Category::class)->create([
+        //     'name'  => 'T1',
+        // ]);
 
-        factory(Category::class)->create([
-            'name'  => 'T2',
-        ]);
+        // factory(Category::class)->create([
+        //     'name'  => 'T2',
+        // ]);
 
-        factory(Category::class)->create([
-            'name'  => 'T3',
-        ]);
+        // factory(Category::class)->create([
+        //     'name'  => 'T3',
+        // ]);
 
-        factory(Category::class)->create([
-            'name'  => 'T4',
-        ]);
+        // factory(Category::class)->create([
+        //     'name'  => 'T4',
+        // ]);
     }
 }

@@ -15,8 +15,14 @@ class CreateCategoriesTable extends Migration
     {
         Schema::create('categories', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name')->unique();
+            $table->string('name');
+            $table->integer('minimum');
+            $table->integer('maximum');
+            $table->unsignedBigInteger('project_id');
             $table->timestamps();
+
+            //References
+            $table->foreign('project_id')->references('id')->on('projects');
         });
     }
 

@@ -2,6 +2,7 @@
 
 namespace App\Model;
 
+use App\Model\Category;
 use Illuminate\Support\Str;
 use App\Queries\ProjectQuery;
 use Illuminate\Database\Eloquent\Model;
@@ -54,6 +55,31 @@ class Project extends Model
     public function getStateAttribute()
     {
         return $this->active?'active':'inactive';
+    }
+
+    public function categories()
+    {
+        return $this->hasMany(Category::class);
+    }
+
+    public function getCat1Attribute()
+    {
+        return ($this->categories->count())?$this->categories->firstWhere('name','T1'):null; 
+    }
+
+    public function getCat2Attribute()
+    {
+        return ($this->categories->count())?$this->categories->firstWhere('name','T2'):null; 
+    }
+    
+    public function getCat3Attribute()
+    {
+        return ($this->categories->count())?$this->categories->firstWhere('name','T3'):null; 
+    }
+
+    public function getCat4Attribute()
+    {
+        return ($this->categories->count())?$this->categories->firstWhere('name','T4'):null; 
     }
 
 }
