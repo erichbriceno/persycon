@@ -81,5 +81,4 @@ class Project extends Model
     {
         return ($this->categories->count())?$this->categories->firstWhere('name','T4'):null; 
     }
-
 }

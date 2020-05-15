@@ -200,3 +200,8 @@ Route::get('/groups/{group}/edit', 'GroupController@edit')
 Route::put('/groups/{group}/edit', 'GroupController@update')
     ->where('group', '[0-9]+')
     ->name('group.update');
+
+// Categories
+
+Route::get('/categories', 'CategoryController@index')
+->name('categories');

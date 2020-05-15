@@ -67,7 +67,6 @@ class ProjectSeeder extends Seeder
         foreach (range(1, 10) as $i) {
             $this->createRandomProject();
         }
-
     }
 
     public function createRandomProject(): void
