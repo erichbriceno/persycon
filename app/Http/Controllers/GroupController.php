@@ -12,6 +12,7 @@ class GroupController extends Controller
     {
         $groups = Group::query()
                 ->onlyTrashedIf($request->routeIs('groups.trash'))
+                ->with('coordination')
                 ->orderBy('coordination_id')
                 ->paginate(20);
         

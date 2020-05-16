@@ -12,6 +12,7 @@ class CoordinationController extends Controller
     {
         $coordinations = Coordination::query()
                 ->onlyTrashedIf($request->routeIs('coordinations.trash'))
+                ->with('management')
                 ->orderBy('management_id')
                 ->paginate(20);
         
