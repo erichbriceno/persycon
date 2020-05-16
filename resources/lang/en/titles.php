@@ -36,4 +36,8 @@ return [
         'create'        => 'CREATE GROUP',
         'edit'          => 'EDIT GROUP',
     ],
+    'categories'     => [
+        'index'         => 'WAGE CATEGORIES',
+        'edit'          => 'EDIT WAGE CATEGORY',
+    ],
 ];

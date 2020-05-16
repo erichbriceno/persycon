@@ -14,14 +14,13 @@ class CategoryController extends Controller
     {
         $projects = Project::query()
                 ->with('categories')
-                //->onlyTrashedIf($request->routeIs('projects.trash'))
                 ->orderBy('id')
                 ->paginate(20);
         
         return view('category.categories', [
-            'module' => 'categories',
-            'view' => 'index',
-            'projects' => $projects,
+            'module'    => 'categories',
+            'view'      => 'index',
+            'projects'  => $projects,
         ]);
     }
 

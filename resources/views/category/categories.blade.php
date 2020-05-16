@@ -6,9 +6,8 @@
         <table class="table table-sm">
             <thead class="thead-light">
             <tr>
-                <th scope="col">#</th>
                 <th scope="col">@lang('Name project')</th>
-                <th scope="col" class="text-center" colspan="4" >@lang('Salary categories')</th>
+                <th scope="col" class="text-center" colspan="4" >@lang('Salaries categories')</th>
                 <th scope="col" class="text-center">@lang('Actions')</th>
             </tr>
             </thead>
