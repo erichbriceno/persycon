@@ -81,4 +81,9 @@ class Project extends Model
     {
         return ($this->categories->count())?$this->categories->firstWhere('name','T4'):null; 
     }
+
+    public function getLoadcategoriesAttribute()
+    {
+        return $this->cat1->minimum && $this->cat2->minimum && $this->cat3->minimum && $this->cat4->minimum && $this->cat1->maximum && $this->cat2->maximum && $this->cat3->maximum && $this->cat4->maximum;
+    }
 }

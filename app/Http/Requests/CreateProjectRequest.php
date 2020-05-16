@@ -82,5 +82,12 @@ class CreateProjectRequest extends FormRequest
         ]);
         
         $project->save();
+
+        $project->categories()->createMany([
+            ['name'      => 'T1', 'minimum'   =>  0, 'maximum'   =>  0],
+            ['name'      => 'T2', 'minimum'   =>  0, 'maximum'   =>  0],
+            ['name'      => 'T3', 'minimum'   =>  0, 'maximum'   =>  0],
+            ['name'      => 'T4', 'minimum'   =>  0, 'maximum'   =>  0],
+        ]);
     }
 }
