@@ -19,7 +19,9 @@
         </span>
     </td>
     <td class="text-center">
-        <a href="#" class="text-secondary"><i class="fas fa-handshake"></i></a>
+        <a href="#" class="text-secondary">
+            <i class="fas fa-handshake{{ $project->loadcategories ? '' : '-slash' }}"></i>
+        </a>
     </td>
     
     <td>
