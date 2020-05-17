@@ -14,14 +14,14 @@
         </span>
      </td>
     <td class="text-center">
-        <span class="text-secondary">
-            <i class="fas fa-battery-empty"></i>
-        </span>
+        <div class="progress">
+            <div class="progress-bar progress-bar-striped bg-secondary" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">50%</div>
+        </div>
     </td>
     <td class="text-center">
-        <a href="#" class="text-secondary">
-            <i class="fas fa-handshake{{ $project->loadcategories ? '' : '-slash' }}"></i>
-        </a>
+        @if(! $project->loadcategories) <a href="{{ route('category.edit', $project ) }}"> @endif
+            <span class="text-secondary"><i class="fas fa-handshake{{ $project->loadcategories ? '' : '-slash' }}"></i></span> 
+        @if(! $project->loadcategories) </a> @endif
     </td>
     
     <td>

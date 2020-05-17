@@ -24,7 +24,7 @@
     </td>
     <td class="form-inline justify-content-center">
         <a href="#" class="btn btn-outline-secondary btn-sm"><i class="fas fa-eye"></i></a>
-        <a href="#" class="btn btn-outline-secondary btn-sm"><i class="fas fa-pencil-alt"></i></a>
+        <a href="{{ route('category.edit', $project ) }}" class="btn btn-outline-secondary btn-sm"><i class="fas fa-pencil-alt"></i></a>
     </td>
 </tr>
         

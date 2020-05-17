@@ -36,8 +36,8 @@ return [
         'create'        => 'CREAR GRUPO',
         'edit'          => 'EDITAR GRUPOS',
     ],
-    'categories'     => [
+    'category'     => [
         'index'         => 'CATEGORÍAS SALARIALES',
-        'edit'          => 'EDITAR CATEGORÍA SALARIAL',
+        'edit'          => 'EDITAR CATEGORÍA SALARIALES',
     ],
 ];

@@ -18,11 +18,21 @@ class CategoryController extends Controller
                 ->paginate(20);
         
         return view('category.categories', [
-            'module'    => 'categories',
+            'module'    => 'category',
             'view'      => 'index',
             'projects'  => $projects,
         ]);
     }
+
+    public function edit(Project $project, Request $request )
+    {
+        return view('category.edit', [
+            'module'    => 'category',
+            'view'      => 'edit',
+            'project'   => $project,
+            ]);
+    }
+
 
     // public function create()
     // {
@@ -47,19 +57,7 @@ class CategoryController extends Controller
     //     return redirect()->route('projects');
     // }
 
-    // public function edit(Project $project)
-    // {
-    //     return view('project.edit', [
-    //         'module' => 'project',
-    //         'view' => 'edit',
-    //         'project' => $project,
-    //         'years' => [
-    //             today()->sub('1 year')->format('Y'),
-    //             today()->format('Y'),
-    //             today()->add('1 year')->format('Y'),
-    //             ]
-    //         ]);
-    // }
+
     
     // public function update(UpdateProjectRequest $request, Project $project)
     // {

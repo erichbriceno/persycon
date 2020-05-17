@@ -205,3 +205,7 @@ Route::put('/groups/{group}/edit', 'GroupController@update')
 
 Route::get('/categories', 'CategoryController@index')
 ->name('categories');
+
+Route::get('/categories/{project}/edit', 'CategoryController@edit')
+    ->where('project', '[0-9]+')    
+    ->name('category.edit');

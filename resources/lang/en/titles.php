@@ -38,6 +38,6 @@ return [
     ],
     'categories'     => [
         'index'         => 'WAGE CATEGORIES',
-        'edit'          => 'EDIT WAGE CATEGORY',
+        'edit'          => 'EDIT SALARY CATEGORIES',
     ],
 ];

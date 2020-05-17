@@ -50,10 +50,10 @@ class ProjectController extends Controller
     public function edit(Project $project)
     {
         return view('project.edit', [
-            'module' => 'project',
-            'view' => 'edit',
-            'project' => $project,
-            'years' => [
+            'module'    => 'project',
+            'view'      => 'edit',
+            'project'   => $project,
+            'years'     => [
                 today()->sub('1 year')->format('Y'),
                 today()->format('Y'),
                 today()->add('1 year')->format('Y'),
