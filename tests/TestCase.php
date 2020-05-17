@@ -2,7 +2,7 @@
 
 namespace Tests;
 
-use App\Model\{Cedulate, Role, Management, Coordination};
+use App\Model\{Cedulate, Role, Management, Coordination, Project};
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 
 abstract class TestCase extends BaseTestCase
@@ -46,6 +46,35 @@ abstract class TestCase extends BaseTestCase
                 'from' => '20/03/2020',
                 'active' => true,
             ], $custom);
+    }
+
+    public function createRandomProject()
+    {
+        $project = factory(Project::class)->create([
+            'name' => 'Proyecto 2020',
+        ]);
+        
+        $project->categories()->createMany([
+            [
+                'name'      => 'T1',
+                'minimum'   =>  1,
+                'maximum'   =>  9,
+            ],[
+                'name'      => 'T2',
+                'minimum'   =>  10,
+                'maximum'   =>  19
+            ],[
+                'name'      => 'T3',
+                'minimum'   =>  20,
+                'maximum'   =>  29,
+            ],[
+                'name'      => 'T4',
+                'minimum'   =>  30,
+                'maximum'   =>  39,
+            ],
+        ]);
+
+        return $project;
     }
 
     protected function getManagementData(array $custom = [])
@@ -100,6 +129,16 @@ abstract class TestCase extends BaseTestCase
             'fechanacimiento' => '1978-09-06',
             'sexo' =>   'm',
         ], $custom);
+    }
+
+    protected function loadCategoriesEmpty(Project $project)
+    {
+        $project->categories()->createMany([
+            ['name' => 'T1', 'minimum' => 0, 'maximum' => 0],
+            ['name' => 'T2', 'minimum' => 0, 'maximum' => 0],
+            ['name' => 'T3', 'minimum' => 0, 'maximum' => 0],
+            ['name' => 'T4', 'minimum' => 0, 'maximum' => 0],
+        ]);
     }
 
     protected function loadRolesTable()

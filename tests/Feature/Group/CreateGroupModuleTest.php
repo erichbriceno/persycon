@@ -51,7 +51,6 @@ class CreateGroupModuleTest extends TestCase
     /** @test */
     function the_group_name_must_be_unique()
     {
-        // $this->withoutExceptionHandling();
         
         factory(Group::class)->create([
             'name' => 'Logistica',

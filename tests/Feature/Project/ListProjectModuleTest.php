@@ -14,15 +14,19 @@ class ListProjectModuleTest extends TestCase
     /** @test */
     function it_shows_the_projects_list()
     {
-        factory(Project::class)->create([
+        $project = factory(Project::class)->create([
             'name' => 'Elecciones 2019',
             'description' => 'Elecciones Regionales 2019',
         ]);
 
-        factory(Project::class)->create([
+        $this->loadCategoriesEmpty($project);
+
+        $project = factory(Project::class)->create([
             'name' => 'Mantenimiento 2020',
             'description' => 'Mantenimiento de la Plataforma 2020',
         ]);
+
+        $this->loadCategoriesEmpty($project);
 
         $this->get(route('projects'))
             ->assertStatus(200)

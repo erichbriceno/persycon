@@ -33,58 +33,22 @@ class CategoryController extends Controller
             ]);
     }
 
+//    public function update(UpdateProjectRequest $request, Project $project)
+    public function update(Request $request, Project $project)
+    {
+        //$request->updateProject($project);
 
-    // public function create()
-    // {
-    //     $project = new Project;
+        $project->cat1min = $request->category1_min;
+        $project->cat1max = $request->category1_max;
+        $project->cat2min = $request->category2_min;
+        $project->cat2max = $request->category2_max;
+        $project->cat3min = $request->category3_min;
+        $project->cat3max = $request->category3_max;
+        $project->cat4min = $request->category4_min;
+        $project->cat4max = $request->category4_max;
 
-    //     return view('project.create', [
-    //         'module' => 'project',
-    //         'view' => 'create',
-    //         'project' => $project,
-    //         'years' => [
-    //             today()->sub('1 year')->format('Y'),
-    //             today()->format('Y'),
-    //             today()->add('1 year')->format('Y'),
-    //             ]
-    //         ]);
-    // }
+        $project->push();
 
-    // public function store(CreateProjectRequest $request)
-    // {
-    //     $request->createProject();
-
-    //     return redirect()->route('projects');
-    // }
-
-
-    
-    // public function update(UpdateProjectRequest $request, Project $project)
-    // {
-    //     $request->updateProject($project);
-        
-    //     return redirect()->route('projects'); ;
-    // }
-
-    // public function trash(Project $project)
-    // {
-    //     $project->active = false;
-    //     $project->save();
-    //     $project->delete();
-    //     return redirect()->route('projects');
-    // }
-
-    // public function restore($id)
-    // {
-    //     $project = Project::onlyTrashed()->where('id', $id)->firstOrFail();
-    //     $project->restore();
-    //     return redirect()->route('projects.trash');
-    // }
-
-    // public function destroy($id)
-    // {
-    //     $project = Project::onlyTrashed()->where('id', $id)->firstOrFail();
-    //     $project->forceDelete();
-    //     return redirect()->route('projects.trash');
-    // }
+        return redirect()->route('categories'); ;
+    }
 }

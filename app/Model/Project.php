@@ -86,4 +86,53 @@ class Project extends Model
     {
         return $this->cat1->minimum && $this->cat2->minimum && $this->cat3->minimum && $this->cat4->minimum && $this->cat1->maximum && $this->cat2->maximum && $this->cat3->maximum && $this->cat4->maximum;
     }
+
+    public function setCat1minAttribute($value)
+    {
+        $category = $this->cat1;
+        $category->minimum = $value;
+    }
+
+    public function setCat1maxAttribute($value)
+    {
+        $category = $this->cat1;
+        $category->maximum = $value;
+    }
+
+    public function setCat2minAttribute($value)
+    {
+        $category = $this->cat2;
+        $category->minimum = $value;
+    }
+
+    public function setCat2maxAttribute($value)
+    {
+        $category = $this->cat2;
+        $category->maximum = $value;
+    }
+
+    public function setCat3minAttribute($value)
+    {
+        $category = $this->cat3;
+        $category->minimum = $value;
+    }
+
+    public function setCat3maxAttribute($value)
+    {
+        $category = $this->cat3;
+        $category->maximum = $value;
+    }
+
+    public function setCat4minAttribute($value)
+    {
+        $category = $this->cat4;
+        $category->minimum = $value;
+    }
+
+    public function setCat4maxAttribute($value)
+    {
+        $category = $this->cat4;
+        $category->maximum = $value;
+    }
+
 }

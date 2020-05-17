@@ -8,7 +8,7 @@
                 <div class="card-header">@lang('Edit project salary categories')</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('project.update', ['project' => $project]) }}">
+                    <form method="POST" action="{{ route('category.update', ['project' => $project]) }}">
                         @method('PUT')
                         @include('category._fields')
                     </form>

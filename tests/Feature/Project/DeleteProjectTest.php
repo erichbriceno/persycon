@@ -57,15 +57,21 @@ class DeleteProjectTest extends TestCase
     /** @test */
     function it_shows_the_trashed_projects_list()
     {
-        factory(Project::class)->create([
+        //$this->withoutExceptionHandling();
+
+        $project = factory(Project::class)->create([
             'name' => 'Elecciones 2019',
             'description' => 'Elecciones Regionales 2019',
         ]);
+
+        $this->loadCategoriesEmpty($project);
 
         $project = factory(Project::class)->create([
             'name' => 'Mantenimiento 2020',
             'description' => 'Mantenimiento de la Plataforma 2020',
         ]);
+
+        $this->loadCategoriesEmpty($project);
 
 
         $this->patch(route('project.trash', $project))
