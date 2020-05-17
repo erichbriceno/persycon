@@ -6,7 +6,7 @@
     @includeWhen($view == 'trash', 'project._back')
 
     @if ($projects->isNotEmpty())
-        <table class="table table-sm">
+        <table class="table table-sm table-hover">
             <thead class="thead-light">
             <tr>
                 <th scope="col">#</th>

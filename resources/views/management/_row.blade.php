@@ -26,15 +26,21 @@
     </td>
     <td class="text-center">
         <span class="note-black">@lang('Hired')</span>
-        <span class="note-black">89%</span>
+        <div class="progress">
+            <div class="progress-bar progress-bar-striped bg-secondary" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">50%</div>
+        </div>
+    </td>
+    <td class="text-center">
+        <span class="note-black">@lang('Information')</span>
+        <div class="progress">
+            <div class="progress-bar progress-bar-striped bg-secondary" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100">80%</div>
+        </div>
     </td>
     <td class="text-center">
         <span class="note-black">@lang('Activities')</span>
-        <span class="note-black">80%</span>
-    </td>
-    <td class="text-center">
-        <span class="note-black">@lang('Data')</span>
-        <span class="note-black">60%</span>
+        <div class="progress">
+            <div class="progress-bar progress-bar-striped bg-secondary" role="progressbar" style="width: 35%" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100">35%</div>
+        </div>
     </td>
     <td class="form-inline justify-content-center">
         @includeWhen($management->trashed(), 'management._actionsTrash')

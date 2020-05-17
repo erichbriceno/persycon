@@ -24,7 +24,7 @@ class CategoryController extends Controller
         ]);
     }
 
-    public function edit(Project $project, Request $request )
+    public function edit(Project $project)
     {
         return view('category.edit', [
             'module'    => 'category',

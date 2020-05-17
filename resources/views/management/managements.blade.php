@@ -6,7 +6,7 @@
     @includeWhen($view == 'trash', 'management._back')
     
     @if ($managements->isNotEmpty())
-        <table class="table table-sm">
+        <table class="table table-sm table-hover">
             <thead class="thead-light">
             <tr>
                 <th scope="col">@lang('Acronym')</th>

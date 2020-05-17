@@ -7,7 +7,7 @@
 
     @if ($users->isNotEmpty())
         <div class="table-responsive-lg">
-            <table class="table table-sm">
+            <table class="table table-sm table-hover">
                 <thead class="thead-light">
                     <tr>
                         <th scope="col"><a href="{{ $sortable->url('cedule') }}" class="indecorate">@lang('Cedule')</a>&nbsp<i class="fas {{ $sortable->classes('cedule') }}"></i></th>

@@ -10,7 +10,9 @@
     </td>
     <td class="text-center">
         <span class="note-black">@lang('Activities')</span>
-        <span class="note-black">80%</span>
+        <div class="progress">
+            <div class="progress-bar progress-bar-striped bg-secondary" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100">80%</div>
+        </div>
     </td>
     <td class="form-inline justify-content-center">
         @includeWhen($group->trashed(), 'group._actionsTrash')

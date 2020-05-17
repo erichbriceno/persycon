@@ -6,7 +6,7 @@
     @includeWhen($view == 'trash', 'group._back')
 
     @if ($groups->isNotEmpty())
-        <table class="table table-sm">
+        <table class="table table-sm table-hover">
             <thead class="thead-light">
             <tr>
                 <th scope="col">@lang('Name')</th>

@@ -179,11 +179,7 @@
             <a href="{{ url()->previous() }}" class="btn btn-sm btn-primary btn-sm">@lang('Back')</a>
             &nbsp;
             <button type="submit" class="btn btn-sm btn-primary btn-sm">
-                @if($view == 'create')
-                    @lang('Save')
-                @else
-                    @lang('Update')
-                @endif
+                @lang('Update')
             </button>
         </div>
     </div>
