@@ -27,7 +27,6 @@ class NameProjectUnique implements Rule
      */
     public function passes($attribute, $value)
     {
-        //dd($this->nameCompuest);
         return Project::where('name',$this->nameCompuest)->count() == 0;
     }
 

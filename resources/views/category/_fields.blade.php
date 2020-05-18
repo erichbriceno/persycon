@@ -32,15 +32,15 @@
     <label for="category1" class="col-md-4 col-form-label text-md-right">@lang('Category') 1</label>
     <div class="col-md-3">
         <input 
-            id="category1_min" 
-            name="category1_min" 
+            id="min1" 
+            name="min1" 
             type="text" 
-            class="form-control form-control-sm text-right @error('category1_min') is-invalid @enderror" 
+            class="form-control form-control-sm text-right @error('min1') is-invalid @enderror" 
             required 
             placeholder="{{trans('categories.fieldsPlaceholder.minimum')}}" 
-            value="{{ old('category1_min', $project->cat1->minimum ) }}"
+            value="{{ old('min1', $project->cat1->minimum ) }}"
         >
-        @error('category1_min')
+        @error('min1')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
             </span>
@@ -48,15 +48,15 @@
     </div>
     <div class="col-md-3">
         <input 
-            id="category1_max" 
-            name="category1_max" 
+            id="max1" 
+            name="max1" 
             type="text" 
-            class="form-control form-control-sm text-right @error('category1_max') is-invalid @enderror" 
+            class="form-control form-control-sm text-right @error('max1') is-invalid @enderror" 
             required 
             placeholder="{{trans('categories.fieldsPlaceholder.maximum')}}"
-            value="{{ old('category1_max', $project->cat1->maximum ) }}"
+            value="{{ old('max1', $project->cat1->maximum ) }}"
         >
-        @error('category1_max')
+        @error('max1')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
             </span>
@@ -68,15 +68,15 @@
     <label for="category2" class="col-md-4 col-form-label text-md-right">@lang('Category') 2</label>
     <div class="col-md-3">
         <input 
-            id="category2_min" 
-            name="category2_min" 
+            id="min2" 
+            name="min2" 
             type="text" 
-            class="form-control form-control-sm text-right @error('category2_min') is-invalid @enderror" 
+            class="form-control form-control-sm text-right @error('min2') is-invalid @enderror" 
             required 
             placeholder="{{trans('categories.fieldsPlaceholder.minimum')}}"
-            value="{{ old('category2_min', $project->cat2->minimum ) }}"
+            value="{{ old('min2', $project->cat2->minimum ) }}"
         >
-        @error('category2_min')
+        @error('min2')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
             </span>
@@ -84,15 +84,15 @@
     </div>
     <div class="col-md-3">
         <input 
-            id="category2_max" 
-            name="category2_max" 
+            id="max2" 
+            name="max2" 
             type="text" 
-            class="form-control form-control-sm text-right @error('category2_max') is-invalid @enderror" 
+            class="form-control form-control-sm text-right @error('max2') is-invalid @enderror" 
             required 
             placeholder="{{trans('categories.fieldsPlaceholder.maximum')}}"
-            value="{{ old('category2_max', $project->cat2->maximum ) }}"
+            value="{{ old('max2', $project->cat2->maximum ) }}"
         >
-        @error('category2_max')
+        @error('max2')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
             </span>
@@ -104,15 +104,15 @@
     <label for="category3" class="col-md-4 col-form-label text-md-right">@lang('Category') 3</label>
     <div class="col-md-3">
         <input 
-            id="category3_min" 
-            name="category3_min" 
+            id="min3" 
+            name="min3" 
             type="text" 
-            class="form-control form-control-sm text-right @error('category3_min') is-invalid @enderror" 
+            class="form-control form-control-sm text-right @error('min3') is-invalid @enderror" 
             required 
             placeholder="{{trans('categories.fieldsPlaceholder.minimum')}}"
-            value="{{ old('category3_min', $project->cat3->minimum ) }}"
+            value="{{ old('min3', $project->cat3->minimum ) }}"
         >
-        @error('category3_min')
+        @error('min3')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
             </span>
@@ -120,15 +120,15 @@
     </div>
     <div class="col-md-3">
         <input 
-            id="category3_max" 
-            name="category3_max" 
+            id="max3" 
+            name="max3" 
             type="text" 
-            class="form-control form-control-sm text-right @error('category3_max') is-invalid @enderror" 
+            class="form-control form-control-sm text-right @error('max3') is-invalid @enderror" 
             required 
             placeholder="{{trans('categories.fieldsPlaceholder.maximum')}}"
-            value="{{ old('category3_max', $project->cat3->maximum ) }}"
+            value="{{ old('max3', $project->cat3->maximum ) }}"
         >
-        @error('category3_max')
+        @error('max3')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
             </span>
@@ -140,15 +140,15 @@
     <label for="category4" class="col-md-4 col-form-label text-md-right">@lang('Category') 4</label>
     <div class="col-md-3">
         <input 
-            id="category4_min" 
-            name="category4_min" 
+            id="min4" 
+            name="min4" 
             type="text" 
-            class="form-control form-control-sm text-right @error('category4_min') is-invalid @enderror" 
+            class="form-control form-control-sm text-right @error('min4') is-invalid @enderror" 
             required 
             placeholder="{{trans('categories.fieldsPlaceholder.minimum')}}"
-            value="{{ old('category4_min', $project->cat4->minimum ) }}"
+            value="{{ old('min4', $project->cat4->minimum ) }}"
         >
-        @error('category4_min')
+        @error('min4')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
             </span>
@@ -156,15 +156,15 @@
     </div>
     <div class="col-md-3">
         <input 
-            id="category4_max" 
-            name="category4_max" 
+            id="max4" 
+            name="max4" 
             type="text" 
-            class="form-control form-control-sm text-right @error('category4_max') is-invalid @enderror" 
+            class="form-control form-control-sm text-right @error('max4') is-invalid @enderror" 
             required 
             placeholder="{{trans('categories.fieldsPlaceholder.minimum')}}"
-            value="{{ old('category4_max', $project->cat4->maximum ) }}"
+            value="{{ old('max4', $project->cat4->maximum ) }}"
         >
-        @error('category4_max')
+        @error('max4')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
             </span>

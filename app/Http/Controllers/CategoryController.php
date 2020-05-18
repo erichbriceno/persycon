@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Model\Project;
 use Illuminate\Http\Request;
-// use App\Http\Requests\{CreateProjectRequest, UpdateProjectRequest};
+use App\Http\Requests\{UpdateCategoryRequest};
 
 
 class CategoryController extends Controller
@@ -33,21 +33,9 @@ class CategoryController extends Controller
             ]);
     }
 
-//    public function update(UpdateProjectRequest $request, Project $project)
-    public function update(Request $request, Project $project)
+   public function update(UpdateCategoryRequest $request, Project $project)
     {
-        //$request->updateProject($project);
-
-        $project->cat1min = $request->category1_min;
-        $project->cat1max = $request->category1_max;
-        $project->cat2min = $request->category2_min;
-        $project->cat2max = $request->category2_max;
-        $project->cat3min = $request->category3_min;
-        $project->cat3max = $request->category3_max;
-        $project->cat4min = $request->category4_min;
-        $project->cat4max = $request->category4_max;
-
-        $project->push();
+        $request->updateCategoriesProject($project);
 
         return redirect()->route('categories'); ;
     }

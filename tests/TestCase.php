@@ -22,32 +22,7 @@ abstract class TestCase extends BaseTestCase
         $this->loadCedulatesTable();
     }
 
-    protected function getValidData(array $custom = [])
-    {
-        return array_merge([
-            'cedule' => 'V13683474',
-            'names' => 'Erich Javier',
-            'surnames' => 'Briceño',
-            'email' => 'erichbriceno@gmail.com',
-            'role' => Role::Where('name', 'User')->first()->id,
-            'management' => Management::Where('name', 'All')->first()->id,
-            'password' => 'secreto1',
-            'password_confirmation' => 'secreto1',
-            'state' => 'active'
-        ], $custom);
-    }
-
-    protected function getProjectData(array $custom = [])
-    {
-        return array_merge([
-                'name' => 'Municipales',
-                'year' => '2020',
-                'description' => 'Elecciones Municipales 2020',
-                'from' => '20/03/2020',
-                'active' => true,
-            ], $custom);
-    }
-
+    
     public function createRandomProject()
     {
         $project = factory(Project::class)->create([
@@ -73,8 +48,47 @@ abstract class TestCase extends BaseTestCase
                 'maximum'   =>  39,
             ],
         ]);
-
         return $project;
+    }
+
+    protected function getCustomCategoriesData(array $custom = [])
+    {
+        return array_merge([
+            'min1' => 2,
+            'max1' => 19,
+            'min2' => 20,
+            'max2' => 39,
+            'min3' => 40,
+            'max3' => 59,
+            'min4' => 60,
+            'max4' => 79,
+        ], $custom);
+    }
+
+    protected function getValidData(array $custom = [])
+    {
+        return array_merge([
+            'cedule' => 'V13683474',
+            'names' => 'Erich Javier',
+            'surnames' => 'Briceño',
+            'email' => 'erichbriceno@gmail.com',
+            'role' => Role::Where('name', 'User')->first()->id,
+            'management' => Management::Where('name', 'All')->first()->id,
+            'password' => 'secreto1',
+            'password_confirmation' => 'secreto1',
+            'state' => 'active'
+        ], $custom);
+    }
+
+    protected function getProjectData(array $custom = [])
+    {
+        return array_merge([
+                'name' => 'Municipales',
+                'year' => '2020',
+                'description' => 'Elecciones Municipales 2020',
+                'from' => '20/03/2020',
+                'active' => true,
+            ], $custom);
     }
 
     protected function getManagementData(array $custom = [])

@@ -13,23 +13,14 @@ class UpdateCategoryModuleTest extends TestCase
     /** @test */
     function it_update_a_project_categories()
     {
-        // $this->withoutExceptionHandling();
-
         $project = $this->createRandomProject();
         
         $this->from(route('category.edit', $project))
-            ->put(route('category.update', $project),
-            [
-                'category1_min' => 2,
-                'category1_max' => 19,
-                'category2_min' => 20,
-                'category2_max' => 39,
-                'category3_min' => 40,
-                'category3_max' => 59,
-                'category4_min' => 60,
-                'category4_max' => 79,
-
-                ])->assertRedirect(route('categories'));
+            ->put(
+                route('category.update', $project),
+                $this->getCustomCategoriesData()
+            )
+            ->assertRedirect(route('categories'));
             
         $project->refresh();
         
@@ -43,443 +34,350 @@ class UpdateCategoryModuleTest extends TestCase
         $this->assertSame($project->cat4->maximum,79);
     }
 
+    /** @test */
+    function when_updating_the_salary_categories_of_a_project_the_values_cannot_be_zero()
+    {
 
-
-    // /** @test */
-    // function the_name_and_year_of_a_project_cannot_be_updated()
-    // {
-    //     $project = factory(Project::class)->create([
-    //         'name'  => 'Consejales 2020'
-    //     ]);
+        $project = $this->createRandomProject();
         
-    //     $this->from(route('project.edit', $project))
-    //         ->put(route('project.update', $project),
-    //         [
-    //             'name'          => 'Maestros',
-    //             'year'          => '2010',
-    //             'description'   => 'Breve descripción',
-    //             'from'          => '08/04/2020',
-    //             'to'            => '10/04/2020',
-    //             'state'         => 'active'
-    //         ])->assertRedirect(route('projects'));
+        //Category 1
+        $this->from(route('category.edit', $project))
+            ->put(
+                route('category.update', $project),
+                $this->getCustomCategoriesData([
+                    'min1' => 0,
+            ]))
+            ->assertRedirect(route('category.edit', $project))
+            ->assertSessionHasErrors(['min1']);
+        $project->refresh();
+        $this->assertSame($project->cat1->minimum,1);
+
+        $this->from(route('category.edit', $project))
+            ->put(
+                route('category.update', $project),
+                $this->getCustomCategoriesData([
+                    'max1' => 0,
+            ]))
+            ->assertRedirect(route('category.edit', $project))
+            ->assertSessionHasErrors(['max1']);
+        $project->refresh();
+        $this->assertSame($project->cat1->maximum,9);
+
+        //Category 2      
+        $this->from(route('category.edit', $project))
+            ->put(
+                route('category.update', $project),
+                $this->getCustomCategoriesData([
+                    'min2' => 0,
+            ]))
+            ->assertRedirect(route('category.edit', $project))
+            ->assertSessionHasErrors(['min2']);
+        $project->refresh();
+        $this->assertSame($project->cat2->minimum,10);
+
+        $this->from(route('category.edit', $project))
+            ->put(
+                route('category.update', $project),
+                $this->getCustomCategoriesData([
+                    'max2' => 0,
+            ]))
+        ->assertRedirect(route('category.edit', $project))
+        ->assertSessionHasErrors(['max2']);
+        $project->refresh();
+        $this->assertSame($project->cat2->maximum,19);
+
+        //Category 3
+        $this->from(route('category.edit', $project))
+        ->put(
+            route('category.update', $project),
+            $this->getCustomCategoriesData([
+                'min3' => 0,
+        ]))
+        ->assertRedirect(route('category.edit', $project))
+        ->assertSessionHasErrors(['min3']);
+        $project->refresh();
+        $this->assertSame($project->cat3->minimum,20);
+
+            $this->from(route('category.edit', $project))
+            ->put(
+                route('category.update', $project),
+                $this->getCustomCategoriesData([
+                    'max3' => 0,
+            ]))
+        ->assertRedirect(route('category.edit', $project))
+        ->assertSessionHasErrors(['max3']);
+        $project->refresh();
+        $this->assertSame($project->cat3->maximum,29);
+
+        //Category 4
+        $this->from(route('category.edit', $project))
+        ->put(
+            route('category.update', $project),
+            $this->getCustomCategoriesData([
+                'min4' => 0,
+        ]))
+        ->assertRedirect(route('category.edit', $project))
+        ->assertSessionHasErrors(['min4']);
+        $project->refresh();
+        $this->assertSame($project->cat4->minimum,30);
+
+        $this->from(route('category.edit', $project))
+            ->put(
+                route('category.update', $project),
+                $this->getCustomCategoriesData([
+                    'max4' => 0,
+            ]))
+        ->assertRedirect(route('category.edit', $project))
+        ->assertSessionHasErrors(['max4']);
+        $project->refresh();
+        $this->assertSame($project->cat4->maximum,39);
         
-    //     $this->assertDatabaseHas('projects', [
-    //         'name'          =>  'Consejales 2020',
-    //         'description'   => 'Breve descripción',
-    //         'start'         => '2020-04-08',
-    //         'ending'        => '2020-04-10'
-    //         ]);
-    // }
+    }
 
-    // /** @test */
-    // function the_description_cant_be_null_when_updating_a_project()
-    // {
-    //     $project = factory(Project::class)->create();
+    /** @test */
+    function when_updating_the_salary_categories_of_a_project_the_values_can_be_numeric()
+    {
+        $project = $this->createRandomProject();
+
+        //Category 1
+        $this->from(route('category.edit', $project))
+        ->put(
+            route('category.update', $project),
+            $this->getCustomCategoriesData([
+                'min1' => 'no-numeric',
+        ]))
+        ->assertRedirect(route('category.edit', $project))
+        ->assertSessionHasErrors(['min1']);
+        $project->refresh();
+        $this->assertSame($project->cat1->minimum,1);
+
+        $this->from(route('category.edit', $project))
+        ->put(
+            route('category.update', $project),
+            $this->getCustomCategoriesData([
+                'max1' => null,
+        ]))
+        ->assertRedirect(route('category.edit', $project))
+        ->assertSessionHasErrors(['max1']);
+        $project->refresh();
+        $this->assertSame($project->cat1->maximum,9);
+    }
+
+    /** @test */
+    function when_updating_the_salary_categories_of_a_project_the_values_can_be_valid()
+    {
+        // $this->withoutExceptionHandling();
+
+        $project = $this->createRandomProject();
         
-    //     $this->from(route('project.edit', $project))
-    //         ->put(route('project.update', $project),
-    //         [
-    //             'description'   => '',
-    //             'from'          => '08/04/2020',
-    //             'to'            => '10/04/2020',
-    //         ])->assertRedirect(route('project.edit', $project))
-    //         ->assertSessionHasErrors(['description']);
-        
-    //     $this->assertDatabaseMissing('projects', [
-    //         'description'   => '',
-    //         'start'         => '2020-04-08',
-    //         'ending'        => '2020-04-10'
-    //         ]);
-        
-    //     $this->from(route('project.edit', $project))
-    //         ->put(route('project.update', $project),
-    //         [
-    //             'description'   => null,
-    //             'from'          => '08/04/2020',
-    //             'to'            => '10/04/2020',
-    //             'state'         => 'active'
-    //         ])->assertRedirect(route('project.edit', $project))
-    //         ->assertSessionHasErrors(['description']);
-        
-    //     $this->assertDatabaseMissing('projects', [
-    //         'description'   => null,
-    //         'start'         => '2020-04-08',
-    //         'ending'        => '2020-04-10'
-    //         ]);
-    // }
+        // Validate Minimum 1
+        $this->from(route('category.edit', $project))
+        ->put(
+            route('category.update', $project),
+            $this->getCustomCategoriesData([
+                'min1' => '2',
+                'max1' => '1',
+                'min2' => '3',
+        ]))
+        ->assertRedirect(route('category.edit', $project))
+        ->assertSessionHasErrors(['min1']);
 
-    // /** @test */
-    // function The_description_of_must_have_more_than_50_characters_when_updating_a_project()
-    // {
-    //     $project = factory(Project::class)->create();
-        
-    //     $this->from(route('project.edit', $project))
-    //         ->put(route('project.update', $project),
-    //         [
-    //             'description'   => 'mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm1',
-    //             'from'          => '08/04/2020',
-    //             'to'            => '10/04/2020',
-    //             'state'         => 'active',
-    //         ])->assertRedirect(route('project.edit', $project))
-    //         ->assertSessionHasErrors(['description']);
-        
-    //     $this->assertDatabaseMissing('projects', [
-    //         'description'   => 'mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm1',
-    //         'start'         => '2020-04-08',
-    //         'ending'        => '2020-04-10'
-    //         ]);
+        $this->from(route('category.edit', $project))
+        ->put(
+            route('category.update', $project),
+            $this->getCustomCategoriesData([
+                'min1' => '2',
+                'max1' => '3',
+                'min2' => '1',
+        ]))
+        ->assertRedirect(route('category.edit', $project))
+        ->assertSessionHasErrors(['min1']);
 
-    //     $this->from(route('project.edit', $project))
-    //         ->put(route('project.update', $project),
-    //         [
-    //             'description'   => '12345678901234567890123456789012345678901234567890',
-    //             'from'          => '08/04/2020',
-    //             'to'            => '10/04/2020',
-    //             'state'         => 'active',
-    //         ])->assertRedirect(route('projects'));
-        
-    //     $this->assertDatabaseHas('projects', [
-    //         'description'   => '12345678901234567890123456789012345678901234567890',
-    //         'start'         => '2020-04-08',
-    //         'ending'        => '2020-04-10'
-    //         ]);
-        
-    // }
+        // Validate Maximum 1
+        $this->from(route('category.edit', $project))
+        ->put(
+            route('category.update', $project),
+            $this->getCustomCategoriesData([
+                'min1' => '1',
+                'max1' => '4',
+                'min2' => '3',
+        ]))
+        ->assertRedirect(route('category.edit', $project))
+        ->assertSessionHasErrors(['max1']);
 
-    // /** @test */
-    // function the_start_date_is_required_when_updating_a_project()
-    // {
-    //     $project = factory(Project::class)->create();
-        
-    //     $this->from(route('project.edit', $project))
-    //         ->put(route('project.update', $project),
-    //         [
+        $this->from(route('category.edit', $project))
+        ->put(
+            route('category.update', $project),
+            $this->getCustomCategoriesData([
+                'min1' => '3',
+                'max1' => '2',
+                'min2' => '6',
+        ]))
+        ->assertRedirect(route('category.edit', $project))
+        ->assertSessionHasErrors(['max1']);
 
-    //             'from'  => '',
-    //             'state'         => 'active',
-    //         ])->assertRedirect(route('project.edit', $project))
-    //         ->assertSessionHasErrors(['from']);
-        
-    //     $this->assertDatabaseMissing('projects', [
-    //         'start'     => '',
-    //         ]);
-        
+        // Validate Minimum 2
+        $this->from(route('category.edit', $project))
+        ->put(
+            route('category.update', $project),
+            $this->getCustomCategoriesData([
+                'min1' => '1',
+                'max1' => '3',
+                'min2' => '7',
+                'max2' => '5',
+        ]))
+        ->assertRedirect(route('category.edit', $project))
+        ->assertSessionHasErrors(['min2']);
 
-    //     $this->from(route('project.edit', $project))
-    //         ->put(route('project.update', $project),
-    //         [
-    //             'from'  => null,
-    //             'state'         => 'active',
-    //         ])->assertRedirect(route('project.edit', $project))
-    //         ->assertSessionHasErrors(['from']);
-        
-    //     $this->assertDatabaseMissing('projects', [
-    //         'start'     => null,
-    //         ]);
-        
-    // }
-    
-    // /** @test */
-    // function the_start_date_must_be_valid_when_updating_a_project()
-    // {
-    //     $project = factory(Project::class)->create();
+        $this->from(route('category.edit', $project))
+        ->put(
+            route('category.update', $project),
+            $this->getCustomCategoriesData([
+                'min1' => '1',
+                'max1' => '8',
+                'min2' => '7',
+                'max2' => '15',
+        ]))
+        ->assertRedirect(route('category.edit', $project))
+        ->assertSessionHasErrors(['min2']);
 
-    //     $this->from(route('project.edit', $project))
-    //     ->put(route('project.update', $project),
-    //     [
-    //         'description'   => 'Breve descripción',
-    //         'from'  => 'date-no-valid',
-    //         'state'         => 'active',
-    //     ])->assertRedirect(route('project.edit', $project))
-    //     ->assertSessionHasErrors(['from']);
-    
-    //     $this->assertDatabaseMissing('projects', [
-    //         'start'     => 'date-no-valid',
-    //         ]);
+        // Validate Maximum 2
+        $this->from(route('category.edit', $project))
+        ->put(
+            route('category.update', $project),
+            $this->getCustomCategoriesData([
+                'min1' => '1',
+                'max1' => '3',
+                'min2' => '5',
+                'max2' => '9',
+                'min3' => '8',
+        ]))
+        ->assertRedirect(route('category.edit', $project))
+        ->assertSessionHasErrors(['max2']);
 
-        
-    //     $this->from(route('project.edit', $project))
-    //         ->put(route('project.update', $project),
-    //         [
-    //             'description'   => 'Breve descripción',        
-    //             'from'  => '29/02/2019',
-    //             'state'         => 'active',
-    //         ])->assertRedirect(route('project.edit', $project))
-    //         ->assertSessionHasErrors(['from']);
-        
-    //     $this->assertDatabaseMissing('projects', [
-    //         'description'   => 'Breve descripción',          
-    //         'start'     => '2019-02-29',
-    //         ]);
+        $this->from(route('category.edit', $project))
+        ->put(
+            route('category.update', $project),
+            $this->getCustomCategoriesData([
+                'min1' => '1',
+                'max1' => '3',
+                'min2' => '10',
+                'max2' => '9',
+                'min3' => '15',
+        ]))
+        ->assertRedirect(route('category.edit', $project))
+        ->assertSessionHasErrors(['max2']);
 
+        // Validate Minimum 3
+        $this->from(route('category.edit', $project))
+        ->put(
+            route('category.update', $project),
+            $this->getCustomCategoriesData([
+                'min1' => '1',
+                'max1' => '3',
+                'min2' => '4',
+                'max2' => '5',
+                'min3' => '8',
+                'max3' => '6',
+        ]))
+        ->assertRedirect(route('category.edit', $project))
+        ->assertSessionHasErrors(['min3']);
 
-    //     $this->from(route('project.edit', $project))
-    //         ->put(route('project.update', $project),
-    //         [
-    //             'description'   => 'Breve descripción',
-    //             'from'  => '29/02/2020',
-    //             'state'         => 'active',
-    //         ])->assertRedirect(route('projects'));
-        
-    //     $this->assertDatabaseHas('projects', [
-    //         'description'   => 'Breve descripción',
-    //         'start'     => '2020-02-29',
-    //         ]);
-    // }
+        $this->from(route('category.edit', $project))
+        ->put(
+            route('category.update', $project),
+            $this->getCustomCategoriesData([
+                'min1' => '1',
+                'max1' => '3',
+                'min2' => '4',
+                'max2' => '6',
+                'min3' => '5',
+                'max3' => '10',
+        ]))
+        ->assertRedirect(route('category.edit', $project))
+        ->assertSessionHasErrors(['min3']);
 
-    // /** @test */
-    // function the_start_date_cannot_be_less_than_one_year_when_updating_a_project()
-    // {
-    //     $project = factory(Project::class)->create();
+        // Validate Maximum 3
+        $this->from(route('category.edit', $project))
+        ->put(
+            route('category.update', $project),
+            $this->getCustomCategoriesData([
+                'min1' => '1',
+                'max1' => '3',
+                'min2' => '4',
+                'max2' => '5',
+                'min3' => '6',
+                'max3' => '10',
+                'min4' => '8',
+        ]))
+        ->assertRedirect(route('category.edit', $project))
+        ->assertSessionHasErrors(['max3']);
 
-    //     $this->from(route('project.edit', $project))
-    //     ->put(route('project.update', $project),
-    //     [
-    //         'description'   => 'Breve descripción',        
-    //         'from' => today()->sub('1 year')->format('d/m/Y'),
-    //         'state'         => 'active',
-    //     ])->assertRedirect(route('project.edit', $project))
-    //     ->assertSessionHasErrors(['from']);
-    
-    //     $this->assertDatabaseMissing('projects', [
-    //         'description'   => 'Breve descripción',          
-    //         'start'         => today()->sub('1 year'),
-    //         ]);
+        $this->from(route('category.edit', $project))
+        ->put(
+            route('category.update', $project),
+            $this->getCustomCategoriesData([
+                'min1' => '1',
+                'max1' => '3',
+                'min2' => '4',
+                'max2' => '5',
+                'min3' => '8',
+                'max3' => '6',
+                'min4' => '12',
+        ]))
+        ->assertRedirect(route('category.edit', $project))
+        ->assertSessionHasErrors(['max3']);
 
-    //     $this->from(route('project.edit', $project))
-    //     ->put(route('project.update', $project),
-    //     [
-    //         'description'   => 'Breve descripción',        
-    //         'from' => today()->sub('1 year - 1 day')->format('d/m/Y'),
-    //         'state'         => 'active',
-    //     ])->assertRedirect(route('projects'));
-    
-    //     $this->assertDatabaseHas('projects', [
-    //         'description'   => 'Breve descripción',          
-    //         'start'         => today()->sub('1 year - 1 day'),
-    //         ]);
-    // }
+        // Validate Minimum 4
+        $this->from(route('category.edit', $project))
+        ->put(
+            route('category.update', $project),
+            $this->getCustomCategoriesData([
+                'min1' => '1',
+                'max1' => '2',
+                'min2' => '3',
+                'max2' => '4',
+                'min3' => '5',
+                'max3' => '6',
+                'min4' => '9',
+                'max4' => '8',
+        ]))
+        ->assertRedirect(route('category.edit', $project))
+        ->assertSessionHasErrors(['min4']);
 
-    // /** @test */
-    // function the_start_date_cannot_be_more_than_one_year_when_updating_a_project()
-    // {
-    //     $project = factory(Project::class)->create();
+        $this->from(route('category.edit', $project))
+        ->put(
+            route('category.update', $project),
+            $this->getCustomCategoriesData([
+                'min1' => '1',
+                'max1' => '2',
+                'min2' => '3',
+                'max2' => '4',
+                'min3' => '5',
+                'max3' => '10',
+                'min4' => '9',
+                'max4' => '14',
+        ]))
+        ->assertRedirect(route('category.edit', $project))
+        ->assertSessionHasErrors(['min4']);
 
-    //     $this->from(route('project.edit', $project))
-    //     ->put(route('project.update', $project),
-    //     [
-    //         'description'   => 'Breve descripción',        
-    //         'from' => today()->add('1 year 1 day')->format('d/m/Y'),
-    //         'state'         => 'active',
-    //     ])->assertRedirect(route('project.edit', $project))
-    //     ->assertSessionHasErrors(['from']);
-    
-    //     $this->assertDatabaseMissing('projects', [
-    //         'description'   => 'Breve descripción',          
-    //         'start'         => today()->add('1 year 1 day'),
-    //         ]);
+        // Validate Maximum 4
+        $this->from(route('category.edit', $project))
+        ->put(
+            route('category.update', $project),
+            $this->getCustomCategoriesData([
+                'min1' => '1',
+                'max1' => '2',
+                'min2' => '3',
+                'max2' => '4',
+                'min3' => '5',
+                'max3' => '6',
+                'min4' => '9',
+                'max4' => '8',
+        ]))
+        ->assertRedirect(route('category.edit', $project))
+        ->assertSessionHasErrors(['max4']);
 
-    //     $this->from(route('project.edit', $project))
-    //     ->put(route('project.update', $project),
-    //     [
-    //         'description'   => 'Breve descripción',        
-    //         'from' => today()->add('1 year')->format('d/m/Y'),
-    //         'state'         => 'active',
-    //     ])->assertRedirect(route('projects'));
-    
-    //     $this->assertDatabaseHas('projects', [
-    //         'description'   => 'Breve descripción',          
-    //         'start'         => today()->add('1 year'),
-    //         ]);
-    // }
-
-    // /** @test */
-    // function the_ending_date_must_be_valid_when_updating_a_project()
-    // {
-    //     $project = factory(Project::class)->create();
-
-    //     $this->from(route('project.edit', $project))
-    //     ->put(route('project.update', $project),
-    //     [
-    //         'description'   => 'Breve descripción',
-    //         'from'  => today()->format('d/m/Y'),
-    //         'to'    => 'date-no-valid',     
-    //         'state'         => 'active',  
-    //     ])->assertRedirect(route('project.edit', $project))
-    //     ->assertSessionHasErrors(['to']);
-    
-    //     $this->assertDatabaseMissing('projects', [
-    //         'description'   => 'Breve descripción',          
-    //         'start'     =>  today(),
-    //         'ending'    => 'date-no-valid',
-    //         ]);
-
-    //     $this->from(route('project.edit', $project))
-    //     ->put(route('project.update', $project),
-    //     [
-    //         'description'   => 'Breve descripción',
-    //         'from'  => '22/02/2019',
-    //         'to'    => '29/02/2019',
-    //         'state'         => 'active',       
-    //     ])->assertRedirect(route('project.edit', $project))
-    //     ->assertSessionHasErrors(['to']);
-    
-    //     $this->assertDatabaseMissing('projects', [
-    //         'description'   => 'Breve descripción',          
-    //         'start' => '2019-02-22',
-    //         'ending' => '2019-02-29',
-    //         ]);
-
-    //     $this->from(route('project.edit', $project))
-    //     ->put(route('project.update', $project),
-    //     [
-    //         'description'   => 'Breve descripción', 
-    //         'from'          => '22/02/2020',
-    //         'to'            => '29/02/2020', 
-    //         'state'         => 'active',      
-    //     ])->assertRedirect(route('projects'));
-    
-    //     $this->assertDatabaseHas('projects', [
-    //         'description'   => 'Breve descripción',          
-    //         'start' => '2020-02-22',
-    //         'ending' => '2020-02-29',
-    //         ]);
-    // }
-
-    // /** @test */
-    // function the_ending_date_can_be_null_when_updating_a_project()
-    // {
-    //     $project = factory(Project::class)->create();
-
-    //     $this->from(route('project.edit', $project))
-    //     ->put(route('project.update', $project),
-    //     [
-    //         'description'   => 'Breve descripción', 
-    //         'from'          => '22/02/2020',
-    //         'to'            => null,
-    //         'state'         => 'active',       
-    //     ])->assertRedirect(route('projects'));
-    
-    //     $this->assertDatabaseHas('projects', [
-    //         'description'   => 'Breve descripción',          
-    //         'start'         => '2020-02-22',
-    //         'ending'        => null,
-    //         ]);
-    // }
-
-    // /** @test */
-    // function the_ending_date_must_be_greater_than_the_start_date_when_updating_a_project()
-    // {
-    //     $project = factory(Project::class)->create();
-
-    //     $this->from(route('project.edit', $project))
-    //     ->put(route('project.update', $project),
-    //     [
-    //         'description'   => 'Breve descripción',
-    //         'from'          => '26/03/2020',
-    //         'to'            => '22/03/2020', 
-    //         'state'         => 'active',    
-    //     ])->assertRedirect(route('project.edit', $project))
-    //     ->assertSessionHasErrors(['to']);
-    
-    //     $this->assertDatabaseMissing('projects', [
-    //         'description'   => 'Breve descripción',          
-    //         'start'         => '2020-03-26',
-    //         'ending'        => '2020-03-22',
-    //         ]);
-
-    //     $this->from(route('project.edit', $project))
-    //     ->put(route('project.update', $project),
-    //     [
-    //         'description'   => 'Breve descripción',
-    //         'from'          => '26/03/2020',
-    //         'to'            => '26/03/2020', 
-    //         'state'         => 'active',    
-    //     ])->assertRedirect(route('project.edit', $project))
-    //     ->assertSessionHasErrors(['to']);
-    
-    //     $this->assertDatabaseMissing('projects', [
-    //         'description'   => 'Breve descripción',          
-    //         'start'         => '2020-03-26',
-    //         'ending'        => '2020-03-26',
-    //         ]);
-
-        
-    //     $this->from(route('project.edit', $project))
-    //     ->put(route('project.update', $project),
-    //     [
-    //         'description'   => 'Breve descripción', 
-    //         'from'          => '26/03/2020',
-    //         'to'            => '27/03/2020', 
-    //         'state'         => 'active',     
-    //     ])->assertRedirect(route('projects'));
-    
-    //     $this->assertDatabaseHas('projects', [
-    //         'description'   => 'Breve descripción',          
-    //         'start'         => '2020-03-26',
-    //         'ending'        => '2020-03-27',
-    //         ]);
-    // }
-
-    // /** @test */
-    // function the_end_date_cannot_be_more_than_two_years_from_the_current_date_when_updating_a_project()
-    // {
-    //     $project = factory(Project::class)->create();
-
-    //     $this->from(route('project.edit', $project))
-    //     ->put(route('project.update', $project),
-    //     [
-    //         'description'   => 'Breve descripción',
-    //         'from'          => today()->format('d/m/Y'),
-    //         'to'            => today()->add('2 years 1 day')->format('d/m/Y'), 
-    //         'state'         => 'active',   
-    //     ])->assertRedirect(route('project.edit', $project))
-    //     ->assertSessionHasErrors(['to']);
-    
-    //     $this->assertDatabaseMissing('projects', [
-    //         'description'   => 'Breve descripción',          
-    //         'start'         => today(),
-    //         'ending'        => today()->add('2 years 1 day'),
-    //         ]);
-        
-    //     $this->from(route('project.edit', $project))
-    //     ->put(route('project.update', $project),
-    //     [
-    //         'description'   => 'Breve descripción', 
-    //         'from'          => today()->format('d/m/Y'),
-    //         'to'            => today()->add('2 years - 1 day')->format('d/m/Y'),
-    //         'state'         => 'active',    
-    //     ])->assertRedirect(route('projects'));
-    
-    //     $this->assertDatabaseHas('projects', [
-    //         'description'   => 'Breve descripción',          
-    //         'start'         => today(),
-    //         'ending'        => today()->add('2 years - 1 day'),
-    //         ]);
-    // }
-
-    // /** @test */
-    // function the_project_updates_to_active_if_it_is_inactive()
-    // {
-    //     //$this->withoutExceptionHandling();
-        
-    //     $project = factory(Project::class)->create([
-    //         'name'  => 'Consejales 2020',
-    //         'active' => true
-    //     ]);
-        
-    //     $this->from(route('project.edit', $project))
-    //         ->put(route('project.update', $project),
-    //         [
-    //             'description'   => 'Breve descripción',
-    //             'from'          => today()->format('d/m/Y'),
-    //             'state'         => 'inactive'
-    //         ])->assertRedirect(route('projects'));
-        
-    //     $this->assertDatabaseHas('projects', [
-    //         'name'  => 'Consejales 2020',
-    //         'active' => false
-    //         ]);
-    // }
+    }
 
 }
