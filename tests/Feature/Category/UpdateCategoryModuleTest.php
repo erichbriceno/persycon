@@ -37,6 +37,7 @@ class UpdateCategoryModuleTest extends TestCase
     /** @test */
     function when_updating_the_salary_categories_of_a_project_the_values_cannot_be_zero()
     {
+        // $this->withoutExceptionHandling();
 
         $project = $this->createRandomProject();
         
@@ -131,7 +132,6 @@ class UpdateCategoryModuleTest extends TestCase
         ->assertSessionHasErrors(['max4']);
         $project->refresh();
         $this->assertSame($project->cat4->maximum,39);
-        
     }
 
     /** @test */
