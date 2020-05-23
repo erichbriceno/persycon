@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Model\Project;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Requests\{UpdateCategoryRequest};
 
@@ -26,10 +27,14 @@ class CategoryController extends Controller
 
     public function edit(Project $project)
     {
+        // $url = url()->previous();
+        // dd(Str::contains(url()->previous(),'projects'));
+
         return view('category.edit', [
             'module'    => 'category',
             'view'      => 'edit',
             'project'   => $project,
+            'back'      => Str::contains(url()->previous(),'projects') ? 'projects' : 'categories'
             ]);
     }
 

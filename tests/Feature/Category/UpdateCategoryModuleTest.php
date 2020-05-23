@@ -166,8 +166,6 @@ class UpdateCategoryModuleTest extends TestCase
     /** @test */
     function when_updating_the_salary_categories_of_a_project_the_values_can_be_valid()
     {
-        // $this->withoutExceptionHandling();
-
         $project = $this->createRandomProject();
         
         // Validate Minimum 1
@@ -182,17 +180,6 @@ class UpdateCategoryModuleTest extends TestCase
         ->assertRedirect(route('category.edit', $project))
         ->assertSessionHasErrors(['min1']);
 
-        $this->from(route('category.edit', $project))
-        ->put(
-            route('category.update', $project),
-            $this->getCustomCategoriesData([
-                'min1' => '2',
-                'max1' => '3',
-                'min2' => '1',
-        ]))
-        ->assertRedirect(route('category.edit', $project))
-        ->assertSessionHasErrors(['min1']);
-
         // Validate Maximum 1
         $this->from(route('category.edit', $project))
         ->put(
@@ -201,17 +188,6 @@ class UpdateCategoryModuleTest extends TestCase
                 'min1' => '1',
                 'max1' => '4',
                 'min2' => '3',
-        ]))
-        ->assertRedirect(route('category.edit', $project))
-        ->assertSessionHasErrors(['max1']);
-
-        $this->from(route('category.edit', $project))
-        ->put(
-            route('category.update', $project),
-            $this->getCustomCategoriesData([
-                'min1' => '3',
-                'max1' => '2',
-                'min2' => '6',
         ]))
         ->assertRedirect(route('category.edit', $project))
         ->assertSessionHasErrors(['max1']);
@@ -229,18 +205,6 @@ class UpdateCategoryModuleTest extends TestCase
         ->assertRedirect(route('category.edit', $project))
         ->assertSessionHasErrors(['min2']);
 
-        $this->from(route('category.edit', $project))
-        ->put(
-            route('category.update', $project),
-            $this->getCustomCategoriesData([
-                'min1' => '1',
-                'max1' => '8',
-                'min2' => '7',
-                'max2' => '15',
-        ]))
-        ->assertRedirect(route('category.edit', $project))
-        ->assertSessionHasErrors(['min2']);
-
         // Validate Maximum 2
         $this->from(route('category.edit', $project))
         ->put(
@@ -251,19 +215,6 @@ class UpdateCategoryModuleTest extends TestCase
                 'min2' => '5',
                 'max2' => '9',
                 'min3' => '8',
-        ]))
-        ->assertRedirect(route('category.edit', $project))
-        ->assertSessionHasErrors(['max2']);
-
-        $this->from(route('category.edit', $project))
-        ->put(
-            route('category.update', $project),
-            $this->getCustomCategoriesData([
-                'min1' => '1',
-                'max1' => '3',
-                'min2' => '10',
-                'max2' => '9',
-                'min3' => '15',
         ]))
         ->assertRedirect(route('category.edit', $project))
         ->assertSessionHasErrors(['max2']);
@@ -283,20 +234,6 @@ class UpdateCategoryModuleTest extends TestCase
         ->assertRedirect(route('category.edit', $project))
         ->assertSessionHasErrors(['min3']);
 
-        $this->from(route('category.edit', $project))
-        ->put(
-            route('category.update', $project),
-            $this->getCustomCategoriesData([
-                'min1' => '1',
-                'max1' => '3',
-                'min2' => '4',
-                'max2' => '6',
-                'min3' => '5',
-                'max3' => '10',
-        ]))
-        ->assertRedirect(route('category.edit', $project))
-        ->assertSessionHasErrors(['min3']);
-
         // Validate Maximum 3
         $this->from(route('category.edit', $project))
         ->put(
@@ -309,21 +246,6 @@ class UpdateCategoryModuleTest extends TestCase
                 'min3' => '6',
                 'max3' => '10',
                 'min4' => '8',
-        ]))
-        ->assertRedirect(route('category.edit', $project))
-        ->assertSessionHasErrors(['max3']);
-
-        $this->from(route('category.edit', $project))
-        ->put(
-            route('category.update', $project),
-            $this->getCustomCategoriesData([
-                'min1' => '1',
-                'max1' => '3',
-                'min2' => '4',
-                'max2' => '5',
-                'min3' => '8',
-                'max3' => '6',
-                'min4' => '12',
         ]))
         ->assertRedirect(route('category.edit', $project))
         ->assertSessionHasErrors(['max3']);
@@ -345,22 +267,6 @@ class UpdateCategoryModuleTest extends TestCase
         ->assertRedirect(route('category.edit', $project))
         ->assertSessionHasErrors(['min4']);
 
-        $this->from(route('category.edit', $project))
-        ->put(
-            route('category.update', $project),
-            $this->getCustomCategoriesData([
-                'min1' => '1',
-                'max1' => '2',
-                'min2' => '3',
-                'max2' => '4',
-                'min3' => '5',
-                'max3' => '10',
-                'min4' => '9',
-                'max4' => '14',
-        ]))
-        ->assertRedirect(route('category.edit', $project))
-        ->assertSessionHasErrors(['min4']);
-
         // Validate Maximum 4
         $this->from(route('category.edit', $project))
         ->put(
@@ -377,7 +283,6 @@ class UpdateCategoryModuleTest extends TestCase
         ]))
         ->assertRedirect(route('category.edit', $project))
         ->assertSessionHasErrors(['max4']);
-
     }
 
 }

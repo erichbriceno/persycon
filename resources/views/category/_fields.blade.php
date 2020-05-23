@@ -176,7 +176,7 @@
 <div class="row">
     <div class="col-md-10">
         <div class="form-inline justify-content-end">
-            <a href="{{ url()->previous() }}" class="btn btn-sm btn-primary btn-sm">@lang('Back')</a>
+            <a href="{{ route($back) }}" class="btn btn-sm btn-primary btn-sm">@lang('Back')</a>
             &nbsp;
             <button type="submit" class="btn btn-sm btn-primary btn-sm">
                 @lang('Update')

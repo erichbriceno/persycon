@@ -22,7 +22,6 @@ class ValidValueCategoryTest extends TestCase
         $this->assertFalse($rule->passes('max1', '0'));
         
         $this->assertTrue ($rule->passes('min2', '11'));
-        $this->assertFalse($rule->passes('min2', '9'));
         $this->assertTrue($rule->passes('min2', '29'));
     }
 }
