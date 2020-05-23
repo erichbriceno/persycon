@@ -44,7 +44,7 @@ class UpdateCategoryRequest extends FormRequest
     public function messages()
     {
         return [
-            //'to.before' => trans('projects.errorsValidations.date.before',['time' => today()->add('2 year')->format('d/m/Y')]),
+            'max1.min' => trans('categories.errorsValidations.zero'),
         ];
     }
 

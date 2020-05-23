@@ -38,14 +38,23 @@ class ValidValueCategory implements Rule
     {
         switch ($attribute) 
         {
-            case "min1": return ($value < $this->values['max1']) && ($value < $this->values['min2']) && ($value < $this->values['max2']) && ($value < $this->values['min3']) && ($value < $this->values['max3']) && ($value < $this->values['min4']) && ($value < $this->values['max4']); break;
-            case "max1": return ($value > $this->values['min1']) && ($value < $this->values['min2']) && ($value < $this->values['max2']) && ($value < $this->values['min3']) && ($value < $this->values['max3']) && ($value < $this->values['min4']) && ($value < $this->values['max4']); break;
-            case "min2": return ($value > $this->values['min1']) && ($value > $this->values['max1']) && ($value < $this->values['max2']) && ($value < $this->values['min3']) && ($value < $this->values['max3']) && ($value < $this->values['min4']) && ($value < $this->values['max4']); break;
-            case "max2": return ($value > $this->values['min1']) && ($value > $this->values['max1']) && ($value > $this->values['min2']) && ($value < $this->values['min3']) && ($value < $this->values['max3']) && ($value < $this->values['min4']) && ($value < $this->values['max4']); break;
-            case "min3": return ($value > $this->values['min1']) && ($value > $this->values['max1']) && ($value > $this->values['min2']) && ($value > $this->values['max2']) && ($value < $this->values['max3']) && ($value < $this->values['min4']) && ($value < $this->values['max4']); break;
-            case "max3": return ($value > $this->values['min1']) && ($value > $this->values['max1']) && ($value > $this->values['min2']) && ($value > $this->values['max2']) && ($value > $this->values['min3']) && ($value < $this->values['min4']) && ($value < $this->values['max4']); break;
-            case "min4": return ($value > $this->values['min1']) && ($value > $this->values['max1']) && ($value > $this->values['min2']) && ($value > $this->values['max2']) && ($value > $this->values['min3']) && ($value > $this->values['max3']) && ($value < $this->values['max4']); break;
-            case "max4": return ($value > $this->values['min1']) && ($value > $this->values['max1']) && ($value > $this->values['min2']) && ($value > $this->values['max2']) && ($value > $this->values['min3']) && ($value > $this->values['max3']) && ($value > $this->values['min4']); break;
+            // case "min1": return ($value < $this->values['max1']) && ($value < $this->values['min2']) && ($value < $this->values['max2']) && ($value < $this->values['min3']) && ($value < $this->values['max3']) && ($value < $this->values['min4']) && ($value < $this->values['max4']); break;
+            // case "max1": return ($value > $this->values['min1']) && ($value < $this->values['min2']) && ($value < $this->values['max2']) && ($value < $this->values['min3']) && ($value < $this->values['max3']) && ($value < $this->values['min4']) && ($value < $this->values['max4']); break;
+            // case "min2": return ($value > $this->values['min1']) && ($value > $this->values['max1']) && ($value < $this->values['max2']) && ($value < $this->values['min3']) && ($value < $this->values['max3']) && ($value < $this->values['min4']) && ($value < $this->values['max4']); break;
+            // case "max2": return ($value > $this->values['min1']) && ($value > $this->values['max1']) && ($value > $this->values['min2']) && ($value < $this->values['min3']) && ($value < $this->values['max3']) && ($value < $this->values['min4']) && ($value < $this->values['max4']); break;
+            // case "min3": return ($value > $this->values['min1']) && ($value > $this->values['max1']) && ($value > $this->values['min2']) && ($value > $this->values['max2']) && ($value < $this->values['max3']) && ($value < $this->values['min4']) && ($value < $this->values['max4']); break;
+            // case "max3": return ($value > $this->values['min1']) && ($value > $this->values['max1']) && ($value > $this->values['min2']) && ($value > $this->values['max2']) && ($value > $this->values['min3']) && ($value < $this->values['min4']) && ($value < $this->values['max4']); break;
+            // case "min4": return ($value > $this->values['min1']) && ($value > $this->values['max1']) && ($value > $this->values['min2']) && ($value > $this->values['max2']) && ($value > $this->values['min3']) && ($value > $this->values['max3']) && ($value < $this->values['max4']); break;
+            // case "max4": return ($value > $this->values['min1']) && ($value > $this->values['max1']) && ($value > $this->values['min2']) && ($value > $this->values['max2']) && ($value > $this->values['min3']) && ($value > $this->values['max3']) && ($value > $this->values['min4']); break;
+
+            case "min1": return ($value < $this->values['max1']); break;
+            case "max1": return ($value < $this->values['min2']); break;
+            case "min2": return ($value < $this->values['max2']); break;
+            case "max2": return ($value < $this->values['min3']); break;
+            case "min3": return ($value < $this->values['min4']); break;
+            case "max3": return ($value < $this->values['min4']); break;
+            case "min4": return ($value < $this->values['max4']); break;
+            case "max4": return ($value > $this->values['min4']); break;
         }
     }
 
@@ -56,6 +65,6 @@ class ValidValueCategory implements Rule
      */
     public function message()
     {
-        return trans('categories.errorsValidations.validMin');
+        return trans('categories.errorsValidations.valid');
     }
 }

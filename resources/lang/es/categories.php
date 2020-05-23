@@ -6,11 +6,7 @@ return [
         'maximum'       => 'Valor entero máximo',
         ],
     'errorsValidations' => [
-        'name' => [
-            'required'      => 'El nombre es obligatorio.',
-            'nameProject'   => 'El nombre debe contener una sola palabra.',
-            'alpha'         => 'Permite solo caracteres alfabéticos. [A-z]',
-            'uniqueName'    => 'El nombre ":name" ya existe.',
+        'valid'         =>  'Debe ingresar un valor en el rango',
+        'zero'          =>  'El valor mínimo válido es 1',
         ],
-    ],
 ];
