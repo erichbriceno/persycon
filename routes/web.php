@@ -213,3 +213,8 @@ Route::get('/categories/{project}/edit', 'CategoryController@edit')
 Route::put('/categories/{project}/edit', 'CategoryController@update')
     ->where('project', '[0-9]+')
     ->name('category.update');
+
+// Titles
+
+Route::get('/titles', 'TitleController@index')
+->name('titles');

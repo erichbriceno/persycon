@@ -31,7 +31,7 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="{{ route('categories') }}">@lang('Categories')</a>
-                        <a class="dropdown-item" href="#">@lang('Job titles')</a>
+                        <a class="dropdown-item" href="{{ route('titles') }}">@lang('Job titles')</a>
                         <a class="dropdown-item" href="#">@lang('Interval')</a>
                         <a class="dropdown-item" href="#">@lang('Processing')</a>
                     </div>

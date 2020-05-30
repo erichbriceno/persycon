@@ -33,4 +33,3 @@
         @includeUnless($project->trashed(), 'project._actionsList')
     </td>
 </tr>
-        
