@@ -27,35 +27,35 @@ class TitleSeeder extends Seeder
         factory(Title::class)->create([
             'name'          => 'Coordinador de logística',
             'description'   => 'Coordinador de la actividades de logísticas',
-            'management_id' => $this->managements->where('acronym', 'PE')->first()->id,
-            'salary_type_id'=> $this->salaryTypes->first()->id,
+            'management_id' => $this->managements->where('acronym', 'CNS')->first()->id,
+            'salary_type_id'=> $this->salaryTypes->where('name', 'Semanal')->first()->id,
         ]);
 
         factory(Title::class)->create([
             'name'          => 'Supervisor de líneas',
             'description'   => 'Supervisor de líneas de producción',
-            'management_id' => $this->managements->where('acronym', 'PE')->first()->id,
-            'salary_type_id'=> $this->salaryTypes->first()->id,
+            'management_id' => $this->managements->where('acronym', 'ODC')->first()->id,
+            'salary_type_id'=> $this->salaryTypes->where('name', 'Semanal')->first()->id,
         ]);
 
         factory(Title::class)->create([
             'name'          => 'Administrativo',
             'description'   => 'Analista administrativo',
             'management_id' => $this->managements->where('acronym', 'PE')->first()->id,
-            'salary_type_id'=> $this->salaryTypes->first()->id,
+            'salary_type_id'=> $this->salaryTypes->where('name', 'Mensual')->first()->id,
         ]);
 
         factory(Title::class)->create([
             'name'          => 'Operador',
             'description'   => 'Operador de lineas',
-            'management_id' => $this->managements->where('acronym', 'PE')->first()->id,
+            'management_id' => $this->managements->where('acronym', 'CNS')->first()->id,
             'salary_type_id'=> $this->salaryTypes->first()->id,
         ]);
         
         factory(Title::class)->create([
             'name'          => 'Apoyo',
             'description'   => 'Apoyo logístico',
-            'management_id' => $this->managements->where('acronym', 'PE')->first()->id,
+            'management_id' => $this->managements->where('acronym', 'ODC')->first()->id,
             'salary_type_id'=> $this->salaryTypes->first()->id,
         ]);
     }

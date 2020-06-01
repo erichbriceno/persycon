@@ -5,7 +5,7 @@
     @includeWhen($view == 'index', 'title._menu')
     @includeWhen($view == 'trash', 'title._back')
 
-    @if ($projects->isNotEmpty())
+    @if ($titles->isNotEmpty())
         <table class="table table-sm table-hover">
             <thead class="thead-light">
             <tr>
@@ -19,11 +19,11 @@
             </tr>
             </thead>
             <tbody>
-                @each('title._row', $projects, 'project')
+                @each('title._row', $titles, 'title')
             </tbody>
         </table>
-        {{ $projects->onEachSide(1)->links() }}
+        {{ $titles->onEachSide(1)->links() }}
     @else
-        <h4>{{trans("projects.emptyMessage.{$view}")}}</h4>
+        <h4>{{trans("titles.emptyMessage.{$view}")}}</h4>
     @endif
 @endsection

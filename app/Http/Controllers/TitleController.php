@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Model\Project;
+use App\Model\Title;
 use Illuminate\Http\Request;
 // use App\Http\Requests\{CreateProjectRequest, UpdateProjectRequest};
 
@@ -12,15 +12,15 @@ class TitleController extends Controller
  
     public function index(Request $request)
     {
-        $projects = Project::query()
-                ->with('categories')
+        $titles = Title::query()
+                ->with('management','salaryType')
                 ->orderBy('id')
                 ->paginate(20);
         
         return view('title.titles', [
-            'module'    => 'title',
-            'view'      => 'index',
-            'projects'  => $projects,
+            'module'  => 'title',
+            'view'    => 'index',
+            'titles'  => $titles,
         ]);
     }
 

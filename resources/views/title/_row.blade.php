@@ -1,26 +1,26 @@
 <tr>
-    <td>{{ $project->namew }}
-        @if(! $project->active)
+    <td>{{ $title->name }}
+        @if(! $title->active)
         <span class="note-danger">
             <i class="fas fa-lock"></i>
         </span>
         @endif
     </td>
-    <td>{{ $project->description }}</td>
+    <td>{{ $title->description }}</td>
     <td class="text-center">
-        CNS
+        {{ $title->management->acronym }}
     </td>
     <td class="text-center">
         T1
     </td>
     <td class="text-center">
-        Diario
+        {{ $title->salaryType->name }}
     </td>
     <td class="text-center">
         34.4
     </td>
     <td class="form-inline justify-content-center">
-        @includeWhen($project->trashed(), 'project._actionsTrash')
-        @includeUnless($project->trashed(), 'project._actionsList')
+        @includeWhen($title->trashed(), 'title._actionsTrash')
+        @includeUnless($title->trashed(), 'title._actionsList')
     </td>
 </tr>
