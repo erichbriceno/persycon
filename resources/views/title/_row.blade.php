@@ -7,18 +7,10 @@
         @endif
     </td>
     <td>{{ $title->description }}</td>
-    <td class="text-center">
-        {{ $title->management->acronym }}
-    </td>
-    <td class="text-center">
-        T1
-    </td>
-    <td class="text-center">
-        {{ $title->salaryType->name }}
-    </td>
-    <td class="text-center">
-        34.4
-    </td>
+    <td class="text-center">{{ $title->management->acronym }}</td>
+    <td class="text-center">{{ $title->category }}</td>
+    <td class="text-center">{{ $title->salaryType->name }}</td>
+    <td class="text-center">{{ $title->salary}}</td>
     <td class="form-inline justify-content-center">
         @includeWhen($title->trashed(), 'title._actionsTrash')
         @includeUnless($title->trashed(), 'title._actionsList')

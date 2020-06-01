@@ -14,7 +14,8 @@ class TitleController extends Controller
     {
         $titles = Title::query()
                 ->with('management','salaryType')
-                ->orderBy('id')
+                ->orderBy('management_id')
+                ->orderBy('category')
                 ->paginate(20);
         
         return view('title.titles', [

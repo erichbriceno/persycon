@@ -17,7 +17,8 @@ class CreateTitlesTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('description');
-            
+            $table->string('category');
+            $table->decimal('salary', 8, 2);
             $table->unsignedBigInteger('management_id');
             $table->unsignedBigInteger('salary_type_id');
             $table->boolean('active');

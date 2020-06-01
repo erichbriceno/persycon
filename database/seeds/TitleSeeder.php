@@ -20,6 +20,8 @@ class TitleSeeder extends Seeder
         factory(Title::class)->create([
             'name'          => 'Coordinador de producción',
             'description'   => 'Coordinador de la actividades de producción',
+            'category'      => 'T1',
+            'salary'        => 81.5,
             'management_id' => $this->managements->where('acronym', 'PE')->first()->id,
             'salary_type_id'=> $this->salaryTypes->first()->id,
         ]);
@@ -27,6 +29,8 @@ class TitleSeeder extends Seeder
         factory(Title::class)->create([
             'name'          => 'Coordinador de logística',
             'description'   => 'Coordinador de la actividades de logísticas',
+            'category'      => 'T1',
+            'salary'        => 80.3,
             'management_id' => $this->managements->where('acronym', 'CNS')->first()->id,
             'salary_type_id'=> $this->salaryTypes->where('name', 'Semanal')->first()->id,
         ]);
@@ -34,6 +38,8 @@ class TitleSeeder extends Seeder
         factory(Title::class)->create([
             'name'          => 'Supervisor de líneas',
             'description'   => 'Supervisor de líneas de producción',
+            'category'      => 'T3',
+            'salary'        => 54.5,
             'management_id' => $this->managements->where('acronym', 'ODC')->first()->id,
             'salary_type_id'=> $this->salaryTypes->where('name', 'Semanal')->first()->id,
         ]);
@@ -41,6 +47,8 @@ class TitleSeeder extends Seeder
         factory(Title::class)->create([
             'name'          => 'Administrativo',
             'description'   => 'Analista administrativo',
+            'category'      => 'T2',
+            'salary'        => 67.1,
             'management_id' => $this->managements->where('acronym', 'PE')->first()->id,
             'salary_type_id'=> $this->salaryTypes->where('name', 'Mensual')->first()->id,
         ]);
@@ -48,6 +56,8 @@ class TitleSeeder extends Seeder
         factory(Title::class)->create([
             'name'          => 'Operador',
             'description'   => 'Operador de lineas',
+            'category'      => 'T1',
+            'salary'        => 30.0,
             'management_id' => $this->managements->where('acronym', 'CNS')->first()->id,
             'salary_type_id'=> $this->salaryTypes->first()->id,
         ]);
@@ -55,6 +65,8 @@ class TitleSeeder extends Seeder
         factory(Title::class)->create([
             'name'          => 'Apoyo',
             'description'   => 'Apoyo logístico',
+            'category'      => 'T1',
+            'salary'        => 30.0,
             'management_id' => $this->managements->where('acronym', 'ODC')->first()->id,
             'salary_type_id'=> $this->salaryTypes->first()->id,
         ]);

@@ -1,10 +1,8 @@
 <tr>
     <td>{{ $coordination->name }}</td>
     <td>{{ $coordination->description }}</td>
-    <td>
-        <span class="note-black">{{ $coordination->management->name }}</span>
-    </td>
-    <td class="text-center">4</td>
+    <td class="text-center">{{ $coordination->management->acronym }}</td>
+    <td class="text-center">{{ 4/3 }}</td>
     <td class="text-center">
         <span class="note-black">@lang('Activities')</span>
         <div class="progress">
