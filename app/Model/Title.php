@@ -8,6 +8,25 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Title extends Model
 {
     use SoftDeletes;
+
+    /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'active'            => 'bool',
+    ];
+    
+    public function setStateAttribute($value)
+    {
+        $this->attributes['active'] = $value == 'active';
+    }
+
+    public function getStateAttribute()
+    {
+        return $this->active ? 'active' : 'inactive';
+    }
     
     public function management()
     {

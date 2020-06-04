@@ -48,19 +48,14 @@ class TitleController extends Controller
     //     return redirect()->route('projects');
     // }
 
-    // public function edit(Project $project)
-    // {
-    //     return view('project.edit', [
-    //         'module'    => 'project',
-    //         'view'      => 'edit',
-    //         'project'   => $project,
-    //         'years'     => [
-    //             today()->sub('1 year')->format('Y'),
-    //             today()->format('Y'),
-    //             today()->add('1 year')->format('Y'),
-    //             ]
-    //         ]);
-    // }
+    public function edit(Title $title)
+    {
+        return view('title.edit', [
+            'module'    => 'title',
+            'view'      => 'edit',
+            'title'     => $title,
+            ]);
+    }
     
     // public function update(UpdateProjectRequest $request, Project $project)
     // {

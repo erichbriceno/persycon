@@ -42,6 +42,6 @@ return [
     ],
     'title'     => [
         'index'         => 'LIST OF TITLES',
-        'edit'          => 'EDIT TITLES',
+        'edit'          => 'EDIT TITLE',
     ],
 ];

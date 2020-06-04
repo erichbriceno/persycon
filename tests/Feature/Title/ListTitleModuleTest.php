@@ -3,7 +3,7 @@
 namespace Tests\Feature\User;
 
 use Tests\TestCase;
-// use App\Model\{User, Project};
+use App\Model\{Title, Management, SalaryType};
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class ListTitleModuleTest extends TestCase
@@ -13,11 +13,26 @@ class ListTitleModuleTest extends TestCase
     /** @test */
     function it_the_title_list_exist()
     {
-        // $this->withoutExceptionHandling();
 
         $this->get(route('titles'))
             ->assertStatus(200)
             ->assertSee('LISTADO DE CARGOS' );
+    }
+
+    /** @test */
+    function it_the_title_edit_exist()
+    {
+        // $this->withoutExceptionHandling();
+
+        $title = factory(Title::class)->create([
+            'name'          => 'Gerente de producción',
+            'management_id' => Management::where('acronym', 'PE')->first()->id,
+            'salary_type_id'=> SalaryType::where('name', 'Diario')->first()->id,
+        ]);
+
+        $this->get(route('title.edit', $title))
+            ->assertStatus(200)
+            ->assertSee('EDITAR CARGO');
     }
     
     // /** @test */

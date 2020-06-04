@@ -17,10 +17,4 @@ return [
             'max'           => 'The description may not be greater than 50 characters.'
         ],
     ]
-    /*
-    'state'     => [
-        'inactive'          => 'Inactive',
-        'active'            => 'Active'
-    ],
-    */
 ];

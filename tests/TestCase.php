@@ -2,7 +2,7 @@
 
 namespace Tests;
 
-use App\Model\{Cedulate, Role, Management, Coordination, Project};
+use App\Model\{Cedulate, Role, Management, Coordination, Project, SalaryType};
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 
 abstract class TestCase extends BaseTestCase
@@ -20,6 +20,8 @@ abstract class TestCase extends BaseTestCase
         $this->loadManagemetsTable();
         $this->loadCoordinationsTable();
         $this->loadCedulatesTable();
+        $this->loadSalaryTypesTable();
+
     }
 
     
@@ -223,6 +225,34 @@ abstract class TestCase extends BaseTestCase
             'description' => 'Actividades de producción',
             'management_id' => Management::where('acronym', 'PE')->first()->id,
             'active' => true,
+        ]);
+    }
+
+    public function loadSalaryTypesTable()
+    {
+        factory(SalaryType::class)->create([
+            'name' => 'Diario',
+            'description' => 'Salario diario',
+        ]);
+
+        factory(SalaryType::class)->create([
+            'name' => 'Semanal',
+            'description' => 'Salario semanal',
+        ]);
+
+        factory(SalaryType::class)->create([
+            'name' => 'Mensual',
+            'description' => 'Salario mensual',
+        ]);
+
+        factory(SalaryType::class)->create([
+            'name' => 'Mixto',
+            'description' => 'Salario mixto',
+        ]);
+
+        factory(SalaryType::class)->create([
+            'name' => 'Único',
+            'description' => 'Compensación única',
         ]);
     }
 

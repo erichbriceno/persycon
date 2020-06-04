@@ -42,6 +42,6 @@ return [
     ],
     'title'     => [
         'index'         => 'LISTADO DE CARGOS',
-        'edit'          => 'EDITAR CARGOS',
+        'edit'          => 'EDITAR CARGO',
     ],
 ];
