@@ -8,6 +8,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->truncateTables([
             'titles',
+            'category_project',
             'salary_types',
             'categories',
             'coordinations',

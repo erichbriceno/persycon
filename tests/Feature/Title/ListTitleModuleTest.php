@@ -34,6 +34,13 @@ class ListTitleModuleTest extends TestCase
             ->assertStatus(200)
             ->assertSee('EDITAR CARGO');
     }
+
+    /** @test */
+    function it_una_prueba()
+    {
+        dd(number_format(rand(1, 10)/3, 2, '.', ''));
+    }
+
     
     // /** @test */
     // function it_shows_the_projects_list()

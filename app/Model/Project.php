@@ -57,10 +57,7 @@ class Project extends Model
         return $this->active?'active':'inactive';
     }
 
-    public function categories()
-    {
-        return $this->hasMany(Category::class);
-    }
+
 
     public function getCat1Attribute()
     {
@@ -134,5 +131,18 @@ class Project extends Model
         $category = $this->cat4;
         $category->maximum = $value;
     }
+
+    public function categories()
+    {
+        return $this->belongsToMany(Category::class)
+            ->withPivot('minimum', 'maximum')
+            ->withTimestamps();
+
+    }
+
+    // public function categories()
+    // {
+    //     return $this->hasMany(Category::class);
+    // }
 
 }
