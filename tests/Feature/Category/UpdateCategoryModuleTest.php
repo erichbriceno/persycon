@@ -14,7 +14,7 @@ class UpdateCategoryModuleTest extends TestCase
     function it_update_a_project_categories()
     {
         $project = $this->createRandomProject();
-        
+
         $this->from(route('category.edit', $project))
             ->put(
                 route('category.update', $project),
@@ -24,14 +24,14 @@ class UpdateCategoryModuleTest extends TestCase
             
         $project->refresh();
         
-        $this->assertSame($project->cat1->minimum,2);
-        $this->assertSame($project->cat1->maximum,19);
-        $this->assertSame($project->cat2->minimum,20);
-        $this->assertSame($project->cat2->maximum,39);
-        $this->assertSame($project->cat3->minimum,40);
-        $this->assertSame($project->cat3->maximum,59);
-        $this->assertSame($project->cat4->minimum,60);
-        $this->assertSame($project->cat4->maximum,79);
+        $this->assertSame($project->cat1->minimum,"2.00");
+        $this->assertSame($project->cat1->maximum,"19.00");
+        $this->assertSame($project->cat2->minimum,"20.00");
+        $this->assertSame($project->cat2->maximum,"39.00");
+        $this->assertSame($project->cat3->minimum,"40.00");
+        $this->assertSame($project->cat3->maximum,"59.00");
+        $this->assertSame($project->cat4->minimum,"60.00");
+        $this->assertSame($project->cat4->maximum,"79.00");
     }
 
     // /** @test */
@@ -283,6 +283,6 @@ class UpdateCategoryModuleTest extends TestCase
         // ]))
         // ->assertRedirect(route('category.edit', $project))
         // ->assertSessionHasErrors(['max4']);
-    }
+        // }
 
 }

@@ -3,7 +3,7 @@
 namespace App\Http\Requests;
 
 use Carbon\Carbon;
-use App\Model\Project;
+use App\Model\{ Category, Project};
 use Illuminate\Foundation\Http\FormRequest;
 use App\Rules\{NameProject, NameProjectUnique, YearBetween};
 
@@ -73,6 +73,8 @@ class CreateProjectRequest extends FormRequest
 
     public function createProject()
     {
+        $categories = Category::all();
+        
         $project = Project::create([
             'name' =>"$this->name " . "$this->year",
             'description' => $this->description,
@@ -83,11 +85,11 @@ class CreateProjectRequest extends FormRequest
         
         $project->save();
 
-        $project->categories()->createMany([
-            ['name'      => 'T1', 'minimum'   =>  0, 'maximum'   =>  0],
-            ['name'      => 'T2', 'minimum'   =>  0, 'maximum'   =>  0],
-            ['name'      => 'T3', 'minimum'   =>  0, 'maximum'   =>  0],
-            ['name'      => 'T4', 'minimum'   =>  0, 'maximum'   =>  0],
-        ]);
+        $project->categories()->save($categories->where('name','T1')->first(), [ 'minimum' => '5.00', 'maximum' => '39.00']);
+        $project->categories()->save($categories->where('name','T2')->first(), [ 'minimum' => '40.00', 'maximum' => '59.00']);
+        $project->categories()->save($categories->where('name','T3')->first(), [ 'minimum' => '60.00', 'maximum' => '79.00']);
+        $project->categories()->save($categories->where('name','T4')->first(), [ 'minimum' => '80.00', 'maximum' => '99.00']);
+        
+        
     }
 }

@@ -27,8 +27,6 @@ class CategoryController extends Controller
 
     public function edit(Project $project)
     {
-        // $url = url()->previous();
-        // dd(Str::contains(url()->previous(),'projects'));
 
         return view('category.edit', [
             'module'    => 'category',

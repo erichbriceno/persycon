@@ -2,8 +2,8 @@
 
 namespace Tests;
 
-use App\Model\{Cedulate, Role, Management, Coordination, Project, SalaryType};
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
+use App\Model\{Cedulate, Category, Role, Management, Coordination, Project, SalaryType};
 
 abstract class TestCase extends BaseTestCase
 {
@@ -21,35 +21,24 @@ abstract class TestCase extends BaseTestCase
         $this->loadCoordinationsTable();
         $this->loadCedulatesTable();
         $this->loadSalaryTypesTable();
+        $this->loadCategories();
 
     }
 
     
-    public function createRandomProject()
+    public function createRandomProject($name = 'Proyecto 2020' )
     {
+        $categories = Category::all();
+
         $project = factory(Project::class)->create([
-            'name' => 'Proyecto 2020',
+            'name' => $name,
         ]);
         
-        $project->categories()->createMany([
-            [
-                'name'      => 'T1',
-                'minimum'   =>  1,
-                'maximum'   =>  9,
-            ],[
-                'name'      => 'T2',
-                'minimum'   =>  10,
-                'maximum'   =>  19
-            ],[
-                'name'      => 'T3',
-                'minimum'   =>  20,
-                'maximum'   =>  29,
-            ],[
-                'name'      => 'T4',
-                'minimum'   =>  30,
-                'maximum'   =>  39,
-            ],
-        ]);
+        $project->categories()->save($categories->where('name','T1')->first(), [ 'minimum' => '5.00', 'maximum' => '39.00']);
+        $project->categories()->save($categories->where('name','T2')->first(), [ 'minimum' => '40.00', 'maximum' => '59.00']);
+        $project->categories()->save($categories->where('name','T3')->first(), [ 'minimum' => '60.00', 'maximum' => '79.00']);
+        $project->categories()->save($categories->where('name','T4')->first(), [ 'minimum' => '80.00', 'maximum' => '99.00']);
+        
         return $project;
     }
 
@@ -147,14 +136,12 @@ abstract class TestCase extends BaseTestCase
         ], $custom);
     }
 
-    protected function loadCategoriesEmpty(Project $project)
+    protected function loadCategories()
     {
-        $project->categories()->createMany([
-            ['name' => 'T1', 'minimum' => 0, 'maximum' => 0],
-            ['name' => 'T2', 'minimum' => 0, 'maximum' => 0],
-            ['name' => 'T3', 'minimum' => 0, 'maximum' => 0],
-            ['name' => 'T4', 'minimum' => 0, 'maximum' => 0],
-        ]);
+        factory(Category::class)->create([ 'name'  => 'T1' ]);
+        factory(Category::class)->create([ 'name'  => 'T2' ]);
+        factory(Category::class)->create([ 'name'  => 'T3' ]);
+        factory(Category::class)->create([ 'name'  => 'T4' ]);
     }
 
     protected function loadRolesTable()

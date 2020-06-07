@@ -24,20 +24,9 @@ class ListProjectModuleTest extends TestCase
     /** @test */
     function it_shows_the_projects_list()
     {
-        $project = factory(Project::class)->create([
-            'name' => 'Elecciones 2019',
-            'description' => 'Elecciones Regionales 2019',
-        ]);
-
-        $this->loadCategoriesEmpty($project);
-
-        $project = factory(Project::class)->create([
-            'name' => 'Mantenimiento 2020',
-            'description' => 'Mantenimiento de la Plataforma 2020',
-        ]);
-
-        $this->loadCategoriesEmpty($project);
-
+        $this->createRandomProject('Elecciones 2019');
+        $this->createRandomProject('Mantenimiento 2020');
+        
         $this->get(route('projects'))
             ->assertStatus(200)
             ->assertSee('LISTADO DE PROYECTOS' )

@@ -48,14 +48,14 @@ class UpdateCategoryRequest extends FormRequest
 
     public function updateCategoriesProject(Project $project)
     {
-        $project->cat1min = $this->min1;
-        $project->cat1max = $this->max1;
-        $project->cat2min = $this->min2;
-        $project->cat2max = $this->max2;
-        $project->cat3min = $this->min3;
-        $project->cat3max = $this->max3;
-        $project->cat4min = $this->min4;
-        $project->cat4max = $this->max4;
+        $project->cat1->minimum = $this->min1;
+        $project->cat1->maximum = $this->max1;
+        $project->cat2->minimum = $this->min2;
+        $project->cat2->maximum = $this->max2;
+        $project->cat3->minimum = $this->min3;
+        $project->cat3->maximum = $this->max3;
+        $project->cat4->minimum = $this->min4;
+        $project->cat4->maximum = $this->max4;
         
         $project->push();
     }

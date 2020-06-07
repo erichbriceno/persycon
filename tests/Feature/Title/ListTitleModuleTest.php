@@ -35,11 +35,11 @@ class ListTitleModuleTest extends TestCase
             ->assertSee('EDITAR CARGO');
     }
 
-    /** @test */
-    function it_una_prueba()
-    {
-        dd(number_format(rand(1, 10)/3, 2, '.', ''));
-    }
+    // /** @test */
+    // function it_una_prueba()
+    // {
+    //     dd(number_format(rand(1, 10)/3, 2, '.', ''));
+    // }
 
     
     // /** @test */
