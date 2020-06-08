@@ -28,14 +28,13 @@ class UpdateCategoryRequest extends FormRequest
     public function rules()
     {
         return [
-            'min1' => ['required','integer','min:1', new ValidValueCategory($this->min1, $this->max1, $this->min2, $this->max2, $this->min3, $this->max3, $this->min4, $this->max4)],
-            'max1' => ['required','integer','min:1', new ValidValueCategory($this->min1, $this->max1, $this->min2, $this->max2, $this->min3, $this->max3, $this->min4, $this->max4)],
-            'min2' => ['required','integer','min:1', new ValidValueCategory($this->min1, $this->max1, $this->min2, $this->max2, $this->min3, $this->max3, $this->min4, $this->max4)],
-            'max2' => ['required','integer','min:1', new ValidValueCategory($this->min1, $this->max1, $this->min2, $this->max2, $this->min3, $this->max3, $this->min4, $this->max4)],
-            'min3' => ['required','integer','min:1', new ValidValueCategory($this->min1, $this->max1, $this->min2, $this->max2, $this->min3, $this->max3, $this->min4, $this->max4)],
-            'max3' => ['required','integer','min:1', new ValidValueCategory($this->min1, $this->max1, $this->min2, $this->max2, $this->min3, $this->max3, $this->min4, $this->max4)],
-            'min4' => ['required','integer','min:1', new ValidValueCategory($this->min1, $this->max1, $this->min2, $this->max2, $this->min3, $this->max3, $this->min4, $this->max4)],
-            'max4' => ['required','integer','min:1', new ValidValueCategory($this->min1, $this->max1, $this->min2, $this->max2, $this->min3, $this->max3, $this->min4, $this->max4)],
+            'min1' => ['required','numeric','min:1', new ValidValueCategory($this->min1, $this->max1, $this->min2, $this->max2, $this->min3, $this->max3, $this->min4, $this->max4)],
+            'max1' => ['required','numeric','min:1', new ValidValueCategory($this->min1, $this->max1, $this->min2, $this->max2, $this->min3, $this->max3, $this->min4, $this->max4)],
+            'min2' => ['required','numeric','min:1', new ValidValueCategory($this->min1, $this->max1, $this->min2, $this->max2, $this->min3, $this->max3, $this->min4, $this->max4)],
+            'max2' => ['required','numeric','min:1', new ValidValueCategory($this->min1, $this->max1, $this->min2, $this->max2, $this->min3, $this->max3, $this->min4, $this->max4)],
+            'max3' => ['required','numeric','min:1', new ValidValueCategory($this->min1, $this->max1, $this->min2, $this->max2, $this->min3, $this->max3, $this->min4, $this->max4)],
+            'min4' => ['required','numeric','min:1', new ValidValueCategory($this->min1, $this->max1, $this->min2, $this->max2, $this->min3, $this->max3, $this->min4, $this->max4)],
+            'max4' => ['required','numeric','min:1', new ValidValueCategory($this->min1, $this->max1, $this->min2, $this->max2, $this->min3, $this->max3, $this->min4, $this->max4)],
         ];
     }
 

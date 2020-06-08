@@ -85,10 +85,10 @@ class CreateProjectRequest extends FormRequest
         
         $project->save();
 
-        $project->categories()->save($categories->where('name','T1')->first(), [ 'minimum' => '5.00', 'maximum' => '39.00']);
-        $project->categories()->save($categories->where('name','T2')->first(), [ 'minimum' => '40.00', 'maximum' => '59.00']);
-        $project->categories()->save($categories->where('name','T3')->first(), [ 'minimum' => '60.00', 'maximum' => '79.00']);
-        $project->categories()->save($categories->where('name','T4')->first(), [ 'minimum' => '80.00', 'maximum' => '99.00']);
+        $project->categories()->save($categories->where('name','T1')->first(), [ 'minimum' => '0.00', 'maximum' => '0.00']);
+        $project->categories()->save($categories->where('name','T2')->first(), [ 'minimum' => '0.00', 'maximum' => '0.00']);
+        $project->categories()->save($categories->where('name','T3')->first(), [ 'minimum' => '0.00', 'maximum' => '0.00']);
+        $project->categories()->save($categories->where('name','T4')->first(), [ 'minimum' => '0.00', 'maximum' => '0.00']);
         
         
     }

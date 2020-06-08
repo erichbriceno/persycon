@@ -82,7 +82,15 @@ class Project extends Model
 
     public function getLoadcategoriesAttribute()
     {
-        return $this->cat1->minimum && $this->cat2->minimum && $this->cat3->minimum && $this->cat4->minimum && $this->cat1->maximum && $this->cat2->maximum && $this->cat3->maximum && $this->cat4->maximum;
+        return 
+            $this->cat1->minimum != '0.00' && 
+            $this->cat2->minimum != '0.00' && 
+            $this->cat3->minimum != '0.00' && 
+            $this->cat4->minimum != '0.00' && 
+            $this->cat1->maximum != '0.00' && 
+            $this->cat2->maximum != '0.00' && 
+            $this->cat3->maximum != '0.00' && 
+            $this->cat4->maximum != '0.00' ;
     }
 
     public function categories()
