@@ -137,15 +137,16 @@ class CreateProjectModuleTest extends TestCase
     /** @test */
     function the_name_must_be_made_up_of_the_name_and_the_year()
     {
+
         $this->from(route('project.create'))
             ->post(route('project.store'), $this->getProjectData([
                 'name' => 'Caracola',
-                'year' => 2019
+                'year' => 2020
                 ]))
             ->assertRedirect(route('projects'));
     
         $this->assertDatabaseHas('projects', [
-            'name' => 'Caracola 2019',
+            'name' => 'Caracola 2020',
             'description' => 'Elecciones Municipales 2020',
             'start' => '2020-03-20',
             'active' => true
@@ -174,15 +175,16 @@ class CreateProjectModuleTest extends TestCase
     /** @test */
     function the_year_must_be_valid()
     {
+        // $this->withoutExceptionHandling();
         $this->from(route('project.create'))
             ->post(route('project.store'), $this->getProjectData([
-                'year' => 2018,
+                'year' => 2019,
                 ]))
             ->assertRedirect(route('project.create'))
             ->assertSessionHasErrors(['year']);
     
         $this->assertDatabaseMissing('projects', [
-            'name' => 'municipales 2018',
+            'name' => 'municipales 2020',
             'description' => 'Elecciones Municipales 2020',
             'start' => '2020-03-20',
             'active' => true
@@ -190,7 +192,7 @@ class CreateProjectModuleTest extends TestCase
         
         $this->from(route('project.create'))
             ->post(route('project.store'), $this->getProjectData([
-                'year' => 2022,
+                'year' => 2023,
                 ]))
             ->assertRedirect(route('project.create'))
             ->assertSessionHasErrors(['year']);
@@ -204,12 +206,12 @@ class CreateProjectModuleTest extends TestCase
         
         $this->from(route('project.create'))
             ->post(route('project.store'), $this->getProjectData([
-                'year' => 2019,
+                'year' => 2021,
                 ]))
             ->assertRedirect(route('projects'));
     
         $this->assertDatabaseHas('projects', [
-            'name' => 'Municipales 2019',
+            'name' => 'Municipales 2021',
             'description' => 'Elecciones Municipales 2020',
             'start' => '2020-03-20',
             'active' => true
