@@ -29,11 +29,11 @@ class UserSeeder extends Seeder
             'password' => bcrypt('secreto1'),
         ]);
 
-        foreach (range(1, 10) as $i) {
+        foreach (range(1, 5) as $i) {
             $this->createRandomUser(false);
         }
 
-        foreach (range(1, 40) as $i) {
+        foreach (range(1, 5) as $i) {
             $this->createRandomUser(true);
         }
     }

@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Coordination extends Model
 {
     use SoftDeletes;
+    public $table = "coordinations";
 
     protected $fillable = [
         'name', 

@@ -9,7 +9,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Management extends Model
 {
     use SoftDeletes;
-
+    public $table = "managements";
+    
     /**
      * The attributes that are mass assignable.
      *
@@ -19,7 +20,7 @@ class Management extends Model
         'acronym',
         'name',
         'description',
-        'selectable'
+        'selectable',
     ];
 
     /**

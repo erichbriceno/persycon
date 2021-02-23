@@ -14,5 +14,4 @@ class GroupQuery extends Builder
         }
         return $this;
     }
-
 }

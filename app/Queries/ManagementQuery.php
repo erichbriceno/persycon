@@ -14,5 +14,4 @@ class ManagementQuery extends Builder
         }
         return $this;
     }
-
 }
