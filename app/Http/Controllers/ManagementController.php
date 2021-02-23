@@ -25,7 +25,7 @@ class ManagementController extends Controller
 
     public function trash(Management $management)
     {
-        $management->selectable = false;
+        $management->active = false;
         $management->save();
         $management->delete();
 
@@ -35,7 +35,6 @@ class ManagementController extends Controller
     public function restore($id)
     {
         $management = Management::onlyTrashed()->where('id', $id)->firstOrFail();
-        $management->selectable = true;
         $management->save();
         $management->restore();
 
