@@ -4,7 +4,7 @@ namespace App\Queries;
 
 use Illuminate\Database\Eloquent\Builder;
 
-class ProjectQuery extends Builder
+class TrashedQuery extends Builder
 {
 
     public function onlyTrashedIf($trashed)
@@ -14,5 +14,4 @@ class ProjectQuery extends Builder
         }
         return $this;
     }
-
 }

@@ -2,7 +2,7 @@
 
 namespace App\Model;
 
-use App\Queries\CoordinationQuery;
+use App\Queries\TrashedQuery;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -35,7 +35,7 @@ class Coordination extends Model
      */
     public function newEloquentBuilder($query)
     {
-        return new CoordinationQuery($query);
+        return new TrashedQuery($query);
     }
 
     public function management()

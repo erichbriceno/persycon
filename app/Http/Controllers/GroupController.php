@@ -15,7 +15,7 @@ class GroupController extends Controller
                 ->with('coordination')
                 ->orderBy('coordination_id')
                 ->paginate(20);
-        
+      
         return view('group.groups',[
             'module'    => 'group',
             'view'      => $request->routeIs('groups.trash') ? 'trash' : 'index',

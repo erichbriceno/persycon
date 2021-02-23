@@ -2,7 +2,7 @@
 
 namespace App\Model;
 
-use App\Queries\GroupQuery;
+use App\Queries\TrashedQuery;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -22,16 +22,16 @@ class Group extends Model
         'coordination_id',
     ];
 
-    // /**
-    //  * Create a new Eloquent query builder for the model.
-    //  *
-    //  * @param  \Illuminate\Database\Query\Builder  $query
-    //  * @return \Illuminate\Database\Eloquent\Builder|static
-    //  */
-    // public function newEloquentBuilder($query)
-    // {
-    //     return new GroupQuery($query);
-    // }
+    /**
+     * Create a new Eloquent query builder for the model.
+     *
+     * @param  \Illuminate\Database\Query\Builder  $query
+     * @return \Illuminate\Database\Eloquent\Builder|static
+     */
+    public function newEloquentBuilder($query)
+    {
+        return new TrashedQuery($query);
+    }
 
     public function coordination()
     {

@@ -2,7 +2,7 @@
 
 namespace App\Model;
 
-use App\Queries\ManagementQuery;
+use App\Queries\TrashedQuery;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -31,6 +31,6 @@ class Management extends Model
      */
     public function newEloquentBuilder($query)
     {
-        return new ManagementQuery($query);
+        return new TrashedQuery($query);
     }
 }

@@ -4,7 +4,7 @@ namespace App\Model;
 
 
 use Illuminate\Support\Str;
-use App\Queries\ProjectQuery;
+use App\Queries\TrashedQuery;
 use Illuminate\Database\Eloquent\Model;
 use App\Model\{CategoryProject, Category};
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -40,7 +40,7 @@ class Project extends Model
      */
     public function newEloquentBuilder($query)
     {
-        return new ProjectQuery($query);
+        return new TrashedQuery($query);
     }
 
     public function getNamewAttribute()
