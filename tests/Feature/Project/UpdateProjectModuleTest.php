@@ -319,15 +319,15 @@ class UpdateProjectModuleTest extends TestCase
         ->put(route('project.update', $project),
         [
             'description'   => 'Breve descripción', 
-            'from'          => '22/02/2020',
-            'to'            => '29/02/2020', 
+            'from'          => '22/10/2020',
+            'to'            => '29/10/2020', 
             'state'         => 'active',      
         ])->assertRedirect(route('projects'));
     
         $this->assertDatabaseHas('projects', [
             'description'   => 'Breve descripción',          
-            'start' => '2020-02-22',
-            'ending' => '2020-02-29',
+            'start' => '2020-10-22',
+            'ending' => '2020-10-29',
             ]);
     }
 
@@ -340,14 +340,14 @@ class UpdateProjectModuleTest extends TestCase
         ->put(route('project.update', $project),
         [
             'description'   => 'Breve descripción', 
-            'from'          => '22/02/2020',
+            'from'          => '22/10/2020',
             'to'            => null,
             'state'         => 'active',       
         ])->assertRedirect(route('projects'));
     
         $this->assertDatabaseHas('projects', [
             'description'   => 'Breve descripción',          
-            'start'         => '2020-02-22',
+            'start'         => '2020-10-22',
             'ending'        => null,
             ]);
     }

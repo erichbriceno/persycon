@@ -427,16 +427,16 @@ class CreateProjectModuleTest extends TestCase
 
         $this->from(route('project.create'))
             ->post(route('project.store'), $this->getProjectData([
-                'from' => '22/02/2020',
-                'to' => '29/02/2020',
+                'from' => '22/10/2020',
+                'to' => '29/10/2020',
                 ]))
             ->assertRedirect(route('projects'));
     
         $this->assertDatabaseHas('projects', [
             'name' => 'Municipales 2020',
             'description' => 'Elecciones Municipales 2020',
-            'start' => '2020-02-22',
-            'ending' => '2020-02-29',
+            'start' => '2020-10-22',
+            'ending' => '2020-10-29',
             'active' => true
             ]);
     }

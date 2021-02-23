@@ -19,29 +19,23 @@ class ListTitleModuleTest extends TestCase
             ->assertSee('LISTADO DE CARGOS' );
     }
 
-    /** @test */
-    function it_the_title_edit_exist()
-    {
-        // $this->withoutExceptionHandling();
-
-        $title = factory(Title::class)->create([
-            'name'          => 'Gerente de producción',
-            'management_id' => Management::where('acronym', 'PE')->first()->id,
-            'salary_type_id'=> SalaryType::where('name', 'Diario')->first()->id,
-        ]);
-
-        $this->get(route('title.edit', $title))
-            ->assertStatus(200)
-            ->assertSee('EDITAR CARGO');
-    }
-
     // /** @test */
-    // function it_una_prueba()
+    // function it_the_title_edit_exist()
     // {
-    //     dd(number_format(rand(1, 10)/3, 2, '.', ''));
+    //     // $this->withoutExceptionHandling();
+
+    //     $title = factory(Title::class)->create([
+    //         'name'          => 'Gerente de producción',
+    //         'management_id' => Management::where('acronym', 'PE')->first()->id,
+    //         'salary_type_id'=> SalaryType::where('name', 'Diario')->first()->id,
+    //     ]);
+
+    //     $this->get(route('title.edit', $title))
+    //         ->assertStatus(200)
+    //         ->assertSee('EDITAR CARGO');
     // }
 
-    
+ 
     // /** @test */
     // function it_shows_the_projects_list()
     // {

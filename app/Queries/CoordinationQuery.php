@@ -14,5 +14,4 @@ class CoordinationQuery extends Builder
         }
         return $this;
     }
-
 }
