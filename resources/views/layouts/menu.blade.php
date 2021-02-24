@@ -21,8 +21,9 @@
                         @lang('Personnel')
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">@lang('Bulk Load')</a>
+                        <a class="dropdown-item" href="#">@lang('Database')</a>
                         <a class="dropdown-item" href="#">@lang('List')</a>
+                        <a class="dropdown-item" href="#">@lang('Bulk Load')</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">
