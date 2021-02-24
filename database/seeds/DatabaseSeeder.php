@@ -18,6 +18,8 @@ class DatabaseSeeder extends Seeder
             'groups',
             'roles',
             'users',
+            'people',
+
         ]);
 
         $this->call([
@@ -30,7 +32,8 @@ class DatabaseSeeder extends Seeder
             CoordinationSeeder::class,
             TitleSeeder::class,
             GroupSeeder::class,
-            UserSeeder::class
+            UserSeeder::class,
+            PeopleSeeder::class,
         ]);
     }
 
