@@ -14,4 +14,9 @@ class TrashedQuery extends Builder
         }
         return $this;
     }
+
+    public function filterBy(QueryFilter $filters, array $data)
+    {
+        return $filters->applyTo($this, $data);
+    }
 }

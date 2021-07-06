@@ -202,13 +202,13 @@ class UpdateProjectModuleTest extends TestCase
             ->put(route('project.update', $project),
             [
                 'description'   => 'Breve descripción',
-                'from'  => '29/02/2020',
+                'from'  => '29/05/2021',
                 'state'         => 'active',
             ])->assertRedirect(route('projects'));
         
         $this->assertDatabaseHas('projects', [
             'description'   => 'Breve descripción',
-            'start'     => '2020-02-29',
+            'start'     => '2021-05-29',
             ]);
     }
 

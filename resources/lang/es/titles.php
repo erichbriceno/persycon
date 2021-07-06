@@ -44,4 +44,8 @@ return [
         'index'         => 'LISTADO DE CARGOS',
         'edit'          => 'EDITAR CARGO',
     ],
+    'people'     => [
+        'index'         => 'LISTADO DE GENTE',
+        'edit'          => 'EDITAR PERSONA',
+    ],
 ];

@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-
 use App\Utils\Sortable;
 use App\Rules\ValidCedule;
 use App\Queries\UserFilter;

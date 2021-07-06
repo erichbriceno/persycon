@@ -84,7 +84,7 @@ class User extends Authenticatable
 
     public function getNameAttribute()
     {
-        return ucwords(strtolower("{$this->names} {$this->surnames}"));;
+        return ucwords(strtolower("{$this->names} {$this->surnames}"));
     }
 
     public function getCeduleAttribute()

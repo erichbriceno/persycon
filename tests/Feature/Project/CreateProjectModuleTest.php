@@ -283,7 +283,7 @@ class CreateProjectModuleTest extends TestCase
     }
     
     /** @test */
-    function the_start_date_must_be_valid()
+    function the_start_date_proyect_must_be_valid()
     {
         $this->from(route('project.create'))
             ->post(route('project.store'), $this->getProjectData([
@@ -316,14 +316,14 @@ class CreateProjectModuleTest extends TestCase
 
         $this->from(route('project.create'))
         ->post(route('project.store'), $this->getProjectData([
-            'from' => '29/02/2020',
+            'from' => '29/05/2021',
             ]))
         ->assertRedirect(route('projects'));
 
         $this->assertDatabaseHas('projects', [
         'name' => 'Municipales 2020',
         'description' => 'Elecciones Municipales 2020',
-        'start' => '2020-02-29',
+        'start' => '2021-05-29',
         'active' => true
         ]);
     }

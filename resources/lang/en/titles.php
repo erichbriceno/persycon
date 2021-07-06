@@ -44,4 +44,8 @@ return [
         'index'         => 'LIST OF TITLES',
         'edit'          => 'EDIT TITLE',
     ],
+    'people'     => [
+        'index'         => 'LIST OF PEOPLE',
+        'edit'          => 'EDIT PERSON',
+    ],
 ];

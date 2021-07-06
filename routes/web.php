@@ -222,3 +222,15 @@ Route::get('/titles', 'TitleController@index')
 Route::get('/titles/{title}/edit', 'TitleController@edit')
     ->where('title', '[0-9]+')    
     ->name('title.edit');
+
+
+// People
+
+Route::get('/people', 'PeopleController@index')
+->name('people');
+
+Route::get('/people/new', 'PeopleController@create')
+    ->name('people.create');
+
+Route::get('/people/blacklist', 'PeopleController@index')
+    ->name('people.blacklist');
